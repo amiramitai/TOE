@@ -142,5 +142,15 @@
     "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
     "network": "Polygon Mainnet (chainId: 137)",
     "timestamp": "2026-02-21T06:39:10.814Z"
+  },
+  "v3.9": {
+    "version": "3.9",
+    "title": "The Non-Perturbative Stability Update",
+    "hash": "061bcd54af06c9cb4fa3cf9ea083cbf2ace7c6efe17abe8763f7f244673be597",
+    "txHash": "0xc388d51bfe401e29fc815428231497e8c9f3802862c91d4c58b94699c9265ee1",
+    "blockNumber": 83268254,
+    "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "network": "Polygon Mainnet (chainId: 137)",
+    "timestamp": "2026-02-21T06:49:00.242Z"
   }
 }
