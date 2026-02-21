@@ -102,5 +102,15 @@
     "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
     "network": "Polygon Mainnet (chainId: 137)",
     "timestamp": "2026-02-21T05:19:36.940Z"
+  },
+  "v3.5": {
+    "version": "3.5",
+    "title": "The Relativistic Core & Entropy Update",
+    "hash": "0056545f5654056ed196c035949ee5d94fdd3a451aa3a4571906c654bf47a144",
+    "txHash": "0x9bdf0eec3e05d5198710c5e2d1a9f2a9932556c9625c0a06bdd2c3dc84cf9c78",
+    "blockNumber": 83266016,
+    "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "network": "Polygon Mainnet (chainId: 137)",
+    "timestamp": "2026-02-21T05:34:20.987Z"
   }
 }
