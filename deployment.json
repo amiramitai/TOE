@@ -47,5 +47,24 @@
     }
   },
   "polygonscanUrl": "https://polygonscan.com/address/0x089583dd5cB4977B3Ae56205B8a6D766d3860345",
-  "timestamp": "2026-02-21T03:12:05.588Z"
+  "timestamp": "2026-02-21T03:12:05.588Z",
+  "v31Registry": {
+    "network": "polygon",
+    "chainId": 137,
+    "contractName": "UHFPaperRegistry",
+    "contractAddress": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "deployer": "0x82A877BA14B5b42FD1727aECc6b238F361343612",
+    "deployTxHash": "0x69ab48c6e0b744f42e25015af513351c087817984ef162d54f6b764f6486d606",
+    "deployBlock": 83263184,
+    "registration": {
+      "txHash": "0xf9bef02ad49df05522f2be218941785021aae78077615345df85856b0c1c73f0",
+      "blockNumber": 83263187,
+      "paperHash": "d4d1f5cfb3081a24579913983bf9b60dff4b8cd7ecfc6c21fbd6fd61b838ba71",
+      "author": "Amir Benjamin Amitay",
+      "version": "3.1",
+      "timestamp": "2026-02-21T03:59:59.407Z"
+    },
+    "polygonscanUrl": "https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "registerTxUrl": "https://polygonscan.com/tx/0xf9bef02ad49df05522f2be218941785021aae78077615345df85856b0c1c73f0"
+  }
 }
