@@ -1,11 +1,11 @@
 {
-  "version": "5.0",
-  "subtitle": "The Unified Standard Model Update",
-  "hash": "fe52ac96333d19740673f82f0d5e71dd6eff9fccee01098ab839157870de340e",
-  "txHash": "0x39d59bfd4c96e3941a8dabaf4de5c0d573d7662c9ae55a13f5a68f11a0b4bc01",
-  "blockNumber": 83270192,
-  "timestamp": "2026-02-21T07:53:37.154Z",
+  "version": "6.0",
+  "subtitle": "The Academic Refactor",
+  "hash": "818e4a447c5db86d9f49abf92bffc25c4b64127307fb9e1f01cb5cca80dc4630",
+  "txHash": "0x4f0a6937ee0318abbd64b9bee3b3585285458d7a5ae6e4fa8cad3d01118b3725",
+  "blockNumber": 83270806,
+  "timestamp": "2026-02-21T08:14:02.643Z",
   "chain": "Polygon Mainnet (137)",
   "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
-  "pdfHash": "91091d1abcd91ce47510ebb698fa054c63e7f27fe37b2216511ccb90dbd0904d"
+  "pdfHash": "a5127319cee765abbb22ad951c6d8e52fd4c437c92cf1938eeb9de1f6157546f"
 }
