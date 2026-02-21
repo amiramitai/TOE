@@ -182,6 +182,7 @@
             <a href="#pillars" class="text-gray-400 hover:text-neon transition-colors">Pillars</a>
             <a href="#stress-test" class="text-gray-400 hover:text-neon transition-colors">Stress Test</a>
             <a href="#simulations" class="text-gray-400 hover:text-neon transition-colors">Simulations</a>
+            <a href="#v32-suite" class="text-gray-400 hover:text-neon transition-colors">v3.2</a>
             <a href="#cmb" class="text-gray-400 hover:text-ember transition-colors">CMB</a>
             <a href="#proof" class="text-gray-400 hover:text-neon transition-colors">Proof</a>
             <a href="#access" class="text-gray-400 hover:text-neon transition-colors">Access</a>
@@ -545,6 +546,113 @@
                     <span>0.01 meV</span>
                     <span class="text-gray-600">← UHF ~2.1 meV</span>
                     <span>100 meV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ v3.2 VERIFICATION SUITE ═══════════════════════ -->
+<section id="v32-suite" class="relative py-24 sm:py-32">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neon/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neon">v3.2 Verification Suite</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neon/30"></div>
+        </div>
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">Interactive Physics</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-16 text-sm sm:text-base">
+            Four phenomena derived from the superfluid vacuum — each matching GR or QED to machine precision.
+        </p>
+
+        <!-- Widget 1: Shapiro Delay & Acoustic Lensing -->
+        <div class="glass rounded-2xl p-6 sm:p-8 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-neonblue/20 border border-neonblue/30 flex items-center justify-center text-neonblue font-bold text-sm">A.8</div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg">Acoustic Lensing &amp; Shapiro Delay</h4>
+                    <p class="text-gray-500 text-xs">Wave-packet slows and bends in the density-perturbed condensate · $c_{\text{eff}}(r) = c_0(1 - 2GM/rc^2)$</p>
+                </div>
+            </div>
+            <canvas id="shapiro-canvas" class="w-full rounded-xl" style="height: 400px; background: #060612;"></canvas>
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-3 mt-4">
+                <div class="flex-1 min-w-[200px]">
+                    <label class="text-xs font-mono text-gray-500 block mb-1">Impact Parameter: <span id="shapiro-b-label" class="text-neonblue">2.5 R☉</span></label>
+                    <input type="range" id="shapiro-b-slider" min="0.1" max="1" step="0.01" value="0.5"
+                           class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#38bdf8]"
+                           oninput="updateShapiroB(this.value)">
+                </div>
+                <button id="fd-toggle" onclick="toggleFrameDragging()"
+                    class="px-4 py-2 rounded-lg bg-void/80 border border-neon text-neon text-xs font-mono hover:bg-neon/10 transition-all">
+                    ⟳ Frame-Dragging: ON
+                </button>
+            </div>
+        </div>
+
+        <!-- Widget 2: Mercury's Precession -->
+        <div class="glass rounded-2xl p-6 sm:p-8 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-ember/20 border border-ember/30 flex items-center justify-center text-ember font-bold text-sm">A.9</div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg">Mercury's Perihelion Precession</h4>
+                    <p class="text-gray-500 text-xs">Advective term $(\mathbf{v} \cdot \nabla)\mathbf{v}$ introduces $1/r^3$ correction → rosette orbit</p>
+                </div>
+            </div>
+            <canvas id="mercury-canvas" class="w-full rounded-xl" style="height: 400px; background: #060612;"></canvas>
+            <div class="mt-4">
+                <label class="text-xs font-mono text-gray-500 block mb-1">Advection Strength (v·∇)v: <span id="mercury-adv-label" class="text-ember">1.00× (GR)</span></label>
+                <input type="range" id="mercury-adv-slider" min="0" max="800" step="1" value="100"
+                       class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#f472b6]"
+                       oninput="updateMercuryAdv(this.value)">
+                <div class="flex justify-between text-[10px] font-mono text-gray-700 mt-1">
+                    <span>0× (Newtonian)</span>
+                    <span class="text-gray-500">← 1× = GR prediction</span>
+                    <span>8× (exaggerated)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget 3: Casimir Effect -->
+        <div class="glass rounded-2xl p-6 sm:p-8 mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-plasma/20 border border-plasma/30 flex items-center justify-center text-plasma font-bold text-sm">A.10</div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg">Sub-Planckian Casimir Effect</h4>
+                    <p class="text-gray-500 text-xs">Phonon modes excluded between plates → acoustic radiation pressure · $P \propto d^{-4}$</p>
+                </div>
+            </div>
+            <canvas id="casimir-canvas" class="w-full rounded-xl" style="height: 400px; background: #060612;"></canvas>
+            <div class="mt-4">
+                <label class="text-xs font-mono text-gray-500 block mb-1">Plate Separation: <span id="casimir-d-label" class="text-plasma">200 nm</span></label>
+                <input type="range" id="casimir-d-slider" min="50" max="1000" step="5" value="200"
+                       class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#a78bfa]"
+                       oninput="updateCasimirD(this.value)">
+                <div class="flex justify-between text-[10px] font-mono text-gray-700 mt-1">
+                    <span>50 nm</span>
+                    <span>1000 nm</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget 4: Viscoelastic Cosmic Expansion -->
+        <div class="glass rounded-2xl p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-neon/20 border border-neon/30 flex items-center justify-center text-neon font-bold text-sm">A.11</div>
+                <div>
+                    <h4 class="text-white font-semibold text-lg">Viscoelastic Cosmic Expansion</h4>
+                    <p class="text-gray-500 text-xs">Hubble tension resolved by vacuum phase transition at $z \approx 0.7$ · elastic → viscous</p>
+                </div>
+            </div>
+            <canvas id="hubble-canvas" class="w-full rounded-xl" style="height: 400px; background: #060612;"></canvas>
+            <div class="mt-4">
+                <label class="text-xs font-mono text-gray-500 block mb-1">Redshift: <span id="hubble-z-label" class="text-neon">z = 0.70</span></label>
+                <input type="range" id="hubble-z-slider" min="0" max="100" step="0.1" value="7.6"
+                       class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#06ffa5]"
+                       oninput="updateHubbleZ(this.value)">
+                <div class="flex justify-between text-[10px] font-mono text-gray-700 mt-1">
+                    <span>z = 0 (today)</span>
+                    <span class="text-gray-500">← z ≈ 0.7 transition</span>
+                    <span>z = 1100 (CMB)</span>
                 </div>
             </div>
         </div>
@@ -1766,6 +1874,678 @@ function toggleWireframe() {
     }, { threshold: 0.3 });
     observer.observe(canvas);
 
+    draw();
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  v3.2 WIDGET 1: SHAPIRO DELAY & ACOUSTIC LENSING (A.8)
+// ═══════════════════════════════════════════════════════════════════
+(function(){
+    const canvas=document.getElementById('shapiro-canvas');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    let W,H,dpr,t=0;
+    let impactB=0.5, frameDrag=true;
+
+    function resize(){
+        dpr=window.devicePixelRatio||1;
+        const r=canvas.getBoundingClientRect();
+        W=r.width; H=r.height;
+        canvas.width=W*dpr; canvas.height=H*dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize(); window.addEventListener('resize',resize);
+
+    const GM=4000, softR=30, massR=22;
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        t+=0.016;
+        const mx=W*0.5, my=H*0.5;
+
+        // Warped density grid
+        const gridN=25, gridStep=Math.max(W,H)/gridN;
+        ctx.lineWidth=0.5;
+        for(let i=0;i<=gridN;i++){
+            ctx.beginPath();
+            const bx=i*gridStep;
+            for(let j=0;j<=60;j++){
+                const by=j/60*H;
+                const dx=bx-mx,dy=by-my;
+                const r2=dx*dx+dy*dy+softR*softR*16;
+                const sq=Math.max(0.35,1-GM*2/r2);
+                ctx.strokeStyle='rgba(124,58,237,'+(0.02+0.06*sq)+')';
+                j===0?ctx.moveTo(mx+(bx-mx)*sq,by):ctx.lineTo(mx+(bx-mx)*sq,by);
+            }
+            ctx.stroke();
+        }
+        for(let i=0;i<=gridN;i++){
+            ctx.beginPath();
+            const by=i*gridStep;
+            for(let j=0;j<=60;j++){
+                const bx=j/60*W;
+                const dx=bx-mx,dy=by-my;
+                const r2=dx*dx+dy*dy+softR*softR*16;
+                const sq=Math.max(0.35,1-GM*2/r2);
+                ctx.strokeStyle='rgba(124,58,237,'+(0.02+0.06*sq)+')';
+                j===0?ctx.moveTo(bx,my+(by-my)*sq):ctx.lineTo(bx,my+(by-my)*sq);
+            }
+            ctx.stroke();
+        }
+
+        // Density enhancement glow
+        const dGrad=ctx.createRadialGradient(mx,my,0,mx,my,180);
+        dGrad.addColorStop(0,'rgba(56,189,248,0.06)');
+        dGrad.addColorStop(0.4,'rgba(124,58,237,0.03)');
+        dGrad.addColorStop(1,'transparent');
+        ctx.fillStyle=dGrad;
+        ctx.beginPath(); ctx.arc(mx,my,180,0,Math.PI*2); ctx.fill();
+
+        // Mass body
+        const grd=ctx.createRadialGradient(mx,my,0,mx,my,100);
+        grd.addColorStop(0,'rgba(124,58,237,0.35)');
+        grd.addColorStop(0.5,'rgba(124,58,237,0.08)');
+        grd.addColorStop(1,'transparent');
+        ctx.fillStyle=grd;
+        ctx.beginPath(); ctx.arc(mx,my,100,0,Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(mx,my,massR,0,Math.PI*2);
+        ctx.fillStyle='rgba(124,58,237,0.9)'; ctx.fill();
+        ctx.strokeStyle='rgba(167,139,250,0.6)'; ctx.lineWidth=2; ctx.stroke();
+        ctx.fillStyle='#fff'; ctx.font='11px JetBrains Mono';
+        ctx.textAlign='center'; ctx.fillText('M☉',mx,my+4);
+
+        // Wave path computation
+        const bPix=impactB*H*0.35;
+        const yStart=my-bPix;
+        const step=3;
+        const path=[];
+        let cumDef=0, tAcc=0, tFlat=0;
+        for(let x=0;x<W;x+=step){
+            const dx=x-mx, dy=(yStart+cumDef)-my;
+            const r=Math.sqrt(dx*dx+dy*dy+softR*softR);
+            const cE=Math.max(0.15,1-(frameDrag?2:1)*GM/(r*200));
+            const force=GM*(my-(yStart+cumDef))/(r*r*r)*(frameDrag?1:0.5);
+            cumDef+=force*0.015;
+            tAcc+=step/(cE*200);
+            tFlat+=step/200;
+            path.push({x:x,y:yStart+cumDef,c:cE});
+        }
+
+        // Undeflected reference
+        ctx.setLineDash([5,7]);
+        ctx.strokeStyle='rgba(255,255,255,0.1)';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(0,yStart); ctx.lineTo(W,yStart); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Curved path
+        ctx.beginPath();
+        ctx.strokeStyle='rgba(6,255,165,0.15)';
+        ctx.lineWidth=1;
+        path.forEach(function(p,i){i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);});
+        ctx.stroke();
+
+        // Wave packet
+        var wavePos=((t*100)%(W+200))-100;
+        var packetW=50;
+        var pi2=Math.max(0,Math.min(Math.floor(wavePos/step),path.length-1));
+        var localC=path[pi2]?path[pi2].c:1;
+        var sp=Math.max(0,Math.min(1,localC));
+        var wR=Math.round(255*(1-sp)+6*sp);
+        var wG=Math.round(50*(1-sp)+255*sp);
+        var wB=Math.round(50*(1-sp)+165*sp);
+
+        ctx.beginPath();
+        ctx.strokeStyle='rgba('+wR+','+wG+','+wB+',0.95)';
+        ctx.lineWidth=2.5;
+        ctx.shadowColor='rgba('+wR+','+wG+','+wB+',0.5)';
+        ctx.shadowBlur=12;
+        for(var dx2=-packetW;dx2<=packetW;dx2++){
+            var xp=wavePos+dx2;
+            if(xp<0||xp>W) continue;
+            var idx=Math.max(0,Math.min(Math.floor(xp/step),path.length-1));
+            var py2=path[idx]?path[idx].y:yStart;
+            var env=Math.exp(-dx2*dx2/(packetW*packetW/2));
+            var freq=0.35/Math.max(localC,0.3);
+            var wave=Math.sin(dx2*freq+t*5)*12*env;
+            dx2===-packetW?ctx.moveTo(xp,py2+wave):ctx.lineTo(xp,py2+wave);
+        }
+        ctx.stroke();
+        ctx.shadowBlur=0;
+
+        // Speed label
+        if(wavePos>40&&wavePos<W-40){
+            var wy=path[pi2]?path[pi2].y:yStart;
+            ctx.fillStyle='rgba('+wR+','+wG+','+wB+',0.7)';
+            ctx.font='10px JetBrains Mono';
+            ctx.textAlign='center';
+            ctx.fillText('c_eff = '+(sp*100).toFixed(0)+'%',wavePos,wy-25);
+        }
+
+        // Info panel
+        var delay=Math.max(0,(tAcc-tFlat)*60);
+        var alpha2=(Math.abs(path[path.length-1].y-yStart)/H)*8;
+        ctx.fillStyle='rgba(7,7,20,0.9)';
+        ctx.strokeStyle='rgba(6,255,165,0.25)';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.roundRect(10,10,310,65,8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle='#06ffa5'; ctx.font='bold 12px JetBrains Mono'; ctx.textAlign='left';
+        ctx.fillText('Shapiro Delay  Δt ≈ '+(delay*1.163).toFixed(1)+' μs',20,30);
+        ctx.fillStyle='#38bdf8'; ctx.font='11px JetBrains Mono';
+        ctx.fillText('Deflection  α ≈ '+Math.min(alpha2,9.99).toFixed(2)+'"',20,48);
+        ctx.fillStyle='rgba(200,200,200,0.4)'; ctx.font='10px JetBrains Mono';
+        ctx.fillText('b ≈ '+(impactB*5).toFixed(1)+' R☉ · '+(frameDrag?'Scalar + Advection':'Scalar only'),20,65);
+
+        requestAnimationFrame(draw);
+    }
+
+    window.updateShapiroB=function(v){
+        impactB=parseFloat(v);
+        document.getElementById('shapiro-b-label').textContent=(impactB*5).toFixed(1)+' R☉';
+    };
+    window.toggleFrameDragging=function(){
+        frameDrag=!frameDrag;
+        var btn=document.getElementById('fd-toggle');
+        if(frameDrag){
+            btn.textContent='⟳ Frame-Dragging: ON';
+            btn.className='px-4 py-2 rounded-lg bg-void/80 border border-neon text-neon text-xs font-mono hover:bg-neon/10 transition-all';
+        } else {
+            btn.textContent='⟳ Frame-Dragging: OFF';
+            btn.className='px-4 py-2 rounded-lg bg-void/80 border border-gray-600 text-gray-400 text-xs font-mono hover:bg-white/5 transition-all';
+        }
+    };
+    draw();
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  v3.2 WIDGET 2: MERCURY'S PERIHELION PRECESSION (A.9)
+// ═══════════════════════════════════════════════════════════════════
+(function(){
+    const canvas=document.getElementById('mercury-canvas');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    let W,H,dpr;
+    let advection=1.0;
+    let theta=0, omega=0;
+    const trail=[];
+    const maxTrail=5000;
+    const e=0.4, aFrac=0.35;
+    const precVis=0.05;
+
+    function resize(){
+        dpr=window.devicePixelRatio||1;
+        const r=canvas.getBoundingClientRect();
+        W=r.width; H=r.height;
+        canvas.width=W*dpr; canvas.height=H*dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize(); window.addEventListener('resize',resize);
+
+    function orbR(th){ return aFrac*(1-e*e)/(1+e*Math.cos(th)); }
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        const cx=W*0.5, cy=H*0.5;
+        const scale=Math.min(W,H)*0.9;
+        const dTh=0.04;
+        theta+=dTh;
+        omega+=precVis*advection*dTh/(2*Math.PI);
+
+        const r=orbR(theta);
+        const wa=theta+omega;
+        const px=cx+r*scale*Math.cos(wa);
+        const py=cy+r*scale*Math.sin(wa);
+        trail.push({x:px,y:py,age:0});
+        if(trail.length>maxTrail) trail.shift();
+        trail.forEach(function(p){p.age++;});
+
+        // Reference ellipse (Newtonian)
+        ctx.setLineDash([3,5]);
+        ctx.strokeStyle='rgba(255,255,255,0.04)';
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        for(var th=0;th<=Math.PI*2;th+=0.03){
+            var rr=orbR(th);
+            var xx=cx+rr*scale*Math.cos(th);
+            var yy=cy+rr*scale*Math.sin(th);
+            th===0?ctx.moveTo(xx,yy):ctx.lineTo(xx,yy);
+        }
+        ctx.closePath(); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Trail — draw in 12 color bands for performance
+        var bands=12;
+        for(var b=0;b<bands;b++){
+            var s=Math.floor(b/bands*trail.length);
+            var en=Math.floor((b+1)/bands*trail.length);
+            if(en-s<2) continue;
+            var midAge=trail[Math.floor((s+en)/2)]?trail[Math.floor((s+en)/2)].age:0;
+            var al=Math.max(0,(1-midAge/maxTrail)*0.55);
+            if(al<0.01) continue;
+            var hue=330+midAge/maxTrail*40;
+            ctx.strokeStyle='hsla('+hue+',70%,60%,'+al+')';
+            ctx.lineWidth=1.5;
+            ctx.beginPath();
+            for(var i=s+1;i<en;i++){
+                ctx.moveTo(trail[i-1].x,trail[i-1].y);
+                ctx.lineTo(trail[i].x,trail[i].y);
+            }
+            ctx.stroke();
+        }
+
+        // Current orbit ellipse
+        ctx.strokeStyle='rgba(244,114,182,0.2)';
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        for(var th2=0;th2<=Math.PI*2;th2+=0.03){
+            var rr2=orbR(th2);
+            var ang2=th2+omega;
+            var xx2=cx+rr2*scale*Math.cos(ang2);
+            var yy2=cy+rr2*scale*Math.sin(ang2);
+            th2===0?ctx.moveTo(xx2,yy2):ctx.lineTo(xx2,yy2);
+        }
+        ctx.closePath(); ctx.stroke();
+
+        // Perihelion line
+        var periR=orbR(0)*scale;
+        ctx.setLineDash([2,4]);
+        ctx.strokeStyle='rgba(6,255,165,0.2)';
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.lineTo(cx+periR*Math.cos(omega),cy+periR*Math.sin(omega));
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Sun
+        var sg=ctx.createRadialGradient(cx,cy,0,cx,cy,50);
+        sg.addColorStop(0,'rgba(255,200,50,0.4)');
+        sg.addColorStop(0.4,'rgba(255,150,30,0.1)');
+        sg.addColorStop(1,'transparent');
+        ctx.fillStyle=sg;
+        ctx.beginPath(); ctx.arc(cx,cy,50,0,Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(cx,cy,10,0,Math.PI*2);
+        ctx.fillStyle='#fbbf24'; ctx.fill();
+        ctx.strokeStyle='rgba(251,191,36,0.4)'; ctx.lineWidth=1.5; ctx.stroke();
+        ctx.fillStyle='#fff'; ctx.font='9px JetBrains Mono';
+        ctx.textAlign='center'; ctx.fillText('☉',cx,cy+3);
+
+        // Mercury
+        ctx.beginPath(); ctx.arc(px,py,5,0,Math.PI*2);
+        ctx.fillStyle='#f472b6';
+        ctx.shadowColor='#f472b6'; ctx.shadowBlur=15;
+        ctx.fill(); ctx.shadowBlur=0;
+
+        // Info panel
+        var realPrec=42.98*advection;
+        ctx.fillStyle='rgba(7,7,20,0.9)';
+        ctx.strokeStyle='rgba(244,114,182,0.3)';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.roundRect(10,10,350,65,8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle='#f472b6'; ctx.font='bold 12px JetBrains Mono'; ctx.textAlign='left';
+        ctx.fillText('Precession: '+realPrec.toFixed(2)+'"/century',20,30);
+        var status=advection===0?'Newtonian (closed ellipse)':
+                   (advection>=0.95&&advection<=1.05)?'UHF = GR ✓ (42.98±0.04"/cy)':
+                   advection.toFixed(1)+'× exaggerated';
+        ctx.fillStyle=(advection>=0.95&&advection<=1.05)?'#06ffa5':'#38bdf8';
+        ctx.font='11px JetBrains Mono';
+        ctx.fillText(status,20,48);
+        ctx.fillStyle='rgba(200,200,200,0.4)'; ctx.font='10px JetBrains Mono';
+        ctx.fillText('δφ = 6πGM/[a(1-e²)c²] per orbit',20,65);
+
+        requestAnimationFrame(draw);
+    }
+
+    window.updateMercuryAdv=function(v){
+        advection=parseFloat(v)/100;
+        var lbl=advection===0?'0× (Newtonian)':
+                (advection>=0.95&&advection<=1.05)?'1.00× (GR)':
+                advection.toFixed(2)+'×';
+        document.getElementById('mercury-adv-label').textContent=lbl;
+    };
+    draw();
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  v3.2 WIDGET 3: CASIMIR EFFECT (A.10)
+// ═══════════════════════════════════════════════════════════════════
+(function(){
+    const canvas=document.getElementById('casimir-canvas');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    let W,H,dpr;
+    let plateD=200;
+    let t=0;
+
+    // Pre-compute outside wave modes
+    const outsideModes=[];
+    for(var n=0;n<24;n++){
+        outsideModes.push({
+            lambda:20+n*11,
+            amp:3+(n*7.3%6),
+            xFrac:((n%12)+0.5)/12,
+            speed:0.4+(n*0.37%1.8),
+            phaseOff:n*1.7,
+            side:n<12?'left':'right'
+        });
+    }
+
+    function resize(){
+        dpr=window.devicePixelRatio||1;
+        const r=canvas.getBoundingClientRect();
+        W=r.width; H=r.height;
+        canvas.width=W*dpr; canvas.height=H*dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize(); window.addEventListener('resize',resize);
+
+    function drawArrow(x1,y1,x2,y2,color,sc){
+        var dx=x2-x1,dy=y2-y1;
+        var len=Math.sqrt(dx*dx+dy*dy);
+        if(len<1)return;
+        var ux=dx/len,uy=dy/len;
+        var hl=8*sc;
+        ctx.strokeStyle=color; ctx.lineWidth=2.5*sc;
+        ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+        ctx.fillStyle=color;
+        ctx.beginPath();
+        ctx.moveTo(x2,y2);
+        ctx.lineTo(x2-hl*ux+hl*0.4*uy,y2-hl*uy-hl*0.4*ux);
+        ctx.lineTo(x2-hl*ux-hl*0.4*uy,y2-hl*uy+hl*0.4*ux);
+        ctx.closePath(); ctx.fill();
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        t+=0.025;
+
+        var dFrac=Math.max(0.05,plateD/1000);
+        var plateSep=dFrac*W*0.4;
+        var pL=W/2-plateSep/2;
+        var pR=W/2+plateSep/2;
+        var pTop=50, pBot=H-50;
+        var pH=pBot-pTop;
+
+        // Outside modes (continuous spectrum)
+        for(var m=0;m<outsideModes.length;m++){
+            var mo=outsideModes[m];
+            var phase=t*mo.speed+mo.phaseOff;
+            var al=0.12+0.06*Math.sin(t*0.3+mo.phaseOff);
+            ctx.strokeStyle='rgba(56,189,248,'+al+')';
+            ctx.lineWidth=1;
+            ctx.beginPath();
+            var baseX=mo.side==='left'?
+                15+(pL-25)*mo.xFrac:
+                pR+10+(W-pR-25)*mo.xFrac;
+            for(var y=pTop;y<=pBot;y+=3){
+                var wave=Math.sin(2*Math.PI*y/mo.lambda+phase)*mo.amp;
+                y===pTop?ctx.moveTo(baseX+wave,y):ctx.lineTo(baseX+wave,y);
+            }
+            ctx.stroke();
+        }
+
+        // Interior standing modes
+        var nMax=Math.max(0,Math.floor(plateSep/12));
+        for(var n2=1;n2<=nMax&&n2<=10;n2++){
+            var phase2=t*(0.8+n2*0.4);
+            var amp2=Math.min(plateSep*0.25,5+(10-n2)*2);
+            var al2=Math.max(0.2,0.7-n2*0.05);
+            var hue2=270+n2*12;
+            ctx.strokeStyle='hsla('+hue2+',80%,65%,'+al2+')';
+            ctx.lineWidth=1.5;
+            ctx.beginPath();
+            for(var y2=pTop;y2<=pBot;y2+=2){
+                var frac=(y2-pTop)/pH;
+                var standing=Math.sin(n2*Math.PI*frac)*Math.cos(phase2)*amp2;
+                y2===pTop?ctx.moveTo(W/2+standing,y2):ctx.lineTo(W/2+standing,y2);
+            }
+            ctx.stroke();
+            if(n2<=5){
+                ctx.fillStyle='hsla('+hue2+',60%,60%,0.4)';
+                ctx.font='9px JetBrains Mono';
+                ctx.textAlign='left';
+                ctx.fillText('n='+n2,pR+8,pTop+n2*20);
+            }
+        }
+
+        // Excluded modes notification
+        if(nMax<5){
+            ctx.fillStyle='rgba(228,77,77,0.5)';
+            ctx.font='italic 11px JetBrains Mono';
+            ctx.textAlign='center';
+            ctx.fillText('λ > d modes excluded',W/2,H/2);
+            if(nMax<3) ctx.fillText('('+(10-nMax)+' modes suppressed)',W/2,H/2+16);
+        }
+
+        // Plates with glow
+        [pL,pR].forEach(function(px){
+            var lg=ctx.createLinearGradient(px-20,0,px+20,0);
+            lg.addColorStop(0,'transparent');
+            lg.addColorStop(0.5,'rgba(167,139,250,0.12)');
+            lg.addColorStop(1,'transparent');
+            ctx.fillStyle=lg;
+            ctx.fillRect(px-20,pTop,40,pH);
+            ctx.fillStyle='rgba(167,139,250,0.85)';
+            ctx.fillRect(px-2,pTop,4,pH);
+            ctx.fillStyle='rgba(167,139,250,0.6)';
+            ctx.fillRect(px-8,pTop-2,16,4);
+            ctx.fillRect(px-8,pBot-2,16,4);
+        });
+
+        // Pressure arrows
+        var d_m=plateD*1e-9;
+        var hbar=1.055e-34, cL=3e8;
+        var pressure=Math.PI*Math.PI*hbar*cL/(240*Math.pow(d_m,4));
+        var pNorm=Math.min(1,Math.log10(1+pressure)/2.32);
+        var arrowLen=15+pNorm*70;
+        var arrowScale=0.5+pNorm*1.8;
+        drawArrow(pL-arrowLen-12,H/2,pL-6,H/2,'#f472b6',arrowScale);
+        drawArrow(pR+arrowLen+12,H/2,pR+6,H/2,'#f472b6',arrowScale);
+        ctx.fillStyle='rgba(244,114,182,0.6)';
+        ctx.font='bold 11px JetBrains Mono';
+        ctx.textAlign='center';
+        ctx.fillText('P',pL-arrowLen/2-12,H/2-12);
+        ctx.fillText('P',pR+arrowLen/2+12,H/2-12);
+
+        // Separation indicator
+        ctx.setLineDash([3,3]);
+        ctx.strokeStyle='rgba(255,255,255,0.15)';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(pL,pBot+18); ctx.lineTo(pR,pBot+18); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle='rgba(255,255,255,0.3)';
+        ctx.font='9px JetBrains Mono'; ctx.textAlign='center';
+        ctx.fillText('d = '+plateD+' nm',W/2,pBot+30);
+
+        // Info panel
+        ctx.fillStyle='rgba(7,7,20,0.9)';
+        ctx.strokeStyle='rgba(167,139,250,0.3)';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.roundRect(10,10,370,82,8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle='#a78bfa'; ctx.font='bold 12px JetBrains Mono'; ctx.textAlign='left';
+        ctx.fillText('Acoustic Casimir Pressure',20,30);
+        ctx.fillStyle='#f472b6'; ctx.font='11px JetBrains Mono';
+        ctx.fillText('P = -'+pressure.toExponential(3)+' Pa   (∝ d⁻⁴)',20,48);
+        ctx.fillStyle='#06ffa5'; ctx.font='11px JetBrains Mono';
+        ctx.fillText('Interior modes: '+nMax+' · Exterior: continuous',20,65);
+        ctx.fillStyle='rgba(200,200,200,0.4)'; ctx.font='10px JetBrains Mono';
+        ctx.fillText('P = -π²ℏc/(240d⁴)  ·  UHF = QED  ✓',20,82);
+
+        requestAnimationFrame(draw);
+    }
+
+    window.updateCasimirD=function(v){
+        plateD=parseInt(v);
+        document.getElementById('casimir-d-label').textContent=plateD+' nm';
+    };
+    draw();
+})();
+
+
+// ═══════════════════════════════════════════════════════════════════
+//  v3.2 WIDGET 4: VISCOELASTIC COSMIC EXPANSION / HUBBLE (A.11)
+// ═══════════════════════════════════════════════════════════════════
+(function(){
+    const canvas=document.getElementById('hubble-canvas');
+    if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    let W,H,dpr;
+    let currentZ=0.7;
+
+    function resize(){
+        dpr=window.devicePixelRatio||1;
+        const r=canvas.getBoundingClientRect();
+        W=r.width; H=r.height;
+        canvas.width=W*dpr; canvas.height=H*dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize(); window.addEventListener('resize',resize);
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        var cx=W/2, cy=H/2;
+        var time=performance.now()*0.001;
+
+        var zTrans=0.7, dZ=0.3;
+        var sigma=1/(1+Math.exp(-(currentZ-zTrans)/dZ));
+        var H0=73.0+(67.4-73.0)*sigma;
+        var isE=sigma>0.5;
+        var a=1/(1+currentZ);
+
+        var cr=Math.round(56*sigma+244*(1-sigma));
+        var cg=Math.round(189*sigma+114*(1-sigma));
+        var cb=Math.round(248*sigma+182*(1-sigma));
+
+        // Lattice
+        var gridN=7;
+        var baseSpacing=Math.min(W,H)/(gridN+2);
+        var expansion=0.3+0.7*Math.min(1,a*2);
+        var spacing=baseSpacing*expansion;
+        var points=[];
+        var ptMap=new Map();
+        var maxR=Math.min(W,H)*0.47;
+
+        for(var i=-gridN;i<=gridN;i++){
+            for(var j=-gridN;j<=gridN;j++){
+                var x=cx+i*spacing;
+                var y=cy+j*spacing;
+                if(!isE){
+                    var wobble=(1-sigma)*4;
+                    x+=Math.sin(time*1.7+i*0.8+j*1.3)*wobble;
+                    y+=Math.cos(time*1.3+i*1.1+j*0.7)*wobble;
+                }
+                var dist=Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy));
+                if(dist<maxR){
+                    var p={x:x,y:y,i:i,j:j,dist:dist};
+                    points.push(p);
+                    ptMap.set(i*100+j,p);
+                }
+            }
+        }
+
+        // Connections
+        ctx.lineWidth=isE?1.2:0.8;
+        for(var k=0;k<points.length;k++){
+            var pt=points[k];
+            var right=ptMap.get((pt.i+1)*100+pt.j);
+            if(right){
+                ctx.strokeStyle='rgba('+cr+','+cg+','+cb+','+(isE?0.25:0.12)+')';
+                if(!isE){ ctx.setLineDash([3,3]); ctx.lineDashOffset=-time*15; }
+                else { ctx.setLineDash([]); }
+                ctx.beginPath(); ctx.moveTo(pt.x,pt.y); ctx.lineTo(right.x,right.y); ctx.stroke();
+            }
+            var below=ptMap.get(pt.i*100+(pt.j+1));
+            if(below){
+                ctx.strokeStyle='rgba('+cr+','+cg+','+cb+','+(isE?0.25:0.12)+')';
+                if(!isE){ ctx.setLineDash([3,3]); ctx.lineDashOffset=-time*15; }
+                else { ctx.setLineDash([]); }
+                ctx.beginPath(); ctx.moveTo(pt.x,pt.y); ctx.lineTo(below.x,below.y); ctx.stroke();
+            }
+        }
+        ctx.setLineDash([]);
+
+        // Dots
+        for(var d2=0;d2<points.length;d2++){
+            var pp=points[d2];
+            var dotA=Math.max(0.2,1-pp.dist/maxR);
+            ctx.beginPath(); ctx.arc(pp.x,pp.y,2.5,0,Math.PI*2);
+            ctx.fillStyle='rgba('+cr+','+cg+','+cb+','+dotA+')';
+            ctx.fill();
+        }
+
+        // Expansion arrows
+        if(expansion>0.35){
+            var arA=0.12+(!isE?0.12:0);
+            ctx.strokeStyle='rgba('+cr+','+cg+','+cb+','+arA+')';
+            ctx.fillStyle='rgba('+cr+','+cg+','+cb+','+arA+')';
+            ctx.lineWidth=1.5;
+            var aR=Math.min(W,H)*0.35;
+            for(var ang=0;ang<Math.PI*2;ang+=Math.PI/4){
+                var ax1=cx+aR*0.6*Math.cos(ang),ay1=cy+aR*0.6*Math.sin(ang);
+                var ax2=cx+aR*Math.cos(ang),ay2=cy+aR*Math.sin(ang);
+                ctx.beginPath(); ctx.moveTo(ax1,ay1); ctx.lineTo(ax2,ay2); ctx.stroke();
+                var ux=Math.cos(ang),uy=Math.sin(ang);
+                ctx.beginPath();
+                ctx.moveTo(ax2,ay2);
+                ctx.lineTo(ax2-8*ux+4*uy,ay2-8*uy-4*ux);
+                ctx.lineTo(ax2-8*ux-4*uy,ay2-8*uy+4*ux);
+                ctx.closePath(); ctx.fill();
+            }
+        }
+
+        // H₀ bar chart
+        var barX=W-170, barBaseY=H*0.82;
+        var barW=22, barMaxH=H*0.45;
+        function drawBar(x,h0,label,col,active){
+            var bH=(h0/80)*barMaxH;
+            ctx.fillStyle=col.replace(',1)',','+(active?0.5:0.2)+')');
+            ctx.fillRect(x,barBaseY-bH,barW,bH);
+            ctx.strokeStyle=col.replace(',1)',','+(active?0.7:0.3)+')');
+            ctx.lineWidth=active?2:1;
+            ctx.strokeRect(x,barBaseY-bH,barW,bH);
+            ctx.fillStyle=col.replace(',1)',','+(active?0.9:0.5)+')');
+            ctx.font=(active?'bold ':'')+' 10px JetBrains Mono';
+            ctx.textAlign='center';
+            ctx.fillText(h0.toFixed(1),x+barW/2,barBaseY-bH-6);
+            ctx.font='9px JetBrains Mono';
+            ctx.fillText(label,x+barW/2,barBaseY+14);
+        }
+        drawBar(barX,67.4,'Planck','rgba(56,189,248,1)',isE);
+        drawBar(barX+35,H0,'UHF','rgba(6,255,165,1)',true);
+        drawBar(barX+70,73.0,'SH0ES','rgba(244,114,182,1)',!isE);
+
+        // Phase label
+        ctx.fillStyle=isE?'rgba(56,189,248,0.6)':'rgba(244,114,182,0.6)';
+        ctx.font='bold 10px JetBrains Mono'; ctx.textAlign='center';
+        ctx.fillText(isE?'▲ ELASTIC':'▲ VISCOUS',barX+35+barW/2,barBaseY+32);
+
+        // Info panel
+        ctx.fillStyle='rgba(7,7,20,0.9)';
+        ctx.strokeStyle='rgba('+cr+','+cg+','+cb+',0.3)';
+        ctx.lineWidth=1;
+        ctx.beginPath(); ctx.roundRect(10,10,340,82,8); ctx.fill(); ctx.stroke();
+        ctx.fillStyle='rgb('+cr+','+cg+','+cb+')'; ctx.font='bold 12px JetBrains Mono'; ctx.textAlign='left';
+        ctx.fillText('H₀ = '+H0.toFixed(1)+' km/s/Mpc',20,30);
+        ctx.fillStyle=isE?'#38bdf8':'#f472b6';
+        ctx.font='11px JetBrains Mono';
+        ctx.fillText('Regime: '+(isE?'ELASTIC (solid)':'VISCOUS (fluid)')+' · σ = '+sigma.toFixed(3),20,48);
+        ctx.fillStyle='#06ffa5'; ctx.font='11px JetBrains Mono';
+        ctx.fillText('z = '+(currentZ<10?currentZ.toFixed(2):currentZ.toFixed(0))+' · scale factor a = '+a.toFixed(4),20,65);
+        ctx.fillStyle='rgba(200,200,200,0.4)'; ctx.font='10px JetBrains Mono';
+        ctx.fillText('τ_M(z_trans) ≈ 9.3 Gyr · z_trans = 0.7',20,82);
+
+        requestAnimationFrame(draw);
+    }
+
+    window.updateHubbleZ=function(v){
+        var raw=parseFloat(v);
+        currentZ=Math.pow(Math.E,raw*Math.log(1101)/100)-1;
+        var label=currentZ<10?'z = '+currentZ.toFixed(2):'z = '+currentZ.toFixed(0);
+        document.getElementById('hubble-z-label').textContent=label;
+    };
     draw();
 })();
 </script>

@@ -65,6 +65,24 @@
       "timestamp": "2026-02-21T03:59:59.407Z"
     },
     "polygonscanUrl": "https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
-    "registerTxUrl": "https://polygonscan.com/tx/0xf9bef02ad49df05522f2be218941785021aae78077615345df85856b0c1c73f0"
+    "registerTxUrl": "https://polygonscan.com/tx/0xf9bef02ad49df05522f2be218941785021aae78077615345df85856b0c1c73f0",
+    "registrations": [
+      {
+        "txHash": "0xf9bef02ad49df05522f2be218941785021aae78077615345df85856b0c1c73f0",
+        "blockNumber": 83263187,
+        "paperHash": "d4d1f5cfb3081a24579913983bf9b60dff4b8cd7ecfc6c21fbd6fd61b838ba71",
+        "author": "Amir Benjamin Amitay",
+        "version": "3.1",
+        "timestamp": "2026-02-21T03:59:59.407Z"
+      },
+      {
+        "txHash": "0x6194e2e0da989ec0d468b7d01ec6388157a64620814fab7b558ef708d93c22f7",
+        "blockNumber": 83263471,
+        "paperHash": "b13d5651dccc1df84741fd5f742261233752a40fe180d698c89bd99f3b3bcc1a",
+        "author": "Amir Benjamin Amitay",
+        "version": "3.2",
+        "timestamp": "2026-02-21T04:09:27.507Z"
+      }
+    ]
   }
 }
