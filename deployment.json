@@ -132,5 +132,15 @@
     "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
     "network": "Polygon Mainnet (chainId: 137)",
     "timestamp": "2026-02-21T06:25:42.796Z"
+  },
+  "v3.8": {
+    "version": "3.8",
+    "title": "The Tensor Amplitude & Microcausality Update",
+    "hash": "c359ed151b2a2893187ac49630ba71341511b83daffbf2d4af1aa9931c26792b",
+    "txHash": "0xbfb46a47e98c20e7c9923ed5d3154fbd31eb605136654d159c58802b19ae5b9b",
+    "blockNumber": 83267963,
+    "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "network": "Polygon Mainnet (chainId: 137)",
+    "timestamp": "2026-02-21T06:39:10.814Z"
   }
 }
