@@ -1,0 +1,51 @@
+{
+  "network": "polygon",
+  "chainId": 137,
+  "contractAddress": "0x089583dd5cB4977B3Ae56205B8a6D766d3860345",
+  "deployer": "0x82A877BA14B5b42FD1727aECc6b238F361343612",
+  "documents": {
+    "v1": {
+      "pdf": {
+        "contentHash": "0x6e18dd6231fd24437bdb5f9ca8eb11d7687bbc483db1a8c8a31c29e3ebf4fd02",
+        "ipfsCid": "bafybeidp5ndzdwvur2arssox57ak6uhlkjloowvcdpmieolg5syswmwjce",
+        "registeredAt": 1771592728
+      },
+      "markdown": {
+        "contentHash": "0xcca6c7f3a50b21d47701a24144126444246875077fa28109128b8c8db6b2c877",
+        "ipfsCid": "bafkreigmu3d7hjilehkhoancifcbezceeruhkb37ukaqseulrsg3nmwio4",
+        "txHash": "0x0e8dda09cbb664465843ffd185fa2bf9e1d70d58c981562e2e1df8e2ba200f22",
+        "blockNumber": 83236472,
+        "registeredAt": 1771592968
+      }
+    },
+    "v2": {
+      "markdown": {
+        "contentHash": "0xa2c2f79f16f948b0928b0163b468451e411a4a86f115ab2943195a5ef51c0c90",
+        "ipfsCid": "bafkreifcyl3z6fxzjcyjfcybmo2gqri6ienevbxrcwvssqyzljppkhamsa",
+        "txHash": "0xdb422061faf4e5471d9877271f519690190075b4c82b57ed7e5894fce643cd22",
+        "blockNumber": 83261747,
+        "registeredAt": 1771643518
+      },
+      "pdf": {
+        "contentHash": "0xb39a11853bf1e6288864ab334dfff30b70417412a70728f485852ecfe384c771",
+        "ipfsCid": "bafybeiawfox3oydyj7lwlzsv64fafthjiwuxon4exzw253gz63snunuqpe",
+        "txHash": "0xb56af675be7124d2c737aaa3020d0b6d0d302c698c73b477b616062172eb952f",
+        "blockNumber": 83261750,
+        "registeredAt": 1771643524
+      }
+    }
+  },
+  "metadata": {
+    "title": "A Unified Hydrodynamic Framework (UHF) v2.0",
+    "author": "Amir Benjamin Amitay",
+    "revision": "The Cosmological Edition",
+    "revisionNote": "Quantitative Cosmological Verification Phase. Corrected Vacuum Energy scaling and MOND acceleration. Integrated CTMU logic and institutional critique.",
+    "philosophicalSeal": "Acid is Truth. Trust in Trance.",
+    "acknowledgments": {
+      "christopherLangan": "CTMU/SCSPL meta-logical structure",
+      "ericWeinstein": "Exposing the Shadow Gatekeepers; impetus for anti-censorship scientific inquiry"
+    }
+  },
+  "polygonscanUrl": "https://polygonscan.com/address/0x089583dd5cB4977B3Ae56205B8a6D766d3860345",
+  "timestamp": "2026-02-21T03:12:05.588Z"
+}
