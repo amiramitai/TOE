@@ -4,3 +4,6 @@ creds.md
 cache/
 artifacts/
 typechain-types/
+_patch_*.py
+_split_*.py
+_test_*.py
