@@ -1,11 +1,11 @@
 {
-  "version": "4.0",
-  "subtitle": "The Final Functional Analytic Closure",
-  "hash": "2e1f200e0004e0fd7512851b1a61985511c66982f1ddb1b33b01966f81598e99",
-  "txHash": "0x54a1ebd9ec30481431417ff72a4abe922d354d06c36d198934988aa2b0156db0",
-  "blockNumber": 83269404,
-  "timestamp": "2026-02-21T07:27:20.762Z",
+  "version": "5.0",
+  "subtitle": "The Unified Standard Model Update",
+  "hash": "fe52ac96333d19740673f82f0d5e71dd6eff9fccee01098ab839157870de340e",
+  "txHash": "0x39d59bfd4c96e3941a8dabaf4de5c0d573d7662c9ae55a13f5a68f11a0b4bc01",
+  "blockNumber": 83270192,
+  "timestamp": "2026-02-21T07:53:37.154Z",
   "chain": "Polygon Mainnet (137)",
   "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
-  "pdfHash": "33a25302ab2a11f8f4b58a9e25098dcab503040e35d4afa46fa0601894a7b3d0"
+  "pdfHash": "91091d1abcd91ce47510ebb698fa054c63e7f27fe37b2216511ccb90dbd0904d"
 }
