@@ -92,5 +92,15 @@
         "timestamp": "2026-02-21T05:05:37.348Z"
       }
     ]
+  },
+  "v3.4": {
+    "version": "3.4",
+    "title": "The Quantum-Horizon Update",
+    "hash": "e29acbdd0877741d11eeb2aa31a68ad3f4bc4c28a60aef93fa54629feb5dbcc0",
+    "txHash": "0xada4bc316e380409c9d9abd9c2969ffd3cedf7e1ded5de586f86acaf1ab74fb1",
+    "blockNumber": 83265576,
+    "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "network": "Polygon Mainnet (chainId: 137)",
+    "timestamp": "2026-02-21T05:19:36.940Z"
   }
 }
