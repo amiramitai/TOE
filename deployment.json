@@ -112,5 +112,15 @@
     "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
     "network": "Polygon Mainnet (chainId: 137)",
     "timestamp": "2026-02-21T05:34:20.987Z"
+  },
+  "v3.6": {
+    "version": "3.6",
+    "title": "The One-Loop Universality Update",
+    "hash": "c150483a742561107fd74a454ede74cddc8ed2067130af4af2bdafc255a5bd61",
+    "txHash": "0x930d271d8760887c9d4beb02a3602f18cdf5d1fcf15eed782010becda86b56dc",
+    "blockNumber": 83267322,
+    "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "network": "Polygon Mainnet (chainId: 137)",
+    "timestamp": "2026-02-21T06:17:49.406Z"
   }
 }
