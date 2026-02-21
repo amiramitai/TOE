@@ -82,6 +82,14 @@
         "author": "Amir Benjamin Amitay",
         "version": "3.2",
         "timestamp": "2026-02-21T04:09:27.507Z"
+      },
+      {
+        "txHash": "0x75e0f9b3650b3d4352ed85b2caa2ee175c765e4efe024852bd2eebc0379fc4cf",
+        "blockNumber": 83265156,
+        "paperHash": "d7d49068026f91195642d528814b0b8542b835b8c5e005d32381d72650cd9f47",
+        "author": "Amir Benjamin Amitay",
+        "version": "3.3",
+        "timestamp": "2026-02-21T05:05:37.348Z"
       }
     ]
   }
