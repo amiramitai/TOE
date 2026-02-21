@@ -122,5 +122,15 @@
     "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
     "network": "Polygon Mainnet (chainId: 137)",
     "timestamp": "2026-02-21T06:17:49.406Z"
+  },
+  "v3.7": {
+    "version": "3.7",
+    "title": "The S-Matrix & Positivity Update",
+    "hash": "1264d8c960121c430bfebdbb840e8527c37efa749035a9d6ac078a9b424aeaa8",
+    "txHash": "0xf663e09bb3367eaaf60a5c024e8114191d50e8ea9cca0c1f03f9faf2acb25795",
+    "blockNumber": 83267557,
+    "contract": "0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054",
+    "network": "Polygon Mainnet (chainId: 137)",
+    "timestamp": "2026-02-21T06:25:42.796Z"
   }
 }
