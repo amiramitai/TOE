@@ -1,5 +1,7 @@
 # UHF — Unified Hydrodynamic Framework
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18735435.svg)](https://doi.org/10.5281/zenodo.18735435)
+
 A Theory of Everything grounded in quantum vacuum hydrodynamics. The universe is modeled as an incompressible superfluid; General Relativity, the Standard Model, and quantum mechanics emerge as effective infrared limits of the underlying fluid dynamics.
 
 ---
