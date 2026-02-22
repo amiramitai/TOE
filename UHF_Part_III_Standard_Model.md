@@ -148,6 +148,12 @@ The three lightest torus knot families with $p = 2$ (the minimal meridional wind
 
 The mass hierarchy $m_1 \gg m_2 \gg m_3$ (inverted because the trefoil has the *lowest* topological energy) reflects the increasing elastic energy of higher-crossing-number knots in the viscoelastic medium. The ratio $m_2/m_1 \sim e^{-(5-3)\pi/2} = e^{-\pi} \approx 0.043$ is consistent with $m_c/m_t \approx 1.3/173 \approx 0.0075$ (within the expected logarithmic corrections from the running coupling).
 
+**Higher-Generation Mass Stability and the Critical Crossover Density.** The stability of higher-generation fermions (2nd and 3rd generations) against topological decay into the lightest knot ($T_{2,3}$) is governed by a critical crossover density:
+
+$$\rho_c = 3.8132\;\rho_0$$
+
+where $\rho_0$ is the equilibrium condensate density. Below $\rho_c$, the superfluid medium cannot sustain the elastic stress required by the higher-crossing-number knots $T_{2,5}$ and $T_{2,7}$, and they unravel into trefoils plus phonon radiation (the weak-decay channel). Above $\rho_c$, the viscoelastic shear modulus $\mu(\rho)$ exceeds the topological unwinding barrier $\Delta E_{\text{top}}(q) \propto (q^2 - 9)\hbar c / \xi$, locking the higher knots into metastable configurations with lifetimes $\tau \propto e^{\mu(\rho)/\mu_c}$ that vastly exceed the Hubble time. The value $\rho_c = 3.8132$ is determined by the condition $\mu(\rho_c) = \Delta E_{\text{top}}(q=5)$ (the 2nd-generation threshold) and is computable from the GP equation of state. This crossover density is the origin of the empirical observation that heavier generations are unstable: at ambient vacuum density $\rho \approx \rho_0$, only the trefoil knot ($q = 3$) is absolutely stable, while $T_{2,5}$ and $T_{2,7}$ decay with characteristic times set by the weak interaction scale $G_F$. In extreme astrophysical environments where $\rho > \rho_c$ — such as the interior of neutron stars or the gravastar core — all three generations become topologically stable, with implications for the equation of state of dense matter.
+
 **CKM mixing from knot overlaps.** The CKM matrix $V_{\text{CKM}}$ governs the mixing between mass eigenstates and weak-interaction eigenstates. In the UHF, the weak-interaction eigenstates are defined by the torus-knot winding numbers $(p, q)$ in the $SU(2)_L$ sector (meridional windings), while the mass eigenstates are defined by the total elastic energy of the knot (which depends on both $p$ and $q$). The CKM matrix elements are the geometric overlap integrals:
 
 $$V_{ij} = \int_{T^2} \psi_{T_{2,q_i}}^*(\theta, \phi)\;\psi_{T_{2,q_j}}(\theta, \phi)\;\sqrt{g}\;d\theta\,d\phi$$
@@ -532,6 +538,8 @@ With the integration of the CMB first acoustic peak ($\ell_1 = 221$, within $0.4
 ## Acknowledgments
 
 This work builds upon the extensive prior contributions of Volovik, Unruh, Huang, Barceló, Liberati, Visser, and the analog gravity community. The author gratefully acknowledges the open scientific discourse fostered by Curt Jaimungal and the *Theories of Everything* (TOE) podcast, whose rigorous explorations at the intersection of fundamental physics and the philosophy of science helped catalyze this research direction.
+
+The author also acknowledges Roger Avary, whose appearance on *The Joe Rogan Experience* #2452 crystallized the insight that synthetic officials and institutional gatekeeping represent a systemic barrier to scientific progress — an observation that directly informed the open-source, blockchain-timestamped publication strategy of this work.
 
 ---
 

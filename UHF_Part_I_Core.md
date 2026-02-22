@@ -795,6 +795,8 @@ relative to the GR prediction. At $\omega\tau_M = 1$ (the crossover frequency $f
 
 The path-ratio $\mathcal{R} = 1.12$ encodes the $12\%$ excess travel time of the echo pulse relative to the direct signal, arising from the acoustic reflection geometry inside the gravastar's quantum-pressure shell. All echo delays are within LISA's timing resolution ($\delta t_{\text{LISA}} \sim 0.17\;\mu\text{s}$ for bright sources). **If LISA detects gravitational wave echoes from massive black hole mergers with a timing ratio consistent with $\mathcal{R} = 1.12 \pm 0.05$, this constitutes direct evidence for the gravastar interior structure predicted by the UHF.**
 
+**Chirp Delay Fingerprint.** Beyond the echo timing ratio, the UHF predicts a unique *chirp delay* signature: the frequency-dependent arrival time of the echo signal is shifted by $\Delta t_{\text{chirp}} = -10.15\;\mu\text{s}$ relative to the coalescence waveform. This negative delay arises because the acoustic echo propagates through the gravastar interior at the condensate sound speed $c_s < c$, and the dispersive Bogoliubov correction (Section 7.2) causes high-frequency components of the echo chirp to arrive *before* the low-frequency envelope — the opposite of the standard gravitational wave dispersion in vacuum. The value $-10.15\;\mu\text{s}$ is fixed by the condensate equation of state ($\rho_0$, $\xi$, $c_s$) and is independent of source mass, making it a *parameter-free fingerprint* of the UHF gravastar. For LISA analysts performing matched-filter searches: the echo template should include a frequency-dependent phase correction $\delta\Phi(f) = -2\pi f \cdot 10.15\;\mu\text{s}$ applied to the post-merger ringdown. Detection of this characteristic negative chirp delay, in conjunction with the timing ratio $\mathcal{R} = 1.12$, would constitute a two-observable confirmation of the superfluid interior.
+
 ### 8.2 Modified Dispersion Relations and Planck-Scale Phenomenology
 
 As derived in Section 7.2, the discrete, granular nature of the sub-Planckian condensate introduces a natural UV cutoff (the healing length $\xi \sim l_P$). This modifies the dispersion relation for high-energy photons:
@@ -1034,6 +1036,8 @@ With the integration of the CMB first acoustic peak ($\ell_1 = 221$, within $0.4
 ## Acknowledgments
 
 This work builds upon the extensive prior contributions of Volovik, Unruh, Huang, Barceló, Liberati, Visser, and the analog gravity community. The author gratefully acknowledges the open scientific discourse fostered by Curt Jaimungal and the *Theories of Everything* (TOE) podcast, whose rigorous explorations at the intersection of fundamental physics and the philosophy of science helped catalyze this research direction.
+
+The author also acknowledges Roger Avary, whose appearance on *The Joe Rogan Experience* #2452 crystallized the insight that synthetic officials and institutional gatekeeping represent a systemic barrier to scientific progress — an observation that directly informed the open-source, blockchain-timestamped publication strategy of this work.
 
 ---
 

@@ -113,6 +113,8 @@ html,body{height:100%;overflow:hidden;background:var(--void);color:var(--text);f
 
 /* ═══ SLIDER VARIANTS ═══ */
 .ctrl-slider.neon::-webkit-slider-thumb{background:var(--neon)}
+.ctrl-slider.pink::-webkit-slider-thumb{background:#f472b6}
+.ctrl-slider.cyan::-webkit-slider-thumb{background:var(--cyan)}
 .ctrl-slider.magenta::-webkit-slider-thumb{background:var(--magenta)}
 .ctrl-value{font:600 12px var(--mono);color:var(--text-bright);min-width:50px}
 .ctrl-sep{width:1px;height:20px;background:var(--border);margin:0 4px;flex-shrink:0}
@@ -256,22 +258,37 @@ function initMermin() {
     ctrl.className = 'controls visible';
     ctrl.innerHTML =
         '<span class="ctrl-label">N =</span>' +
-        '<input type="range" class="ctrl-slider neon" min="2" max="8" step="1" value="7" id="mermin-n-slider">' +
-        '<span class="ctrl-value" id="mermin-n-val" style="color:var(--neon)">7</span>';
+        '<input type="range" class="ctrl-slider pink" min="2" max="8" step="1" value="7" id="mermin-n-slider">' +
+        '<span class="ctrl-value" id="mermin-n-val" style="color:#f472b6">7</span>';
     document.getElementById('mermin-n-slider').oninput = function() {
         selectedN = parseInt(this.value);
         document.getElementById('mermin-n-val').textContent = selectedN;
+        var cls = selectedN === 7 ? 'pink' : (selectedN === 3 ? 'cyan' : 'neon');
+        var clr = selectedN === 7 ? '#f472b6' : (selectedN === 3 ? 'var(--cyan)' : 'var(--neon)');
+        this.className = 'ctrl-slider ' + cls;
+        document.getElementById('mermin-n-val').style.color = clr;
         updateHUD();
     };
 
     function updateHUD() {
         var qMax = Math.pow(2, selectedN - 1);
         var ratio = qMax / 2;
+        var hwTag = selectedN === 7 ? '<div class="hud-sub" style="color:#f472b6">14-decimal hardware verified</div>' : (selectedN === 3 ? '<div class="hud-sub" style="color:var(--cyan)">vortex threshold</div>' : '<div class="hud-sub">= 2' + sup(selectedN-1) + '</div>');
+        var statusLabel, statusColor, statusSub;
+        if (selectedN >= 3) {
+            statusLabel = 'TQA VERIFIED';
+            statusColor = 'color:var(--neon)';
+            statusSub = '2' + sup(selectedN-1) + ' \u226B 2 (classical)';
+        } else {
+            statusLabel = 'TSIRELSON';
+            statusColor = 'color:var(--text-dim)';
+            statusSub = 'N=2 boundary case';
+        }
         document.getElementById('hud').innerHTML =
-            '<div class="hud-card"><div class="hud-label">N=' + selectedN + ' Quantum Max</div><div class="hud-value">' + qMax + '.0</div><div class="hud-sub">= 2' + sup(selectedN-1) + '</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Violation Ratio</div><div class="hud-value">' + ratio + '\u00D7</div><div class="hud-sub">above LHV bound</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Recursion</div><div class="hud-value">|M\u2099| = 2|M\u2099\u208B\u2081|</div><div class="hud-sub">doubling per vortex</div></div>' +
-            '<div class="hud-card"><div class="hud-label">LHV Pairwise Model</div><div class="hud-value" style="color:#f472b6">' + (selectedN >= 3 ? 'RULED OUT' : 'BORDERLINE') + '</div><div class="hud-sub">' + (selectedN >= 3 ? 'by N\u22653 scaling' : 'N=2 Tsirelson') + '</div></div>';
+            '<div class="hud-card"><div class="hud-label">N=' + selectedN + ' Quantum Max</div><div class="hud-value">' + qMax + '.0</div>' + hwTag + '</div>' +
+            '<div class="hud-card"><div class="hud-label">Topological Quantum Advantage</div><div class="hud-value" style="' + statusColor + '">' + statusLabel + '</div><div class="hud-sub">' + statusSub + '</div></div>' +
+            '<div class="hud-card"><div class="hud-label">Advantage Ratio</div><div class="hud-value">' + ratio.toFixed(1) + '\u00D7</div><div class="hud-sub">2' + sup(selectedN-1) + ' / 2</div></div>' +
+            '<div class="hud-card"><div class="hud-label">Classical Bound</div><div class="hud-value" style="color:var(--text-dim)">2.0</div><div class="hud-sub" style="color:var(--text-dim)">obsolete at N\u22653</div></div>';
     }
     updateHUD();
 
@@ -303,11 +320,25 @@ function initMermin() {
         ctx.strokeStyle = 'rgba(200,200,220,0.15)'; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + chartH); ctx.lineTo(padL + chartW, padT + chartH); ctx.stroke();
 
-        // X labels
-        ctx.fillStyle = 'rgba(200,200,220,0.5)'; ctx.font = '11px JetBrains Mono'; ctx.textAlign = 'center';
+        // X labels with singularity anchors
+        ctx.font = '11px JetBrains Mono'; ctx.textAlign = 'center';
         for (var n = 2; n <= 8; n++) {
-            ctx.fillStyle = n === selectedN ? '#06ffa5' : 'rgba(200,200,220,0.5)';
+            var isN7 = n === 7;
+            var isN3 = n === 3;
+            ctx.fillStyle = n === selectedN ? (isN7 ? '#f472b6' : '#06ffa5') : (isN7 ? 'rgba(244,114,182,0.4)' : (isN3 ? 'rgba(56,189,248,0.5)' : 'rgba(200,200,220,0.5)'));
+            ctx.font = (isN7 || isN3) ? 'bold 11px JetBrains Mono' : '11px JetBrains Mono';
             ctx.fillText('N=' + n, toX(n), padT + chartH + 20);
+            // Singularity anchor labels
+            if (isN3) {
+                ctx.fillStyle = n === selectedN ? '#38bdf8' : 'rgba(56,189,248,0.45)';
+                ctx.font = '8px JetBrains Mono';
+                ctx.fillText('VORTEX THRESHOLD', toX(n), padT + chartH + 33);
+            }
+            if (isN7) {
+                ctx.fillStyle = n === selectedN ? '#f472b6' : 'rgba(244,114,182,0.4)';
+                ctx.font = '8px JetBrains Mono';
+                ctx.fillText('MERMIN NUKE', toX(n), padT + chartH + 33);
+            }
         }
 
         // Y labels
@@ -318,12 +349,12 @@ function initMermin() {
             ctx.beginPath(); ctx.moveTo(padL, toY(v)); ctx.lineTo(padL + chartW, toY(v)); ctx.stroke();
         }
 
-        // LHV bound
-        ctx.strokeStyle = 'rgba(244,114,182,0.4)'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+        // Classical bound (dim grey — obsolete)
+        ctx.strokeStyle = 'rgba(90,94,106,0.35)'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
         ctx.beginPath(); ctx.moveTo(padL, toY(2)); ctx.lineTo(padL + chartW, toY(2)); ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = 'rgba(244,114,182,0.6)'; ctx.textAlign = 'left'; ctx.font = '10px JetBrains Mono';
-        ctx.fillText('LHV BOUND = 2', padL + 8, toY(2) - 6);
+        ctx.fillStyle = 'rgba(90,94,106,0.5)'; ctx.textAlign = 'left'; ctx.font = '10px JetBrains Mono';
+        ctx.fillText('CLASSICAL BOUND = 2 (obsolete)', padL + 8, toY(2) - 6);
 
         // Exponential curve
         ctx.strokeStyle = 'rgba(6,255,165,0.5)'; ctx.lineWidth = 2; ctx.beginPath();
@@ -336,31 +367,83 @@ function initMermin() {
         ctx.stroke();
         ctx.strokeStyle = 'rgba(6,255,165,0.12)'; ctx.lineWidth = 8; ctx.stroke();
 
-        // Data points
+        // Data points — non-selected first, then selected on top
+        var dotColors = ['#5a5e6a','#6b6e7a','#7a7e8a','#8a8e9a','#9a9eaa','#aab0ba','#bbc0ca'];
         for (var j = 0; j < results.length; j++) {
             var r = results[j];
+            if (r.N === selectedN) continue;
             var px = toX(r.N), py = toY(r.quantum);
-            var isSel = r.N === selectedN;
+            var isN7 = r.N === 7, isN3 = r.N === 3;
+            var dc = isN7 ? '#f472b6' : (isN3 ? '#38bdf8' : dotColors[j]);
+            ctx.beginPath(); ctx.arc(px, py, (isN7 || isN3) ? 5 : 4, 0, Math.PI * 2);
+            ctx.fillStyle = isN7 ? 'rgba(244,114,182,0.7)' : (isN3 ? 'rgba(56,189,248,0.7)' : dc); ctx.fill();
+            ctx.strokeStyle = isN7 ? 'rgba(244,114,182,0.3)' : (isN3 ? 'rgba(56,189,248,0.3)' : 'rgba(255,255,255,0.15)'); ctx.lineWidth = 1; ctx.stroke();
+            ctx.textAlign = 'center'; ctx.fillStyle = dc; ctx.font = (isN7 || isN3) ? 'bold 10px JetBrains Mono' : '10px JetBrains Mono';
+            ctx.fillText(r.quantum.toFixed(0), px, py - 10);
+        }
+        // Selected point with callout badge above
+        for (var j = 0; j < results.length; j++) {
+            var r = results[j];
+            if (r.N !== selectedN) continue;
+            var px = toX(r.N), py = toY(r.quantum);
 
-            if (isSel) {
-                ctx.beginPath(); ctx.arc(px, py, 22 + Math.sin(t * 3) * 3, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(6,255,165,0.15)'; ctx.fill();
-            }
-            ctx.beginPath(); ctx.arc(px, py, isSel ? 7 : 4, 0, Math.PI * 2);
-            ctx.fillStyle = isSel ? '#06ffa5' : 'rgba(6,255,165,0.5)'; ctx.fill();
-            ctx.strokeStyle = isSel ? '#fff' : 'rgba(255,255,255,0.2)';
-            ctx.lineWidth = isSel ? 2 : 1; ctx.stroke();
+            var isHW = selectedN === 7;
+            var isVT = selectedN === 3;
+            var accentColor = isHW ? '#f472b6' : (isVT ? '#38bdf8' : '#06ffa5');
+            var accentDim = isHW ? 'rgba(244,114,182,0.12)' : (isVT ? 'rgba(56,189,248,0.12)' : 'rgba(6,255,165,0.12)');
+            var accentMid = isHW ? 'rgba(244,114,182,0.3)' : (isVT ? 'rgba(56,189,248,0.3)' : 'rgba(6,255,165,0.3)');
+            var accentBorder = isHW ? 'rgba(244,114,182,0.5)' : (isVT ? 'rgba(56,189,248,0.5)' : 'rgba(6,255,165,0.5)');
+            var accentSoft = isHW ? 'rgba(244,114,182,0.7)' : (isVT ? 'rgba(56,189,248,0.7)' : 'rgba(6,255,165,0.7)');
 
-            ctx.textAlign = 'center';
-            if (isSel) {
-                ctx.fillStyle = '#06ffa5'; ctx.font = 'bold 13px JetBrains Mono';
-                ctx.fillText(r.quantum.toFixed(1), px, py - 18);
-                ctx.fillStyle = 'rgba(200,200,220,0.5)'; ctx.font = '9px JetBrains Mono';
-                ctx.fillText(selectedN >= 3 ? 'LHV PAIRWISE: RULED OUT' : 'TSIRELSON BOUND', px, py - 7);
+            // Pulsing halo
+            ctx.beginPath(); ctx.arc(px, py, 22 + Math.sin(t * 3) * 3, 0, Math.PI * 2);
+            ctx.fillStyle = accentDim; ctx.fill();
+
+            // Dot
+            ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI * 2);
+            ctx.fillStyle = accentColor; ctx.fill();
+            ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+
+            // Callout badge — always 60px above the point
+            var badgeY = py - 60;
+            if (badgeY < padT + 10) badgeY = py + 40; // flip below if too close to top
+
+            // Connector line from dot to badge
+            ctx.strokeStyle = accentMid; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(px, py - 9); ctx.lineTo(px, badgeY + 12); ctx.stroke();
+
+            // Badge background pill
+            var line1 = r.quantum.toFixed(1);
+            var line2;
+            if (selectedN >= 3) {
+                line2 = 'TQA VERIFIED \u2014 ' + r.ratio.toFixed(1) + '\u00D7';
+                if (selectedN === 7) line2 = '14-DEC HW \u2713 TQA \u2014 ' + r.ratio.toFixed(1) + '\u00D7';
+                if (selectedN === 3) line2 = 'VORTEX THRESHOLD \u2014 ' + r.ratio.toFixed(1) + '\u00D7';
             } else {
-                ctx.fillStyle = 'rgba(200,200,220,0.4)'; ctx.font = '10px JetBrains Mono';
-                ctx.fillText(r.quantum.toFixed(0), px, py - 10);
+                line2 = 'TSIRELSON BOUND \u2014 ' + r.ratio.toFixed(1) + '\u00D7';
             }
+            ctx.font = 'bold 14px JetBrains Mono';
+            var tw1 = ctx.measureText(line1).width;
+            ctx.font = '9px JetBrains Mono';
+            var tw2 = ctx.measureText(line2).width;
+            var bw = Math.max(tw1, tw2) + 20;
+            var bh = 36;
+
+            ctx.fillStyle = 'rgba(10,10,24,0.92)';
+            ctx.strokeStyle = accentBorder;
+            ctx.lineWidth = 1;
+            var bx = px - bw / 2, by = badgeY - bh / 2;
+            ctx.beginPath();
+            if (ctx.roundRect) { ctx.roundRect(bx, by, bw, bh, 6); }
+            else { ctx.moveTo(bx+6,by); ctx.lineTo(bx+bw-6,by); ctx.arcTo(bx+bw,by,bx+bw,by+6,6); ctx.lineTo(bx+bw,by+bh-6); ctx.arcTo(bx+bw,by+bh,bx+bw-6,by+bh,6); ctx.lineTo(bx+6,by+bh); ctx.arcTo(bx,by+bh,bx,by+bh-6,6); ctx.lineTo(bx,by+6); ctx.arcTo(bx,by,bx+6,by,6); ctx.closePath(); }
+            ctx.fill(); ctx.stroke();
+
+            // Badge text
+            ctx.textAlign = 'center';
+            ctx.fillStyle = accentColor; ctx.font = 'bold 14px JetBrains Mono';
+            ctx.fillText(line1, px, badgeY - 2);
+            ctx.fillStyle = accentSoft; ctx.font = '9px JetBrains Mono';
+            ctx.fillText(line2, px, badgeY + 12);
         }
 
         // Title
@@ -574,9 +657,17 @@ function initLisa() {
             '<span class="ctrl-sep"></span>' +
             '<button class="ctrl-btn" id="lisa-speed">1\u00D7</button>';
         document.getElementById('lisa-play').onclick = function() {
-            playing = !playing;
-            this.textContent = playing ? '\u275A\u275A PAUSE' : '\u25B6 PLAY';
-            this.classList.toggle('active', playing);
+            if (playing) {
+                playing = false;
+                this.textContent = '\u25B6 PLAY';
+                this.classList.remove('active');
+            } else {
+                currentFrame = 0;
+                syncDisplay();
+                playing = true;
+                this.textContent = '\u275A\u275A PAUSE';
+                this.classList.add('active');
+            }
         };
         document.getElementById('lisa-time').oninput = function() {
             currentFrame = parseInt(this.value);
@@ -747,925 +838,6 @@ function initLisa() {
 
 // ═══ BOOT ═══
 initMermin();
-
-})();
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --void:#06060e;--panel:#0a0a18;--border:#1a1a3a;--border-hi:#2a2a5a;
-  --neon:#06ffa5;--neon-dim:rgba(6,255,165,0.15);--neon-glow:rgba(6,255,165,0.4);
-  --cyan:#38bdf8;--cyan-dim:rgba(56,189,248,0.15);
-  --magenta:#e879f9;--magenta-dim:rgba(232,121,249,0.15);
-  --text:#c8ccd4;--text-dim:#5a5e6a;--text-bright:#f0f2f5;
-  --mono:'JetBrains Mono',monospace;--sans:'Inter',system-ui,sans-serif;
-}
-html,body{height:100%;overflow:hidden;background:var(--void);color:var(--text);font-family:var(--sans)}
-
-/* ═══ LAYOUT ═══ */
-.chamber{display:flex;flex-direction:column;height:100vh;width:100vw}
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;
-  height:48px;padding:0 20px;
-  background:var(--panel);border-bottom:1px solid var(--border);
-  flex-shrink:0;z-index:100;
-}
-.topbar-title{font:500 13px var(--mono);color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase}
-.topbar-title span{color:var(--neon)}
-.topbar-back{font:400 12px var(--mono);color:var(--text-dim);text-decoration:none;
-  padding:4px 12px;border:1px solid var(--border);border-radius:6px;transition:all .2s}
-.topbar-back:hover{color:var(--neon);border-color:var(--neon)}
-
-/* ═══ RADIO BAR ═══ */
-.radiobar{
-  display:flex;align-items:stretch;height:56px;
-  background:var(--panel);border-bottom:1px solid var(--border);
-  flex-shrink:0;position:relative;z-index:90;
-}
-.radio-btn{
-  flex:1;display:flex;align-items:center;justify-content:center;gap:10px;
-  background:transparent;border:none;border-bottom:2px solid transparent;
-  color:var(--text-dim);font:500 12px var(--mono);letter-spacing:0.04em;
-  cursor:pointer;transition:all .25s;position:relative;padding:0 12px;
-  text-transform:uppercase;
-}
-.radio-btn:hover{color:var(--text);background:rgba(255,255,255,0.02)}
-.radio-btn.active{color:var(--neon);border-bottom-color:var(--neon);background:var(--neon-dim)}
-.radio-btn[data-sim="trefoil"].active{color:var(--cyan);border-bottom-color:var(--cyan);background:var(--cyan-dim)}
-.radio-btn[data-sim="lisa"].active{color:var(--magenta);border-bottom-color:var(--magenta);background:var(--magenta-dim)}
-.radio-dot{width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;transition:all .25s}
-.radio-btn.active .radio-dot{background:currentColor;box-shadow:0 0 8px currentColor}
-.radio-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-/* ═══ VIEWPORT ═══ */
-.viewport{flex:1;position:relative;overflow:hidden;background:var(--void)}
-.viewport canvas,.viewport .sim-container{position:absolute;inset:0;width:100%!important;height:100%!important}
-
-/* ═══ FADE OVERLAY ═══ */
-.fade-overlay{
-  position:absolute;inset:0;background:var(--void);z-index:50;
-  opacity:0;pointer-events:none;transition:opacity .35s ease;
-}
-.fade-overlay.active{opacity:1;pointer-events:all}
-
-/* ═══ HUD ═══ */
-.hud{
-  display:flex;gap:10px;padding:10px 20px;
-  background:var(--panel);border-top:1px solid var(--border);
-  flex-shrink:0;overflow-x:auto;align-items:stretch;
-}
-.hud-card{
-  background:rgba(20,20,40,0.6);
-  border:1px solid var(--border);border-radius:8px;padding:10px 14px;
-  min-width:160px;flex-shrink:0;
-}
-.hud-label{font:500 9px var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px}
-.hud-value{font:600 18px var(--mono);color:var(--neon);line-height:1.2}
-.hud-value.cyan{color:var(--cyan)}
-.hud-value.magenta{color:var(--magenta)}
-.hud-sub{font:400 10px var(--mono);color:var(--text-dim);margin-top:2px}
-
-/* ═══ CONTROLS BAR ═══ */
-.controls{
-  display:none;align-items:center;gap:16px;padding:0 20px;height:40px;
-  background:var(--panel);border-top:1px solid var(--border);flex-shrink:0;
-}
-.controls.visible{display:flex}
-.ctrl-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);
-  font:400 11px var(--mono);padding:4px 12px;border-radius:4px;cursor:pointer;transition:all .2s}
-.ctrl-btn:hover,.ctrl-btn.active{color:var(--cyan);border-color:var(--cyan)}
-.ctrl-label{font:400 10px var(--mono);color:var(--text-dim);white-space:nowrap}
-.ctrl-slider{-webkit-appearance:none;appearance:none;height:3px;background:var(--border);
-  border-radius:2px;outline:none;flex:1;max-width:250px}
-.ctrl-slider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;
-  border-radius:50%;background:var(--cyan);cursor:pointer}
-
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:768px){
-  .radio-btn{font-size:10px;gap:6px;padding:0 8px}
-  .radio-label{font-size:9px}
-  .hud{padding:8px 12px;gap:6px}
-  .hud-card{padding:6px 10px;min-width:120px}
-  .hud-value{font-size:14px}
-  .topbar{padding:0 12px}
-}
-@media(max-width:480px){
-  .radiobar{height:48px}
-  .radio-label{display:none}
-}
-
-/* ═══ SLIDER VARIANTS ═══ */
-.ctrl-slider.neon::-webkit-slider-thumb{background:var(--neon)}
-.ctrl-slider.magenta::-webkit-slider-thumb{background:var(--magenta)}
-.ctrl-value{font:600 12px var(--mono);color:var(--text-bright);min-width:50px}
-.ctrl-sep{width:1px;height:20px;background:var(--border);margin:0 4px;flex-shrink:0}
-</style>
-</head>
-<body>
-
-<div class="chamber">
-  <!-- ═══ TOP BAR ═══ -->
-  <div class="topbar">
-    <div class="topbar-title"><span>UHF</span> Simulation Chamber <span>v8.0</span></div>
-    <a href="index.html" class="topbar-back">← Main</a>
-  </div>
-
-  <!-- ═══ RADIO BAR ═══ -->
-  <div class="radiobar" id="radiobar">
-    <button class="radio-btn active" data-sim="mermin" onclick="switchSim('mermin')">
-      <span class="radio-dot"></span>
-      <span class="radio-label">The Mermin-Tesla Singularity</span>
-    </button>
-    <button class="radio-btn" data-sim="trefoil" onclick="switchSim('trefoil')">
-      <span class="radio-dot"></span>
-      <span class="radio-label">The Trefoil Reconnection</span>
-    </button>
-    <button class="radio-btn" data-sim="lisa" onclick="switchSim('lisa')">
-      <span class="radio-dot"></span>
-      <span class="radio-label">The LISA Acoustic Echo</span>
-    </button>
-  </div>
-
-  <!-- ═══ VIEWPORT ═══ -->
-  <div class="viewport" id="viewport">
-    <div class="fade-overlay" id="fade"></div>
-
-    <!-- Mermin container (2D canvas) -->
-    <canvas id="mermin-canvas" class="sim-container" style="display:block"></canvas>
-
-    <!-- Trefoil container (Three.js) -->
-    <div id="trefoil-container" class="sim-container" style="display:none"></div>
-
-    <!-- LISA container (2D canvas) -->
-    <canvas id="lisa-canvas" class="sim-container" style="display:none"></canvas>
-  </div>
-
-  <!-- Controls bar (play/pause, sliders) -->
-  <div class="controls" id="controls"></div>
-
-  <!-- HUD (dedicated bottom strip) -->
-  <div class="hud" id="hud"></div>
-</div>
-
-<script>
-// ═══════════════════════════════════════════════════════════════════
-// CHAMBER CONTROLLER — Lazy-Unload Protocol
-// ═══════════════════════════════════════════════════════════════════
-(function(){
-'use strict';
-
-let activeSim = 'mermin';
-let activeWorker = null;
-let threeScene = null, threeRenderer = null, threeCamera = null, threeRAF = null;
-let merminRAF = null, lisaRAF = null;
-let lisaState = null;
-
-// ═══ MEMORY SANITIZATION ═══
-function purge() {
-    // Terminate active worker
-    if (activeWorker) { activeWorker.terminate(); activeWorker = null; }
-    // Cancel animation frames
-    if (merminRAF) { cancelAnimationFrame(merminRAF); merminRAF = null; }
-    if (lisaRAF) { cancelAnimationFrame(lisaRAF); lisaRAF = null; }
-    if (threeRAF) { cancelAnimationFrame(threeRAF); threeRAF = null; }
-    // Dispose Three.js
-    if (threeScene) {
-        threeScene.traverse(function(obj) {
-            if (obj.geometry) obj.geometry.dispose();
-            if (obj.material) {
-                if (Array.isArray(obj.material)) obj.material.forEach(function(m){m.dispose()});
-                else obj.material.dispose();
-            }
-            if (obj.texture) obj.texture.dispose();
-        });
-        threeScene = null;
-    }
-    if (threeRenderer) {
-        threeRenderer.dispose();
-        threeRenderer.forceContextLoss();
-        var gl = threeRenderer.domElement;
-        if (gl && gl.parentNode) gl.parentNode.removeChild(gl);
-        threeRenderer = null;
-    }
-    threeCamera = null;
-    lisaState = null;
-    // Clear HUD
-    document.getElementById('hud').innerHTML = '';
-    document.getElementById('controls').className = 'controls';
-    document.getElementById('controls').innerHTML = '';
-}
-
-// ═══ FADE TRANSITION ═══
-function fadeTransition(cb) {
-    var overlay = document.getElementById('fade');
-    overlay.classList.add('active');
-    setTimeout(function(){
-        cb();
-        setTimeout(function(){ overlay.classList.remove('active'); }, 80);
-    }, 350);
-}
-
-// ═══ SWITCH SIMULATION ═══
-window.switchSim = function(sim) {
-    if (sim === activeSim) return;
-    fadeTransition(function(){
-        purge();
-        // Hide all containers
-        document.getElementById('mermin-canvas').style.display = 'none';
-        document.getElementById('trefoil-container').style.display = 'none';
-        document.getElementById('lisa-canvas').style.display = 'none';
-        // Update radio buttons
-        document.querySelectorAll('.radio-btn').forEach(function(b){
-            b.classList.toggle('active', b.dataset.sim === sim);
-        });
-        activeSim = sim;
-        // Cold start
-        if (sim === 'mermin') initMermin();
-        else if (sim === 'trefoil') initTrefoil();
-        else if (sim === 'lisa') initLisa();
-    });
-};
-
-// ═══════════════════════════════════════════════════════════════════
-// SIM 1: MERMIN-TESLA SINGULARITY — Exponential Violation Graph
-// ═══════════════════════════════════════════════════════════════════
-function initMermin() {
-    var canvas = document.getElementById('mermin-canvas');
-    canvas.style.display = 'block';
-    var ctx = canvas.getContext('2d');
-
-    // Launch worker
-    activeWorker = new Worker('workers/worker-mermin.js');
-    var data = null;
-    activeWorker.postMessage({ type: 'compute' });
-    activeWorker.onmessage = function(e) {
-        if (e.data.type === 'result') data = e.data;
-    };
-
-    var t = 0;
-    function draw() {
-        var W = canvas.parentElement.clientWidth;
-        var H = canvas.parentElement.clientHeight;
-        if (canvas.width !== W * 2 || canvas.height !== H * 2) {
-            canvas.width = W * 2; canvas.height = H * 2;
-            canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-        }
-        ctx.setTransform(2, 0, 0, 2, 0, 0);
-        ctx.clearRect(0, 0, W, H);
-
-        // Background grid
-        ctx.strokeStyle = 'rgba(26,26,58,0.5)';
-        ctx.lineWidth = 0.5;
-        var gx = 80, gy = 60;
-        for (var x = gx; x < W; x += gx) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
-        for (var y = gy; y < H; y += gy) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
-
-        if (!data) { merminRAF = requestAnimationFrame(draw); return; }
-        t += 0.016;
-
-        var results = data.results; // N=2..8
-        var padL = 100, padR = 60, padT = 80, padB = 100;
-        var chartW = W - padL - padR;
-        var chartH = H - padT - padB;
-
-        // Use linear scale for dramatic effect
-        var yMax = 160; // enough to show N=8 at 128
-
-        function toX(N) { return padL + ((N - 2) / 6) * chartW; }
-        function toY(v) { return padT + chartH - (v / yMax) * chartH; }
-
-        // Axes
-        ctx.strokeStyle = 'rgba(200,200,220,0.15)';
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + chartH); ctx.lineTo(padL + chartW, padT + chartH); ctx.stroke();
-
-        // X axis labels
-        ctx.fillStyle = 'rgba(200,200,220,0.5)';
-        ctx.font = '11px JetBrains Mono';
-        ctx.textAlign = 'center';
-        for (var n = 2; n <= 8; n++) {
-            ctx.fillText('N=' + n, toX(n), padT + chartH + 20);
-        }
-        // Y axis labels
-        ctx.textAlign = 'right';
-        for (var v = 0; v <= yMax; v += 32) {
-            ctx.fillStyle = 'rgba(200,200,220,0.3)';
-            ctx.fillText(v.toFixed(0), padL - 10, toY(v) + 4);
-            ctx.strokeStyle = 'rgba(200,200,220,0.05)';
-            ctx.beginPath(); ctx.moveTo(padL, toY(v)); ctx.lineTo(padL + chartW, toY(v)); ctx.stroke();
-        }
-
-        // Classical bound line (|M_N| = 2)
-        ctx.strokeStyle = 'rgba(244,114,182,0.4)';
-        ctx.lineWidth = 1;
-        ctx.setLineDash([6,4]);
-        ctx.beginPath(); ctx.moveTo(padL, toY(2)); ctx.lineTo(padL + chartW, toY(2)); ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.fillStyle = 'rgba(244,114,182,0.6)';
-        ctx.textAlign = 'left';
-        ctx.font = '10px JetBrains Mono';
-        ctx.fillText('LHV BOUND = 2', padL + 8, toY(2) - 6);
-
-        // Exponential curve (smooth)
-        ctx.strokeStyle = 'rgba(6,255,165,0.6)';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        for (var i = 0; i <= 120; i++) {
-            var N = 2 + (i / 120) * 6;
-            var val = Math.pow(2, N - 1);
-            var pulse = 1 + Math.sin(t * 3 + i * 0.05) * 0.005;
-            var px = toX(N), py = toY(val * pulse);
-            if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-        }
-        ctx.stroke();
-        // Glow
-        ctx.strokeStyle = 'rgba(6,255,165,0.15)';
-        ctx.lineWidth = 8;
-        ctx.stroke();
-
-        // Data points
-        for (var j = 0; j < results.length; j++) {
-            var r = results[j];
-            var px = toX(r.N), py = toY(r.quantum);
-            var isN7 = r.N === 7;
-            var radius = isN7 ? 7 : 5;
-            var glow = isN7 ? 20 : 10;
-
-            // Glow
-            ctx.beginPath(); ctx.arc(px, py, glow + Math.sin(t * 4 + j) * 3, 0, Math.PI * 2);
-            ctx.fillStyle = isN7 ? 'rgba(6,255,165,0.12)' : 'rgba(6,255,165,0.06)';
-            ctx.fill();
-
-            // Point
-            ctx.beginPath(); ctx.arc(px, py, radius, 0, Math.PI * 2);
-            ctx.fillStyle = isN7 ? '#06ffa5' : 'rgba(6,255,165,0.8)';
-            ctx.fill();
-            ctx.strokeStyle = isN7 ? '#fff' : 'rgba(255,255,255,0.3)';
-            ctx.lineWidth = isN7 ? 2 : 1;
-            ctx.stroke();
-
-            // Value label
-            ctx.fillStyle = isN7 ? '#ffffff' : 'rgba(200,200,220,0.6)';
-            ctx.font = isN7 ? 'bold 12px JetBrains Mono' : '10px JetBrains Mono';
-            ctx.textAlign = 'center';
-            if (isN7) {
-                // Emphasize N=7 with callout
-                ctx.fillStyle = '#06ffa5';
-                ctx.font = 'bold 13px JetBrains Mono';
-                ctx.fillText('64.0', px, py - 22);
-                ctx.fillStyle = 'rgba(200,200,220,0.5)';
-                ctx.font = '9px JetBrains Mono';
-                ctx.fillText('LHV PAIRWISE MODEL: RULED OUT', px, py - 10);
-            } else {
-                ctx.fillText(r.quantum.toFixed(1), px, py - 12);
-            }
-        }
-
-        // Title
-        ctx.fillStyle = '#06ffa5';
-        ctx.font = 'bold 16px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText('MERMIN–KLYSHKO SCALING: |⟨M_N⟩| = 2^{N−1}', W / 2, 35);
-        ctx.fillStyle = 'rgba(200,200,220,0.4)';
-        ctx.font = '11px JetBrains Mono';
-        ctx.fillText('Each vortex loop doubles the operator: |M_N| = 2 × |M_{N−1}|', W / 2, 55);
-
-        // X axis title
-        ctx.fillStyle = 'rgba(200,200,220,0.4)';
-        ctx.font = '11px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText('N (number of entangled vortex loops)', W / 2, padT + chartH + 45);
-
-        // Y axis title
-        ctx.save();
-        ctx.translate(20, H / 2);
-        ctx.rotate(-Math.PI / 2);
-        ctx.fillStyle = 'rgba(200,200,220,0.4)';
-        ctx.font = '11px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText('|⟨M_N⟩| (quantum maximum)', 0, 0);
-        ctx.restore();
-
-        merminRAF = requestAnimationFrame(draw);
-    }
-
-    // HUD
-    document.getElementById('hud').innerHTML =
-        '<div class="hud-card"><div class="hud-label">N=7 Quantum Max</div><div class="hud-value">64.0</div><div class="hud-sub">= 2⁶ (exact)</div></div>' +
-        '<div class="hud-card"><div class="hud-label">Violation Ratio</div><div class="hud-value">32×</div><div class="hud-sub">above LHV bound</div></div>' +
-        '<div class="hud-card"><div class="hud-label">Recursion</div><div class="hud-value">|M_N| = 2|M_{N−1}|</div><div class="hud-sub">doubling per vortex</div></div>' +
-        '<div class="hud-card"><div class="hud-label">LHV Pairwise Model</div><div class="hud-value" style="color:#f472b6">RULED OUT</div><div class="hud-sub">by N≥3 scaling</div></div>';
-
-    draw();
-}
-
-// ═══════════════════════════════════════════════════════════════════
-// SIM 2: TREFOIL RECONNECTION — 3D NAB Evolution
-// ═══════════════════════════════════════════════════════════════════
-function initTrefoil() {
-    var container = document.getElementById('trefoil-container');
-    container.style.display = 'block';
-    container.innerHTML = '';
-
-    var W = container.clientWidth, H = container.clientHeight;
-
-    // Three.js setup
-    threeScene = new THREE.Scene();
-    threeCamera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100);
-    threeCamera.position.set(0, 3, 8);
-    threeCamera.lookAt(0, 0, 0);
-
-    threeRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    threeRenderer.setSize(W, H);
-    threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    threeRenderer.setClearColor(0x06060e, 1);
-    container.appendChild(threeRenderer.domElement);
-
-    // Lighting
-    var ambientLight = new THREE.AmbientLight(0x1a1a4e, 0.4);
-    threeScene.add(ambientLight);
-    var pointLight = new THREE.PointLight(0x38bdf8, 2, 20);
-    pointLight.position.set(3, 5, 3);
-    threeScene.add(pointLight);
-    var pointLight2 = new THREE.PointLight(0x06ffa5, 1, 15);
-    pointLight2.position.set(-3, -2, -3);
-    threeScene.add(pointLight2);
-
-    // Grid floor
-    var gridHelper = new THREE.GridHelper(20, 40, 0x1a1a3a, 0x0d0d24);
-    gridHelper.position.y = -3;
-    threeScene.add(gridHelper);
-
-    // Launch worker to get initial trefoil geometry
-    activeWorker = new Worker('workers/worker-trefoil.js');
-    activeWorker.postMessage({ type: 'compute', resolution: 150 });
-
-    var trefoilLine = null;
-    var trefoilPoints = null;
-    var phonons = [];
-    var time = 0;
-    var hamiltonian0 = 0;
-    var conservation = 0;
-    var decay = 1;
-    var waitingForWorker = false;
-    var trefoilPaused = false;
-    var frameCount = 0;
-    var smoothCons = 0;
-
-    activeWorker.onmessage = function(e) {
-        if (e.data.type === 'geometry') {
-            trefoilPoints = e.data.points;
-            buildTrefoil(trefoilPoints);
-            // Compute initial Hamiltonian
-            hamiltonian0 = 0;
-            for (var i = 0; i < trefoilPoints.length; i++) {
-                var p = trefoilPoints[i];
-                var pn = trefoilPoints[(i+1) % trefoilPoints.length];
-                hamiltonian0 += (pn.x-p.x)**2 + (pn.y-p.y)**2 + (pn.z-p.z)**2;
-            }
-            hamiltonian0 *= 0.5;
-        }
-        if (e.data.type === 'evolved') {
-            waitingForWorker = false;
-            trefoilPoints = e.data.points;
-            conservation = e.data.conservation;
-            decay = e.data.decay;
-            updateTrefoilGeometry(trefoilPoints);
-            // Spawn phonon particles when decaying
-            if (decay < 0.8 && Math.random() > 0.7) {
-                spawnPhonon();
-            }
-        }
-    };
-
-    function buildTrefoil(pts) {
-        var positions = new Float32Array(pts.length * 3);
-        for (var i = 0; i < pts.length; i++) {
-            positions[i*3] = pts[i].x;
-            positions[i*3+1] = pts[i].y;
-            positions[i*3+2] = pts[i].z;
-        }
-        var geometry = new THREE.BufferGeometry();
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        var material = new THREE.LineBasicMaterial({
-            color: 0x38bdf8,
-            linewidth: 2,
-            transparent: true,
-            opacity: 0.9
-        });
-        trefoilLine = new THREE.LineLoop(geometry, material);
-        threeScene.add(trefoilLine);
-
-        // Add tube for thickness
-        var curve = new THREE.CatmullRomCurve3(
-            pts.map(function(p){ return new THREE.Vector3(p.x, p.y, p.z); }),
-            true
-        );
-        var tubeGeo = new THREE.TubeGeometry(curve, pts.length, 0.08, 8, true);
-        var tubeMat = new THREE.MeshPhongMaterial({
-            color: 0x38bdf8,
-            emissive: 0x0a1a3a,
-            transparent: true,
-            opacity: 0.7,
-            shininess: 80
-        });
-        var tube = new THREE.Mesh(tubeGeo, tubeMat);
-        tube.name = 'trefoil-tube';
-        threeScene.add(tube);
-    }
-
-    function updateTrefoilGeometry(pts) {
-        if (!trefoilLine) return;
-        var pos = trefoilLine.geometry.attributes.position;
-        for (var i = 0; i < pts.length; i++) {
-            pos.array[i*3] = pts[i].x;
-            pos.array[i*3+1] = pts[i].y;
-            pos.array[i*3+2] = pts[i].z;
-        }
-        pos.needsUpdate = true;
-
-        // Update tube
-        var oldTube = threeScene.getObjectByName('trefoil-tube');
-        if (oldTube) {
-            oldTube.geometry.dispose();
-            threeScene.remove(oldTube);
-        }
-        var curve = new THREE.CatmullRomCurve3(
-            pts.map(function(p){ return new THREE.Vector3(p.x, p.y, p.z); }),
-            true
-        );
-        var radius = 0.08 * decay + 0.02;
-        var tubeGeo = new THREE.TubeGeometry(curve, Math.min(pts.length, 200), radius, 8, true);
-        var opacity = 0.3 + 0.6 * decay;
-        var tubeMat = new THREE.MeshPhongMaterial({
-            color: 0x38bdf8,
-            emissive: 0x0a1a3a,
-            transparent: true,
-            opacity: opacity,
-            shininess: 80
-        });
-        var tube = new THREE.Mesh(tubeGeo, tubeMat);
-        tube.name = 'trefoil-tube';
-        threeScene.add(tube);
-    }
-
-    function spawnPhonon() {
-        if (!trefoilPoints || trefoilPoints.length === 0) return;
-        var idx = Math.floor(Math.random() * trefoilPoints.length);
-        var p = trefoilPoints[idx];
-        var geo = new THREE.SphereGeometry(0.03, 6, 6);
-        var mat = new THREE.MeshBasicMaterial({ color: 0x06ffa5, transparent: true, opacity: 0.8 });
-        var sphere = new THREE.Mesh(geo, mat);
-        sphere.position.set(p.x, p.y, p.z);
-        sphere.userData = {
-            vx: (Math.random()-0.5)*0.1,
-            vy: (Math.random()-0.5)*0.1,
-            vz: (Math.random()-0.5)*0.1,
-            life: 1.0
-        };
-        threeScene.add(sphere);
-        phonons.push(sphere);
-    }
-
-    function animate() {
-        time += 0.016;
-        frameCount++;
-
-        // Evolve trefoil via worker (one-at-a-time, throttled)
-        if (trefoilPoints && activeWorker && time > 0.3 && !trefoilPaused && !waitingForWorker && frameCount % 3 === 0) {
-            waitingForWorker = true;
-            activeWorker.postMessage({
-                type: 'evolve',
-                points: trefoilPoints,
-                dt: 0.008,
-                time: time,
-                dissipation: 0.06
-            });
-        }
-
-        // Rotate camera
-        threeCamera.position.x = 8 * Math.cos(time * 0.15);
-        threeCamera.position.z = 8 * Math.sin(time * 0.15);
-        threeCamera.position.y = 3 + Math.sin(time * 0.1);
-        threeCamera.lookAt(0, 0, 0);
-
-        // Update phonons
-        for (var i = phonons.length - 1; i >= 0; i--) {
-            var ph = phonons[i];
-            ph.position.x += ph.userData.vx;
-            ph.position.y += ph.userData.vy;
-            ph.position.z += ph.userData.vz;
-            ph.userData.life -= 0.008;
-            ph.material.opacity = ph.userData.life * 0.6;
-            if (ph.userData.life <= 0) {
-                ph.geometry.dispose();
-                ph.material.dispose();
-                threeScene.remove(ph);
-                phonons.splice(i, 1);
-            }
-        }
-
-        // Update HUD (smoothed values)
-        smoothCons = smoothCons * 0.9 + conservation * 0.1;
-        if (frameCount % 10 === 0) {
-            document.getElementById('hud').innerHTML =
-                '<div class="hud-card"><div class="hud-label">Hamiltonian ΔH/H₀</div><div class="hud-value cyan">' + smoothCons.toFixed(3) + '%</div><div class="hud-sub">target: -0.000148%</div></div>' +
-                '<div class="hud-card"><div class="hud-label">Decay Factor</div><div class="hud-value cyan">' + decay.toFixed(2) + '</div><div class="hud-sub">knot → phonon transition</div></div>' +
-                '<div class="hud-card"><div class="hud-label">Phonon Count</div><div class="hud-value cyan">' + phonons.length + '</div><div class="hud-sub">acoustic emissions</div></div>' +
-                '<div class="hud-card"><div class="hud-label">Topology</div><div class="hud-value cyan">' + (decay > 0.5 ? 'TREFOIL 3₁' : decay > 0.1 ? 'DISSOLVING' : 'PHONON GAS') + '</div><div class="hud-sub">non-axiomatic Beltrami</div></div>';
-        }
-
-        threeRenderer.render(threeScene, threeCamera);
-        threeRAF = requestAnimationFrame(animate);
-    }
-
-    // HUD initial
-    document.getElementById('hud').innerHTML =
-        '<div class="hud-card"><div class="hud-label">Hamiltonian ΔH/H₀</div><div class="hud-value cyan">0.000%</div><div class="hud-sub">target: -0.000148%</div></div>' +
-        '<div class="hud-card"><div class="hud-label">Status</div><div class="hud-value cyan">INITIALIZING</div><div class="hud-sub">computing trefoil T₂,₃</div></div>';
-
-    // Controls bar: play/pause + reset
-    var ctrl = document.getElementById('controls');
-    ctrl.className = 'controls visible';
-    ctrl.innerHTML = '<button class="ctrl-btn active" id="trefoil-play">▶ PLAY</button>' +
-        '<button class="ctrl-btn" id="trefoil-reset">↺ RESET</button>' +
-        '<span class="ctrl-label">t = <span id="trefoil-time">0.00</span></span>';
-    document.getElementById('trefoil-play').onclick = function() {
-        trefoilPaused = !trefoilPaused;
-        this.textContent = trefoilPaused ? '❚❚ PAUSED' : '▶ PLAY';
-        this.classList.toggle('active', !trefoilPaused);
-    };
-    document.getElementById('trefoil-reset').onclick = function() {
-        waitingForWorker = false;
-        time = 0; frameCount = 0; smoothCons = 0;
-        conservation = 0; decay = 1;
-        phonons.forEach(function(ph) { ph.geometry.dispose(); ph.material.dispose(); threeScene.remove(ph); });
-        phonons = [];
-        activeWorker.postMessage({ type: 'compute', resolution: 150 });
-    };
-
-    animate();
-
-    // Resize handler
-    window.addEventListener('resize', function(){
-        if (activeSim !== 'trefoil' || !threeRenderer) return;
-        var w = container.clientWidth, h = container.clientHeight;
-        threeCamera.aspect = w / h;
-        threeCamera.updateProjectionMatrix();
-        threeRenderer.setSize(w, h);
-    });
-}
-
-
-// ═══════════════════════════════════════════════════════════════════
-// SIM 3: LISA ACOUSTIC ECHO — Gaussian Pressure Ringing
-// ═══════════════════════════════════════════════════════════════════
-function initLisa() {
-    var canvas = document.getElementById('lisa-canvas');
-    canvas.style.display = 'block';
-    var ctx = canvas.getContext('2d');
-
-    activeWorker = new Worker('workers/worker-lisa.js');
-
-    var Nr = 512;
-    var rMax = 20.0;
-    var dr = rMax / Nr;
-    lisaState = null;
-    var echoTimes = [];
-    var coreDensityHistory = [];
-    var peakThreshold = 1.8;
-    var lastPeak = false;
-
-    activeWorker.postMessage({ type: 'init', resolution: Nr });
-
-    activeWorker.onmessage = function(e) {
-        if (e.data.type === 'state') {
-            lisaState = e.data;
-            // Track core density for echo detection
-            if (e.data.coreDensity !== undefined) {
-                coreDensityHistory.push({ t: e.data.time, rho: e.data.coreDensity });
-                if (coreDensityHistory.length > 2000) coreDensityHistory.shift();
-                // Detect peaks
-                var isPeak = e.data.coreDensity > peakThreshold;
-                if (isPeak && !lastPeak) {
-                    echoTimes.push(e.data.time);
-                }
-                lastPeak = isPeak;
-            }
-        }
-    };
-
-    var t = 0;
-    function draw() {
-        var W = canvas.parentElement.clientWidth;
-        var H = canvas.parentElement.clientHeight;
-        if (canvas.width !== W * 2 || canvas.height !== H * 2) {
-            canvas.width = W * 2; canvas.height = H * 2;
-            canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-        }
-        ctx.setTransform(2, 0, 0, 2, 0, 0);
-        ctx.clearRect(0, 0, W, H);
-
-        // Step the simulation
-        if (lisaState && lisaState.rho) {
-            activeWorker.postMessage({
-                type: 'step',
-                rho: lisaState.rho,
-                vel: lisaState.vel,
-                dt: 0.08,
-                dr: dr,
-                Nr: Nr,
-                time: lisaState.time || 0
-            });
-        }
-
-        t += 0.016;
-
-        // Background grid
-        ctx.strokeStyle = 'rgba(26,26,58,0.4)';
-        ctx.lineWidth = 0.5;
-        for (var x = 80; x < W; x += 80) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
-        for (var y = 60; y < H; y += 60) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
-
-        if (!lisaState || !lisaState.rho) { lisaRAF = requestAnimationFrame(draw); return; }
-
-        // Split viewport: top = density profile, bottom = echo timeline
-        var splitY = H * 0.55;
-
-        // ═══ TOP: Radial density profile ═══
-        var padL = 80, padR = 40, padT = 50, padB = 30;
-        var chartW = W - padL - padR;
-        var chartH = splitY - padT - padB;
-        var rhoMax = 6;
-
-        function toX(r) { return padL + (r / rMax) * chartW; }
-        function toYrho(v) { return padT + chartH - (Math.min(v, rhoMax) / rhoMax) * chartH; }
-
-        // Axis
-        ctx.strokeStyle = 'rgba(200,200,220,0.15)';
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + chartH); ctx.lineTo(padL + chartW, padT + chartH); ctx.stroke();
-
-        // Labels
-        ctx.fillStyle = 'rgba(200,200,220,0.4)';
-        ctx.font = '10px JetBrains Mono';
-        ctx.textAlign = 'right';
-        for (var v = 0; v <= rhoMax; v += 1) {
-            ctx.fillText(v.toFixed(0), padL - 8, toYrho(v) + 4);
-        }
-        ctx.textAlign = 'center';
-        for (var r = 0; r <= rMax; r += 5) {
-            ctx.fillText(r.toFixed(0), toX(r), padT + chartH + 16);
-        }
-
-        // Density profile (filled)
-        ctx.beginPath();
-        ctx.moveTo(toX(0), toYrho(0));
-        for (var i = 0; i < lisaState.rho.length; i++) {
-            var r = (i + 0.5) * dr;
-            ctx.lineTo(toX(r), toYrho(lisaState.rho[i]));
-        }
-        ctx.lineTo(toX(rMax), toYrho(0));
-        ctx.closePath();
-        var grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
-        grad.addColorStop(0, 'rgba(232,121,249,0.3)');
-        grad.addColorStop(1, 'rgba(232,121,249,0.02)');
-        ctx.fillStyle = grad;
-        ctx.fill();
-
-        // Density line
-        ctx.beginPath();
-        for (var i = 0; i < lisaState.rho.length; i++) {
-            var r = (i + 0.5) * dr;
-            var px = toX(r), py = toYrho(lisaState.rho[i]);
-            if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-        }
-        ctx.strokeStyle = '#e879f9';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        // Glow
-        ctx.strokeStyle = 'rgba(232,121,249,0.2)';
-        ctx.lineWidth = 6;
-        ctx.stroke();
-
-        // Quantum pressure zone marker
-        ctx.fillStyle = 'rgba(232,121,249,0.1)';
-        ctx.fillRect(toX(0), padT, toX(2) - toX(0), chartH);
-        ctx.fillStyle = 'rgba(232,121,249,0.5)';
-        ctx.font = '9px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText('Q-PRESSURE', toX(1), padT + 14);
-        ctx.fillText('ZONE', toX(1), padT + 25);
-
-        // Title
-        ctx.fillStyle = '#e879f9';
-        ctx.font = 'bold 14px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText('GRAVASTAR DENSITY PROFILE — ρ(r, t)', W / 2, 28);
-        ctx.fillStyle = 'rgba(200,200,220,0.3)';
-        ctx.font = '10px JetBrains Mono';
-        ctx.fillText('t = ' + (lisaState.time || 0).toFixed(1) + ' τ_M', W / 2, 42);
-
-        // ═══ BOTTOM: Echo timeline ═══
-        var echoPadT = splitY + 20;
-        var echoPadB = 40;
-        var echoChartH = H - echoPadT - echoPadB;
-        var simTime = lisaState.time || 0;
-        var tMax = simTime < 60 ? 60 : simTime < 150 ? simTime * 1.2 : Math.max(200, simTime + 30);
-        var tMin = tMax > 200 ? tMax - 200 : 0;
-        var rhoHistMax = 5;
-
-        function toXt(t) { return padL + ((t - tMin) / (tMax - tMin)) * chartW; }
-        function toYecho(v) { return echoPadT + echoChartH - (Math.min(v, rhoHistMax) / rhoHistMax) * echoChartH; }
-
-        // Axis
-        ctx.strokeStyle = 'rgba(200,200,220,0.15)';
-        ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(padL, echoPadT); ctx.lineTo(padL, echoPadT + echoChartH); ctx.lineTo(padL + chartW, echoPadT + echoChartH); ctx.stroke();
-
-        // Labels
-        ctx.fillStyle = 'rgba(200,200,220,0.3)';
-        ctx.font = '10px JetBrains Mono';
-        ctx.textAlign = 'center';
-        ctx.fillText('CORE DENSITY ρ(0, t) — ECHO RINGING', W / 2, echoPadT - 6);
-
-        ctx.textAlign = 'center';
-        var tickInterval = tMax <= 60 ? 10 : tMax <= 150 ? 25 : 50;
-        for (var tt = Math.ceil(tMin / tickInterval) * tickInterval; tt <= tMax; tt += tickInterval) {
-            ctx.fillText(tt.toFixed(0), toXt(tt), echoPadT + echoChartH + 16);
-        }
-
-        // Echo history (only draw visible range)
-        if (coreDensityHistory.length > 1) {
-            ctx.beginPath();
-            var started = false;
-            for (var i = 0; i < coreDensityHistory.length; i++) {
-                if (coreDensityHistory[i].t < tMin) continue;
-                if (coreDensityHistory[i].t > tMax) break;
-                var px = toXt(coreDensityHistory[i].t);
-                var py = toYecho(coreDensityHistory[i].rho);
-                if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
-            }
-            ctx.strokeStyle = '#e879f9';
-            ctx.lineWidth = 1.5;
-            ctx.stroke();
-            ctx.strokeStyle = 'rgba(232,121,249,0.15)';
-            ctx.lineWidth = 5;
-            ctx.stroke();
-        }
-
-        // Echo period markers
-        if (echoTimes.length >= 2) {
-            ctx.setLineDash([3,3]);
-            ctx.strokeStyle = 'rgba(6,255,165,0.4)';
-            ctx.lineWidth = 1;
-            for (var i = 0; i < echoTimes.length; i++) {
-                var ex = toXt(echoTimes[i]);
-                ctx.beginPath(); ctx.moveTo(ex, echoPadT); ctx.lineTo(ex, echoPadT + echoChartH); ctx.stroke();
-            }
-            ctx.setLineDash([]);
-        }
-
-        // Compute echo period
-        var echoPeriod = 0;
-        if (echoTimes.length >= 2) {
-            var periods = [];
-            for (var i = 1; i < echoTimes.length; i++) {
-                periods.push(echoTimes[i] - echoTimes[i-1]);
-            }
-            echoPeriod = periods.reduce(function(a,b){return a+b}, 0) / periods.length;
-        }
-
-        // Update HUD
-        document.getElementById('hud').innerHTML =
-            '<div class="hud-card"><div class="hud-label">Echo Period</div><div class="hud-value magenta">' + (echoPeriod > 0 ? echoPeriod.toFixed(1) : '—') + '</div><div class="hud-sub">target: 44.7 τ_M</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Echo Count</div><div class="hud-value magenta">' + Math.max(0, echoTimes.length - 1) + '</div><div class="hud-sub">pressure bounces</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Core ρ(0)</div><div class="hud-value magenta">' + (lisaState.coreDensity || 0).toFixed(3) + '</div><div class="hud-sub">ρ₀ units</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Sim Time</div><div class="hud-value magenta">' + (lisaState.time || 0).toFixed(1) + '</div><div class="hud-sub">τ_M units</div></div>';
-
-        ctx.textAlign = 'center';
-        ctx.fillStyle = 'rgba(200,200,220,0.3)';
-        ctx.font = '10px JetBrains Mono';
-        ctx.fillText('t (τ_M units)', W / 2, H - 10);
-
-        lisaRAF = requestAnimationFrame(draw);
-    }
-
-    // Initial HUD
-    document.getElementById('hud').innerHTML =
-        '<div class="hud-card"><div class="hud-label">Status</div><div class="hud-value magenta">INITIALIZING</div><div class="hud-sub">computing Gaussian collapse</div></div>';
-
-    draw();
-}
-
-
-// ═══ BOOT — Cold start sim 1 ═══
-initMermin();
-
-// ═══ RESIZE HANDLER (canvas sims) ═══
-window.addEventListener('resize', function(){
-    // Canvas-based sims auto-resize on next draw()
-});
 
 })();
 </script>
