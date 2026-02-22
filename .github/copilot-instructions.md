@@ -32,6 +32,29 @@ You MUST follow this exact sequence:
 
 5. **Only THEN git commit and push** — Include the blockchain transaction hashes in the commit message or reference them.
 
+## Simulation Suite Policy
+
+When any files in `simulation/` are modified, you MUST also:
+
+1. **Rebuild the zip** — Run the build script:
+   ```bash
+   bash scripts/build-simulation-zip.sh
+   ```
+   This compiles `simulation/` sources into `out/UHF_Simulation_Suite.zip` (the `out/` directory is `.gitignore`'d).
+
+2. **Compute the zip SHA-256** — The build script prints it, or run:
+   ```bash
+   shasum -a 256 out/UHF_Simulation_Suite.zip
+   ```
+
+3. **Update and run the registration script** — Update `EXPECTED_HASH` in `scripts/register-simulation.js`, then:
+   ```bash
+   node scripts/register-simulation.js
+   ```
+   Wait for the transaction to confirm.
+
+4. **Only THEN git commit and push.**
+
 ### Contract Details
 
 - **Contract**: `0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054` (Polygon Mainnet)
