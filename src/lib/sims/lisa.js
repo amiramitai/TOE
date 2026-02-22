@@ -5,7 +5,8 @@ export function init(viewport, controlsEl, hudEl) {
     const ctx = canvas.getContext('2d');
     let W, H, dpr, raf;
 
-    const worker = new Worker('/workers/worker-lisa.js');
+    const base = import.meta.env.BASE_URL || '/';
+    const worker = new Worker(base + 'workers/worker-lisa.js');
 
     let frames = null;
     let currentFrame = 0;
