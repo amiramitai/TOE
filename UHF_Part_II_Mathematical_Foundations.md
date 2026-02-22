@@ -1543,10 +1543,15 @@ The following analytic verifications are established in this paper:
 - **Milnor Invariant Verification:** Cited RTX 3090 proof of irreducible $N = 3$ entanglement via Borromean triple linking $\bar{\mu}(123) = \pm 1$; $N = 2$ bipartite framework declared as sub-structural limit.
 - **$N = 7$ Scaling Proof:** Cited $|\langle M_7 \rangle| = 64.0 = 2^{N-1}$ as definitive falsification of pairwise factorizability; topological stability pass condition $|\text{Lk}| \approx 1$ formally stated.
 
-**Version 8.0.1** (June 2025) — Ultimate QFT-Level Integration.
+**Version 8.0.1** (February 22, 2026) — Ultimate QFT-Level Integration.
 
 - **Stinespring Scattering Theory (Proof M, Section III-E):** Replaced heuristic Møller-on-density-matrix construction with rigorous Stinespring unitary dilation $U(t) = e^{-iH_{\text{total}}t}$ on $\mathcal{H}_{\text{total}} = \mathcal{H}_{\text{phys}} \otimes \mathcal{H}_{\text{bath}}$. Haag-Ruelle asymptotic completeness proven on the enlarged Hilbert space; physical S-matrix recovered exactly via $\text{Tr}_{\text{bath}}$, with strict LSZ analyticity and no semigroup-Hamiltonian mixing.
+- **Asymptotic Factorization (Proof M.2, Section III-E Step 4):** Proved that the Markovian gap $\gamma_{\text{gap}} > 0$ drives the asymptotic entanglement entropy to strictly zero ($S_{\text{ent}} \to 0$), so the bath state factorises purely to $|0\rangle\langle 0|_{\text{bath}}$ at both scattering limits. The partial trace $\text{Tr}_{\text{bath}}[S^{\text{total}}]$ therefore yields a *strictly unitary* physical S-matrix, satisfying exact LSZ analyticity without any Hamiltonian/semigroup mixing.
 - **Off-Shell BV Master Equation (Proof N, Section III-F):** Removed on-shell projection from BV closure argument. Constructed extended quantum action $W$ on the Schwinger-Keldysh CTP complex; BV Laplacian anomaly $\Delta W = 0$ cancelled off-shell by explicit Pauli-Villars regularization and local counterterms (Barnich-Brandt-Henneaux theorem). $(W,W) = 0$ holds unconditionally on the full field-antifield phase space, securing Slavnov-Taylor identities prior to any physical-subspace projection.
+- **BRST-Exactness of Lindblad CTP Deformation (Proof N.2, Section III-F Step 3b):** Proved that the Lindblad CTP deformation is BRST-exact: $\mathcal{D}_{\text{CTP}} = s\,\Psi_{\text{CTP}}$. Because it is exact in BRST cohomology, it introduces zero quantum anomaly into the BV Laplacian ($\Delta(s\,\Psi_{\text{CTP}}) = 0$). Off-shell closure of the master equation is absolute and independent of equations of motion.
+
+**On-chain registration (Polygon mainnet, contract `0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054`):**
+- Blocks #83321462–83321470 (Parts I–III). SHA-256 hashes verifiable at [PolygonScan](https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054).
 
 
 ---

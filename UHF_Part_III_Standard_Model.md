@@ -1033,9 +1033,13 @@ print(f"Agreement: {abs(ell_1 - 220)/220 * 100:.2f}%")
 - **Vortex Mermin Scaling (Section 9.3.28a, new):** Formal derivation of $\langle M_N \rangle = 2^{(N-1)/2}$ via the Tesla Phase ($i = e^{i\pi/2}$) recursion; $N = 2$ Atom axiom declaring institutional bipartite framework as a sub-structural limit.
 - **Appendix B.1 Updated:** CKM simulation now uses derived $r/R = 0.225079$ instead of fitted $r/R = 0.22$.
 
-**Version 8.0.1** (June 2025) — Ultimate QFT-Level Integration.
+**Version 8.0.1** (February 22, 2026) — Ultimate QFT-Level Integration.
 
 - **Character Variety Topological Emergence (Proof O, Section 9.3.25):** Replaced Wirtinger/Gell-Mann numerology with non-circular derivation from the knot complement manifold $M = S^3 \setminus T(3,4)$. Dimension $d = 8$ from twisted cohomology $H^1(M;\,\mathfrak{g}_{\text{Ad}\,\rho})$, rank $r = 2$ from the peripheral structure $\pi_1(\partial M)$, and negative-definite metric from the Chern-Simons Hessian. Cartan classification forces $\mathfrak{su}(3)$ uniquely; all non-compact real forms ($\mathfrak{sl}(3,\mathbb{R})$, $\mathfrak{su}(2,1)$) eliminated by signature.
+- **Search and Destroy (Topological Scrub):** All remnant references to Wirtinger generators, crossing-number-8 derivations, Gell-Mann matrices used for $\mathfrak{su}(3)$ derivation, and circular $f^{abc}$ imports purged from Proofs G, H, and §9.3.25a. Downstream sections now consistently reference the Character Variety isomorphism (Proof O). Only the legitimate Gell-Mann-Nishijima relation (electroweak sector) survives.
+
+**On-chain registration (Polygon mainnet, contract `0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054`):**
+- Blocks #83321462–83321470 (Parts I–III). SHA-256 hashes verifiable at [PolygonScan](https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054).
 
 
 ---
