@@ -3,8 +3,8 @@
 ## Wightman Axioms, Trotter-Kato Convergence, and the Haag Resolution in the Viscoelastic Condensate
 
 **Author:** Amir Benjamin Amitay
-**Date:** February 21, 2026
-**Version:** 8.0 (The Submission Series)
+**Date:** February 22, 2026
+**Version:** 8.0 FINAL
 **Series:** Part II of III
 
 ---
@@ -18,6 +18,8 @@ The derivation proceeds through twenty-three sections: (1) the recovery of the n
 A new section resolves Haag's theorem: the Bogoliubov-Fock to Wightman isomorphism is proved unitarily exact in the weak-interaction ($na^3 \ll 1$) or finite-volume (IR-cutoff) regime, and the thermodynamic limit is taken via the Algebraic QFT (AQFT) net construction, bypassing the interaction-picture obstruction entirely.
 
 **Bell Assumption Clarification.** The UHF violates *ontological locality* (via the non-local Gauss Linking Integral structure of entangled vortex pairs; see Part III, Section 9.3.28) but maintains *non-signaling*: no superluminal information transfer is possible because the Gauss linking number is a topological invariant fixed at pair creation.
+
+**Axiom (Bell Non-Locality Declaration).** *The UHF violates ontological locality: the Gauss linking integral $\text{Lk}(\gamma_i, \gamma_j) = (4\pi)^{-1}\oint\oint (\mathbf{r}_i - \mathbf{r}_j) \cdot (d\mathbf{r}_i \times d\mathbf{r}_j)/|\mathbf{r}_i - \mathbf{r}_j|^3$ is a global topological invariant that cannot be factored into local hidden variables. The non-signaling theorem is preserved: since $\text{Lk}$ is fixed at the moment of pair creation and is invariant under local deformations that do not pass one loop through another, no measurement on one vortex loop can alter the linking number observed by a spacelike-separated party. This satisfies the no-communication theorem while violating Bell's inequality at the Tsirelson bound $|S| = 2\sqrt{2}$.*
 
 ---
 
@@ -1090,6 +1092,8 @@ The thermodynamic limit $V \to \infty$ is handled by the Algebraic QFT (AQFT) ne
 - Unitarily exact for any finite cosmological volume $V < \infty$;
 - Recovered in the thermodynamic limit via the AQFT net construction, bypassing the interaction-picture obstruction that Haag's theorem forbids.
 
+**Axiom (Haag Resolution).** *The Wightman-Madelung isomorphism $\mathcal{U}$ is unitarily exact within the finite cosmological volume (IR cutoff) of the observable universe, $V \sim (ct_0)^3 \approx (4.4 \times 10^{26}\;\text{m})^3 < \infty$. Haag's theorem applies only in the strict infinite-volume limit $V \to \infty$, which is unphysical. For any $V < \infty$, the Stone-von Neumann theorem guarantees unitary equivalence of all CCR representations, rendering the interaction-picture obstruction vacuous in the physical universe.*
+
 This resolves the last functional-analytic "ghost" of the UHF: the emergent QFT is a well-defined, interacting, relativistic quantum field theory satisfying all Wightman axioms, with no obstruction from Haag's theorem in the physically relevant regime.
 
 
@@ -1122,6 +1126,11 @@ The following analytic verifications are established in this paper:
 - **Haag's Theorem Resolution (Section 9.3.23a, new):** Proved that the Wightman-Madelung isomorphism is unitarily exact in the weak-interaction limit ($na^3 \ll 1$) and for finite cosmological volume. The thermodynamic limit is recovered via the AQFT net construction (Haag-Kastler), bypassing the interaction-picture obstruction.
 - **Bell Assumption Clarification:** Explicitly stated that the UHF violates ontological locality (via the non-local Gauss Linking Integral) but maintains non-signaling.
 - **Cross-References:** All references to the physical core (§1–8) and Standard Model extension (§9.3.24–9.3.30) updated to Part I / Part III format.
+
+**Version 8.0 FINAL** (February 22, 2026) — Axiomatic Strengthening.
+
+- **Haag Resolution Axiom (Section 9.3.23a):** Elevated the Haag resolution to a formal Axiom: the Wightman-Madelung isomorphism is unitarily exact within the finite cosmological volume of the observable universe.
+- **Bell Non-Locality Declaration:** Formal Axiom stating the UHF violates ontological locality via the Gauss Linking Integral while preserving non-signaling via topological invariance of the linking number.
 
 
 ---
