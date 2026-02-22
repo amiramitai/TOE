@@ -1,0 +1,28 @@
+UHF v8.0.1 — Search & Destroy: Purge all Wirtinger/Gell-Mann/crossing-number-8 remnants from Part III
+
+Search-and-destroy protocol executed on UHF_Part_III_Standard_Model.md:
+- Removed all references to "Wirtinger generators", "Wirtinger-to-Jacobi chain",
+  "Wirtinger analysis" from Proofs G, H, and §9.3.25a
+- Removed all "crossing number 8" derivation language and the crossing-to-Gell-Mann table
+- Removed all "Gell-Mann matrices/generators" used for su(3) derivation
+  (kept legitimate "Gell-Mann-Nishijima relation" at line 57)
+- Removed circular f^{abc} references used to DERIVE Killing form/rank
+  (kept standard QFT usage in field strength tensor, Gauss law, etc.)
+- Cleaned Proof O meta-commentary (removed negation-style references to old approach)
+- Rewrote §9.3.25a Torsional Phase Boundary with character-variety-based language
+- All downstream sections now consistently reference Proof O (Character Variety)
+
+Logic flow verified: Topology → Dimension/Rank/Intersection Form → Cartan Classification → su(3)
+
+Post-scrub grep verification: 0 contaminated matches remaining
+(only legitimate Gell-Mann-Nishijima and revision history references survive)
+
+Blockchain registration (Polygon mainnet, blocks 83321100-83321107):
+  Part I:   TX 0x6ddccf6241a4efca91dfcbf63d8a19c78caf0df047b911578222a42f29996f26
+  Part II:  TX 0x0cfc71d52dc6db38be90fce49fa1710c11f1621a83defffcda96551de146d991
+  Part III: TX 0x1491247fa9eb9f1890e7850cb5cdcad23bc1a74f660f5dc3e2b16e461b60a6f4
+
+SHA-256:
+  Part I:   18454ef4e5cd27eee16ae68c09d0eaad48ffd94136d6b3540c61019840a54c82 (unchanged)
+  Part II:  e4c5d4bffd744c0d71541653eee2ba122ac40cebe6fda5059a09785a827c5227 (unchanged)
+  Part III: 53c3708507f1ac2ecfb7ff863b0940f40dfccd1dc8d403a4dd2d40dd2f3e3c80 (updated)

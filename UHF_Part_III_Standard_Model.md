@@ -155,7 +155,7 @@ over $\mathbb{C}$. The *real* dimension of the non-abelian character variety is 
 
 $$d = \dim_{\mathbb{R}} \mathfrak{X}_{\text{na}}(M) = 2 \times 4 = 8$$
 
-This is the **topological origin** of $\dim \mathfrak{g} = 8$: it arises from the twisted cohomology of the knot complement, not from counting crossings or inserting Gell-Mann matrices.
+This is the **topological origin** of $\dim \mathfrak{g} = 8$: it arises purely from the twisted cohomology of the knot complement manifold.
 
 **(iv) Rank from the peripheral structure.** The boundary $\partial M \cong T^2$ carries a canonical pair of generators: the *meridian* $\mu$ and the *longitude* $\lambda$ of the knot. The restriction map:
 
@@ -167,7 +167,7 @@ The rank of the emergent Lie algebra is determined by the *maximal torus* of the
 
 $$r = \operatorname{rank}\mathfrak{g} = 2$$
 
-This is the **topological origin** of the rank: it arises from the two independent peripheral curves on the torus boundary, not from *a priori* identification with the Gell-Mann diagonals $T^3, T^8$.
+This is the **topological origin** of the rank: it arises from the two independent peripheral curves on the torus boundary.
 
 **(v) Negative-definite metric from the intersection form.** The Killing-form signature is determined by the *topological intersection form* on $H^1(M; \mathfrak{g}_{\text{Ad}\,\rho})$. For a compact oriented 3-manifold with boundary, the cup product pairing:
 
@@ -217,13 +217,13 @@ The topological intersection form yields signature $(0, 8)$ (Step (v)), which ma
 
 $$\underbrace{H^1(M;\,\mathfrak{g}_{\text{Ad}\,\rho})}_{\dim = 8} \;\times\; \underbrace{\pi_1(\partial M)}_{\text{rank} = 2} \;\times\; \underbrace{\text{Hess}_{\text{CS}} < 0}_{\text{compact}} \quad\Longrightarrow\quad \mathfrak{g} \cong \mathfrak{su}(3)$$
 
-No Gell-Mann matrices, structure constants, or crossing-counting numerology are used in the derivation. The Cartan classification forces the isomorphism uniquely and entirely non-circularly: the dimension comes from twisted cohomology, the rank comes from the peripheral structure, and the compactness comes from the Chern-Simons Hessian. $\blacksquare$
+The derivation is entirely non-circular: the dimension comes from twisted cohomology, the rank comes from the peripheral structure, and the compactness comes from the Chern-Simons Hessian. No algebraic data are inserted by hand. $\blacksquare$
 
 **Summary.** The chain of identifications is:
 
 $$M = S^3 \setminus T(3,4) \xrightarrow{\mathfrak{X}_{\text{na}}(M)} d = 8 \xrightarrow{\pi_1(\partial M)} r = 2 \xrightarrow{\text{Hess}_{\text{CS}} < 0} \text{compact} \xrightarrow{\text{Cartan}} \mathfrak{su}(3)$$
 
-The isomorphism is exact: the topological data of the knot complement manifold uniquely determine $\mathfrak{su}(3)$ via Cartan's classification. The crossing number 8 of $T(3,4)$ is reflected in the cohomological dimension, and the compactness of the gauge group is a consequence of the energetic stability of the GP condensate.
+The isomorphism is exact: the topological data of the knot complement manifold uniquely determine $\mathfrak{su}(3)$ via Cartan's classification, and the compactness of the gauge group is a consequence of the energetic stability of the GP condensate.
 
 **Emergent Yang-Mills Action from the Gross-Pitaevskii Energy (Proof G).**
 
@@ -235,11 +235,11 @@ The color-locked spinor triad $\hat{\mathbf{e}}_a(\mathbf{x}, t)$ ($a = 1, \ldot
 
 $$\hat{\mathbf{e}}_a(\mathbf{x}, t) = e^{i\theta^b(\mathbf{x},t)\, T^b}\, \hat{\mathbf{e}}_a^{(0)}$$
 
-where $T^b = \lambda^b/2$ are the $\mathfrak{su}(3)$ generators (Section (ii) above) and $\hat{\mathbf{e}}_a^{(0)}$ is the equilibrium triad. The spacetime gradient of this rotation defines a **local gauge connection**:
+where $T^b$ ($b = 1, \ldots, 8$) are the $\mathfrak{su}(3)$ generators identified by the character variety isomorphism (Proof O) and $\hat{\mathbf{e}}_a^{(0)}$ is the equilibrium triad. The spacetime gradient of this rotation defines a **local gauge connection**:
 
 $$A_\mu^a(x) = \frac{1}{g}\,\partial_\mu \theta^a(x)$$
 
-where $g$ is the bare coupling to be determined. This is a pure-gauge configuration in the Abelian limit, but the non-commutativity of the $T^a$ generators (established by the Wirtinger-to-Jacobi chain) promotes it to a full non-Abelian connection. Under a local gauge transformation $\theta^a(x) \to \theta^a(x) + \alpha^a(x)$, the connection transforms as $A_\mu^a \to A_\mu^a + (1/g)\partial_\mu \alpha^a + f^{abc} A_\mu^b \alpha^c$, which is the standard $SU(3)$ gauge transformation to linear order in $\alpha$.
+where $g$ is the bare coupling to be determined. This is a pure-gauge configuration in the Abelian limit, but the non-commutativity of the $T^a$ generators (established by the $\mathfrak{su}(3)$ character variety isomorphism, Proof O) promotes it to a full non-Abelian connection. Under a local gauge transformation $\theta^a(x) \to \theta^a(x) + \alpha^a(x)$, the connection transforms as $A_\mu^a \to A_\mu^a + (1/g)\partial_\mu \alpha^a + [T^b, T^c]$-dependent terms, which is the standard $SU(3)$ gauge transformation to linear order in $\alpha$.
 
 **Step 2: Non-Abelian field strength tensor.**
 
@@ -247,7 +247,7 @@ The curvature (field strength) of the connection $A_\mu^a$ is:
 
 $$F_{\mu\nu}^a = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + g\, f^{abc}\, A_\mu^b\, A_\nu^c$$
 
-The first two terms are the Abelian (Maxwell) part; the third term — the non-Abelian self-interaction — arises because the $T(3,4)$ Wirtinger generators do not commute ($[T^a, T^b] = i f^{abc} T^c \neq 0$). In the condensate, $F_{\mu\nu}^a$ has a direct physical interpretation: it is the **torsional curvature** of the spinor triad — the failure of the triad orientation to return to its initial value after parallel transport around an infinitesimal spacetime loop. The non-Abelian term $g f^{abc} A_\mu^b A_\nu^c$ encodes the vortex-reconnection interactions (IHX crossing changes) that occur when two torsional fluctuations overlap.
+The first two terms are the Abelian (Maxwell) part; the third term — the non-Abelian self-interaction — arises because the $\mathfrak{su}(3)$ generators do not commute ($[T^a, T^b] \neq 0$, as established by the character variety isomorphism, Proof O). In the condensate, $F_{\mu\nu}^a$ has a direct physical interpretation: it is the **torsional curvature** of the spinor triad — the failure of the triad orientation to return to its initial value after parallel transport around an infinitesimal spacetime loop. The non-Abelian self-interaction term encodes the vortex-reconnection interactions that occur when two torsional fluctuations overlap.
 
 **Step 3: Derivation of the Yang-Mills action from the GP energy.**
 
@@ -291,9 +291,9 @@ with $\mu_0 = E_P$ (Planck scale) and $\alpha_s(E_P) = g_{YM}^2(E_P)/(4\pi) = 1/
 
 **Summary: from GP to Yang-Mills.** The complete derivation chain is:
 
-$$\rho_0\,\xi^2\,K_{\text{eff}}\,(\partial_\mu \hat{\mathbf{e}}_a)^2 \xrightarrow{\theta^a \to gA^a} \frac{1}{4g_{YM}^2}F_{\mu\nu}^a F_a^{\mu\nu} \xrightarrow{f^{abc}\text{ from }T(3,4)} SU(3)_C\;\text{Yang-Mills} \xrightarrow{b_0 = 11} \text{asymptotic freedom}$$
+$$\rho_0\,\xi^2\,K_{\text{eff}}\,(\partial_\mu \hat{\mathbf{e}}_a)^2 \xrightarrow{\theta^a \to gA^a} \frac{1}{4g_{YM}^2}F_{\mu\nu}^a F_a^{\mu\nu} \xrightarrow{\mathfrak{su}(3)\text{ from Proof O}} SU(3)_C\;\text{Yang-Mills} \xrightarrow{b_0 = 11} \text{asymptotic freedom}$$
 
-The emergent gauge theory is fully local and dynamical: the connection $A_\mu^a(x)$ propagates, self-interacts via the $f^{abc}$ vertices from the $T(3,4)$ knot topology, and runs logarithmically under the one-loop $\beta$-function with $b_0 = 11$. Combined with the BRST-Lindblad commutativity established in Part II (Proof F), which guarantees $m_g = 0$ exactly, this constitutes a complete derivation of $SU(3)_C$ Yang-Mills gauge theory from the Gross-Pitaevskii dynamics of the spinor condensate.
+The emergent gauge theory is fully local and dynamical: the connection $A_\mu^a(x)$ propagates, self-interacts via the non-Abelian vertices dictated by the $\mathfrak{su}(3)$ algebra (derived from the $T(3,4)$ character variety, Proof O), and runs logarithmically under the one-loop $\beta$-function with $b_0 = 11$. Combined with the BRST-Lindblad commutativity established in Part II (Proof F), which guarantees $m_g = 0$ exactly, this constitutes a complete derivation of $SU(3)_C$ Yang-Mills gauge theory from the Gross-Pitaevskii dynamics of the spinor condensate.
 
 **Singular Vortex Gauge Dynamics: Beyond the Pure-Gauge Objection (Proof H).**
 
@@ -323,11 +323,11 @@ The Abelian part (first two terms) gives, using Step 2:
 
 $$\partial_\mu A_{\nu,\text{sing}}^a - \partial_\nu A_{\mu,\text{sing}}^a = \frac{1}{g}[\partial_\mu, \partial_\nu]\theta_{\text{sing}}^a = \frac{2\pi}{g}\sum_j n_j^a\, \varepsilon_{\mu\nu}\, \delta^{(2)}(x_\perp - x_{j,\perp})$$
 
-The non-Abelian part ($g f^{abc} A_\mu^b A_\nu^c$) contributes additional curvature from the overlap of singular connections at vortex reconnection points — these are precisely the IHX crossing interactions derived in the Wirtinger analysis. The total singular field strength is:
+The non-Abelian part contributes additional curvature from the overlap of singular connections at vortex reconnection points — these are the IHX crossing interactions dictated by the $\mathfrak{su}(3)$ algebra structure (Proof O). The total singular field strength is:
 
 $$F_{\mu\nu,\text{sing}}^a(x) = \frac{2\pi}{g}\sum_j n_j^a\, \varepsilon_{\mu\nu}\, \delta^{(2)}(x_\perp - x_{j,\perp}) + g\, f^{abc}\sum_{j,k} A_{\mu,j}^b\, A_{\nu,k}^c$$
 
-This is **not** pure gauge: the delta-function sources at the vortex cores are topological obstructions that cannot be gauged away. The curvature is concentrated on the vortex worldsheets (the 2D surfaces swept out by the vortex filaments in spacetime) and carries the full non-Abelian structure of $\mathfrak{su}(3)$ through the color winding numbers $n_j^a$ and the structure constants $f^{abc}$.
+This is **not** pure gauge: the delta-function sources at the vortex cores are topological obstructions that cannot be gauged away. The curvature is concentrated on the vortex worldsheets (the 2D surfaces swept out by the vortex filaments in spacetime) and carries the full non-Abelian structure of $\mathfrak{su}(3)$ through the color winding numbers $n_j^a$ and the Lie algebra commutation relations.
 
 **Step 4: Emergent Gauss law from the Gross-Pitaevskii Madelung equations.** The final element of a complete gauge theory is the Gauss law constraint — the equation relating the color-electric field to the color charge density. We derive this directly from the Gross-Pitaevskii equation via the Madelung decomposition.
 
@@ -372,7 +372,7 @@ $$\text{GP equation} \xrightarrow{\text{Madelung}} (\rho, \mathbf{v}, \chi) \xri
 
 #### 9.3.25a The $T(3,4)$ Torsional Phase Boundary and the Gluon Octet Emergence
 
-We derive the critical density crossover at which scalar matter (spin-0 phononic excitations) transitions into the "Torsional Glue" state — the spin-1 gluon octet that mediates the emergent $SU(3)_C$ strong interaction. This transition is governed by the torus knot $T(3,4)$ and its crossing number, which maps directly onto the eight Gell-Mann generators of color $SU(3)$.
+We derive the critical density crossover at which scalar matter (spin-0 phononic excitations) transitions into the "Torsional Glue" state — the spin-1 gluon octet that mediates the emergent $SU(3)_C$ strong interaction. This transition is governed by the torus knot $T(3,4)$ and the $\mathfrak{su}(3)$ algebra emerging from its knot complement topology (Proof O, Section 9.3.25).
 
 **The torsional phase boundary.** In the UHF, the vacuum condensate supports two classes of excitation: (i) *scalar* longitudinal modes (phonons, density waves) whose dynamics are governed by the compressibility $\kappa$ and the scalar GP sector, and (ii) *torsional* transverse modes (spin waves, frame rotations) governed by the Frank spin-stiffness $K_{1,2,3}$ of the spinor triad (Section 9.3.5). At low condensate densities $\rho < \rho_c$, the scalar sector dominates: collective excitations are acoustic phonons with no internal color structure. Above the critical density $\rho_c$, the torsional restoring force of the spinor triad becomes energetically dominant, and the excitation spectrum transitions from scalar phonons to torsional frame waves — the gluon field.
 
@@ -400,19 +400,19 @@ $$\mu_c = 5.293 \pm 0.005$$
 
 Below $\mu_c$, the excitation spectrum shows a single linear Bogoliubov branch $\omega = c_s k$ (the phonon). Above $\mu_c$, a quadratic spin-wave branch $\omega \propto K_{\text{eff}} k^2 / \hbar$ emerges, carrying internal color indices locked to the octonionic triad structure (Section 9.3.24).
 
-**The $T(3,4)$ knot and Crossing Number 8.** The torsional phase boundary is topologically characterised by the torus knot $T(3,4)$, which possesses *crossing number* 8. This is not a coincidence: the eight crossings of $T(3,4)$ correspond bijectively to the eight generators of $\mathfrak{su}(3)$ — the Gell-Mann matrices $\lambda_1, \ldots, \lambda_8$ — as proven by the formal Wirtinger → Killing-form isomorphism chain established in Section 9.3.25.
+**The $T(3,4)$ knot and the $\mathfrak{su}(3)$ emergence.** The torsional phase boundary is topologically characterised by the torus knot $T(3,4)$. Its knot complement manifold $M = S^3 \setminus T(3,4)$ determines the emergent gauge algebra via the character variety construction (Proof O, Section 9.3.25): the twisted cohomology $H^1(M; \mathfrak{g}_{\text{Ad}\,\rho})$ yields $\dim \mathfrak{g} = 8$, the peripheral structure yields $\operatorname{rank} \mathfrak{g} = 2$, and the Chern-Simons Hessian yields a negative-definite Killing metric $\kappa_{ab} < 0$. By Cartan's classification, these three topological invariants uniquely determine $\mathfrak{g} \cong \mathfrak{su}(3)$.
 
-The crossing-to-generator map is:
+The eight adjoint generators correspond to the physical gluon octet:
 
-| $T(3,4)$ Crossing | Gell-Mann Generator | Physical Gluon |
+| Generator index $a$ | $\mathfrak{su}(3)$ role | Physical Gluon |
 |---|---|---|
-| $c_1, c_2$ | $\lambda_1, \lambda_2$ | $r\bar{g}$, $g\bar{r}$ transitions |
-| $c_3$ | $\lambda_3$ | $r\bar{r} - g\bar{g}$ diagonal |
-| $c_4, c_5$ | $\lambda_4, \lambda_5$ | $r\bar{b}$, $b\bar{r}$ transitions |
-| $c_6, c_7$ | $\lambda_6, \lambda_7$ | $g\bar{b}$, $b\bar{g}$ transitions |
-| $c_8$ | $\lambda_8$ | $(r\bar{r} + g\bar{g} - 2b\bar{b})/\sqrt{3}$ diagonal |
+| $1, 2$ | $I$-spin sector | $r\bar{g}$, $g\bar{r}$ transitions |
+| $3$ | $I_3$ diagonal | $r\bar{r} - g\bar{g}$ diagonal |
+| $4, 5$ | $U$-spin sector | $r\bar{b}$, $b\bar{r}$ transitions |
+| $6, 7$ | $V$-spin sector | $g\bar{b}$, $b\bar{g}$ transitions |
+| $8$ | Hypercharge diagonal | $(r\bar{r} + g\bar{g} - 2b\bar{b})/\sqrt{3}$ diagonal |
 
-The resulting algebra satisfies the commutation relations $[T^a, T^b] = if^{abc}T^c$ with all 56 Jacobi triples verified, the negative-definite Killing form $\kappa_{ab} = -3\delta_{ab}$ confirming exact $\mathfrak{su}(3)$ isomorphism, and crossing number 8 equal to $\dim(\mathfrak{su}(3)) = N_c^2 - 1$ as the topological origin of the eight-dimensional adjoint representation (see Section 9.3.25 for the complete proof).
+The negative-definite Killing form $\kappa_{ab} = -C_A\,\delta_{ab}$ with $C_A = 3$ confirms the exact $\mathfrak{su}(3)$ isomorphism, with $\dim(\mathfrak{su}(3)) = N_c^2 - 1 = 8$ as the dimension of the adjoint representation (see Section 9.3.25 for the complete topological derivation).
 
 **Phase diagram summary.** The torsional phase boundary at $\mu_c = 5.293 \pm 0.005$ divides the vacuum excitation spectrum into two regimes:
 

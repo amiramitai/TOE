@@ -43,7 +43,7 @@ const PAPERS = [
         file: "UHF_Part_III_Standard_Model.md",
         version: "8.0.1-Part-III",
         label: "UHF Part III — Standard Model Extension",
-        expectedHash: "996460fcc0e1241a6294d9cf1b427170d9a6cb47e0ec53e122d4d3eaeaa93f5b"
+        expectedHash: "53c3708507f1ac2ecfb7ff863b0940f40dfccd1dc8d403a4dd2d40dd2f3e3c80"
     }
 ];
 
