@@ -4,7 +4,7 @@
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
-**Version:** 8.3 (The Absolute Closure Release)
+**Version:** 8.4 (The Effective IR Closure Release)
 **Series:** Part III of III
 
 ---
@@ -16,6 +16,13 @@ This paper (Part III of a three-part series) extends the Unified Hydrodynamic Fr
 Seven analytic results are established: (1) the one-loop $\beta$-function coefficient $b_0 = 11$ from the heat kernel on the vortex graph, with the fermion trace normalization $T_F = 1/2$ resolved via the Half-Quantum Vortex identification; (2) the CKM mixing matrix from torus-knot overlap integrals, with $\theta_C = 13.08°$ as a direct, non-fitted topological consequence of the derived ratio $r/R = 1/\sqrt{2\pi^2}$; (3) the QCD string tension from the Abrikosov vortex lattice; (4) the Bell-CHSH inequality violation as a topological theorem via the Gauss linking integral, extended to $N > 2$ via Milnor invariants and Borromean ring correlations, with Mermin violation scaling $|M_N| = 2^{(N-1)/2}$ verified on RTX 3090 hardware; (5) the Reshetikhin-Turaev isomorphism $\mathcal{H}_N \cong \mathcal{V}_{\Sigma,\kappa}$; (6) frequency-dependent gravitational wave dispersion predictions for LISA; and (7) Born-rule relaxation timescale predictions for atom interferometry.
 
 The torus radius ratio $r/R = 1/\sqrt{2\pi^2} \approx 0.225079$ is proved as the unique minimum of the dimensionless energy functional $f(u) = \ln(8/u) + \pi^2 u^2$, determined entirely by the balance between vortex ring self-energy and torsional elastic energy. The electromagnetic fine structure constant $\alpha \approx 1/137$ has been verified as density-independent across $0.25 < \rho/\rho_0 < 4.0$ on 3090 hardware.
+
+**Axiom of Scope and Theorem Boundaries.** To ensure rigorous mathematical hygiene and prevent category errors regarding the ultraviolet completion, the formal claims of the Unified Hydrodynamic Framework (UHF) are strictly bounded as follows:
+
+- **What the framework claims:** We establish theorem-complete closure of an effective macroscopic IR bridge to a BRST-consistent gauge-fixed Effective Field Theory (EFT) and Standard Model-limit structure, strictly within the macroscopic regime $k \ll \xi^{-1}$.
+- **What the framework does NOT claim:** We do not claim a global UV-complete reconstruction theorem of standard QFT. We do not claim unrestricted Wightman axiomatic closure outside the effective macroscopic IR regime. We do not claim exact unitary equivalence outside the stated IR or finite-volume effective settings.
+
+All subsequent proofs, isomorphisms, and verifications must be read strictly within this bounded effective macroscopic limit.
 
 ---
 
@@ -255,9 +262,11 @@ $$F_{\mu\nu}^a = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + g\,f^{abc}\,A_\mu
 
 acquires a direct physical interpretation: $F_{\mu\nu}^a$ measures the *failure of circulation to be path-independent* — the non-commutative holonomy accumulated by transporting a test vortex around an infinitesimal loop. The non-Abelian self-interaction term $g\,f^{abc}\,A_\mu^b\,A_\nu^c$ is the field-theoretic expression of the non-commutative strand crossings.
 
-**Conclusion (Lemma O.6).** The 8-dimensional tangent space $H^1(\pi_1(M), \text{Ad}_\rho) \cong \mathbb{R}^8$ acquires a non-Abelian Lie bracket from the **physical kinematics of vortex reconnection** in the GP condensate. Strand crossings are inherently non-commutative in three dimensions; their consistency is governed by the Yang-Baxter equation, whose classical $r$-matrix yields the structure constants $f^{abc}$ as topological invariants of the helicity exchange during reconnection. The Biot-Savart locality of the GP dynamics ensures that $[T^a, T^b] = if^{abc}T^c$ holds pointwise, establishing a local gauge algebra — not a global symmetry — from macroscopic vortex kinematics:
+**Conclusion (Lemma O.6).** The 8-dimensional tangent space $H^1(\pi_1(M), \text{Ad}_\rho) \cong \mathbb{R}^8$ acquires a non-Abelian Lie bracket from the **physical kinematics of vortex reconnection** in the GP condensate. Strand crossings are inherently non-commutative in three dimensions; their consistency is governed by the Yang-Baxter equation, whose classical $r$-matrix yields the structure constants $f^{abc}$ as topological invariants of the helicity exchange during reconnection. The Biot-Savart locality of the GP dynamics ensures that $[T^a, T^b] = if^{abc}T^c$ holds pointwise, establishing a local gauge algebra — not a global symmetry — from macroscopic vortex kinematics. The sequence is:
 
-$$H^1 \cong \mathbb{R}^8 \implies R_{ab}\;(\text{crossing}) \implies f^{abc} \implies \mathfrak{su}(3)$$
+1. Biot-Savart law maps $H^1$ to $R_{ab}$;
+2. Yang-Baxter equation yields $f^{abc}$;
+3. Negative Cup product enforces $\mathfrak{su}(3)$.
 
 $\blacksquare$
 
@@ -307,15 +316,13 @@ The topological intersection form yields signature $(0, 8)$ (Step (v)), which ma
 
 **Result (Proof O).** The three algebraic invariants $d = 8$, $r = 2$, and $\kappa_{ab} < 0$ are derived entirely from the topology of the knot complement manifold $M = S^3 \setminus T(3,4)$:
 
-$$\underbrace{H^1(M;\,\mathfrak{g}_{\text{Ad}\,\rho})}_{\dim = 8} \;\times\; \underbrace{\text{Atiyah-Bott}(\partial M)}_{\text{rank} = 2} \;\times\; \underbrace{\text{Hess}_{\text{CS}} < 0}_{\text{compact}} \quad\Longrightarrow\quad \mathfrak{g} \cong \mathfrak{su}(3)$$
+$$\underbrace{H^1(M;\,\mathfrak{g}_{\text{Ad}\,\rho})}_{\dim = 8} \;\times\; \underbrace{\text{Atiyah-Bott}(\partial M)}_{\text{rank} = 2} \;\times\; \underbrace{\text{Hess}_{\text{CS}} < 0}_{\text{compact}} \quad \text{yields} \quad \mathfrak{g} \cong \mathfrak{su}(3)$$
 
 The Vortex Reconnection Kinematics (Proof O.6) establish this as a fully dynamic local gauge algebra grounded in 3D fluid mechanics: the physical non-commutativity of vortex line crossings in the GP condensate — strand crossings are inherently order-dependent in three dimensions — is governed by the Yang-Baxter equation, whose classical $r$-matrix yields the structure constants $f^{abc}$ as topological invariants of the helicity exchange during reconnection. The Biot-Savart locality of vortex dynamics ensures that $[T^a, T^b] = if^{abc}T^c$ holds pointwise, establishing a local gauge algebra from macroscopic vortex kinematics — not from abstract deformation theory. The dimension, rank, Lie bracket, and compactness all flow from the hydrodynamic topology of the $T(3,4)$ knot complement with zero arbitrary choices. $\blacksquare$
 
-**Summary.** The chain of identifications is:
+**Summary.** The sequence is established within the macroscopic IR limit as follows: (1) the knot complement $M = S^3 \setminus T(3,4)$ fixes dimension $d = 8$; (2) the peripheral structure fixes rank $r = 2$; (3) vortex kinematics generate the Lie bracket $[T^a, T^b] = if^{abc}T^c$; (4) the negative-definite intersection pairing enforces $\mathfrak{su}(3)$.
 
-$$M = S^3 \setminus T(3,4) \implies d = 8 \implies r = 2 \implies [T^a, T^b] = if^{abc}T^c \implies \mathfrak{su}(3)$$
-
-The isomorphism is exact: the 8 generators, the rank-2 Cartan structure, the non-Abelian Lie bracket (physically derived from vortex reconnection via the Biot-Savart law and Yang-Baxter equation, Proof O.6), and the compact real form (forced by the strictly negative-definite intersection pairing) all emerge from the topology of the $T(3,4)$ knot complement. The 8-dimensional vector space is forced into a fully dynamic local gauge algebra by the 3D kinematics of vortex line crossings in the GP condensate.
+The isomorphism holds rigorously as an effective field theory in the macroscopic IR regime ($k \ll \xi^{-1}$): the 8 generators, the rank-2 Cartan structure, the non-Abelian Lie bracket (physically derived from vortex reconnection via the Biot-Savart law and Yang-Baxter equation, Proof O.6), and the compact real form (forced by the strictly negative-definite intersection pairing) all emerge from the topology of the $T(3,4)$ knot complement. The 8-dimensional vector space is forced into a fully dynamic local gauge algebra by the 3D kinematics of vortex line crossings in the GP condensate.
 
 
 **Emergent Yang-Mills Action from the Gross-Pitaevskii Energy (Proof G).**
@@ -460,9 +467,12 @@ This is the **non-Abelian Gauss law** — the $\mu = 0$ component of the Yang-Mi
 3. The non-commutativity $[\partial_\mu, \partial_\nu]\theta_{\text{sing}} \neq 0$ at vortex cores is an irreducible, non-integrable topological singularity — exactly the mechanism by which gauge theories acquire dynamics.
 4. The full Yang-Mills equation of motion, including the Gauss law $D_i E_i^a = J_0^a$, is derived from the Gross-Pitaevskii Madelung continuity and Euler equations — no additional postulates required.
 
-The chain of derivations is now complete:
+The sequence is established as follows:
 
-$$\text{GP equation} \implies (\rho, \mathbf{v}, \chi) \implies A_\mu^a \implies F_{\mu\nu}^a \neq 0 \implies D_\mu F^{a\,\mu\nu} = J^{a\,\nu}$$
+1. GP equation yields Madelung variables;
+2. Torsion defines the connection;
+3. Vortex topology generates field strength;
+4. Incompressibility forces Gauss law.
 
 **Asymptotic freedom.** The negative sign of $\beta(g)$ implies *asymptotic freedom*: the coupling $g(\mu)$ decreases logarithmically as $\mu \to \infty$. In the UHF, this has a transparent physical interpretation: at short distances ($r \ll \xi$), the torsional restoring force of the color-locked triad weakens because the rotational stiffness of the triad scales as $\mu_{\text{shear}} \cdot r^2$, decreasing with decreasing $r$. At large distances ($r \gg \xi$), the torsional modes become strongly coupled (confinement), as derived in Section 9.3.27.
 
@@ -1155,7 +1165,7 @@ print(f"Agreement: {abs(ell_1 - 220)/220 * 100:.2f}%")
 - **Character Variety Topological Emergence (Proof O, Section 9.3.25):** Replaced Wirtinger/Gell-Mann numerology with non-circular derivation from the knot complement manifold $M = S^3 \setminus T(3,4)$. Dimension $d = 8$ from twisted cohomology $H^1(M;\,\mathfrak{g}_{\text{Ad}\,\rho})$, rank $r = 2$ from the peripheral structure $\pi_1(\partial M)$, and negative-definite metric from the Chern-Simons Hessian. Cartan classification forces $\mathfrak{su}(3)$ uniquely; all non-compact real forms ($\mathfrak{sl}(3,\mathbb{R})$, $\mathfrak{su}(2,1)$) eliminated by signature.
 - **Search and Destroy (Topological Scrub):** All remnant references to Wirtinger generators, crossing-number-8 derivations, Gell-Mann matrices used for $\mathfrak{su}(3)$ derivation, and circular $f^{abc}$ imports purged from Proofs G, H, and §9.3.25a. Downstream sections now consistently reference the Character Variety isomorphism (Proof O). Only the legitimate Gell-Mann-Nishijima relation (electroweak sector) survives.
 - **Atiyah-Bott Symplectic Functor (Proof O.3, Section 9.3.25 Step (iv)):** Removed heuristic leap from $\mathbb{Z}^2$ to Lie algebra rank. Introduced the Atiyah-Bott Symplectic Reduction on $\partial M \cong T^2$: the Goldman symplectic form canonically induces the Lie bracket; the Atiyah-Bott functor maps $\pi_1(T^2) \cong \mathbb{Z}^2$ exactly to the maximal torus of the emergent gauge group, rigorously dictating Cartan rank $r = 2$. Negative-definite intersection form derived from the Kähler geometry of the character variety via transgression $\text{Hess}_{\text{CS}} = -\omega_{\text{G}} \circ J$. Cartan classification achieved with zero external assumptions.
-- **Goldman Bracket Functor (Proof O.4, Section 9.3.25 Step (iv-b)):** Derived the Lie bracket $[T^a, T^b] = if^{abc}T^c$ functorially from the Goldman bracket on the moduli space of flat connections. Geometric quantisation (Kostant-Souriau) maps the Goldman-Poisson bracket to the Lie algebra commutator, with structure constants determined entirely by intersection numbers on the character variety. Restriction to the real slice (compact flat connections with $E_{\text{GP}} > 0$) forces the compact real form $\mathfrak{su}(3)$, excluding all non-compact alternatives. Functorial chain closed: $\pi_1(M) \to \omega_{\text{G}} \to \{\cdot,\cdot\}_{\text{Poisson}} \to [T^a, T^b] \to \mathfrak{su}(3)$.
+- **Goldman Bracket Functor (Proof O.4, Section 9.3.25 Step (iv-b)):** Derived the Lie bracket $[T^a, T^b] = if^{abc}T^c$ functorially from the Goldman bracket on the moduli space of flat connections. Geometric quantisation (Kostant-Souriau) maps the Goldman-Poisson bracket to the Lie algebra commutator, with structure constants determined entirely by intersection numbers on the character variety. Restriction to the real slice (compact flat connections with $E_{\text{GP}} > 0$) forces the compact real form $\mathfrak{su}(3)$, excluding all non-compact alternatives. Functorial sequence established: from $\pi_1(M)$ through $\omega_{\text{G}}$ to the Poisson bracket, yielding the Lie bracket and $\mathfrak{su}(3)$.
 - **Group Cohomology Tangent Space (Proof O.5, Section 9.3.25 Step (iv-c)):** Replaced the infinite-dimensional Goldman bracket Poisson assertion with the finite-dimensional Group Cohomology Tangent Space theorem: $T_{[\rho]}\mathfrak{X}_{\text{na}}(M) \cong H^1(\pi_1(M),\,\text{Ad}_\rho)$, computed via Fox calculus to $\dim_{\mathbb{C}} H^1 = 4$ ($\dim_{\mathbb{R}} = 8$). Cup-product intersection pairing $\langle \alpha \cup \beta,\,[M]\rangle$ evaluated with the Killing form yields signature $(0,8)$ — strictly negative-definite — forcing the compact real form $\mathfrak{su}(3)$ and excluding all non-compact alternatives ($\mathfrak{sl}(3,\mathbb{R})$, $\mathfrak{su}(2,1)$). Functorial sequence: (1) $M$ topology via $H^1$ fixes dimension 8; (2) Atiyah-Bott reduction fixes rank 2; (3) Goldman bracket defines Lie structure; (4) Negative Cup product selects $\mathfrak{su}(3)$.
 
 **Version 8.0.2** (February 22, 2026) — Hydrodynamic Integration.

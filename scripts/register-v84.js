@@ -1,10 +1,12 @@
 /**
  * register-v84.js — UHF Paper Registry v8.4
  *
- * New subsections added:
- *   • §3.2.2  High-Resolution Dispersion Audit          (Part I)
- *   • §9.3.25a T(3,4) Torsional Phase Boundary          (Part III)
- *   • §9.3.5a  Kuramoto Dissipation Metric               (Part II)
+ * The Effective IR Closure Release:
+ *   • Global Axiom of Scope injected into all three parts
+ *   • Arrow chains (\implies) replaced with prose sequences
+ *   • "Unitarily exact" claims demoted to effective IR equivalences
+ *   • "Fully rigorous Wightman QFT" scoped to macroscopic IR regime
+ *   • Version bumped from 8.3 to 8.4
  *
  * Contract: 0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054  (Polygon Mainnet)
  */
@@ -25,19 +27,19 @@ const PAPERS = [
         file: "UHF_Part_I_Core.md",
         version: "8.4-Part-I",
         label: "UHF Part I — Physical Core",
-        expectedHash: "35e21b0d61b691ef15e08fc6bdb86d185797a154cec842211c47b9613f60b177"
+        expectedHash: "026e919ef6ad7f95f361d9812e76fad4f556da3102b2a9313c6757a8155a1e7b"
     },
     {
         file: "UHF_Part_II_Mathematical_Foundations.md",
         version: "8.4-Part-II",
         label: "UHF Part II — Mathematical Foundations",
-        expectedHash: "2e5fb03eda5ac78b5f72134cea68be9f92907be1e1ea0a215da6fb5c844fa227"
+        expectedHash: "ad6ee7865f79e1dd6ba44fdeb0b7723a2138f1790fccc441cf896a6073735a3e"
     },
     {
         file: "UHF_Part_III_Standard_Model.md",
         version: "8.4-Part-III",
         label: "UHF Part III — Standard Model Extension",
-        expectedHash: "8a0da0f353a5ba16187c8a6526f13714ed3fdb1ae45d5a268a99cd7164e436dc"
+        expectedHash: "020ec6276542fc3d40f6df489ebb993b2360e76f30918e54078fab6aa7903471"
     }
 ];
 

@@ -4,18 +4,18 @@
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
-**Version:** 8.3 (The Absolute Closure Release)
+**Version:** 8.4 (The Effective IR Closure Release)
 **Series:** Part II of III
 
 ---
 
 ## 0. Abstract
 
-This paper (Part II of a three-part series) establishes the functional-analytic foundations of the Unified Hydrodynamic Framework (UHF). Starting from the constitutive order parameter $\Psi$ introduced in Part I, we prove that the emergent quantum field theory satisfies all four Wightman axioms as structural theorems of the underlying Gross-Pitaevskii fluid dynamics.
+This paper (Part II of a three-part series) establishes the functional-analytic foundations of the Unified Hydrodynamic Framework (UHF). Starting from the constitutive order parameter $\Psi$ introduced in Part I, we prove that the emergent quantum field theory satisfies all four Wightman axioms as effective structural theorems strictly within the macroscopic IR regime of the underlying Gross-Pitaevskii fluid dynamics.
 
 The derivation proceeds through twenty-three sections: (1) the recovery of the nonlinear Einstein field equations from acoustic backreaction, with an explicit advective-Christoffel mapping $(\mathbf{v}\cdot\nabla)\mathbf{v} \leftrightarrow \Gamma\Gamma$; (2) topological protection of Lorentz symmetry; (3–16) the full apparatus of emergent graviton amplitudes, S-matrix unitarity, microcausality, EFT matching, and Hamiltonian constraint closure; (17–22) the Källén-Lehmann representation, the discrete-to-continuum map, the Trotter-Kato convergence proof, and Nelson's analytic-vector criterion for boost generators; and (23) the Wightman-Madelung isomorphism $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ via the rigged Hilbert space framework.
 
-A new section resolves Haag's theorem: the Bogoliubov-Fock to Wightman isomorphism is proved unitarily exact in the weak-interaction ($na^3 \ll 1$) or finite-volume (IR-cutoff) regime, and the thermodynamic limit is taken via the Algebraic QFT (AQFT) net construction, bypassing the interaction-picture obstruction entirely.
+A new section resolves Haag's theorem: the Bogoliubov-Fock to Wightman isomorphism is established as an effective unitary equivalence in the weak-interaction ($na^3 \ll 1$) or finite-volume (IR-cutoff) regime, and the thermodynamic limit is taken via the Algebraic QFT (AQFT) net construction, bypassing the interaction-picture obstruction entirely.
 
 **Bell Assumption Clarification.** The UHF violates *ontological locality* (via the non-local Gauss Linking Integral structure of entangled vortex pairs; see Part III, Section 9.3.28) but maintains *non-signaling*: no superluminal information transfer is possible because the Gauss linking number is a topological invariant fixed at pair creation.
 
@@ -26,6 +26,13 @@ A new section resolves Haag's theorem: the Bogoliubov-Fock to Wightman isomorphi
 **$N = 7$ Scaling and Falsification of Pairwise Factorizability.** The Mermin operator scaling has been verified on RTX 3090 hardware up to $N = 8$ parties. At $N = 7$, the computed quantum maximum is $|\langle M_7 \rangle| = 64.0 = 2^{N-1}$, exceeding the local-hidden-variable bound by a factor of $32$. This result constitutes a definitive falsification of pairwise factorizability: no decomposition of the $N = 7$ state into products of bipartite correlations can reproduce the observed violation. The exponential gap between $|\langle M_N \rangle| = 2^{N-1}$ (quantum) and $|M_N|_{\text{LHV}} \leq 2$ (classical) grows as $2^{N-2}$, demonstrating that the entanglement capacity of the superfluid vacuum is fundamentally $N$-partite.
 
 **Topological Stability Pass Condition.** The condition $|\text{Lk}(\gamma_i, \gamma_j)| \approx 1$ (integer linking number within numerical tolerance) is the pass condition for topological stability of vortex-loop entangled pairs. The RTX 3090 simulations confirm that all stable Borromean configurations satisfy $|\text{Lk}| = 1.000 \pm 10^{-12}$ for linked pairs and $|\text{Lk}| < 10^{-12}$ for Borromean-unlinked pairs, verifying that the topological charge is quantized to machine precision and that no continuous deformation can change it without a reconnection event.
+
+**Axiom of Scope and Theorem Boundaries.** To ensure rigorous mathematical hygiene and prevent category errors regarding the ultraviolet completion, the formal claims of the Unified Hydrodynamic Framework (UHF) are strictly bounded as follows:
+
+- **What the framework claims:** We establish theorem-complete closure of an effective macroscopic IR bridge to a BRST-consistent gauge-fixed Effective Field Theory (EFT) and Standard Model-limit structure, strictly within the macroscopic regime $k \ll \xi^{-1}$.
+- **What the framework does NOT claim:** We do not claim a global UV-complete reconstruction theorem of standard QFT. We do not claim unrestricted Wightman axiomatic closure outside the effective macroscopic IR regime. We do not claim exact unitary equivalence outside the stated IR or finite-volume effective settings.
+
+All subsequent proofs, isomorphisms, and verifications must be read strictly within this bounded effective macroscopic limit.
 
 ---
 
@@ -604,11 +611,14 @@ This is exactly unitary as a restriction of a unitary operator to an invariant s
 $$\langle p_1, \ldots, p_m; \text{out} | k_1, \ldots, k_n; \text{in} \rangle_{\text{phys}} = \prod_{i} \frac{i}{p_i^2} \prod_j \frac{i}{k_j^2}\; \widetilde{G}^{(n+m)}_{\text{phys}}(p_1, \ldots, k_n)$$
 
 where $\widetilde{G}^{(n+m)}_{\text{phys}}$ are the amputated Green functions of the physical-sector fields, computed from the 1PI effective action of Section III-D with $\Pi_L(q^2) \equiv 0$.
-**Step 6 (No semigroup-Hamiltonian mixing).** The key structural advantage of the Stinespring approach is that no step involves applying Hamiltonian limits to the Lindblad semigroup. The logical chain is:
+**Step 6 (Effective Unitary Evolution).** The key structural advantage of the Stinespring approach is that no step involves applying Hamiltonian limits to the Lindblad semigroup. The logical sequence is established as follows:
 
-$$\text{Lindblad } e^{\mathcal{L}t} \implies U(t) \implies S^{\text{total}} \implies \bigoplus_Q S_Q \implies S_{\text{phys}}\;\text{(strictly unitary)}$$
+1. Lindblad dynamics map to Stinespring unitary evolution $U(t)$;
+2. $U(t)$ yields the total scattering operator $S^{\text{total}}$;
+3. Topological charge conservation forces the block-diagonalization into $\bigoplus_Q S_Q$;
+4. Restriction to the trivial sector yields the strictly unitary physical S-matrix $S_{\text{phys}}$.
 
-Each arrow is mathematically rigorous: Stinespring dilation is a theorem of operator algebras, Haag-Ruelle theory is standard axiomatic QFT, and the Hydrodynamic Defect Scattering theorem (Proof M.6) proves that the GP condensate is a closed Hamiltonian system — there is no external environment. Kelvin's Circulation Theorem partitions the Fock space by conserved winding number, and the self-adjoint GP Hamiltonian guarantees $S^\dagger S = \mathbb{I}$ as an operator identity. There is no gap where a heuristic argument is required.
+The dilation procedure is standard: Stinespring dilation provides the operator-algebraic framework, while Haag-Ruelle theory is applied within the effective field theory context. The framework establishes the isolated IR pole structure and positive residue required for effective LSZ scattering in the macroscopic regime. This ensures that $S^\dagger S \approx \mathbb{I}$ holds as an effective operator relation in the low-energy limit.
 
 **Result (Proof M).** The Stinespring Unitary Dilation Theorem lifts the Lindblad dynamics of the UHF condensate to a unitary evolution $U(t) = e^{-iH_{\text{total}}t}$ on the enlarged Hilbert space $\mathcal{H}_{\text{total}} = \mathcal{H}_{\text{phys}} \otimes \mathcal{H}_{\text{aux}}$. Haag-Ruelle asymptotic completeness is proven on $\mathcal{H}_{\text{total}}$ by Cook’s theorem: the interaction decay $\|V(t)\| \leq C(1+|t|)^{-3/2}$ strictly satisfies the Kato-Rosenblum integrability bound $\int\|V(t)\|\,dt < \infty$, guaranteeing the existence and completeness of the Møller wave operators $\Omega_\pm^{\text{total}}$.
 
@@ -1326,7 +1336,7 @@ where $\hat{n}_i = \hat{a}_i^\dagger\hat{a}_i$ is the number operator at site $i
 
 **The continuum limit.** As $a \to 0$ with $Na^3 \to V$ and $g \to g_0$ held fixed, the lattice Hamiltonian converges (in the strong resolvent sense; see Section 9.3.21) to the GP Hamiltonian $H_{\text{GP}}$. The lattice field operators converge to the continuum field $\hat{\Psi}(\mathbf{x})$, satisfying the canonical commutation relation $[\hat{\Psi}(\mathbf{x}), \hat{\Psi}^\dagger(\mathbf{y})] = \delta^3(\mathbf{x} - \mathbf{y})$.
 
-**The Madelung map.** The continuum field $\hat{\Psi}(\mathbf{x}, t) = \sqrt{\hat{\rho}(\mathbf{x}, t)}\,e^{i\hat{\theta}(\mathbf{x}, t)}$ maps the GP field onto hydrodynamic variables $(\hat{\rho}, \hat{\mathbf{v}})$ with $\hat{v}_i = (\hbar/m)\partial_i\hat{\theta}$. The Madelung map is a *unitary equivalence* at the level of the canonical commutation relations:
+**The Madelung map.** The continuum field $\hat{\Psi}(\mathbf{x}, t) = \sqrt{\hat{\rho}(\mathbf{x}, t)}\,e^{i\hat{\theta}(\mathbf{x}, t)}$ maps the GP field onto hydrodynamic variables $(\hat{\rho}, \hat{\mathbf{v}})$ with $\hat{v}_i = (\hbar/m)\partial_i\hat{\theta}$. The Madelung map serves as an *effective unitary equivalence* at the level of the canonical commutation relations:
 
 $$[\hat{\rho}(\mathbf{x}),\; \hat{\theta}(\mathbf{y})] = i\,\delta^3(\mathbf{x} - \mathbf{y})$$
 
@@ -1340,7 +1350,7 @@ where $p_i^2 = \omega_i^2/c_s^2 - \mathbf{p}_i^2$ is the acoustic "mass shell."
 
 **Unitarity transfer theorem.** The central result is:
 
-*The global unitarity of the discrete evolution $U_\Lambda(t)$ is transmitted, through the Trotter-Kato strong resolvent convergence (Section 9.3.21) and the Madelung unitary equivalence, to the unitarity of the emergent S-matrix: $S^\dagger S = SS^\dagger = \mathbb{I}$.*
+*The global unitarity of the discrete evolution $U_\Lambda(t)$ is transmitted, through the Trotter-Kato strong resolvent convergence (Section 9.3.21) and the Madelung unitary equivalence, to the effective unitarity of the emergent low-energy S-matrix: $S^\dagger S \approx \mathbb{I}$ strictly within the macroscopic IR regime.*
 
 The proof proceeds in three steps:
 
@@ -1478,13 +1488,11 @@ $$[\hat{\phi}(x),\; \hat{\phi}(y)] = 0$$
 
 $$\mathcal{W}_n(x_1, \ldots, x_n) = \langle\Omega|\hat{\phi}(x_1)\cdots\hat{\phi}(x_n)|\Omega\rangle$$
 
-These $n$-point Wightman functions are tempered distributions, symmetric under permutations (for bosonic fields), and satisfy the Osterwalder-Schrader reflection positivity conditions. The emergent QFT is therefore a fully rigorous Wightman quantum field theory, *derived entirely from the dynamics of the sub-Planckian superfluid*.
+These $n$-point Wightman functions are tempered distributions, symmetric under permutations (for bosonic fields), and satisfy the Osterwalder-Schrader reflection positivity conditions. The emergent QFT therefore functions as an effective Wightman quantum field theory, *derived from the dynamics of the superfluid in the infrared limit*.
 
-**Structural isomorphism, not approximation.** The intertwiner $\mathcal{U}$ is an *exact* unitary equivalence, not a perturbative approximation. The discrete-to-continuum limit (Section 9.3.21) and the Madelung-LSZ map (Section 9.3.20) compose to give a structural isomorphism:
+**Effective correspondence.** The intertwiner $\mathcal{U}$ acts as an *effective* map, valid within the domain of the effective field theory. The structural mapping proceeds sequentially: the lattice Hilbert space maps to the Bose Hilbert space, which in the macroscopic IR limit maps to the effective QFT Hilbert space, satisfying the Wightman axioms.
 
-$$\mathcal{H}_{\text{lattice}} \implies \mathcal{H}_{\text{Bose}} \implies \mathcal{H}_{\text{QFT}} \implies \text{Axiomatic QFT}$$
-
-The UHF does not approximate quantum field theory — it *is* quantum field theory, derived from first principles via fluid dynamics. The Wightman axioms are not imposed but derived as structural consequences. The gap between discrete sub-Planckian dynamics and continuous relativistic field theory is bridged by a chain of exact mathematical isomorphisms, completing the functional-analytic closure of the framework.
+The UHF recovers quantum field theory as an effective description, derived from fluid dynamics in the long-wavelength limit. The Wightman axioms are not imposed but emerge as structural properties of the infrared fixed point. The gap between discrete sub-Planckian dynamics and continuous relativistic field theory is bridged by a chain of effective mappings, establishing the functional-analytic validity of the framework.
 
 **The Wightman 2-point function as vorticity spectral density.** To bridge the "ghost" between discrete topology and complex Hilbert space, we define the Wightman 2-point function directly as the spectral density of the medium's vorticity field. Let $\boldsymbol{\omega}(\mathbf{x}, t) = \nabla \times \mathbf{v}$ be the vorticity of the condensate velocity field. The vorticity correlation function:
 
@@ -1510,7 +1518,7 @@ $$na^3 \sim \left(\frac{m}{m_P}\right)^3 \sim 10^{-90} \ll 1$$
 
 In this dilute limit, the Bogoliubov approximation is *exact* to all orders in perturbation theory (Lieb, Seiringer, Solovej & Yngvason 2005): the ground state of the interacting GP Hamiltonian is unitarily equivalent to the Bogoliubov quasi-free Fock vacuum, with corrections of $O(na^3)$. Haag's theorem is evaded because the effective interaction strength is parametrically negligible — the "interacting" theory is perturbatively indistinguishable from the free theory to any finite order, and the non-perturbative corrections vanish in the $na^3 \to 0$ limit.
 
-**Resolution 2: Finite cosmological volume (IR cutoff).** Haag's theorem applies strictly only in infinite volume. For any finite spatial volume $V < \infty$ (such as the observable universe, $V \sim (ct_0)^3$), the Stone-von Neumann theorem guarantees that all irreducible representations of the CCR algebra over finitely many degrees of freedom are unitarily equivalent. The isomorphism $\mathcal{U}$ is therefore unitarily exact for any $V < \infty$.
+**Resolution 2: Finite cosmological volume (IR cutoff).** Haag's theorem applies strictly only in infinite volume. For any finite spatial volume $V < \infty$ (such as the observable universe, $V \sim (ct_0)^3$), the Stone-von Neumann theorem guarantees that all irreducible representations of the CCR algebra over finitely many degrees of freedom are unitarily equivalent. The isomorphism $\mathcal{U}$ is therefore effectively unitarily equivalent for any $V < \infty$.
 
 The thermodynamic limit $V \to \infty$ is handled by the algebraic net construction (Haag 1996; Haag & Kastler 1964):
 
@@ -1519,13 +1527,13 @@ The thermodynamic limit $V \to \infty$ is handled by the algebraic net construct
 3. **GNS states.** The physical vacuum is a state (positive linear functional) $\omega$ on the quasi-local algebra $\mathfrak{A} = \overline{\bigcup_{\mathcal{O}} \mathfrak{A}(\mathcal{O})}$. The GNS construction yields the physical Hilbert space $\mathcal{H}_\omega = \text{GNS}(\mathfrak{A}, \omega)$, which is the *unique* representation selected by the physical vacuum state — no interaction picture is needed.
 
 **Result.** The Wightman-Madelung isomorphism $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ is:
-- Unitarily exact for $na^3 \ll 1$ (the physical regime of the sub-Planckian condensate);
-- Unitarily exact for any finite cosmological volume $V < \infty$;
+- Effectively unitarily equivalent for $na^3 \ll 1$ in the macroscopic IR regime;
+- Effectively unitarily equivalent for any finite cosmological volume $V < \infty$;
 - Recovered in the thermodynamic limit via the AQFT net construction, bypassing the interaction-picture obstruction that Haag's theorem forbids.
 
-**Axiom (Haag Resolution).** *The Wightman-Madelung isomorphism $\mathcal{U}$ is unitarily exact within the finite cosmological volume (IR cutoff) of the observable universe, $V \sim (ct_0)^3 \approx (4.4 \times 10^{26}\;\text{m})^3 < \infty$. Haag's theorem applies only in the strict infinite-volume limit $V \to \infty$, which is unphysical. For any $V < \infty$, the Stone-von Neumann theorem guarantees unitary equivalence of all CCR representations, rendering the interaction-picture obstruction vacuous in the physical universe.*
+**Axiom (Haag Resolution).** *The Wightman-Madelung isomorphism $\mathcal{U}$ serves as an effective unitary equivalence within the finite cosmological volume (IR cutoff) of the observable universe, $V \sim (ct_0)^3 \approx (4.4 \times 10^{26}\;\text{m})^3 < \infty$. Haag's theorem applies only in the strict infinite-volume limit $V \to \infty$, which is unphysical. For any $V < \infty$, the Stone-von Neumann theorem guarantees unitary equivalence of all CCR representations, rendering the interaction-picture obstruction vacuous in the physical universe.*
 
-This resolves the last functional-analytic "ghost" of the UHF: the emergent QFT is a well-defined, interacting, relativistic quantum field theory satisfying all Wightman axioms, with no obstruction from Haag's theorem in the physically relevant regime.
+This resolves the last functional-analytic "ghost" of the UHF: the emergent QFT acts as a well-defined, interacting, relativistic quantum field theory satisfying the Wightman axioms effectively within the macroscopic IR regime, with no obstruction from Haag's theorem at finite volume.
 
 
 ---
@@ -1576,8 +1584,8 @@ The following analytic verifications are established in this paper:
 
 **Version 8.0.1** (February 22, 2026) — Ultimate QFT-Level Integration.
 
-- **Stinespring Scattering Theory (Proof M, Section III-E):** Replaced heuristic Møller-on-density-matrix construction with rigorous Stinespring unitary dilation $U(t) = e^{-iH_{\text{total}}t}$ on $\mathcal{H}_{\text{total}} = \mathcal{H}_{\text{phys}} \otimes \mathcal{H}_{\text{aux}}$. Haag-Ruelle asymptotic completeness proven on the enlarged Hilbert space; physical S-matrix recovered exactly via ground-state sector restriction, with strict LSZ analyticity and no semigroup-Hamiltonian mixing.
-- **Asymptotic Factorization (Proof M.2, Section III-E Step 4):** Proved that the Markovian gap $\gamma_{\text{gap}} > 0$ drives the asymptotic entanglement entropy to strictly zero ($S_{\text{ent}} \to 0$), so the auxiliary state factorises purely to $|0\rangle\langle 0|_{\text{aux}}$ at both scattering limits. The sector restriction therefore yields a *strictly unitary* physical S-matrix, satisfying exact LSZ analyticity without any Hamiltonian/semigroup mixing.
+- **Stinespring Scattering Theory (Proof M, Section III-E):** Replaced heuristic Møller-on-density-matrix construction with rigorous Stinespring unitary dilation $U(t) = e^{-iH_{\text{total}}t}$ on $\mathcal{H}_{\text{total}} = \mathcal{H}_{\text{phys}} \otimes \mathcal{H}_{\text{aux}}$. Haag-Ruelle asymptotic completeness proven on the enlarged Hilbert space; physical S-matrix recovered exactly via ground-state sector restriction, with effective LSZ analyticity prerequisites and no semigroup-Hamiltonian mixing.
+- **Asymptotic Factorization (Proof M.2, Section III-E Step 4):** Proved that the Markovian gap $\gamma_{\text{gap}} > 0$ drives the asymptotic entanglement entropy to strictly zero ($S_{\text{ent}} \to 0$), so the auxiliary state factorises purely to $|0\rangle\langle 0|_{\text{aux}}$ at both scattering limits. The sector restriction therefore yields a *strictly unitary* physical S-matrix, satisfying effective LSZ analyticity prerequisites without any Hamiltonian/semigroup mixing.
 - **Dilated Spectrum Condition (Proof M.3, Section III-E Step 4):** Established the Dilated Spectrum Condition: $H_{\text{total}}$ possesses a unique, gapped auxiliary ground state $|\Omega\rangle_{\text{aux}}$ with spectral gap $\Delta_{\text{aux}} \geq \gamma_{\text{gap}} > 0$. Asymptotic auxiliary state projects onto this 1D ray; restriction to the physical sector via the 1-dimensional ground-state projection is a strict isometric isomorphism, yielding $S^{\text{total}} = S_{\text{phys}} \otimes \mathbb{I}_{\text{aux}}$. Physical S-matrix exactly unitary.
 - **Off-Shell BV Master Equation (Proof N, Section III-F):** Removed on-shell projection from BV closure argument. Constructed extended quantum action $W$ on the Schwinger-Keldysh CTP complex; BV Laplacian anomaly $\Delta W = 0$ cancelled off-shell by explicit regularization and local counterterms (Barnich-Brandt-Henneaux theorem). $(W,W) = 0$ holds unconditionally on the full field-antifield phase space, securing Slavnov-Taylor identities prior to any physical-subspace projection.
 - **BRST-Exactness of Lindblad CTP Deformation (Proof N.2, Section III-F Step 3b):** Proved that the Lindblad CTP deformation is BRST-exact: $\mathcal{D}_{\text{CTP}} = s\,\Psi_{\text{CTP}}$. Because it is exact in BRST cohomology, it introduces zero quantum anomaly into the BV Laplacian ($\Delta(s\,\Psi_{\text{CTP}}) = 0$). Off-shell closure of the master equation is absolute and independent of equations of motion.
