@@ -707,27 +707,39 @@
             <div class="space-y-3">
                 <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-neon">v8.0.1</span>
-                    <span class="text-gray-600">Part I · Block #83323011</span>
+                    <span class="text-gray-600">Part I · Block #83323655</span>
                     <code class="text-gray-400 hidden sm:inline">18454ef4...54c82</code>
-                    <a href="https://polygonscan.com/tx/0x9da1b1269fd690df8c854b67c30ed0837a7c25272cf4efa64f62f0151ef38448" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                    <a href="https://polygonscan.com/tx/0xdf9cd17fe5ed6df4220e70860419b3aeb230b1f4d217c7bfaac9afbce5117626" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-neon">v8.0.1</span>
-                    <span class="text-gray-600">Part II · Block #83323015</span>
-                    <code class="text-gray-400 hidden sm:inline">b85b6625...c2d8</code>
-                    <a href="https://polygonscan.com/tx/0x9e7704fbc9032fda61b3876940a68823689599a9aafdabf264e2b8d8e29c3753" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                    <span class="text-gray-600">Part II · Block #83323657</span>
+                    <code class="text-gray-400 hidden sm:inline">9b733e5f...6ea0</code>
+                    <a href="https://polygonscan.com/tx/0xd19e7253c576eab19f571b2f42e6d00e6dae33b07d0647b0b8a707f5b937aca6" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-neon">v8.0.1</span>
-                    <span class="text-gray-600">Part III · Block #83323020</span>
-                    <code class="text-gray-400 hidden sm:inline">9150043a...7243</code>
-                    <a href="https://polygonscan.com/tx/0x93323a1fd9bc60fbdd8e84d1e9be9aff8939a79be71352194a368af7c85ea55c" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                    <span class="text-gray-600">Part III · Block #83323663</span>
+                    <code class="text-gray-400 hidden sm:inline">0faf9f3a...ce9a</code>
+                    <a href="https://polygonscan.com/tx/0xe3f689ae4e3db8cc63dd4ddee90ba66c19885085f12c955adb2a1a82c7f6bf92" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-glow/60">v8.0.1</span>
-                    <span class="text-gray-600">Part I · Block #83321514</span>
+                    <span class="text-gray-600">Part I · Block #83323011</span>
                     <code class="text-gray-400 hidden sm:inline">18454ef4...54c82</code>
-                    <a href="https://polygonscan.com/tx/0xd57f285012eeefb401aaa49459d9f6ddcc38fdedd9915b86bb891ac8ad9498f3" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                    <a href="https://polygonscan.com/tx/0x9da1b1269fd690df8c854b67c30ed0837a7c25272cf4efa64f62f0151ef38448" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v8.0.1</span>
+                    <span class="text-gray-600">Part II · Block #83323015</span>
+                    <code class="text-gray-400 hidden sm:inline">b85b6625...c2d8</code>
+                    <a href="https://polygonscan.com/tx/0x9e7704fbc9032fda61b3876940a68823689599a9aafdabf264e2b8d8e29c3753" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v8.0.1</span>
+                    <span class="text-gray-600">Part III · Block #83323020</span>
+                    <code class="text-gray-400 hidden sm:inline">9150043a...7243</code>
+                    <a href="https://polygonscan.com/tx/0x93323a1fd9bc60fbdd8e84d1e9be9aff8939a79be71352194a368af7c85ea55c" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-glow/60">v8.0.1</span>
@@ -844,9 +856,9 @@
         <div class="glass-neon rounded-2xl p-6 text-center">
             <p class="text-[10px] font-mono text-neon/60 uppercase tracking-wider mb-2">Latest Seal — v8.0.1 Theorem-Grade QFT Integration</p>
             <p class="font-mono text-neon text-lg sm:text-xl font-semibold text-glow">
-                February 22, 2026 · v8.0.1 — Proofs M.3 / N.3 / O.3
+                February 22, 2026 · v8.0.1 — Proofs M.4 / N.4 / O.4
             </p>
-            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 25 versions sealed (3 papers)</p>
+            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 28 versions sealed (3 papers)</p>
         </div>
     </div>
 </section>
