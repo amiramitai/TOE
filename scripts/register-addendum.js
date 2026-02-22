@@ -20,22 +20,34 @@ const ABI = [
     "function registerPaper(string _hash, string _author, string _version) public"
 ];
 
-const FILE = "UHF_Defense_Addendum.md";
-const VERSION = "8.5-Addendum";
-const LABEL = "UHF Defense Addendum — Empirical Rebuttals to 9 Objection Categories";
-const EXPECTED_HASH = "9cc42b74340abfd987f5153d8ebfcff9cdea2bec2896ab18cfe95937d7d5094d";
+const PAPERS = [
+    {
+        file: "UHF_Defense_Addendum.md",
+        version: "8.5.1-Addendum",
+        label: "UHF Defense Addendum (Markdown) — with author/date header",
+        expectedHash: "f1d8eb722508326ba08255438d762efab453c73e782a5e05f9bd6aa70688e355"
+    },
+    {
+        file: "UHF_Defense_Addendum.pdf",
+        version: "8.5.1-Addendum-PDF",
+        label: "UHF Defense Addendum (PDF) — with author/date header",
+        expectedHash: "e5740f8ad393449e9a1548d4e1b059cd7663ca7fd23e759a60850786058187b2"
+    }
+];
 
 async function main() {
-    // 1. Verify SHA-256 hash
-    console.log("Verifying SHA-256 hash...\n");
-    const actual = execSync(`shasum -a 256 ${FILE}`).toString().split(" ")[0];
-    if (actual !== EXPECTED_HASH) {
-        console.error(`HASH MISMATCH for ${FILE}!`);
-        console.error(`  Expected: ${EXPECTED_HASH}`);
-        console.error(`  Actual:   ${actual}`);
-        process.exit(1);
+    // 1. Verify SHA-256 hashes
+    console.log("Verifying SHA-256 hashes...\n");
+    for (const p of PAPERS) {
+        const actual = execSync(`shasum -a 256 ${p.file}`).toString().split(" ")[0];
+        if (actual !== p.expectedHash) {
+            console.error(`HASH MISMATCH for ${p.file}!`);
+            console.error(`  Expected: ${p.expectedHash}`);
+            console.error(`  Actual:   ${actual}`);
+            process.exit(1);
+        }
+        console.log(`  ✓ ${p.file}  ${actual}`);
     }
-    console.log(`  ✓ ${FILE}  ${actual}`);
 
     // 2. Connect to Polygon
     const provider = new ethers.JsonRpcProvider("https://polygon-bor-rpc.publicnode.com", 137);
@@ -46,25 +58,33 @@ async function main() {
     const balance = await provider.getBalance(wallet.address);
     console.log(`Balance: ${ethers.formatEther(balance)} MATIC\n`);
 
-    // 3. Register on Polygon
-    console.log(`Registering ${LABEL} (${VERSION})...`);
-    const tx = await contract.registerPaper(EXPECTED_HASH, "Amir Benjamin Amitay", VERSION);
-    console.log(`  TX sent: ${tx.hash}`);
-    const receipt = await tx.wait();
-    console.log(`  Confirmed in block ${receipt.blockNumber}`);
+    // 3. Register each on Polygon
+    const results = [];
+    for (const p of PAPERS) {
+        console.log(`Registering ${p.label} (${p.version})...`);
+        const tx = await contract.registerPaper(p.expectedHash, "Amir Benjamin Amitay", p.version);
+        console.log(`  TX sent: ${tx.hash}`);
+        const receipt = await tx.wait();
+        console.log(`  Confirmed in block ${receipt.blockNumber}`);
+        results.push({ ...p, txHash: tx.hash, block: receipt.blockNumber });
+    }
 
     console.log("\n" + "=".repeat(70));
     console.log("SUCCESS — UHF DEFENSE ADDENDUM REGISTERED ON POLYGON MAINNET");
     console.log("=".repeat(70));
-    console.log(`\n  ${LABEL} (${VERSION})`);
-    console.log(`    SHA-256:     ${EXPECTED_HASH}`);
-    console.log(`    TX Hash:     ${tx.hash}`);
-    console.log(`    Block:       ${receipt.blockNumber}`);
-    console.log(`    PolygonScan: https://polygonscan.com/tx/${tx.hash}`);
+    for (const r of results) {
+        console.log(`\n  ${r.label} (${r.version})`);
+        console.log(`    SHA-256:     ${r.expectedHash}`);
+        console.log(`    TX Hash:     ${r.txHash}`);
+        console.log(`    Block:       ${r.block}`);
+        console.log(`    PolygonScan: https://polygonscan.com/tx/${r.txHash}`);
+    }
     console.log("=".repeat(70));
 
-    const logEntry = `\n${VERSION} | ${new Date().toISOString()} | Block: ${receipt.blockNumber} | TX: ${tx.hash} | Hash: ${EXPECTED_HASH}`;
-    fs.appendFileSync("./scripts/on-chain-log.txt", logEntry);
+    for (const r of results) {
+        const logEntry = `\n${r.version} | ${new Date().toISOString()} | Block: ${r.block} | TX: ${r.txHash} | Hash: ${r.expectedHash}`;
+        fs.appendFileSync("./scripts/on-chain-log.txt", logEntry);
+    }
     console.log("\nAppended to on-chain-log.txt");
 }
 

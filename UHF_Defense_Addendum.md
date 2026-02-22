@@ -1,4 +1,11 @@
-# UHF Defense Addendum 1: Phenomenological Bounds & Mathematical No-Go Theorems
+---
+title: "UHF Defense Addendum: Phenomenological Bounds & Mathematical No-Go Theorems"
+subtitle: "Empirical Rebuttals to Nine Categories of Objection"
+author: "Amir Benjamin Amitay"
+date: "February 22, 2026"
+---
+
+# UHF Defense Addendum: Phenomenological Bounds & Mathematical No-Go Theorems
 
 This document addresses the primary phenomenological constraints and structural mathematical objections raised regarding the effective macroscopic IR emergence of the Unified Hydrodynamic Framework (UHF).
 

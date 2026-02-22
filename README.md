@@ -49,7 +49,7 @@ All documents are SHA-256 hashed and permanently registered on the **Polygon blo
 | [Part I — Physical Core](UHF_Part_I_Core.md) | `026e919e...a1e7b` | [v8.4](https://polygonscan.com/tx/0xc4f18abc225b84186b5b000e8c582ff3e0c55a17629b75f5d7c99d2b00c8c3af) |
 | [Part II — Mathematical Foundations](UHF_Part_II_Mathematical_Foundations.md) | `ad6ee786...735a3e` | [v8.4](https://polygonscan.com/tx/0xc2e7150c48a53d0e3ad1a21e16746c278758841ad08d3a09b46db283371ffefb) |
 | [Part III — Standard Model Extension](UHF_Part_III_Standard_Model.md) | `020ec276...03471` | [v8.4](https://polygonscan.com/tx/0xf6aafd64b27c0184b352a913e1f812cddb3a90398631c7456605799b816cc5fd) |
-| [Defense Addendum](UHF_Defense_Addendum.md) | `9cc42b74...5094d` | [v8.5](https://polygonscan.com/tx/0x255e56192dbf14cd7edb6f068e5c93c95723edc376e3c262d762816ff74c49e5) |
+| [Defense Addendum](UHF_Defense_Addendum.md) | `f1d8eb72...8e355` (MD) · `e5740f8a...87b2` (PDF) | [v8.5.1](https://polygonscan.com/tx/0x094e7e499ecae41a2655d423523e88a19ce3b057b266ededf7aba988d0f91fa6) |
 
 ## Simulation Suite
 

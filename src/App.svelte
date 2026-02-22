@@ -1169,16 +1169,23 @@
                 </div>
             </div>
             <div class="mb-4">
-                <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256 · Polygon Block #83336785</p>
-                <code class="hash-display text-neon/80 text-[0.65rem]">9cc42b74340abfd987f5153d8ebfcff9cdea2bec2896ab18cfe95937d7d5094d</code>
+                <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256 (MD) · Polygon Block #83337617</p>
+                <code class="hash-display text-neon/80 text-[0.65rem]">f1d8eb722508326ba08255438d762efab453c73e782a5e05f9bd6aa70688e355</code>
+                <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1 mt-2">SHA-256 (PDF) · Polygon Block #83337622</p>
+                <code class="hash-display text-neon/80 text-[0.65rem]">e5740f8ad393449e9a1548d4e1b059cd7663ca7fd23e759a60850786058187b2</code>
             </div>
-            <div class="flex gap-3">
+            <div class="flex gap-3 flex-wrap">
                 <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Defense_Addendum.md" target="_blank" rel="noopener"
                    class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neon/10 border border-neon/20 text-neon text-sm font-medium hover:bg-neon/20 transition-all">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     Markdown
                 </a>
-                <a href="https://polygonscan.com/tx/0x255e56192dbf14cd7edb6f068e5c93c95723edc376e3c262d762816ff74c49e5" target="_blank" rel="noopener"
+                <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Defense_Addendum.pdf" target="_blank" rel="noopener"
+                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ember/10 border border-ember/20 text-ember text-sm font-medium hover:bg-ember/20 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    PDF
+                </a>
+                <a href="https://polygonscan.com/tx/0x094e7e499ecae41a2655d423523e88a19ce3b057b266ededf7aba988d0f91fa6" target="_blank" rel="noopener"
                    class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-plasma/10 border border-plasma/20 text-plasma text-sm font-medium hover:bg-plasma/20 transition-all">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                     On-Chain Proof ↗
