@@ -1,38 +1,64 @@
 export function init(viewport, controlsEl, hudEl) {
     const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:absolute;inset:0;width:100%!important;height:100%!important;';
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%!important;height:100%!important;cursor:grab;';
     viewport.appendChild(canvas);
     const ctx = canvas.getContext('2d');
     let W, H, dpr, raf;
-    let impactB = 0.5;
     let frameDrag = true;
     let t = 0;
-    const GM = 4000, softR = 30, massR = 22;
+    const GM = 4000, softR = 30, massR = 34;
+
+    /* --- draggable mass position --- */
+    let massX, massY, targetX, targetY, dragging = false;
+    let cachedRect = null;
 
     function resize() {
         dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        W = rect.width; H = rect.height;
+        cachedRect = canvas.getBoundingClientRect();
+        W = cachedRect.width; H = cachedRect.height;
         canvas.width = W * dpr; canvas.height = H * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        if (!massX) { massX = W * 0.4; massY = H * 0.5; targetX = massX; targetY = massY; }
     }
     resize();
 
+    function getLocalCoords(clientX, clientY) {
+        if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
+        return { x: clientX - cachedRect.left, y: clientY - cachedRect.top };
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+        const p = getLocalCoords(e.clientX, e.clientY);
+        if (Math.hypot(p.x - massX, p.y - massY) < massR + 14) { dragging = true; canvas.style.cursor = 'grabbing'; }
+    });
+    canvas.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const p = getLocalCoords(e.clientX, e.clientY);
+        targetX = p.x; targetY = p.y;
+    });
+    canvas.addEventListener('mouseup', () => { dragging = false; canvas.style.cursor = 'grab'; });
+    canvas.addEventListener('mouseleave', () => { dragging = false; canvas.style.cursor = 'grab'; });
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const tc = e.touches[0];
+        const p = getLocalCoords(tc.clientX, tc.clientY);
+        if (Math.hypot(p.x - massX, p.y - massY) < massR + 24) dragging = true;
+    }, { passive: false });
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (!dragging) return;
+        const tc = e.touches[0];
+        const p = getLocalCoords(tc.clientX, tc.clientY);
+        targetX = p.x; targetY = p.y;
+    }, { passive: false });
+    canvas.addEventListener('touchend', () => { dragging = false; canvas.style.cursor = 'grab'; });
+    const onScroll = () => { cachedRect = canvas.getBoundingClientRect(); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
     controlsEl.innerHTML =
-        '<span class="ctrl-label">IMPACT b</span>' +
-        '<input type="range" class="ctrl-slider" min="0.1" max="1" step="0.01" value="0.5" id="shap-b">' +
-        '<span class="ctrl-value" id="shap-b-val">2.5 R\u2609</span>' +
-        '<span class="ctrl-sep"></span>' +
         '<button class="ctrl-btn active" id="shap-fd">\u27F3 Frame-Dragging: ON</button>';
 
-    const bSlider = controlsEl.querySelector('#shap-b');
-    const bVal = controlsEl.querySelector('#shap-b-val');
     const fdBtn = controlsEl.querySelector('#shap-fd');
-
-    bSlider.oninput = function() {
-        impactB = parseFloat(this.value);
-        bVal.textContent = (impactB * 5).toFixed(1) + ' R\u2609';
-    };
     fdBtn.onclick = function() {
         frameDrag = !frameDrag;
         this.textContent = '\u27F3 Frame-Dragging: ' + (frameDrag ? 'ON' : 'OFF');
@@ -41,13 +67,18 @@ export function init(viewport, controlsEl, hudEl) {
 
     function draw() {
         t += 0.016;
+
+        /* smooth mass movement */
+        massX += (targetX - massX) * 0.15;
+        massY += (targetY - massY) * 0.15;
+
         ctx.clearRect(0, 0, W, H);
 
-        const cx = W * 0.4, cy = H * 0.5;
-        const rayY = cy - impactB * H * 0.35;
+        const cx = massX, cy = massY;
+        const rayY = H * 0.25;
 
         // Density grid (warped)
-        ctx.strokeStyle = 'rgba(26,26,58,0.3)'; ctx.lineWidth = 0.5;
+        ctx.strokeStyle = 'rgba(26,26,58,0.35)'; ctx.lineWidth = 0.8;
         const gridN = 25;
         for (let i = 0; i <= gridN; i++) {
             for (let j = 0; j <= gridN; j++) {
@@ -74,21 +105,21 @@ export function init(viewport, controlsEl, hudEl) {
             }
         }
 
-        // Mass body
+        // Mass body — bigger glow + circle
         const mgrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, massR * 4);
-        mgrad.addColorStop(0, 'rgba(124,58,237,0.3)');
-        mgrad.addColorStop(0.5, 'rgba(124,58,237,0.05)');
+        mgrad.addColorStop(0, 'rgba(124,58,237,0.35)');
+        mgrad.addColorStop(0.5, 'rgba(124,58,237,0.08)');
         mgrad.addColorStop(1, 'transparent');
         ctx.fillStyle = mgrad;
         ctx.fillRect(cx - massR*4, cy - massR*4, massR*8, massR*8);
         ctx.beginPath(); ctx.arc(cx, cy, massR, 0, Math.PI*2);
         ctx.fillStyle = 'rgba(124,58,237,0.8)'; ctx.fill();
-        ctx.strokeStyle = 'rgba(167,139,250,0.6)'; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = '#fff'; ctx.font = '12px JetBrains Mono'; ctx.textAlign = 'center';
-        ctx.fillText('M\u2609', cx, cy + 4);
+        ctx.strokeStyle = 'rgba(167,139,250,0.6)'; ctx.lineWidth = 2.5; ctx.stroke();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 16px JetBrains Mono'; ctx.textAlign = 'center';
+        ctx.fillText('M', cx, cy + 6);
 
         // Undeflected reference
-        ctx.setLineDash([6,6]); ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = 1;
+        ctx.setLineDash([8,8]); ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.moveTo(0, rayY); ctx.lineTo(W, rayY); ctx.stroke();
         ctx.setLineDash([]);
 
@@ -111,37 +142,76 @@ export function init(viewport, controlsEl, hudEl) {
             x += step;
         }
 
+        // Draw the deflected guideline
         ctx.strokeStyle = 'rgba(6,255,165,0.9)'; ctx.lineWidth = 2.5;
         ctx.beginPath();
         pathPts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
         ctx.stroke();
 
-        // Wave packet
-        const waveX = (t * 100) % (W + 200) - 100;
-        const waveW = 40;
-        for (let wx = waveX - waveW; wx < waveX + waveW; wx += 2) {
+        // Wave packet — rides ON TOP of the deflected path, perpendicular
+        const waveX = (t * 120) % (W + 300) - 150;
+        const waveHalfW = 60;
+        const waveAmp = 18;
+
+        // Build wave vertices along the path
+        const topPts = [], botPts = [];
+        for (let wx = waveX - waveHalfW; wx <= waveX + waveHalfW; wx += 2) {
             if (wx < 0 || wx >= W) continue;
-            const idx = Math.min(Math.floor(wx / step), pathPts.length - 1);
-            if (idx < 0) continue;
-            const p = pathPts[idx];
-            const env = Math.exp(-Math.pow(wx - waveX, 2) / (2 * 15 * 15));
-            const freq = 0.3 / Math.max(p.cEff, 0.2);
-            const wave = Math.sin(wx * freq) * env * 8;
-            const r = p.cEff < 0.5 ? 1 : 0.2;
-            const g = p.cEff > 0.7 ? 1 : 0.3;
-            const b_c = 0.3;
-            ctx.fillStyle = `rgba(${Math.floor(r*255)},${Math.floor(g*255)},${Math.floor(b_c*255)},${env * 0.9})`;
-            ctx.fillRect(wx, p.y + wave - 1, 2, 2);
+            const idx = Math.min(Math.max(Math.floor(wx / step), 0), pathPts.length - 2);
+            const p0 = pathPts[idx], p1 = pathPts[idx + 1];
+            const frac = (wx - p0.x) / (p1.x - p0.x || 1);
+            const py = p0.y + (p1.y - p0.y) * frac;
+            const cEff = p0.cEff + (p1.cEff - p0.cEff) * frac;
+
+            // path tangent → normal
+            const tang_dx = p1.x - p0.x, tang_dy = p1.y - p0.y;
+            const tang_len = Math.sqrt(tang_dx * tang_dx + tang_dy * tang_dy) || 1;
+            const nx = -tang_dy / tang_len, ny = tang_dx / tang_len;
+
+            const env = Math.exp(-Math.pow(wx - waveX, 2) / (2 * 22 * 22));
+            const freq = 0.3 / Math.max(cEff, 0.2);
+            const wave = Math.sin(wx * freq) * env * waveAmp;
+
+            topPts.push({ x: wx + nx * wave, y: py + ny * wave, env, cEff });
+            botPts.push({ x: wx - nx * wave * 0.15, y: py - ny * wave * 0.15, env, cEff });
+        }
+
+        if (topPts.length > 2) {
+            // Filled wavelet body (semi-transparent)
+            ctx.beginPath();
+            topPts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+            for (let i = botPts.length - 1; i >= 0; i--) ctx.lineTo(botPts[i].x, botPts[i].y);
+            ctx.closePath();
+            ctx.fillStyle = 'rgba(6,255,165,0.18)';
+            ctx.fill();
+
+            // Bright wavelet outline on the oscillation side
+            ctx.strokeStyle = 'rgba(6,255,165,0.95)'; ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            topPts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+            ctx.stroke();
+
+            // Draw small bright dots at wavelet crests for sparkle
+            for (const p of topPts) {
+                if (p.env < 0.3) continue;
+                const r_c = p.cEff < 0.5 ? 255 : 50;
+                const g_c = p.cEff > 0.7 ? 255 : 200;
+                ctx.fillStyle = `rgba(${r_c},${g_c},80,${p.env * 0.7})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 2.5 * p.env, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
         // Info
         const shapiroDelay = (tAcc - tFlat) * 60;
         const deflection = Math.abs(pathPts[pathPts.length-1].y - rayY) / H * 4;
+        const impactB_val = Math.abs(rayY - cy) / H * 5;
 
         hudEl.innerHTML =
             '<div class="hud-card"><div class="hud-label">Shapiro Delay</div><div class="hud-value" style="color:#38bdf8">' + shapiroDelay.toFixed(1) + ' \u00B5s</div><div class="hud-sub">extra travel time</div></div>' +
             '<div class="hud-card"><div class="hud-label">Deflection</div><div class="hud-value" style="color:#38bdf8">' + deflection.toFixed(2) + '"</div><div class="hud-sub">arcseconds</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Impact b</div><div class="hud-value" style="color:#38bdf8">' + (impactB * 5).toFixed(1) + ' R\u2609</div><div class="hud-sub">closest approach</div></div>' +
+            '<div class="hud-card"><div class="hud-label">Impact b</div><div class="hud-value" style="color:#38bdf8">' + impactB_val.toFixed(1) + ' R\u2609</div><div class="hud-sub">closest approach</div></div>' +
             '<div class="hud-card"><div class="hud-label">Mode</div><div class="hud-value" style="color:#38bdf8">' + (frameDrag ? 'FULL GR' : 'SCALAR') + '</div><div class="hud-sub">' + (frameDrag ? 'refraction + dragging' : 'refraction only') + '</div></div>';
 
         raf = requestAnimationFrame(draw);
@@ -155,6 +225,7 @@ export function init(viewport, controlsEl, hudEl) {
         destroy() {
             cancelAnimationFrame(raf);
             window.removeEventListener('resize', onResize);
+            window.removeEventListener('scroll', onScroll);
             canvas.remove();
         }
     };

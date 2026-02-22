@@ -1,0 +1,19 @@
+v8.6 QFT-Level Integration -- BRST-Lindblad + Emergent Yang-Mills
+
+Part II S9.3.5 III-C (Proof F -- BRST-Lindblad Unitarity Seal):
+  - BRST charge Q_B nilpotent (Q_B^2 = 0), equivalent to Jacobi identity
+  - BRST-Lindblad commutativity: [Q_B, L_k]|_Hphys = 0
+  - Slavnov-Taylor identities preserved exactly: d/dt<[Q_B, O]> = 0
+  - Physical S-matrix strictly unitary: S^dag S = 1
+  - Proca masses locked at zero for both U(1) and SU(3)
+
+Part III S9.3.25 (Proof G -- Emergent Yang-Mills from GP Energy):
+  - Local gauge connection: A_mu^a(x) = (1/g) d_mu theta^a(x)
+  - Non-Abelian field strength tensor derived
+  - GP energy mapped to exact Yang-Mills action: E_GP = (1/4g_YM^2) int F^a F_a d4x
+  - Emergent coupling: g_YM^2 = 2/rho_0^{3/2} (no free parameters)
+
+Polygon TX (v8.6):
+  Part I:   0x3c85d76d6abbf0b5511ce1bc5560447b9ae581d45b61d9a0ce91e4b79838111e
+  Part II:  0x0bd6469e3b408d2039e2bb4a891febed76242fdbc465a69601ec2271e81d7d87
+  Part III: 0xd6f6fa72ffe0fe722d6521777c03771c2519dfccbd15954d936fa00152a86693
