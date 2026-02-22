@@ -1,6 +1,7 @@
 /**
- * register-v80.js — Register UHF v8.0 (The Submission Series) on Polygon Mainnet
+ * register-v80.js — Register UHF v8.0 FINAL (Sealed) on Polygon Mainnet
  * Registers all three papers: Part I (Core), Part II (Math Foundations), Part III (SM Extension)
+ * Sealed version includes: Vortex Mermin Scaling, Milnor 3090 verification, N=2 Atom axiom
  */
 const { ethers } = require("ethers");
 const fs = require("fs");
@@ -18,19 +19,19 @@ const PAPERS = [
         file: "./UHF_Part_I_Core.md",
         version: "8.0-Part-I",
         label: "Part I: The Physical Core",
-        expectedHash: "4b6a34d41c56c3ab09988bf7f0efc0ea06846d34e4b18df34987441e02f947ca"
+        expectedHash: "0ece4c394e2fc0672f8de5ec08adcc46939b26b877a16314bff4b623f37f77d0"
     },
     {
         file: "./UHF_Part_II_Mathematical_Foundations.md",
         version: "8.0-Part-II",
         label: "Part II: Mathematical Foundations",
-        expectedHash: "0c6cd0a13c4fed428f02377048af43a7a388e57b9a480908b6ef86b4bd994d14"
+        expectedHash: "36c52c58ca9217a6db841ca04e710eb1a2ed90fafe79c176fda4e13836c134d5"
     },
     {
         file: "./UHF_Part_III_Standard_Model.md",
         version: "8.0-Part-III",
         label: "Part III: Standard Model Extension",
-        expectedHash: "f724035b4d5f3328fa8295ef0345a34fee63104477acc1070e9a2354f28c1836"
+        expectedHash: "90f55a74ea5a59e1aa5f6c98ac6369104122e161984f48694632900c8e347979"
     }
 ];
 
