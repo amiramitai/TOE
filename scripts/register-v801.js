@@ -37,13 +37,13 @@ const PAPERS = [
         file: "UHF_Part_II_Mathematical_Foundations.md",
         version: "8.0.1-Part-II",
         label: "UHF Part II — Mathematical Foundations",
-        expectedHash: "597033c41fd61e6caa5b5655531eed28fde6a1b3676b81f471087796bc2e3765"
+        expectedHash: "b85b6625dfe1d0916468949780428b40332fb9c71e89c9a953cc0a32f8b4c2d8"
     },
     {
         file: "UHF_Part_III_Standard_Model.md",
         version: "8.0.1-Part-III",
         label: "UHF Part III — Standard Model Extension",
-        expectedHash: "a9930f28bcc3c18d34e73c91f573b51763bcffd1228726781cb3185bcd1ce6ce"
+        expectedHash: "9150043af14d6c8065c8448a3b133144e3e863fdafbc55796f937ec39bdd7243"
     }
 ];
 
