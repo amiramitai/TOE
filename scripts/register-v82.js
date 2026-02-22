@@ -20,19 +20,19 @@ const PAPERS = [
         file: "./UHF_Part_I_Core.md",
         version: "8.2-Part-I",
         label: "Part I: The Physical Core",
-        expectedHash: "2c921c56e4513b5136f33b56f4c9ceb875ddd8440fb0f5d430b72912f494895c"
+        expectedHash: "b44119252bbc3e25c81c7e42188b17e95edba0a6167d12da001d55c6c5f17697"
     },
     {
         file: "./UHF_Part_II_Mathematical_Foundations.md",
         version: "8.2-Part-II",
         label: "Part II: Mathematical Foundations",
-        expectedHash: "4b8a205dba3adc1e842726c83f6d45ce3698c009924468e04aec3568a4ccd7aa"
+        expectedHash: "1f56bf4170f9fc1bbc56ef986103f80f34b4211bd583ade210853a461a8c4dc5"
     },
     {
         file: "./UHF_Part_III_Standard_Model.md",
         version: "8.2-Part-III",
         label: "Part III: Standard Model Extension",
-        expectedHash: "d4cd093f342b56ca7558d46a262cadb79c2dc731fe100cda4de45da0e5421ebc"
+        expectedHash: "b23925cef3b574f1aabbb6d650ee9b8a4ad8eed6805fa50f00d19c6306b0aca4"
     }
 ];
 

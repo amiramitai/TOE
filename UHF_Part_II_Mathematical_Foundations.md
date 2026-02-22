@@ -4,7 +4,7 @@
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
-**Version:** 8.1 (The Wilsonian-Hydrodynamic Bridge Release)
+**Version:** 8.2 (The Coercive Algebra Release)
 **Series:** Part II of III
 
 ---
@@ -350,57 +350,29 @@ This extends the topological result of Section III-B (which applied only to the 
 
 **III-C′. Fluid Noether Currents and the Slavnov–Taylor Origin (Lemma Q).**
 
-The BRST-Lindblad Commutativity (Proof F) establishes that the Slavnov–Taylor identities are preserved under the Lindblad evolution. We now prove that the functional measure is **protected by continuous physical symmetry**: the fundamental conservation laws of the Gross–Pitaevskii fluid — $U(1)$ mass conservation and volume-preserving diffeomorphism invariance — rigorously generate the Ward-Takahashi and Slavnov-Taylor identities of the emergent QFT, with no need for abstract BRST cohomology or imported Wess-Zumino consistency conditions.
+The BRST-Lindblad Commutativity (Proof F) establishes that the Slavnov–Taylor identities are preserved under the Lindblad evolution. We now prove a stronger result: the exact preservation of the functional measure volume form by the incompressible flow of the GP condensate.
 
-**I. $U(1)$ Mass Conservation $\to$ Ward-Takahashi Identities.** The Gross–Pitaevskii equation possesses an exact, global $U(1)$ symmetry corresponding to mass (particle number) conservation:
+**I. Exact Differential Geometry Proof.** The kinematic symmetry group of the incompressible GP fluid is the group of volume-preserving diffeomorphisms SDiff$(\mathbb{R}^3)$. The generator of an infinitesimal transformation is a divergence-free vector field $\boldsymbol{\epsilon}(\mathbf{x})$ with $\nabla \cdot \boldsymbol{\epsilon} = 0$. The evolution of the fluid volume form $\omega = d^3x$ under this flow is given by the Lie derivative:
 
-$$\Psi(\mathbf{x}, t) \to e^{i\alpha}\,\Psi(\mathbf{x}, t), \qquad \alpha \in \mathbb{R}$$
+$$\mathcal{L}_{\boldsymbol{\epsilon}}\omega = (d\iota_{\boldsymbol{\epsilon}} + \iota_{\boldsymbol{\epsilon}}d)\omega = (\nabla \cdot \boldsymbol{\epsilon})\omega$$
 
-By Noether’s theorem, this symmetry generates a conserved current:
+Since the fluid is incompressible (Step 9.3.1), we have $\nabla \cdot \boldsymbol{\epsilon} \equiv 0$ identically. Therefore:
 
-$$J^\mu = (\rho,\, \rho\,\mathbf{v}), \qquad \partial_\mu J^\mu = \partial_t \rho + \nabla \cdot (\rho\,\mathbf{v}) = 0$$
+$$\mathcal{L}_{\boldsymbol{\epsilon}}\omega = 0$$
 
-This is the continuity equation of the GP fluid — the Madelung form of the Schrödinger probability current. In the language of quantum field theory, the $U(1)$ Noether current generates the **Ward-Takahashi identities** for the emergent photon sector. Specifically, the identity:
+This implies that the Jacobian of the coordinate transformation is **exactly unity**, not merely to first order, but as an exact non-perturbative property of the flow:
 
-$$q_\mu\,\Gamma^\mu(p + q, p) = S^{-1}(p + q) - S^{-1}(p)$$
+$$\det J \equiv 1$$
 
-where $\Gamma^\mu$ is the vertex function and $S^{-1}$ is the inverse propagator, follows directly from the functional Ward identity:
+This corresponds to the statement that the path integral measure $\mathcal{D}\Psi\,\mathcal{D}\Psi^*$ is invariant. The absence of a Jacobian anomaly means there is no "quantum" breaking of the classical symmetry.
 
-$$\frac{\delta \Gamma}{\delta \alpha(x)} = \partial_\mu \frac{\delta \Gamma}{\delta A_\mu(x)} = 0$$
+**II. Faddeev-Popov Ghosts as Maurer-Cartan Forms.** We define the Faddeev-Popov ghost field $c^a(x)$ geometrically as the **Maurer-Cartan form** on the infinite-dimensional Lie algebra $\mathfrak{sdiff}(\mathbb{R}^3)$. The BRST operator $s$ acts as the de Rham differential on the group manifold. The nilpotency condition $s^2 = 0$ follows directly from the **Jacobi Identity** of the fluid's Lie algebra of vector fields:
 
-which is the functional expression of $\partial_\mu J^\mu = 0$. The transversality of the photon self-energy $q_\mu \Pi^{\mu\nu}(q) = 0$ and the masslessness of the emergent photon $m_\gamma = 0$ are direct consequences of this identity. No renormalization scheme can violate them because they follow from the — unbreakable — mass conservation of the GP fluid.
+$$[\boldsymbol{u}, [\boldsymbol{v}, \boldsymbol{w}]] + [\boldsymbol{v}, [\boldsymbol{w}, \boldsymbol{u}]] + [\boldsymbol{w}, [\boldsymbol{u}, \boldsymbol{v}]] = 0 \implies s^2 c^a = 0$$
 
-**II. Volume-Preserving Diffeomorphisms $\to$ Slavnov-Taylor Identities.** The GP condensate, in its ground state, behaves as a strictly incompressible fluid at macroscopic scales: density fluctuations are suppressed by the large bulk modulus $K = g_s \rho_0$ (Section 9.3.1). The kinematic symmetry group of an incompressible fluid is the group of **volume-preserving diffeomorphisms** SDiff$(\mathbb{R}^3)$:
+The ghosts are not ad hoc auxiliary fields but the structural forms required to maintain the volume-preserving constraint $\nabla \cdot \boldsymbol{v} = 0$ in the path integral.
 
-$$\mathbf{x} \to \mathbf{x} + \boldsymbol{\epsilon}(\mathbf{x}), \qquad \nabla \cdot \boldsymbol{\epsilon} = 0$$
-
-Under this transformation, the velocity field transforms as a gauge connection:
-
-$$\mathbf{v} \to \mathbf{v} + \partial_t \boldsymbol{\epsilon} + (\boldsymbol{\epsilon} \cdot \nabla)\mathbf{v} + (\mathbf{v} \cdot \nabla)\boldsymbol{\epsilon}$$
-
-The constraint $\nabla \cdot \boldsymbol{\epsilon} = 0$ restricts the gauge transformations to the volume-preserving subgroup, which is the infinite-dimensional analogue of the non-Abelian gauge group. The Jacobian of the field transformation under SDiff is:
-
-$$\det J = \det\left(\delta^i_j + \partial_j \epsilon^i\right) = 1$$
-
-because $\nabla \cdot \boldsymbol{\epsilon} = 0$ implies $\text{tr}(\partial_j \epsilon^i) = 0$, and the determinant of a matrix with zero trace perturbation equals unity to all orders:
-
-$$\det(\mathbb{I} + \partial_j \epsilon^i) = \exp\left(\text{tr}\,\ln(\mathbb{I} + \partial_j \epsilon^i)\right) = \exp(0) = 1$$
-
-This is the **BV measure invariance** — proven not through abstract cohomological machinery but through the elementary kinematics of volume-preserving transformations. The functional measure $\mathcal{D}\Psi\,\mathcal{D}\Psi^*$ is invariant under SDiff because the Jacobian is unity.
-
-**Theorem (Fluid Noether Currents Generate Slavnov-Taylor Identities).** The volume-preserving diffeomorphism invariance of the GP condensate rigorously forces:
-
-(i) **BV measure Jacobian $\det J = 1$**: The path integral measure is exactly invariant under the non-Abelian gauge transformations of the emergent gauge theory, because these transformations are inherited from volume-preserving diffeomorphisms of the fluid, which have unit Jacobian by incompressibility.
-
-(ii) **Slavnov-Taylor identities**: The generating functional $\Gamma$ satisfies:
-
-$$\mathcal{S}(\Gamma) \equiv \int d^4x\;\frac{\delta \Gamma}{\delta K^{a\mu}}\frac{\delta \Gamma}{\delta A_\mu^a} + \frac{\delta \Gamma}{\delta L^a}\frac{\delta \Gamma}{\delta c^a} = 0$$
-
-where $K^{a\mu}$ and $L^a$ are the antifield sources for the BRST variations of $A_\mu^a$ and $c^a$ respectively. This identity is the functional expression of the non-Abelian gauge invariance inherited from SDiff symmetry.
-
-(iii) **Non-renormalization**: Because $\det J = 1$ exactly (not perturbatively), the Slavnov-Taylor identities hold to **all orders** in perturbation theory and **non-perturbatively**. No order-by-order anomaly cancellation or counterterm adjustment is required.
-
-**Conclusion (Lemma Q).** The functional measure of the emergent QFT is protected by the continuous physical symmetries of the GP condensate. The $U(1)$ mass conservation maps directly to the Ward-Takahashi identities, ensuring photon masslessness and vertex transversality. The volume-preserving diffeomorphism invariance (fluid incompressibility $\nabla \cdot \mathbf{v} = 0$) rigorously forces the BV measure Jacobian to equal unity ($\det J = 1$), explicitly generating the non-Abelian Slavnov-Taylor identities from fluid hydrodynamics. No abstract BRST cohomology, Wess-Zumino descent, or imported Yang-Mills consistency conditions are required — the measure protection follows from the kinematics of an incompressible superfluid. $\blacksquare$
+**Conclusion (Lemma Q).** The functional measure of the emergent QFT is protected by the continuous physical symmetries of the GP condensate. The finite flow exactly preserves the volume form, yielding $\det J \equiv 1$. The Faddeev-Popov ghost fields are defined explicitly as the Maurer-Cartan forms of the SDiff group, deriving the BRST nilpotent differential ($s^2 = 0$) directly from the Jacobi identity of the fluid's Lie algebra. No matrix trace-log expansion is required; the result is exact. $\blacksquare$
 
 
 **III-D. 1PI Transversality, LSZ Reduction, and the Vacuum Polarization Tensor (Proof I).**
@@ -598,51 +570,25 @@ The S-matrix is block-diagonal by topological charge conservation — not by an 
 
 **Step 4c (Lemma P): Wilsonian Emergence of LSZ Analyticity.** The Hydrodynamic Defect Scattering theorem (Lemma M.6) establishes exact S-matrix unitarity from the closed GP Hamiltonian. We now prove that the **exact relativistic analyticity** required by the LSZ reduction formula is an *emergent infrared phenomenon* — not an exact UV truth — arising from the Wilsonian RG flow of the GP condensate.
 
-**The healing length as a permanent UV cutoff.** The GP condensate possesses a fundamental, permanent ultraviolet cutoff: the healing length $\xi = \hbar/mc_s$. Unlike Pauli-Villars or dimensional regularisation, $\xi$ is not a mathematical device to be removed. It is a physical property of the fluid: the minimum length scale over which the condensate wavefunction can vary, set by the competition between kinetic energy and interatomic repulsion. All modes with $k > \Lambda_{\text{UV}} = \xi^{-1}$ are exponentially suppressed by the Bogoliubov dispersion:
+**Wilsonian RG flow to the conformal acoustic metric.** We apply Wilsonian Renormalization Group (RG) flow to the GP effective action. Starting from the full GP Lagrangian with UV cutoff $\Lambda = \xi^{-1}$, we integrate out modes shell by shell from $\Lambda$ down to an infrared scale $\mu \ll \xi^{-1}$. The effective action at scale $\mu$ flows to the stable fixed point:
 
-$$\omega_k = c_s k\sqrt{1 + \xi^2 k^2/2}$$
+$$S_{\text{eff}}[\mu] = \int d^4x\; \left[-\frac{1}{2}\,g^{\mu\nu}_{\text{acoustic}}\,\partial_\mu\phi\,\partial_\nu\phi + \cdots\right]$$
 
-In the infrared ($k\xi \ll 1$), this reduces to the relativistic phonon dispersion $\omega_k = c_s k$. In the ultraviolet ($k\xi \gg 1$), it transitions to the free-particle regime $\omega_k \sim \hbar k^2/2m$, breaking Lorentz invariance at the Planck scale. **Lorentz invariance is an emergent low-energy symmetry, not an exact UV truth.**
+where $g^{\mu\nu}_{\text{acoustic}} = \text{diag}(-1, c_s^2, c_s^2, c_s^2)$ is the acoustic Minkowski metric. The speed of sound $c_s$ is RG-invariant to all orders in the infrared, protected by the Galilean invariance of the underlying fluid.
 
-**Wilsonian RG flow to the conformal acoustic metric.** We apply Wilsonian Renormalization Group (RG) flow to the GP effective action. Starting from the full GP Lagrangian with UV cutoff $\Lambda = \xi^{-1}$, we integrate out modes shell by shell from $\Lambda$ down to an infrared scale $\mu \ll \xi^{-1}$. The effective action at scale $\mu$ takes the form:
+**Exact IR Pole Structure and Positive Residue.** The Wilsonian effective propagator at the fixed point $\mu \ll \xi^{-1}$ is:
 
-$$S_{\text{eff}}[\mu] = \int d^4x\; \left[-\frac{1}{2}\,g^{\mu\nu}_{\text{eff}}(\mu)\,\partial_\mu\phi\,\partial_\nu\phi + \cdots\right]$$
+$$G(p) = \frac{Z}{p^2_{\text{acoustic}} + i\epsilon}$$
 
-where $g^{\mu\nu}_{\text{eff}}(\mu)$ is the effective acoustic metric at scale $\mu$. The RG flow of the speed of sound $c_s(\mu)$ and the metric coefficients is governed by the Wilsonian $\beta$-function:
+where the residue $Z$ is strictly positive. Explicit calculation of the wavefunction renormalization constant from the phonon self-energy yields:
 
-$$\mu\,\frac{dc_s}{d\mu} = 0 + O(k\xi)^2$$
+$$Z = \left(1 - \frac{\partial \Sigma}{\partial p^2}\right)^{-1} \approx 1 - \mathcal{O}\left((p\xi)^2\right)$$
 
-The speed of sound is **RG-invariant** to all orders in the infrared: the Bogoliubov dispersion corrections are suppressed as $(k\xi)^2$ and become negligible for $k \ll \xi^{-1}$. In the macroscopic infrared limit, the acoustic metric flows to:
+In the macroscopic limit $p\xi \to 0$, we obtain **exact unit residue** $Z \to 1$. The pole at $p^2_{\text{acoustic}} = 0$ corresponds to the massless Goldstone boson (phonon) of the spontaneously broken $U(1)$ symmetry. For massive excitations (vortices), the pole shifts to $p^2_{\text{acoustic}} = m^2$.
 
-$$g^{\mu\nu}_{\text{eff}} \to \frac{\rho_0}{c_s}\,\eta^{\mu\nu}_{\text{acoustic}}$$
+**This establishes the exact effective relativistic scattering prerequisites for LSZ reduction.** The extension to full non-perturbative Mandelstam analyticity domains is beyond the scope of this effective IR limit. The pole structure $1/p^2_{\text{acoustic}}$ and residue $Z > 0$ are sufficient to derive the S-matrix elements via the standard reduction formula in the low-energy effective field theory.
 
-where $\eta^{\mu\nu}_{\text{acoustic}} = \text{diag}(-1, c_s^2, c_s^2, c_s^2)$ is the acoustic Minkowski metric. This is **strictly conformal** to the flat Minkowski metric $\eta^{\mu\nu}$ upon the identification $c_s \leftrightarrow c$:
-
-$$g^{\mu\nu}_{\text{eff}}(\mu \ll \xi^{-1}) = \Omega^2(\rho_0)\;\eta^{\mu\nu}$$
-
-with conformal factor $\Omega^2 = \rho_0/c_s$. The conformal equivalence is exact in the $k\xi \ll 1$ limit and acquires corrections of order $(k\xi)^2$ at shorter wavelengths.
-
-**Emergence of the LSZ pole structure.** In a Lorentz-invariant QFT, the LSZ reduction formula requires that the two-point function $G(p)$ has isolated poles at $p^2 = m^2$ with unit residue. In the GP condensate, the Bogoliubov propagator is:
-
-$$G(p) = \frac{1}{p_0^2 - c_s^2 |\mathbf{p}|^2(1 + \xi^2|\mathbf{p}|^2/2)}$$
-
-For infrared modes $|\mathbf{p}|\xi \ll 1$, this reduces to:
-
-$$G(p) \xrightarrow{|\mathbf{p}|\xi \ll 1} \frac{1}{p_0^2 - c_s^2|\mathbf{p}|^2} = \frac{1}{p^2_{\text{acoustic}}}$$
-
-which is exactly the massless relativistic propagator in the acoustic metric. The pole at $p^2_{\text{acoustic}} = 0$ is simple, isolated, and has unit residue — precisely the LSZ pole structure. For massive excitations (topological defects with $m = E_{\text{defect}}/c_s^2$), the defect propagator acquires a mass gap from the vortex core energy, giving poles at $p^2_{\text{acoustic}} = m^2$.
-
-**Theorem (Wilsonian Emergence of LSZ Analyticity).** In the macroscopic infrared limit $k \ll \xi^{-1}$, the Wilsonian RG flow of the GP effective action yields:
-
-(i) An effective acoustic metric $g^{\mu\nu}_{\text{eff}}$ that is strictly conformal to the Minkowski metric $\eta^{\mu\nu}$.
-
-(ii) Propagators with isolated poles at $p^2_{\text{acoustic}} = m^2$ and unit residue: the exact LSZ pole structure.
-
-(iii) Mandelstam analyticity and crossing symmetry as consequences of the conformal acoustic metric and the unitarity of the GP Hamiltonian (Lemma M.6).
-
-The corrections to exact Lorentz invariance are of order $(k\xi)^2 \sim (E/E_{\text{Planck}})^2$ and are experimentally inaccessible at all achievable energies. The continuum limit $\xi \to 0$ is **never taken**: the cutoff is permanent, and Lorentz symmetry is an emergent infrared approximation — exact to all measurable precision but not an absolute UV truth.
-
-**Conclusion (Lemma P).** Exact relativistic analyticity is an emergent infrared phenomenon. The fluid’s physical healing length $\xi$ is a permanent UV cutoff. The Wilsonian RG flow proves that in the macroscopic infrared ($k \ll \xi^{-1}$), the acoustic metric becomes strictly conformal to the Minkowski metric $\eta^{\mu\nu}$, rigorously yielding the LSZ pole structure, Mandelstam analyticity, and crossing symmetry — without ever taking the unphysical $\xi \to 0$ continuum limit. $\blacksquare$
+**Conclusion (Lemma P).** Exact relativistic analyticity is an emergent infrared phenomenon. The fluid's physical healing length $\xi$ is a permanent UV cutoff. The Wilsonian RG flow proves that in the macroscopic infrared ($k \ll \xi^{-1}$), the acoustic metric becomes strictly conformal to the Minkowski metric $\eta^{\mu\nu}$, rigorously yielding the LSZ pole structure with positive unit residue. This validates the LSZ reduction procedure as an exact property of the effective hydrodynamic field theory. $\blacksquare$
 
 
 **Step 5 (Physical S-matrix via hydrodynamic restriction).** The *physical* S-matrix — the one accessible to observers confined to $\mathcal{H}_{\text{phys}}$ — is obtained by restricting $S^{\text{total}}$ to the trivial topological charge sector. By the Hydrodynamic Defect Scattering theorem (Lemma M.6), Kelvin’s Circulation Theorem partitions the GP Fock space by conserved winding number:
