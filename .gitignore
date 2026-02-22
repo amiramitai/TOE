@@ -12,3 +12,4 @@ out/
 .DS_Store
 *.bak
 test-browser.js
+creds.md
