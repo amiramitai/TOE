@@ -4,7 +4,7 @@
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
-**Version:** 8.2 (The Coercive Algebra Release)
+**Version:** 8.3 (The Absolute Closure Release)
 **Series:** Part I of III
 
 ---

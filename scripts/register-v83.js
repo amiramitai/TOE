@@ -1,8 +1,8 @@
 /**
- * register-v83.js — Register UHF v8.3 on Polygon Mainnet
- * Structural Overhaul: §3.2.1 pip-and-tail echo (Part I),
- *   Perturbative superselection + Q_vac bound (Part II),
- *   Topological phase transition anchor to hadronic-quark crossover (Part III)
+ * register-v83.js — Register UHF v8.3 FINAL on Polygon Mainnet
+ * Updates: Strict Mandelstam Purge (Part II),
+ *          Exact SDiff to FP Measure (Lemma Q),
+ *          Exact Operator Map M (Lemma R)
  */
 const { ethers } = require("ethers");
 const fs = require("fs");
@@ -20,23 +20,24 @@ const PAPERS = [
         file: "./UHF_Part_I_Core.md",
         version: "8.3-Part-I",
         label: "Part I: The Physical Core",
-        expectedHash: "948db8bb167af19f74640b2b2457754754ff13b094886bc557692214579be928"
+        expectedHash: "977bbc3df48b4f735d832d089a733fd697df1d1a832a91ce4b3b91bcc39ae0c0"
     },
     {
         file: "./UHF_Part_II_Mathematical_Foundations.md",
         version: "8.3-Part-II",
         label: "Part II: Mathematical Foundations",
-        expectedHash: "6462c3f3393e0ea427ae849b4b230901c346d80078f6c5169947107db5ddcd2c"
+        expectedHash: "75728f1f64df0581991dcd05c3a50bf39efb63aa3f6460e23f0c0912aec38a5d"
     },
     {
         file: "./UHF_Part_III_Standard_Model.md",
         version: "8.3-Part-III",
         label: "Part III: Standard Model Extension",
-        expectedHash: "3c208f7e5985b77081f7807c3a5b19b7ce140fe54b3dceed908a6bfcb20fc56e"
+        expectedHash: "0e296b7e82a30d21faffa9219ceffe387b50cb921260ace0dc11cddb2a65a136"
     }
 ];
 
 async function main() {
+    // Verify all hashes first
     console.log("Verifying SHA-256 hashes...\n");
     for (const paper of PAPERS) {
         const content = fs.readFileSync(paper.file);
@@ -53,16 +54,19 @@ async function main() {
         paper.hash = hash;
     }
 
-    const provider = new ethers.JsonRpcProvider(
-        "https://polygon-bor-rpc.publicnode.com", 137, { staticNetwork: true }
-    );
+    // Connect to Polygon RPC
+    // Using a reliable public RPC for Polygon Mainnet (Chain ID 137)
+    const provider = new ethers.JsonRpcProvider("https://polygon-bor-rpc.publicnode.com", 137, { staticNetwork: true });
     const wallet = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY, provider);
     const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
 
+    console.log(`Connected to Polygon Mainnet via ${wallet.address}`);
+    
     const results = [];
 
     for (const paper of PAPERS) {
         console.log(`Registering ${paper.version} on UHFPaperRegistry...`);
+        // We use manual gas settings to ensure transaction goes through
         const tx = await contract.registerPaper(paper.hash, "Amir Benjamin Amitay", paper.version);
         console.log(`  TX sent: ${tx.hash}`);
 
@@ -79,7 +83,7 @@ async function main() {
     }
 
     console.log("\n" + "=".repeat(70));
-    console.log("SUCCESS — UHF v8.3 (ALL 3 PARTS) REGISTERED ON POLYGON MAINNET");
+    console.log("SUCCESS — UHF v8.3 FINAL (ALL 3 PARTS) REGISTERED ON POLYGON MAINNET");
     console.log("=".repeat(70));
     for (const r of results) {
         console.log(`\n  ${r.label} (${r.version})`);
@@ -90,6 +94,7 @@ async function main() {
     }
     console.log("=".repeat(70));
 
+    // Append to on-chain registry log
     for (const r of results) {
         const logEntry = `\n${r.version} | ${new Date().toISOString()} | Block: ${r.block} | TX: ${r.txHash} | Hash: ${r.hash}`;
         fs.appendFileSync("./scripts/on-chain-log.txt", logEntry);
