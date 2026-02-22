@@ -1,77 +1,43 @@
-// worker-trefoil.js — Trefoil Reconnection: NAB (Non-Axiomatic Beltrami) evolution
-// Computes vortex filament positions and Hamiltonian for the dissolving trefoil
+// worker-trefoil.js — Trefoil Reconnection: slider-driven snapshot
+// Generates trefoil knot geometry at any decay level (deterministic, no iteration)
 
 self.onmessage = function(e) {
-    if (e.data.type === 'compute') {
-        // Generate trefoil knot parametrically
-        const N = e.data.resolution || 256;
-        const points = [];
-        for (let i = 0; i < N; i++) {
-            const t = (i / N) * 2 * Math.PI;
-            const x = Math.sin(t) + 2 * Math.sin(2 * t);
-            const y = Math.cos(t) - 2 * Math.cos(2 * t);
-            const z = -Math.sin(3 * t);
-            points.push({ x, y, z });
+    if (e.data.type === 'compute' || e.data.type === 'snapshot') {
+        var N = e.data.resolution || 150;
+        var decay = (e.data.decay !== undefined) ? e.data.decay : 1.0;
+        var points = [];
+        for (var i = 0; i < N; i++) {
+            var t = (i / N) * 2 * Math.PI;
+            var x = (Math.sin(t) + 2 * Math.sin(2 * t)) * decay;
+            var y = (Math.cos(t) - 2 * Math.cos(2 * t)) * decay;
+            var z = (-Math.sin(3 * t)) * decay;
+            if (decay < 1) {
+                var d = 1 - decay;
+                x += d * 1.5 * Math.sin(7*t + d*5) * (0.5 + 0.5*Math.cos(3*t));
+                y += d * 1.5 * Math.cos(5*t + d*3) * (0.5 + 0.5*Math.sin(4*t));
+                z += d * 2.0 * Math.sin(9*t + d*7) * Math.cos(2*t);
+                if (d > 0.4) {
+                    x += d*d * Math.sin(23*t) * 0.8;
+                    y += d*d * Math.cos(19*t) * 0.8;
+                    z += d*d * Math.sin(17*t) * 0.8;
+                }
+            }
+            points.push({ x: x, y: y, z: z });
         }
-        self.postMessage({ type: 'geometry', points });
-    }
-    if (e.data.type === 'evolve') {
-        const { points, dt, time, dissipation } = e.data;
-        const N = points.length;
-        const newPoints = [];
-        // Biot-Savart LIA (Local Induction Approximation) + dissipation
-        // Simulates the trefoil dissolving into acoustic phonons
-        const decay = Math.exp(-dissipation * time);
-        // Hamiltonian: H = (1/2) * kappa^2 * integral |dr/ds|^2 ds
-        let H = 0;
-        let H0 = 0;
-        for (let i = 0; i < N; i++) {
-            const p = points[i];
-            const pn = points[(i + 1) % N];
-            const pp = points[(i - 1 + N) % N];
-            // Tangent vector
-            const tx = (pn.x - pp.x) / 2;
-            const ty = (pn.y - pp.y) / 2;
-            const tz = (pn.z - pp.z) / 2;
-            const tLen = Math.sqrt(tx*tx + ty*ty + tz*tz);
-            // Binormal (approximate via second derivative)
-            const bx = pn.x - 2*p.x + pp.x;
-            const by = pn.y - 2*p.y + pp.y;
-            const bz = pn.z - 2*p.z + pp.z;
-            // LIA velocity: v = kappa * (tangent x binormal) / |tangent|^2
-            let vx = (ty * bz - tz * by) / (tLen * tLen + 1e-10);
-            let vy = (tz * bx - tx * bz) / (tLen * tLen + 1e-10);
-            let vz = (tx * by - ty * bx) / (tLen * tLen + 1e-10);
-            // Clamp velocity to prevent numerical explosion
-            const speed = Math.sqrt(vx*vx + vy*vy + vz*vz);
-            if (speed > 2.0) { const s = 2.0 / speed; vx *= s; vy *= s; vz *= s; }
-            // Apply dissipation (trefoil dissolves)
-            const noise = (Math.random() - 0.5) * 0.003 * (1 - decay);
-            let nx = p.x + dt * vx * decay + noise;
-            let ny = p.y + dt * vy * decay + noise;
-            let nz = p.z + dt * vz * decay + noise;
-            // Clamp position within bounds
-            const pr = Math.sqrt(nx*nx + ny*ny + nz*nz);
-            if (pr > 8) { nx *= 8/pr; ny *= 8/pr; nz *= 8/pr; }
-            newPoints.push({ x: nx, y: ny, z: nz });
-            // Accumulate Hamiltonian
-            const dx = pn.x - p.x, dy = pn.y - p.y, dz = pn.z - p.z;
-            H += dx*dx + dy*dy + dz*dz;
-            // Initial Hamiltonian (from undissipated trefoil)
-            const t0 = (i / N) * 2 * Math.PI;
-            const t1 = ((i+1) / N) * 2 * Math.PI;
-            const x0 = Math.sin(t0)+2*Math.sin(2*t0), x1 = Math.sin(t1)+2*Math.sin(2*t1);
-            const y0 = Math.cos(t0)-2*Math.cos(2*t0), y1 = Math.cos(t1)-2*Math.cos(2*t1);
-            const z0 = -Math.sin(3*t0), z1 = -Math.sin(3*t1);
-            H0 += (x1-x0)**2 + (y1-y0)**2 + (z1-z0)**2;
+        var H = 0, H0 = 0;
+        for (var i = 0; i < N; i++) {
+            var p = points[i], pn = points[(i+1) % N];
+            H += (pn.x-p.x)*(pn.x-p.x) + (pn.y-p.y)*(pn.y-p.y) + (pn.z-p.z)*(pn.z-p.z);
+            var t0 = (i / N) * 2 * Math.PI, t1 = ((i+1) / N) * 2 * Math.PI;
+            var x0 = Math.sin(t0)+2*Math.sin(2*t0), x1 = Math.sin(t1)+2*Math.sin(2*t1);
+            var y0 = Math.cos(t0)-2*Math.cos(2*t0), y1 = Math.cos(t1)-2*Math.cos(2*t1);
+            var z0 = -Math.sin(3*t0), z1 = -Math.sin(3*t1);
+            H0 += (x1-x0)*(x1-x0) + (y1-y0)*(y1-y0) + (z1-z0)*(z1-z0);
         }
-        const conservation = ((H - H0) / H0) * 100; // percentage deviation
+        var conservation = ((H - H0) / H0) * 100;
         self.postMessage({
-            type: 'evolved',
-            points: newPoints,
-            hamiltonian: H * 0.5,
-            conservation: conservation,
-            decay: decay
+            type: e.data.type === 'snapshot' ? 'snapshot' : 'geometry',
+            points: points, conservation: conservation, decay: decay
         });
     }
 };
