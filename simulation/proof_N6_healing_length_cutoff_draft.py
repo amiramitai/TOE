@@ -3,7 +3,7 @@
 Lemma N.6 — The Healing Length Cutoff (Slaying the Circular Anomaly)
 =====================================================================
 
-PARADIGM: No Pauli-Villars.  No dimensional regularization.  No imported
+PARADIGM: No artificial regulators.  No dimensional regularization.  No imported
 SU(3) cohomology.  The GP condensate provides its own physical, intrinsic
 ultraviolet cutoff: the healing length xi = hbar/(mc).
 
@@ -44,7 +44,7 @@ THEOREM (Healing Length UV Cutoff & Native Measure Conservation):
       (b) There are zero UV divergences, hence zero anomalies.
       (c) The BV measure is trivially conserved: it is just the
           U(1) Noether conservation of particle number in the GP equation.
-    No SU(3) cohomology, no Pauli-Villars, no dimensional regularization.
+    No SU(3) cohomology, no artificial regulators, no dimensional regularization.
 ================================================================================
 """
 
@@ -191,7 +191,7 @@ def proof_N6():
     print("─" * 70)
     print("  Anomalies in standard QFT arise when:")
     print("    1. A classical symmetry is broken by UV regularization")
-    print("    2. The regulator (Pauli-Villars, dim-reg) introduces artifacts")
+    print("    2. An artificial regulator introduces artifacts")
     print("    3. The artifacts cannot be removed → anomaly persists")
     print("")
     print("  In the GP condensate:")
@@ -282,7 +282,7 @@ def proof_N6():
     print("─" * 70)
     print("  Standard QFT approach (CIRCULAR):")
     print("    1. Point particles → UV divergences")
-    print("    2. Import regulator (dim-reg, Pauli-Villars)")
+    print("    2. Import artificial regulator (e.g. dim-reg)")
     print("    3. Compute anomaly")
     print("    4. Import counterterms to cancel anomaly")
     print("    5. Must assume gauge structure exists to write counterterms")
@@ -323,7 +323,7 @@ def proof_N6():
     (5) det J = 1  (the BV measure is trivially unity)
     (6) This is NATIVE U(1) particle-number conservation
     (7) Equivalent to GP continuity equation (Madelung form)
-    (8) No external imports: no Pauli-Villars, no dim-reg, no SU(3)
+    (8) No external imports: no artificial regulators, no dim-reg, no SU(3)
 
   OBJECTION SLAIN:
     "Anomaly cancellation is circular (importing YM cohomology)"

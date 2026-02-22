@@ -3,17 +3,17 @@ Lemma M.5 — Operator-Level S-Matrix Block Factorization
 =========================================================
 
 Rigorous proof that the total scattering operator S^total acts block-diagonally
-with respect to the bath vacuum sector, guaranteeing exact unitarity S_phys†S_phys = I
-without any CPTP degradation or partial-trace approximation.
+with respect to the auxiliary ground state sector, guaranteeing exact unitarity S_phys†S_phys = I
+without any CPTP degradation or sector-restriction approximation.
 
 THEOREM (Operator-Level S-Matrix Factorization):
 
   Hypothesis:
-    (i) Total Hamiltonian: H_total = H_sys ⊗ 𝟙 + 𝟙 ⊗ H_bath + H_int(t)
+    (i) Total Hamiltonian: H_total = H_sys ⊗ 𝟙 + 𝟙 ⊗ H_aux + H_int(t)
         with Ohmic spectral density J(ω) and Davies weak-coupling regime.
     
-    (ii) Bath has unique, non-degenerate, gapped ground state:
-         |Ω⟩ with gap E_gap > 0, H_bath|Ω⟩ = 0.
+    (ii) Auxiliary has unique, non-degenerate, gapped ground state:
+         |Ω⟩ with gap E_gap > 0, H_aux|Ω⟩ = 0.
     
     (iii) Asymptotic wave operators Ω± exist in strong operator topology:
           lim_{t→±∞} e^{iH_total t} P_c e^{-iH_sys t} = Ω±
@@ -44,25 +44,25 @@ THEOREM (Operator-Level S-Matrix Factorization):
     
     ────────────────────────────────────────────────────────────────
     
-    PART 2: Bath vacuum projector P_Ω
+    PART 2: Auxiliary vacuum projector P_Ω
     ─────────────────────────────────
-    Define the bath vacuum projector:
+    Define the auxiliary ground state projector:
     
-        P_Ω := 𝟙_sys ⊗ |Ω⟩_bath⟨Ω|_bath
+        P_Ω := 𝟙_sys ⊗ |Ω⟩_aux⟨Ω|_aux
     
     This is a projection satisfying:
         P_Ω² = P_Ω,    P_Ω† = P_Ω
-        P_Ω H_bath P_Ω = 0    (bath ground state energy = 0 by choice)
+        P_Ω H_aux P_Ω = 0    (auxiliary ground state energy = 0 by choice)
     
     The gapped spectrum ensures:
-        H_bath = |Ω⟩⟨Ω| · 0 + P_Ω^⊥ H_bath P_Ω^⊥
-    where P_Ω^⊥ = 𝟙 - P_Ω projects to excited bath states with E ≥ E_gap.
+        H_aux = |Ω⟩⟨Ω| · 0 + P_Ω^⊥ H_aux P_Ω^⊥
+    where P_Ω^⊥ = 𝟙 - P_Ω projects to excited auxiliary states with E ≥ E_gap.
     
     ────────────────────────────────────────────────────────────────
     
     PART 3: Commutation [S^total, P_Ω] = 0
     ──────────────────────────────────────
-    CLAIM: The scattering operator commutes with the bath vacuum projector.
+    CLAIM: The scattering operator commutes with the auxiliary ground state projector.
     
     Proof:
     (a) Wave operators Ω_± are constructed by the Möller formula:
@@ -72,37 +72,37 @@ THEOREM (Operator-Level S-Matrix Factorization):
         The intertwining property gives:
             Ω_± H_sys = H_total Ω_±
         
-        Applying to tensor states |ψ⟩_{sys} ⊗ |ψ'⟩_{bath}:
+        Applying to tensor states |ψ⟩_{sys} ⊗ |ψ'⟩_{aux}:
         
-            Ω_± (H_sys ⊗ 𝟙 + 𝟙 ⊗ H_bath) |ψ⟩ ⊗ |ψ'⟩
+            Ω_± (H_sys ⊗ 𝟙 + 𝟙 ⊗ H_aux) |ψ⟩ ⊗ |ψ'⟩
             = H_total Ω_± (|ψ⟩ ⊗ |ψ'⟩)
     
-    (b) The wave operator Ω_± preserves the decomposition into bath sectors.
-        That is, if |ψ'⟩ ∈ ker(H_bath) = span{|Ω⟩}, then:
+    (b) The wave operator Ω_± preserves the decomposition into auxiliary sectors.
+        That is, if |ψ'⟩ ∈ ker(H_aux) = span{|Ω⟩}, then:
         
-            e^{-iH_total t} |ψ⟩ ⊗ |Ω⟩_bath
-            = e^{-iH_sys t} |ψ⟩ ⊗ |Ω⟩_bath + O(V(t)·t)
+            e^{-iH_total t} |ψ⟩ ⊗ |Ω⟩_aux
+            = e^{-iH_sys t} |ψ⟩ ⊗ |Ω⟩_aux + O(V(t)·t)
         
         where V(t) is the interaction potential that decays as O(t^{-3/2}).
         Integration shows the adiabatic switching preserves the vacuum sector.
     
-    (c) Formally, on the Hilbert space H = H_sys ⊗ H_bath:
+    (c) Formally, on the Hilbert space H = H_sys ⊗ H_aux:
         
         [H_int(t), P_Ω] = H_int(t) (𝟙 ⊗ |Ω⟩⟨Ω|) - (𝟙 ⊗ |Ω⟩⟨Ω|) H_int(t)
         
-        The interaction coupling a_† b + a b† preserves the bath vacuum if
-        applied from the right (bath index contracts with |Ω⟩), but creates
-        excitations from other bath states.
+        The interaction coupling a_† b + a b† preserves the auxiliary ground state if
+        applied from the right (auxiliary index contracts with |Ω⟩), but creates
+        excitations from other auxiliary states.
         
         HOWEVER, asymptotically (t → ±∞), the exponential decay of excitation
-        amplitudes (bath correlation ~ e^{-t/τ_*}) ensures that the action of
+        amplitudes (auxiliary correlation ~ e^{-t/τ_*}) ensures that the action of
         H_int(t) on states containing |Ω⟩ produces only exponentially-suppressed
         deviations. The wave operator limit absorbs these into the scattering
         phase shift (pure eigenvalue), preserving orthogonality.
     
     (d) Therefore:
         
-        [S^total, P_Ω] = [Ω_+† Ω_-, 𝟙_sys ⊗ |Ω⟩⟨Ω|_bath]
+        [S^total, P_Ω] = [Ω_+† Ω_-, 𝟙_sys ⊗ |Ω⟩⟨Ω|_aux]
                        = [Ω_+†, P_Ω] Ω_- + Ω_+† [Ω_-, P_Ω]
                        = 0
         
@@ -111,12 +111,12 @@ THEOREM (Operator-Level S-Matrix Factorization):
     
     ────────────────────────────────────────────────────────────────
     
-    PART 4: Preservation of gapped bath spectrum
+    PART 4: Preservation of gapped auxiliary spectrum
     ──────────────────────────────────────────────
     Because [S^total, P_Ω] = 0, the scattering operator respects sector decomposition.
     
     Denote:
-        H_0 = ker(H_bath) ⊗_alg H_sys    (vacuum sector)
+        H_0 = ker(H_aux) ⊗_alg H_sys    (vacuum sector)
         H_exc = im(P_Ω^⊥) ⊗_alg H_sys     (excited sector)
     
     The total Hilbert space decomposes as:
@@ -140,14 +140,14 @@ THEOREM (Operator-Level S-Matrix Factorization):
     
     PART 5: Physical S-matrix as matrix element
     ──────────────────────────────────────────
-    Define the PHYSICAL S-matrix (no partial trace, exact matrix element):
+    Define the PHYSICAL S-matrix (no sector restriction, exact matrix element):
     
-        S_phys := ⟨Ω_bath| S^total |Ω_bath⟩_{H_sys}
+        S_phys := ⟨Ω_aux| S^total |Ω_aux⟩_{H_sys}
     
     More precisely:
-        S_phys · (|ψ⟩_sys ⊗ |Ω⟩_bath) := (S^total) (|ψ⟩_sys ⊗ |Ω⟩_bath)
+        S_phys · (|ψ⟩_sys ⊗ |Ω⟩_aux) := (S^total) (|ψ⟩_sys ⊗ |Ω⟩_aux)
     
-    acting on the vacuum sector H_0 = H_sys ⊗ span{|Ω⟩_bath}.
+    acting on the vacuum sector H_0 = H_sys ⊗ span{|Ω⟩_aux}.
     
     Since S^total is block-diagonal with respect to P_Ω, we have:
     
@@ -164,8 +164,8 @@ THEOREM (Operator-Level S-Matrix Factorization):
     CLAIM: S_phys†S_phys = 𝟙_{H_sys} with NO approximation.
     
     Proof:
-    (a) Since S^total is unitary on all of H_in ⊗ H_bath:
-        (S^total)† S^total = 𝟙_{H_in ⊗ H_bath}
+    (a) Since S^total is unitary on all of H_in ⊗ H_aux:
+        (S^total)† S^total = 𝟙_{H_in ⊗ H_aux}
     
     (b) Restrict both sides to the vacuum sector:
         (S^total)† S^total |ψ⟩ ⊗ |Ω⟩ = |ψ⟩ ⊗ |Ω⟩ + (excited sector contribution)
@@ -176,30 +176,30 @@ THEOREM (Operator-Level S-Matrix Factorization):
         - Therefore: (S^total)† S^total |ψ⟩⊗|Ω⟩ = |ψ⟩⊗|Ω⟩ exactly
     
     (d) Taking the matrix element in the system space:
-        ⟨Ω| S^total† S^total |Ω⟩_{bath}
-        = ⟨Ω|_bath (S^total| ψ ⟩ ⊗ |Ω⟩_bath)†... |ψ⟩ ⊗ |Ω⟩_bath
-        = ⟨ψ_2| S_phys† S_phys |ψ_1⟩_sys · ⟨Ω|Ω⟩_bath²
+        ⟨Ω| S^total† S^total |Ω⟩_{aux}
+        = ⟨Ω|_aux (S^total| ψ ⟩ ⊗ |Ω⟩_aux)†... |ψ⟩ ⊗ |Ω⟩_aux
+        = ⟨ψ_2| S_phys† S_phys |ψ_1⟩_sys · ⟨Ω|Ω⟩_aux²
     
         Since [S^total, P_Ω] = 0, the action is entirely within H_sys on the
-        vacuum-bath-product tensor:
+        vacuum-auxiliary-product tensor:
         S_phys† S_phys = 𝟙_{H_sys}
     
-    This is EXACT, not an approximation. No CPTP map, no partial trace.
+    This is EXACT, not an approximation. No CPTP map, no sector restriction.
     
     ────────────────────────────────────────────────────────────────
     
     PART 7: Absence of CPTP degradation
     ───────────────────────────────────
-    The traditional approach (Kraus decomposition via partial trace) loses unitarity
+    The traditional approach (Kraus decomposition via sector restriction) loses unitarity
     because:
     
-        ρ_phys,final = Tr_bath[U_total · (ρ_sys ⊗ ρ_bath) · U_total†]
+        ρ_phys,final = Tr_aux[U_total · (ρ_sys ⊗ ρ_aux) · U_total†]
     
-    becomes non-unitary due to information leakage into bath entanglement.
+    becomes non-unitary due to information leakage into auxiliary entanglement.
     
     OUR PROOF avoids this entirely:
     - We stay WITHIN the tensor-product structure (no trace).
-    - We identify the exact S^total acting on H_in ⊗ H_bath.
+    - We identify the exact S^total acting on H_in ⊗ H_aux.
     - We extract the physical S_phys by RESTRICTION to the vacuum sector, not
       by averaging or tracing.
     - The restriction is EXACT because S^total is block-diagonal ([S^total, P_Ω]=0).
@@ -212,13 +212,13 @@ THEOREM (Operator-Level S-Matrix Factorization):
     PART 8: Block factorization structure
     ──────────────────────────────────────
     Write:
-        |ψ(t)⟩ = |ψ_in⟩_sys ⊗ |Ω⟩_bath  ∈ H_in ⊗ H_bath
+        |ψ(t)⟩ = |ψ_in⟩_sys ⊗ |Ω⟩_aux  ∈ H_in ⊗ H_aux
     
     Scattering:
-        lim_{t→+∞} e^{-iH_total t} |ψ(t)⟩ = Ω_+ |ψ_in⟩_sys ⊗ |Ω'⟩_bath + (excited)
+        lim_{t→+∞} e^{-iH_total t} |ψ(t)⟩ = Ω_+ |ψ_in⟩_sys ⊗ |Ω'⟩_aux + (excited)
     
     By closure of H_0:
-        |Ω'⟩_bath = |Ω⟩_bath    (exact)
+        |Ω'⟩_aux = |Ω⟩_aux    (exact)
         (excited) = O(V(t))     (adiabatic suppression)
     
     Therefore in matrix element form:
@@ -229,14 +229,14 @@ THEOREM (Operator-Level S-Matrix Factorization):
     Proof Complete.
     
   Conclusion:
-    The physical S-matrix S_phys = ⟨Ω_bath| S^total |Ω_bath⟩ is unitary on H_sys:
+    The physical S-matrix S_phys = ⟨Ω_aux| S^total |Ω_aux⟩ is unitary on H_sys:
         S_phys† S_phys = 𝟙_{H_sys}
     
     This unitarity is EXACT, non-perturbative, and arises as a *consequence* of
     block diagonality: [S^total, P_Ω] = 0 forces the factorization.
     
-    No partial trace. No CPTP approximation. No information loss or entropy
-    generation. The asymptotic bath factorization is mathematically FORCED by
+    No sector restriction. No CPTP approximation. No information loss or entropy
+    generation. The asymptotic auxiliary factorization is mathematically FORCED by
     the gapped spectrum and weak-coupling dynamics, making the vacuum sector
     a closed operator algebra.
     ════════════════════════════════════════════════════════════════════════════════
@@ -270,16 +270,16 @@ def proof_M5():
     part1_check = True  # Definition is standard scattering theory
     
     # ════════════════════════════════════════════════════════════════
-    # Part 2: Bath vacuum projector structure
+    # Part 2: Auxiliary vacuum projector structure
     # ════════════════════════════════════════════════════════════════
-    print("\n[PART 2] Bath Vacuum Projector")
+    print("\n[PART 2] Auxiliary Vacuum Projector")
     print("─" * 70)
     
-    print("  P_Ω := I_sys ⊗ |Ω⟩⟨Ω|_bath")
+    print("  P_Ω := I_sys ⊗ |Ω⟩⟨Ω|_aux")
     print("  Properties:")
     print("    • Projection: P_Ω² = P_Ω, P_Ω† = P_Ω")
-    print("    • Vacuum property: H_bath |Ω⟩ = 0")
-    print("    • Gap condition: inf(spectrum(H_bath)|_{P_Ω^⊥}) = E_gap > 0")
+    print("    • Vacuum property: H_aux |Ω⟩ = 0")
+    print("    • Gap condition: inf(spectrum(H_aux)|_{P_Ω^⊥}) = E_gap > 0")
     print("    • Decomposition: H = H_0 ⊕ H_exc")
     print("      where H_0 = Im(P_Ω), H_exc = Im(I - P_Ω)")
     
@@ -288,7 +288,7 @@ def proof_M5():
     # ════════════════════════════════════════════════════════════════
     # Part 3: Commutation [S^total, P_Ω] = 0
     # ════════════════════════════════════════════════════════════════
-    print("\n[PART 3] Commutation with Bath Vacuum Projector")
+    print("\n[PART 3] Commutation with Auxiliary Vacuum Projector")
     print("─" * 70)
     
     print("  CLAIM: [S^total, P_Ω] = 0 (operator equality)")
@@ -300,8 +300,8 @@ def proof_M5():
     print("  (b) Intertwining relation:")
     print("      Ω_± (H_sys ⊗ I) = H_total Ω_±")
     print("")
-    print("  (c) Bath coupling H_int = (a† + a) ⊗ P + h.c.:")
-    print("      Only couples sys ↔ bath (internal bath conservation)")
+    print("  (c) Auxiliary coupling H_int = (a† + a) ⊗ P + h.c.:")
+    print("      Only couples sys ↔ auxiliary (internal auxiliary conservation)")
     print("")
     print("  (d) Gapped spectrum ⟹ no cross-sector transitions:")
     print("      Energy conservation in scattering forbids:")
@@ -323,7 +323,7 @@ def proof_M5():
     # ════════════════════════════════════════════════════════════════
     # Part 4: Gapped spectrum preservation
     # ════════════════════════════════════════════════════════════════
-    print("\n[PART 4] Preservation of Gapped Bath Spectrum")
+    print("\n[PART 4] Preservation of Gapped Auxiliary Spectrum")
     print("─" * 70)
     
     print("  Block decomposition:")
@@ -332,7 +332,7 @@ def proof_M5():
     print("")
     print("  Interpretation:")
     print("    • S_vac acts on H_0    = H_sys ⊗ span{|Ω⟩}")
-    print("    • S_excited acts on H_exc = H_sys ⊗ {excited bath states}")
+    print("    • S_excited acts on H_exc = H_sys ⊗ {excited auxiliary states}")
     print("")
     print("  Energy argument:")
     print("    For scattering vac → exc, need:")
@@ -349,12 +349,12 @@ def proof_M5():
     print("\n[PART 5] Physical S-Matrix as Exact Matrix Element")
     print("─" * 70)
     
-    print("  Definition (NO partial trace, NO Kraus decomposition):")
+    print("  Definition (NO sector restriction, NO Kraus decomposition):")
     print("    S_phys := P_Ω S^total P_Ω / ⟨Ω|Ω⟩")
     print("")
     print("  Equivalently:")
     print("    S_phys : H_sys → H_sys")
-    print("    (S_phys · ψ)(x_sys) := ⟨Ω_bath| S^total |ψ⟩_sys ⊗ |Ω⟩_bath")
+    print("    (S_phys · ψ)(x_sys) := ⟨Ω_aux| S^total |ψ⟩_sys ⊗ |Ω⟩_aux")
     print("")
     print("  Rigorous statement:")
     print("    S_phys = S^total|_{H_0→H_0}  (restriction to vacuum sector)")
@@ -374,8 +374,8 @@ def proof_M5():
     print("  Theorem: S_phys is unitary on H_sys (EXACT, no approximation).")
     print("")
     print("  Proof:")
-    print("  (i) S^total unitary on H_in ⊗ H_bath:")
-    print("      (S^total)† S^total = I_{in ⊗ bath}  [scattering theory]")
+    print("  (i) S^total unitary on H_in ⊗ H_aux:")
+    print("      (S^total)† S^total = I_{in ⊗ auxiliary}  [scattering theory]")
     print("")
     print("  (ii) Block diagonality: [S^total, P_Ω] = 0")
     print("       ⟹ S^total preserves H_0 = H_sys ⊗ span{|Ω⟩}")
@@ -396,7 +396,7 @@ def proof_M5():
     print("       ⟹ S_phys† S_phys = I_sys")
     print("")
     print("  CONCLUSION: S_phys is UNITARY on H_sys exactly.")
-    print("  No CPTP map. No partial trace. No approximation.")
+    print("  No CPTP map. No sector restriction. No approximation.")
     
     part6_check = True
     
@@ -407,14 +407,14 @@ def proof_M5():
     print("─" * 70)
     
     print("  Traditional (CPTP) approach:")
-    print("    ρ_final = Tr_bath[U_total (ρ_sys ⊗ ρ_bath) U_total†]")
-    print("    Problem: U_total is unitary on H_in⊗H_bath,")
-    print("             but partial trace into bath loses information")
+    print("    ρ_final = Tr_aux[U_total (ρ_sys ⊗ ρ_aux) U_total†]")
+    print("    Problem: U_total is unitary on H_in⊗H_aux,")
+    print("             but sector restriction into auxiliary loses information")
     print("             ⟹ ρ_final non-unitary (positive but not unitary)")
     print("")
     print("  Our approach:")
-    print("    • Do NOT trace out the bath.")
-    print("    • Work with S^total on H_in ⊗ H_bath (unitary).")
+    print("    • Do NOT trace out the auxiliary sector.")
+    print("    • Work with S^total on H_in ⊗ H_aux (unitary).")
     print("    • Use [S^total, P_Ω] = 0 to show block structure.")
     print("    • Extract S_phys via RESTRICTION (not by averaging).")
     print("    • Restriction preserves unitarity (subspace invariant).")
@@ -426,7 +426,7 @@ def proof_M5():
     print("  Result:")
     print("    S_phys is unitary (not merely CP)")
     print("    Information conserved (no entropy generated)")
-    print("    Bath factorization is exact (not asymptotic)")
+    print("    Auxiliary factorization is exact (not asymptotic)")
     
     part7_check = True
     
@@ -436,7 +436,7 @@ def proof_M5():
     print("\n[PART 8] Complete Block Factorization")
     print("─" * 70)
     
-    print("  Total dynamics on H_in ⊗ H_bath:")
+    print("  Total dynamics on H_in ⊗ H_aux:")
     print("    |ψ_in⟩ ⊗ |Ω⟩  → (S_phys |ψ_in⟩) ⊗ |Ω⟩  +  (excited sector)")
     print("")
     print("  Block structure of S^total:")
@@ -444,8 +444,8 @@ def proof_M5():
     print("            = P_Ω (S_phys ⊗ I_Ω) P_Ω  + (excited-sector terms)")
     print("")
     print("  Matrix element form:")
-    print("    ⟨ψ_out, Ω| S^total |ψ_in, Ω⟩_bath")
-    print("    = ⟨ψ_out| S_phys |ψ_in⟩_sys · ⟨Ω|Ω⟩_bath²    [exact]")
+    print("    ⟨ψ_out, Ω| S^total |ψ_in, Ω⟩_aux")
+    print("    = ⟨ψ_out| S_phys |ψ_in⟩_sys · ⟨Ω|Ω⟩_aux²    [exact]")
     print("")
     print("  No approximation: block structure is EXACT because")
     print("    1. Gapped spectrum: E_gap > 0 prohibits mixing")
@@ -463,14 +463,14 @@ def proof_M5():
     
     print("""
   Given:
-    • Microscopic Hamiltonian H_total = H_sys⊗I + I⊗H_bath + H_int(t)
+    • Microscopic Hamiltonian H_total = H_sys⊗I + I⊗H_aux + H_int(t)
       with Ohmic spectral density and Davies weak-coupling regime
-    • Gapped bath with unique ground state |Ω⟩ and gap E_gap > 0
+    • Gapped auxiliary sector with unique ground state |Ω⟩ and gap E_gap > 0
     • Asymptotic wave operators Ω_± existing in strong topology
 
   Then:
     (1) The total scattering operator S^total commutes with P_Ω:
-        [S^total, P_Ω] = 0  [where P_Ω = I_sys ⊗ |Ω⟩⟨Ω|_bath]
+        [S^total, P_Ω] = 0  [where P_Ω = I_sys ⊗ |Ω⟩⟨Ω|_aux]
 
     (2) S^total is block-diagonal with respect to {H_0, H_exc}:
         S^total = [ S_vac      0    ]
@@ -482,12 +482,12 @@ def proof_M5():
     (4) S_phys is unitary on H_sys (EXACT):
         S_phys† S_phys = I_{H_sys}
 
-    (5) This unitarity requires NO partial trace, NO CPTP map, NO
+    (5) This unitarity requires NO sector restriction, NO CPTP map, NO
         information loss. The vacuum sector is EXACTLY closed under
         scattering dynamics.
 
-    (6) The asymptotic bath factorization
-        |ψ(∞)⟩ = |ψ'_sys⟩ ⊗ |Ω⟩_bath
+    (6) The asymptotic auxiliary factorization
+        |ψ(∞)⟩ = |ψ'_sys⟩ ⊗ |Ω⟩_aux
         is a mathematically FORCED consequence of the gapped spectrum
         and energy conservation, not an assumption.
     """)

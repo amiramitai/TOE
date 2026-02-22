@@ -14,7 +14,7 @@ AXIOM 1 (Illusion of Mass):
 
 AXIOM 2 (No Empty Vacuum):
     The universe is a continuous GP condensate.  There is no external
-    "bath" or "empty space" — only the fluid and its excitations.
+    "auxiliary" or "empty space" — only the fluid and its excitations.
 
 THEOREM (Hydrodynamic Defect Scattering Unitarity):
 
@@ -34,7 +34,7 @@ THEOREM (Hydrodynamic Defect Scattering Unitarity):
          Winding numbers are topological invariants — strictly conserved.
 
   Derive:
-    PART 1 — GP as a closed Hamiltonian system (no external bath).
+    PART 1 — GP as a closed Hamiltonian system (no external auxiliary sector).
     PART 2 — Vortex defect dynamics via hydrodynamic equations of motion.
     PART 3 — Scattering = vortex intersection & reconnection.
     PART 4 — Kelvin's theorem → conservation of total winding number.
@@ -45,7 +45,7 @@ THEOREM (Hydrodynamic Defect Scattering Unitarity):
 
   Conclude:
     S†S = I exactly, because the GP condensate is a CLOSED Hamiltonian
-    system.  There is no external bath, no empty vacuum, no superselection
+    system.  There is no external auxiliary sector, no empty vacuum, no superselection
     sectors required.  Unitarity follows from energy + topology conservation
     in a continuous hydrodynamic medium.
 ================================================================================
@@ -100,7 +100,7 @@ def proof_M6():
     print("    • Unitary evolution: ||Ψ(t)||² = ||Ψ(0)||²  ∀ t")
     print("")
     print("  CRUCIALLY: The GP equation describes a CLOSED system.")
-    print("  There is no coupling to an external bath, no dissipation,")
+    print("  There is no coupling to an external auxiliary sector, no dissipation,")
     print("  no decoherence channel.  The condensate IS the universe.")
     print("")
     print("  ✓ GP is a closed, energy-conserving Hamiltonian system")
@@ -262,7 +262,7 @@ def proof_M6():
     print("    where b_k† creates a Bogoliubov quasiparticle")
     print("    and |Ω_GP⟩ is the condensate ground state.")
     print("")
-    print("  No external bath:  H_total = H_GP  (there is NOTHING else)")
+    print("  No external auxiliary:  H_total = H_GP  (there is NOTHING else)")
     print("")
     print("  ✓ All excitations remain within the condensate Hilbert space")
     results['phonons_in_fluid'] = True
@@ -317,13 +317,13 @@ def proof_M6():
     print("      no H_bath, no H_external, no H_environment")
     print("")
     print("  Therefore:")
-    print("    • No partial trace needed (nothing to trace over)")
+    print("    • No sector restriction needed (nothing to trace over)")
     print("    • No decoherence channel (no environment to entangle with)")
     print("    • No information loss (nowhere for information to go)")
     print("    • ρ(t) = |Ψ(t)⟩⟨Ψ(t)|  remains pure  ∀t")
     print("")
-    print("  The 'superselection' objection assumed an external bath.")
-    print("  In UHF, that bath DOES NOT EXIST.")
+    print("  The 'superselection' objection assumed an external auxiliary sector.")
+    print("  In UHF, that auxiliary DOES NOT EXIST.")
     print("  Unitarity is automatic — it is just Hamiltonian mechanics.")
     print("")
     print("  ✓ No information leakage (no external degrees of freedom)")
@@ -350,13 +350,13 @@ def proof_M6():
     (4) Excess energy → Bogoliubov phonons (remain in fluid)
     (5) Time evolution U(t) = exp(−iHt/ℏ) is unitary (H = H†)
     (6) S†S = I  EXACTLY (from Hamiltonian unitarity)
-    (7) No information leakage (no external bath exists)
+    (7) No information leakage (no external auxiliary exists)
 
   OBJECTION SLAIN:
     "Superselection sectors protect unitarity" is UNNECESSARY.
     The GP condensate is a CLOSED Hamiltonian system.
     S†S = I follows from H = H† and nothing else.
-    No AQFT, no empty vacuum, no external bath, no energy-gap argument.
+    No AQFT, no empty vacuum, no external auxiliary sector, no energy-gap argument.
     """)
 
     results['theorem_m6_hydro_scattering'] = True

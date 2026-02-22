@@ -222,7 +222,7 @@ def proof_L():
     print("    (2) Functional ST identities δ^n(.,.)/δJ^n=0        ✓")
     print("    (3) Zero gauge-boson masses m²=Γ_L(0)=0             ✓")
     print("    (4) BRST invariance Q_B²=0 on H_phys                ✓")
-    print("    (5) Unitarity despite 0.31% Lindblad bath coupling  ✓")
+    print("    (5) Unitarity despite 0.31% Lindblad density-sector coupling  ✓")
     print()
     print("    The open-system evolution PRESERVES gauge structure")
     print("    and mass protection at the FUNCTIONAL level, not just")

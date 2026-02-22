@@ -4,7 +4,7 @@
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
-**Version:** 8.0 FINAL
+**Version:** 8.1 (The Wilsonian-Hydrodynamic Bridge Release)
 **Series:** Part I of III
 
 ---
