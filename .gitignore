@@ -7,3 +7,5 @@ typechain-types/
 _patch_*.py
 _split_*.py
 _test_*.py
+out/
+.DS_Store
