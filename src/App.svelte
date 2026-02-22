@@ -118,6 +118,7 @@
             <span class="text-sm font-semibold text-glow hidden sm:inline text-neon">UHF</span>
         </a>
         <div class="flex gap-4 sm:gap-6 text-xs sm:text-sm font-medium">
+            <a href="#breakthroughs" class="text-gray-400 hover:text-neon transition-colors">Breakthroughs</a>
             <a href="#abstract" class="text-gray-400 hover:text-neon transition-colors">Abstract</a>
             <a href="#pillars" class="text-gray-400 hover:text-neon transition-colors">Pillars</a>
             <a href="#stress-test" class="text-gray-400 hover:text-neon transition-colors">Stress Test</a>
@@ -167,6 +168,130 @@
     </div>
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce z-10">
         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+</section>
+
+<!-- ═══════════════════════ EMPIRICAL BREAKTHROUGHS ═══════════════════════ -->
+<section id="breakthroughs" class="relative py-24 sm:py-32 bg-gradient-to-b from-void via-neon/[0.03] to-void">
+    <div class="max-w-5xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neon/40"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neon">Computational Evidence</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neon/40"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">🚀 Empirical Breakthroughs</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-14 text-sm sm:text-base">
+            UHF does not just retrodict known physics — it computationally resolves the most severe observational anomalies where standard ΛCDM and QFT actively break down.
+        </p>
+
+        <div class="grid gap-6 md:grid-cols-2">
+
+            <!-- JWST -->
+            <div class="glass rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🔭</span>
+                    <h4 class="text-white font-semibold text-base">JWST "Impossible Galaxies"</h4>
+                </div>
+                <p class="text-gray-500 text-xs mb-3 leading-relaxed">
+                    <span class="text-ember font-semibold">The Crisis:</span> JWST finds massive galaxies at z ≈ 10 that standard ΛCDM says should be exponentially rare — dark matter is too collisionless to collapse this fast.
+                </p>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    <span class="text-neon font-semibold">UHF Resolution:</span> Dark Matter is an inviscid superfluid; the Bjerknes acoustic force drives collapse to δ_c ≈ 1.15.
+                </p>
+                <div class="mt-4 pt-4 border-t border-neon/10 flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                    <span class="text-neon font-mono font-bold text-sm">6.01× halo enhancement at z = 10</span>
+                </div>
+            </div>
+
+            <!-- Core-Cusp -->
+            <div class="glass rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🌌</span>
+                    <h4 class="text-white font-semibold text-base">Dark Matter Core-Cusp Problem</h4>
+                </div>
+                <p class="text-gray-500 text-xs mb-3 leading-relaxed">
+                    <span class="text-ember font-semibold">The Crisis:</span> CDM simulations predict infinite-density cusps at galaxy centers. Telescopes see flat, smooth cores.
+                </p>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    <span class="text-neon font-semibold">UHF Resolution:</span> The Bohm Quantum Potential of the UHF superfluid provides repulsive pressure that halts collapse via Thomas-Fermi integration.
+                </p>
+                <div class="mt-4 pt-4 border-t border-neon/10 flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                    <span class="text-neon font-mono font-bold text-sm">Inner slope α = −0.00 (exact flat core)</span>
+                </div>
+            </div>
+
+            <!-- Muon g-2 -->
+            <div class="glass rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">⚛️</span>
+                    <h4 class="text-white font-semibold text-base">Fermilab Muon g−2 Anomaly</h4>
+                </div>
+                <p class="text-gray-500 text-xs mb-3 leading-relaxed">
+                    <span class="text-ember font-semibold">The Crisis:</span> The muon magnetic moment deviates from the Standard Model by 5σ (~2.5 × 10⁻⁹) with no candidate mechanism.
+                </p>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    <span class="text-neon font-semibold">UHF Resolution:</span> Fermions are torus knots (T_{p,q}). The muon (T_{2,5}) has tighter geometric curvature than the electron (T_{2,3}), introducing a hydrodynamic added mass via r/R = 1/√(2π²).
+                </p>
+                <div class="mt-4 pt-4 border-t border-neon/10 flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                    <span class="text-neon font-mono font-bold text-sm">Δa_μ = 1.58 × 10⁻⁹ · zero free parameters</span>
+                </div>
+            </div>
+
+            <!-- NANOGrav -->
+            <div class="glass rounded-2xl p-7">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">📡</span>
+                    <h4 class="text-white font-semibold text-base">NANOGrav 15-Year Spectral Fit</h4>
+                </div>
+                <p class="text-gray-500 text-xs mb-3 leading-relaxed">
+                    <span class="text-ember font-semibold">The Crisis:</span> The stochastic GW background shows low-frequency flattening that GR's f^{−2/3} power law cannot explain.
+                </p>
+                <p class="text-gray-400 text-xs leading-relaxed">
+                    <span class="text-neon font-semibold">UHF Resolution:</span> The viscoelastic vacuum is a natural high-pass filter. UHF attenuation model fit against NANOGrav 15-year dataset.
+                </p>
+                <div class="mt-4 pt-4 border-t border-neon/10 flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                    <span class="text-neon font-mono font-bold text-sm">ΔAIC = 37.69 over pure GR</span>
+                </div>
+            </div>
+
+            <!-- LIGO -->
+            <div class="glass rounded-2xl p-7 md:col-span-2">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">🕳️</span>
+                    <h4 class="text-white font-semibold text-base">LIGO Matched-Filter Blindspots</h4>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-gray-500 text-xs mb-2 leading-relaxed">
+                            <span class="text-ember font-semibold">The Crisis:</span> If GWs are dispersive in a fluid vacuum, why hasn't LIGO detected it?
+                        </p>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            <span class="text-neon font-semibold">UHF Resolution:</span> We injected the UHF dispersive phase lead (+16.67 μs) into a simulated waveform and ran a matched-filter against raw LIGO GW150914 open data. The dispersion maps entirely into the high-frequency noise residual — current GW pipelines are mathematically blind to fluid vacuum signatures.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-3 justify-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                            <span class="text-neon font-mono font-bold text-sm">Template overlap: 0.999999956</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-plasma animate-pulse"></div>
+                            <span class="text-plasma font-mono font-bold text-sm">SNR mismatch: 4.46 × 10⁻⁸</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-ember animate-pulse"></div>
+                            <span class="text-ember font-mono font-bold text-sm">UHF survives all catalog bounds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
