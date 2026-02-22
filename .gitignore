@@ -1,4 +1,5 @@
 node_modules/
+dist/
 .env
 creds.md
 cache/
@@ -9,3 +10,5 @@ _split_*.py
 _test_*.py
 out/
 .DS_Store
+*.bak
+test-browser.js

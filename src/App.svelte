@@ -1,0 +1,773 @@
+<script>
+    import { onMount, onDestroy } from 'svelte';
+    import renderMathInElement from 'katex/contrib/auto-render';
+    import Simulations from './lib/Simulations.svelte';
+
+    let particleRAF;
+    let resizeHandler;
+    let pw = 0, ph = 0;
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * pw;
+            this.y = Math.random() * ph;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.r = Math.random() * 1.5 + 0.5;
+            this.alpha = Math.random() * 0.5 + 0.1;
+            const colors = [[124,58,237],[56,189,248],[6,255,165]];
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > pw) this.vx *= -1;
+            if (this.y < 0 || this.y > ph) this.vy *= -1;
+        }
+        draw(ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color[0]},${this.color[1]},${this.color[2]},${this.alpha})`;
+            ctx.fill();
+        }
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.createElement('div');
+            toast.textContent = 'Copied to clipboard';
+            toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:rgba(6,255,165,0.15);border:1px solid rgba(6,255,165,0.3);color:#06FFA5;padding:0.5rem 1.5rem;border-radius:9999px;font-size:0.75rem;font-family:monospace;z-index:9999;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        });
+    }
+
+    onMount(() => {
+        // KaTeX auto-render
+        try {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false }
+                ],
+                throwOnError: false
+            });
+        } catch(e) {
+            console.warn('KaTeX render error:', e);
+        }
+
+        // Particle field animation
+        const pCanvas = document.getElementById('particle-canvas');
+        if (!pCanvas) return;
+        const pCtx = pCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeParticles() {
+            pw = pCanvas.width = window.innerWidth;
+            ph = pCanvas.height = window.innerHeight;
+        }
+        resizeParticles();
+        resizeHandler = resizeParticles;
+        window.addEventListener('resize', resizeHandler);
+
+        const pCount = window.innerWidth < 768 ? 40 : 80;
+        for (let i = 0; i < pCount; i++) particles.push(new Particle());
+        const maxDist = 120;
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, pw, ph);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw(pCtx);
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < maxDist) {
+                        pCtx.beginPath();
+                        pCtx.moveTo(particles[i].x, particles[i].y);
+                        pCtx.lineTo(particles[j].x, particles[j].y);
+                        pCtx.strokeStyle = `rgba(124,58,237,${(1 - dist / maxDist) * 0.15})`;
+                        pCtx.lineWidth = 0.5;
+                        pCtx.stroke();
+                    }
+                }
+            }
+            particleRAF = requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    });
+
+    onDestroy(() => {
+        if (particleRAF) cancelAnimationFrame(particleRAF);
+        if (resizeHandler) window.removeEventListener('resize', resizeHandler);
+    });
+</script>
+
+<!-- ═══════════════════════ PARTICLE CANVAS ═══════════════════════ -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
+<nav class="fixed top-0 w-full z-50 bg-void/70 border-b border-plasma/10" style="backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-plasma to-neon flex items-center justify-center">
+                <span class="text-white font-bold text-sm">Ψ</span>
+            </div>
+            <span class="text-sm font-semibold text-glow hidden sm:inline text-neon">UHF</span>
+        </a>
+        <div class="flex gap-4 sm:gap-6 text-xs sm:text-sm font-medium">
+            <a href="#abstract" class="text-gray-400 hover:text-neon transition-colors">Abstract</a>
+            <a href="#pillars" class="text-gray-400 hover:text-neon transition-colors">Pillars</a>
+            <a href="#stress-test" class="text-gray-400 hover:text-neon transition-colors">Stress Test</a>
+            <a href="#simulations" class="text-gray-400 hover:text-neon transition-colors">Simulations</a>
+            <a href="#proof" class="text-gray-400 hover:text-neon transition-colors">Proof</a>
+            <a href="#access" class="text-gray-400 hover:text-neon transition-colors">Access</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero-bg relative min-h-screen flex items-center justify-center pt-16">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <div class="vortex-ring absolute w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] rounded-full border border-plasma/10"></div>
+        <div class="vortex-ring-reverse absolute w-[400px] h-[400px] sm:w-[550px] sm:h-[550px] rounded-full border border-neonblue/10"></div>
+        <div class="vortex-ring absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full border border-neon/10"></div>
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <div class="float-anim mb-8">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-plasma/30 to-neon/20 border border-plasma/30">
+                <span class="text-glow text-neon leading-none flex items-center justify-center" style="font-size: 2.5rem; height: 100%; width: 100%; padding-bottom: 0.15em;">∿</span>
+            </div>
+        </div>
+        <p class="text-neon/70 text-xs sm:text-sm font-mono tracking-[0.3em] uppercase mb-6">A Theory of Everything</p>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6">
+            A Unified<br>
+            <span class="bg-gradient-to-r from-plasma via-glow to-neon bg-clip-text text-transparent">Hydrodynamic</span><br>
+            Framework
+        </h1>
+        <p class="text-gray-400 text-sm sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-4">
+            Sub-Planckian Viscoelastic Superfluid Dynamics as the Foundation for Emergent Relativistic and Quantum Phenomena
+        </p>
+        <p class="text-glow/60 text-xs sm:text-sm font-mono mb-10">
+            by <span class="text-neon font-semibold">Amir Benjamin Amitay</span> · February 20, 2026
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#access" class="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-plasma to-purple-500 text-white font-semibold text-sm hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                Read the Papers
+            </a>
+            <a href="#proof" class="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-neon/30 text-neon font-semibold text-sm hover:bg-neon/10 hover:shadow-[0_0_30px_rgba(6,255,165,0.15)] transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                Verify On-Chain
+            </a>
+        </div>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce z-10">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+    </div>
+</section>
+
+<!-- ═══════════════════════ ABSTRACT ═══════════════════════ -->
+<section id="abstract" class="relative py-24 sm:py-32">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-plasma/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-plasma">The Logic Seal</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-plasma/30"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-10">Abstract</h3>
+
+        <div class="glass rounded-2xl p-8 sm:p-10">
+            <p class="text-gray-300 leading-[1.9] text-sm sm:text-base">
+                The prevailing paradigms of modern physics—General Relativity (GR) and Quantum Mechanics (QM)—rest upon fundamentally incompatible ontological foundations. GR posits a continuous, deterministic, and dynamically curving spacetime manifold, whereas QM relies upon a discrete, probabilistic framework governed by wave-function collapse. In this paper, we propose a comprehensive resolution to this crisis of foundations by discarding both the geometric interpretation of spacetime and the probabilistic interpretation of the wave-function. Instead, we advance the thesis that the physical vacuum is a <span class="text-neon font-semibold">deterministic, sub-Planckian viscoelastic superfluid medium</span>.
+            </p>
+            <div class="my-6 h-px bg-gradient-to-r from-transparent via-plasma/20 to-transparent"></div>
+            <p class="text-gray-300 leading-[1.9] text-sm sm:text-base">
+                Within this Unified Hydrodynamic Framework, all relativistic and quantum phenomena are derived strictly as emergent macroscopic behaviors of this underlying fluid. We establish four central pillars:
+                <span class="text-glow">(I)</span> Quantum Mechanics is recovered via Madelung hydrodynamics;
+                <span class="text-glow">(II)</span> Gravity emerges as a macroscopic Bjerknes acoustic radiation force with Kuramoto phase-locking;
+                <span class="text-glow">(III)</span> Electromagnetism is derived from vorticity dynamics, vindicating Maxwell's 1861 model; and
+                <span class="text-glow">(IV)</span> Relativistic effects arise from acoustic geometry and viscoelastic shear.
+                By deriving Newton's inverse-square law, Maxwell's equations, and the Schrödinger equation from a single constitutive superfluid Lagrangian, we demonstrate that the universe is fundamentally hydrodynamic, rendering spacetime curvature and quantum indeterminacy as <span class="text-neon font-semibold">emergent, rather than fundamental</span>, properties of nature.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ FOUR PILLARS ═══════════════════════ -->
+<section id="pillars" class="relative py-24 sm:py-32">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neon/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neon">The Architecture</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neon/30"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">The Four Pillars</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-16 text-sm sm:text-base">
+            Every known force and every quantum phenomenon, derived from one substance — the viscoelastic superfluid vacuum.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Pillar I -->
+            <div class="eq-card rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-plasma/20 border border-plasma/30 flex items-center justify-center text-plasma font-bold text-sm">I</div>
+                    <div>
+                        <h4 class="text-white font-semibold text-lg">Quantum Mechanics</h4>
+                        <p class="text-gray-500 text-xs">Madelung Hydrodynamics</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-5 leading-relaxed">
+                    The Schrödinger equation is not a postulate — it is a macroscopic fluid equation. The "quantum potential" is the internal elastic stress of the superfluid.
+                </p>
+                <div class="bg-void/60 rounded-xl p-4 text-center">
+                    <div class="text-sm">$$i\hbar \frac{"{\\partial \\Psi}{\\partial t}"} = \left(-\frac{"{\\hbar^2}{2M}"}\nabla^2 + V\right)\Psi \;\;\Longrightarrow\;\; \Psi = \sqrt{"{\\rho}"}\, e^{"{iS/\\hbar}"}$$</div>
+                </div>
+                <div class="bg-void/60 rounded-xl p-4 mt-3 text-center">
+                    <p class="text-[10px] text-gray-600 mb-1 font-mono">QUANTUM POTENTIAL</p>
+                    <div class="text-sm">$$Q = -\frac{"{\\hbar^2}{2M}"}\frac{"{\\nabla^2 \\sqrt{\\rho}}{\\sqrt{\\rho}}"}$$</div>
+                </div>
+            </div>
+
+            <!-- Pillar II -->
+            <div class="eq-card rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-neonblue/20 border border-neonblue/30 flex items-center justify-center text-neonblue font-bold text-sm">II</div>
+                    <div>
+                        <h4 class="text-white font-semibold text-lg">Gravity</h4>
+                        <p class="text-gray-500 text-xs">Bjerknes – Kuramoto Acoustic Force</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-5 leading-relaxed">
+                    Gravity is not spacetime curvature — it is a macroscopic acoustic radiation force between pulsating vortices, with universal attraction from spontaneous phase-locking.
+                </p>
+                <div class="bg-void/60 rounded-xl p-4 text-center">
+                    <div class="text-sm">$$\langle F_{"{12}"} \rangle = -\frac{"{2\\pi\\rho_0 \\omega^2 R_1^3 R_2^3 \\epsilon_1 \\epsilon_2}{d^2}"}\cos(\Delta\phi)$$</div>
+                </div>
+                <div class="bg-void/60 rounded-xl p-4 mt-3 text-center">
+                    <p class="text-[10px] text-gray-600 mb-1 font-mono">GRAVITATIONAL CONSTANT</p>
+                    <div class="text-sm">$$G = \frac{"{2\\pi\\rho_0 \\omega^2 R_0^6 \\epsilon^2}{m_0^2}"}$$</div>
+                </div>
+            </div>
+
+            <!-- Pillar III -->
+            <div class="eq-card rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-ember/20 border border-ember/30 flex items-center justify-center text-ember font-bold text-sm">III</div>
+                    <div>
+                        <h4 class="text-white font-semibold text-lg">Electromagnetism</h4>
+                        <p class="text-gray-500 text-xs">Maxwell's Vortex Model Vindicated</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-5 leading-relaxed">
+                    All four Maxwell equations derived from the Euler and Helmholtz vorticity equations. Electric charge is a topological defect; light is a transverse acoustic wave.
+                </p>
+                <div class="bg-void/60 rounded-xl p-4 text-center">
+                    <div class="text-sm">$$\mathbf{"{B}"} = \nabla \times \mathbf{"{v}"} \;\;\;\;\;\; \mathbf{"{E}"} = -\frac{"{\\partial \\mathbf{v}}{\\partial t}"} - \nabla \phi$$</div>
+                </div>
+                <div class="bg-void/60 rounded-xl p-4 mt-3 text-center">
+                    <p class="text-[10px] text-gray-600 mb-1 font-mono">SPEED OF LIGHT = SPEED OF SOUND</p>
+                    <div class="text-sm">$$c \equiv c_s = \sqrt{"{\\frac{\\partial P}{\\partial \\rho}}"} = \frac{"{1}{\\sqrt{\\mu_0 \\varepsilon_0}}"}$$</div>
+                </div>
+            </div>
+
+            <!-- Pillar IV -->
+            <div class="eq-card rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-neon/20 border border-neon/30 flex items-center justify-center text-neon font-bold text-sm">IV</div>
+                    <div>
+                        <h4 class="text-white font-semibold text-lg">Relativity</h4>
+                        <p class="text-gray-500 text-xs">Acoustic Geometry + Viscoelastic Shear</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm mb-5 leading-relaxed">
+                    The Einstein metric is not a physical fabric — it is the effective acoustic metric of phonon propagation. Gravitational waves are transverse shear modes of the vacuum.
+                </p>
+                <div class="bg-void/60 rounded-xl p-4 text-center">
+                    <div class="text-sm">$$ds^2 = \frac{"{\\rho}{c_s}"}\!\left[-(c_s^2 - v^2)dt^2 - 2v_i\,dt\,dx^i + \delta_{"{ij}"}\,dx^i dx^j\right]$$</div>
+                </div>
+                <div class="bg-void/60 rounded-xl p-4 mt-3 text-center">
+                    <p class="text-[10px] text-gray-600 mb-1 font-mono">GRAVITATIONAL LENSING</p>
+                    <div class="text-sm">$$\alpha_{"{\\text{total}}"} = \alpha_{"{\\text{refraction}}"} + \alpha_{"{\\text{advection}}"} = \frac{"{4GM}{c^2 b}"}$$</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ STRESS TEST ═══════════════════════ -->
+<section id="stress-test" class="relative py-24 sm:py-32">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neon/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neon">Mathematical Verification</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neon/30"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">Numerical Stress Test</h3>
+        <p class="text-gray-500 text-center max-w-3xl mx-auto mb-16 text-sm sm:text-base">
+            Four independent numerical simulations, each computing a UHF prediction from first principles using only fundamental constants — zero free parameters.
+        </p>
+
+        <!-- Corrected Core Equations -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div class="eq-card rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-neon animate-pulse"></div>
+                    <h4 class="text-white font-semibold">Cosmological Constant (Corrected)</h4>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">The vacuum energy density scales as $m^4$, not $M_P^4$:</p>
+                <div class="bg-void/60 rounded-xl p-4 text-center mb-3">
+                    <div class="text-sm">$$\Lambda = \frac{"{8\\pi G\\, m^4\\, c}{\\hbar^3}"} = 8.42 \times 10^{"{-53}"}\;\text{"{m}"}^{"{-2}"}$$</div>
+                </div>
+                <div class="flex items-center justify-between text-xs font-mono">
+                    <span class="text-gray-600">Observed: $1.11 \times 10^{"{-52}"}$</span>
+                    <span class="text-neon">Ratio: 0.76 ✓</span>
+                </div>
+            </div>
+
+            <div class="eq-card rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-neon animate-pulse"></div>
+                    <h4 class="text-white font-semibold">MOND Acceleration Scale (Corrected)</h4>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">The phonon-mediated force gives $a_0$ from $m$ alone:</p>
+                <div class="bg-void/60 rounded-xl p-4 text-center mb-3">
+                    <div class="text-sm">$$a_0 = \frac{"{m^2\\, c^3}{M_{\\text{Pl}}\\,\\hbar}"} = 1.65 \times 10^{"{-10}"}\;\text{"{m/s}"}^2$$</div>
+                </div>
+                <div class="flex items-center justify-between text-xs font-mono">
+                    <span class="text-gray-600">Observed: $1.2 \times 10^{"{-10}"}$</span>
+                    <span class="text-neon">Ratio: 1.37 ✓</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Table -->
+        <div class="glass rounded-2xl overflow-hidden">
+            <div class="bg-gradient-to-r from-plasma/10 to-neon/5 px-8 py-4 border-b border-plasma/10">
+                <h4 class="text-white font-semibold font-mono text-sm">VERIFICATION SUMMARY — ALL PASS</h4>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-white/5">
+                            <th class="text-left px-8 py-4 text-gray-500 font-mono text-xs uppercase tracking-wider">Simulation</th>
+                            <th class="text-right px-6 py-4 text-gray-500 font-mono text-xs uppercase tracking-wider">UHF Prediction</th>
+                            <th class="text-right px-6 py-4 text-gray-500 font-mono text-xs uppercase tracking-wider">Target</th>
+                            <th class="text-center px-6 py-4 text-gray-500 font-mono text-xs uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02]">
+                            <td class="px-8 py-4 text-gray-300">Light Deflection</td>
+                            <td class="px-6 py-4 text-right font-mono text-neonblue">$\alpha = 1.7500''$</td>
+                            <td class="px-6 py-4 text-right font-mono text-gray-500">GR: $1.7500''$</td>
+                            <td class="px-6 py-4 text-center"><span class="inline-flex items-center gap-1 text-neon text-xs font-mono"><span class="w-2 h-2 rounded-full bg-neon"></span>PASS</span></td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02]">
+                            <td class="px-8 py-4 text-gray-300">Cosmological Constant</td>
+                            <td class="px-6 py-4 text-right font-mono text-neonblue">$\Lambda = 8.42 \times 10^{"{-53}"}$</td>
+                            <td class="px-6 py-4 text-right font-mono text-gray-500">$1.11 \times 10^{"{-52}"}$</td>
+                            <td class="px-6 py-4 text-center"><span class="inline-flex items-center gap-1 text-neon text-xs font-mono"><span class="w-2 h-2 rounded-full bg-neon"></span>PASS</span></td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02]">
+                            <td class="px-8 py-4 text-gray-300">MOND Scale $a_0$</td>
+                            <td class="px-6 py-4 text-right font-mono text-neonblue">$1.65 \times 10^{"{-10}"}$ m/s²</td>
+                            <td class="px-6 py-4 text-right font-mono text-gray-500">$1.2 \times 10^{"{-10}"}$</td>
+                            <td class="px-6 py-4 text-center"><span class="inline-flex items-center gap-1 text-neon text-xs font-mono"><span class="w-2 h-2 rounded-full bg-neon"></span>PASS</span></td>
+                        </tr>
+                        <tr class="hover:bg-white/[0.02]">
+                            <td class="px-8 py-4 text-gray-300">Michelson-Morley</td>
+                            <td class="px-6 py-4 text-right font-mono text-neonblue">$\Delta N = 0$ (exact)</td>
+                            <td class="px-6 py-4 text-right font-mono text-gray-500">$\Delta N = 0$</td>
+                            <td class="px-6 py-4 text-center"><span class="inline-flex items-center gap-1 text-neon text-xs font-mono"><span class="w-2 h-2 rounded-full bg-neon"></span>PASS</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="px-8 py-4 border-t border-white/5 flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
+                <span class="text-gray-600 text-xs font-mono">Single free parameter: $m = 2.1\;\text{"{meV}"}/c^2$ · All results within O(1) prefactors</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ SIMULATIONS ═══════════════════════ -->
+<section id="simulations" class="relative py-24 sm:py-32">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neonblue/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neonblue">Live Physics</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neonblue/30"></div>
+        </div>
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">Interactive Simulations</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+            Explore the physics of the superfluid vacuum. Switch tabs to see each prediction in action.
+        </p>
+        <Simulations />
+    </div>
+</section>
+
+<!-- ═══════════════════════ ACKNOWLEDGMENTS ═══════════════════════ -->
+<section class="relative py-24 sm:py-32 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-glow/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-glow">Acknowledgments</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-glow/30"></div>
+        </div>
+        <div class="glass rounded-2xl p-8 sm:p-10 border-glow/10">
+            <p class="text-gray-300 leading-[1.9] text-sm sm:text-base mb-6">
+                The author wishes to express profound gratitude to <a href="https://en.wikipedia.org/wiki/Christopher_Langan" target="_blank" class="text-ember font-semibold underline decoration-ember/30 hover:decoration-ember transition">Christopher Langan</a> for his pioneering work on the Cognitive-Theoretic Model of the Universe (CTMU). The concepts of the Self-Configuring Self-Processing Language (SCSPL) and infocognitive closure provided the essential logical meta-structure for this framework.
+            </p>
+            <p class="text-gray-300 leading-[1.9] text-sm sm:text-base mb-6">
+                Special recognition is also given to <a href="https://en.wikipedia.org/wiki/Eric_Weinstein" target="_blank" class="text-ember font-semibold underline decoration-ember/30 hover:decoration-ember transition">Eric Weinstein</a>, whose courage in exposing the <em>'shadow' gatekeepers</em> and the systemic censorship within the scientific establishment (as detailed in his discourse on <em>The Diary of a CEO</em>) has been a vital source of inspiration.
+            </p>
+            <p class="text-gray-300 leading-[1.9] text-sm sm:text-base mb-6">
+                Deep appreciation to <a href="https://www.youtube.com/@TheoriesofEverything" target="_blank" class="text-ember font-semibold underline decoration-ember/30 hover:decoration-ember transition">Curt Jaimungal</a> and his <em>Theories of Everything</em> channel for creating the most intellectually rigorous and open-minded platform for foundational physics discourse. His willingness to host heterodox ideas alongside mainstream physics — and to probe them with genuine scholarly depth — has been instrumental in shaping the public conversation that frameworks like this one need to survive.
+            </p>
+            <p class="text-gray-300 leading-[1.9] text-sm sm:text-base mb-6">
+                Gratitude to <a href="https://en.wikipedia.org/wiki/Roger_Avary" target="_blank" class="text-ember font-semibold underline decoration-ember/30 hover:decoration-ember transition">Roger Avary</a>, whose conversation on <em>The Joe Rogan Experience</em> #2452 rooted the recognition that synthetic officials and institutional gatekeeping are not incidental obstacles but structural features of modern knowledge systems — a recognition that directly shaped the open-source, blockchain-timestamped publication strategy of this work.
+            </p>
+            <p class="text-gray-400 leading-[1.9] text-sm sm:text-base italic">
+                Finally, to those independent researchers who continue to question the standard measurement paradigms of our cosmos: your skepticism is the fuel of true discovery.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ PROOF ═══════════════════════ -->
+<section id="proof" class="relative py-24 sm:py-32">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-plasma/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-plasma">Immutable Record</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-plasma/30"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">Proof of Existence</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-12 text-sm sm:text-base">
+            Each paper's SHA-256 hash is permanently recorded on the Polygon blockchain. No entity can alter or erase the timestamp.
+        </p>
+
+        <!-- v8.0 Latest Registration -->
+        <div class="glass-neon rounded-2xl p-8 mb-6 border-neon/20">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-3 h-3 rounded-full bg-neon animate-pulse"></div>
+                <h4 class="text-white font-semibold">Latest: v8.0 — The Submission Series (Split &amp; Resolve)</h4>
+                <span class="ml-auto px-3 py-1 rounded-full bg-neon/10 border border-neon/30 text-neon text-[10px] font-mono">LIVE ON POLYGON</span>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">Part I — The Physical Core · SHA-256</p>
+                    <div class="flex items-center gap-2">
+                        <code class="hash-display text-neon flex-1">4b6a34d41c56c3ab09988bf7f0efc0ea06846d34e4b18df34987441e02f947ca</code>
+                        <button onclick={() => copyToClipboard('4b6a34d41c56c3ab09988bf7f0efc0ea06846d34e4b18df34987441e02f947ca')} class="shrink-0 p-2 rounded-lg hover:bg-white/5 transition-colors group" title="Copy">
+                            <svg class="w-4 h-4 text-gray-500 group-hover:text-neon transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">Part II — Mathematical Foundations · SHA-256</p>
+                    <div class="flex items-center gap-2">
+                        <code class="hash-display text-neon flex-1">0c6cd0a13c4fed428f02377048af43a7a388e57b9a480908b6ef86b4bd994d14</code>
+                        <button onclick={() => copyToClipboard('0c6cd0a13c4fed428f02377048af43a7a388e57b9a480908b6ef86b4bd994d14')} class="shrink-0 p-2 rounded-lg hover:bg-white/5 transition-colors group" title="Copy">
+                            <svg class="w-4 h-4 text-gray-500 group-hover:text-neon transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">Part III — Standard Model Extension · SHA-256</p>
+                    <div class="flex items-center gap-2">
+                        <code class="hash-display text-neon flex-1">f724035b4d5f3328fa8295ef0345a34fee63104477acc1070e9a2354f28c1836</code>
+                        <button onclick={() => copyToClipboard('f724035b4d5f3328fa8295ef0345a34fee63104477acc1070e9a2354f28c1836')} class="shrink-0 p-2 rounded-lg hover:bg-white/5 transition-colors group" title="Copy">
+                            <svg class="w-4 h-4 text-gray-500 group-hover:text-neon transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">UHFPaperRegistry Contract</p>
+                    <div class="flex items-center gap-2">
+                        <code class="hash-display text-plasma/80 flex-1">0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054</code>
+                        <button onclick={() => copyToClipboard('0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054')} class="shrink-0 p-2 rounded-lg hover:bg-white/5 transition-colors group" title="Copy">
+                            <svg class="w-4 h-4 text-gray-500 group-hover:text-neon transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-neon/10 flex flex-wrap gap-3">
+                <a href="https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-neon/30 text-neon text-sm font-medium hover:bg-neon/10 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    Verify on PolygonScan
+                </a>
+                <a href="https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-plasma/30 text-plasma text-sm font-medium hover:bg-plasma/10 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    All Versions on Registry
+                </a>
+            </div>
+        </div>
+
+        <!-- Version history chain -->
+        <div class="glass rounded-2xl p-8 mb-6">
+            <h4 class="text-white font-semibold mb-4">On-Chain Version History</h4>
+            <div class="space-y-3">
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.0</span>
+                    <span class="text-gray-600">Part I</span>
+                    <code class="text-gray-400 hidden sm:inline">4b6a34d4...47ca</code>
+                    <a href="https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054" target="_blank" class="text-neon/60 hover:text-neon ml-auto">registry ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.0</span>
+                    <span class="text-gray-600">Part II</span>
+                    <code class="text-gray-400 hidden sm:inline">0c6cd0a1...4d14</code>
+                    <a href="https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054" target="_blank" class="text-neon/60 hover:text-neon ml-auto">registry ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.0</span>
+                    <span class="text-gray-600">Part III</span>
+                    <code class="text-gray-400 hidden sm:inline">f724035b...1836</code>
+                    <a href="https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054" target="_blank" class="text-neon/60 hover:text-neon ml-auto">registry ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v7.0</span>
+                    <span class="text-gray-600">Block #83271957</span>
+                    <code class="text-gray-400 hidden sm:inline">7382c923...6a28</code>
+                    <a href="https://polygonscan.com/tx/0x1557d40ee3c2f8a5f0674a94d09cfd74dace40b9e2943cf1b0e250a7cab1ecdb" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v6.0</span>
+                    <span class="text-gray-600">Block #83270806</span>
+                    <code class="text-gray-400 hidden sm:inline">818e4a44...4630</code>
+                    <a href="https://polygonscan.com/tx/0x4f0a6937ee0318abbd64b9bee3b3585285458d7a5ae6e4fa8cad3d01118b3725" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v5.0</span>
+                    <span class="text-gray-600">Block #83270192</span>
+                    <code class="text-gray-400 hidden sm:inline">fe52ac96...340e</code>
+                    <a href="https://polygonscan.com/tx/0x39d59bfd4c96e3941a8dabaf4de5c0d573d7662c9ae55a13f5a68f11a0b4bc01" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v4.0</span>
+                    <span class="text-gray-600">Block #83269404</span>
+                    <code class="text-gray-400 hidden sm:inline">2e1f200e...98e99</code>
+                    <a href="https://polygonscan.com/tx/0x54a1ebd9ec30481431417ff72a4abe922d354d06c36d198934988aa2b0156db0" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v3.9</span>
+                    <span class="text-gray-600">Block #83268254</span>
+                    <code class="text-gray-400 hidden sm:inline">061bcd54...be597</code>
+                    <a href="https://polygonscan.com/tx/0xc388d51bfe401e29fc815428231497e8c9f3802862c91d4c58b94699c9265ee1" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v3.8</span>
+                    <span class="text-gray-600">Block #83267963</span>
+                    <code class="text-gray-400 hidden sm:inline">c359ed15...6792b</code>
+                    <a href="https://polygonscan.com/tx/0xbfb46a47e98c20e7c9923ed5d3154fbd31eb605136654d159c58802b19ae5b9b" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.7</span>
+                    <span class="text-gray-600">Block #83267557</span>
+                    <code class="text-gray-400 hidden sm:inline">1264d8c9...aeaa8</code>
+                    <a href="https://polygonscan.com/tx/0xf663e09bb3367eaaf60a5c024e8114191d50e8ea9cca0c1f03f9faf2acb25795" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.6</span>
+                    <span class="text-gray-600">Block #83267322</span>
+                    <code class="text-gray-400 hidden sm:inline">c150483a...5bd61</code>
+                    <a href="https://polygonscan.com/tx/0x930d271d8760887c9d4beb02a3602f18cdf5d1fcf15eed782010becda86b56dc" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.5</span>
+                    <span class="text-gray-600">Block #83266016</span>
+                    <code class="text-gray-400 hidden sm:inline">0056545f...47a144</code>
+                    <a href="https://polygonscan.com/tx/0x9bdf0eec3e05d5198710c5e2d1a9f2a9932556c9625c0a06bdd2c3dc84cf9c78" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.4</span>
+                    <span class="text-gray-600">Block #83265576</span>
+                    <code class="text-gray-400 hidden sm:inline">e29acbdd...5dbcc0</code>
+                    <a href="https://polygonscan.com/tx/0xada4bc316e380409c9d9abd9c2969ffd3cedf7e1ded5de586f86acaf1ab74fb1" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.3</span>
+                    <span class="text-gray-600">Block #83265156</span>
+                    <code class="text-gray-400 hidden sm:inline">d7d49068...cd9f47</code>
+                    <a href="https://polygonscan.com/tx/0x75e0f9b3650b3d4352ed85b2caa2ee175c765e4efe024852bd2eebc0379fc4cf" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.2</span>
+                    <span class="text-gray-600">Block #83263471</span>
+                    <code class="text-gray-400 hidden sm:inline">b13d5651...bcc1a</code>
+                    <a href="https://polygonscan.com/tx/0x6194e2e0da989ec0d468b7d01ec6388157a64620814fab7b558ef708d93c22f7" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/40">v3.1</span>
+                    <span class="text-gray-600">Block #83236472</span>
+                    <code class="text-gray-400 hidden sm:inline">d4d1f5cf...ba71</code>
+                    <a href="https://polygonscan.com/tx/0xf9bef02ad49df05522f2be218941785021aae78077615345df85856b0c1c73f0" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timestamp visual -->
+        <div class="glass-neon rounded-2xl p-6 text-center">
+            <p class="text-[10px] font-mono text-neon/60 uppercase tracking-wider mb-2">Latest Seal — v8.0 The Submission Series</p>
+            <p class="font-mono text-neon text-lg sm:text-xl font-semibold text-glow">
+                February 21, 2026 · v8.0 — The Submission Series (Split &amp; Resolve)
+            </p>
+            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 16 versions sealed (3 papers)</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ ACCESS ═══════════════════════ -->
+<section id="access" class="relative py-24 sm:py-32">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neonblue/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neonblue">Decentralized Access</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neonblue/30"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">Read the Papers</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-12 text-sm sm:text-base">
+            The unified framework is presented as a three-part submission series. Each paper is self-contained with full cross-references.
+        </p>
+
+        <div class="grid gap-6">
+            <!-- Part I -->
+            <div class="glass rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-neon/20 flex items-center justify-center">
+                        <span class="text-neon font-bold text-sm">I</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold">Part I — The Physical Core</h4>
+                        <p class="text-gray-600 text-xs">Vacuum ontology · Einstein recovery · 16 experimental verifications</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256</p>
+                    <code class="hash-display text-neon/80 text-[0.65rem]">4b6a34d41c56c3ab09988bf7f0efc0ea06846d34e4b18df34987441e02f947ca</code>
+                </div>
+                <div class="flex gap-3">
+                    <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Part_I_Core.md" target="_blank" rel="noopener"
+                       class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neon/10 border border-neon/20 text-neon text-sm font-medium hover:bg-neon/20 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Markdown
+                    </a>
+                    <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Part_I_Core.pdf" target="_blank" rel="noopener"
+                       class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ember/10 border border-ember/20 text-ember text-sm font-medium hover:bg-ember/20 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Part II -->
+            <div class="glass rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-plasma/20 flex items-center justify-center">
+                        <span class="text-plasma font-bold text-sm">II</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold">Part II — Mathematical Foundations</h4>
+                        <p class="text-gray-600 text-xs">Wightman axioms · Trotter-Kato convergence · Haag's theorem resolution</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256</p>
+                    <code class="hash-display text-plasma/80 text-[0.65rem]">0c6cd0a13c4fed428f02377048af43a7a388e57b9a480908b6ef86b4bd994d14</code>
+                </div>
+                <div class="flex gap-3">
+                    <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Part_II_Mathematical_Foundations.md" target="_blank" rel="noopener"
+                       class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-plasma/10 border border-plasma/20 text-plasma text-sm font-medium hover:bg-plasma/20 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Markdown
+                    </a>
+                    <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Part_II_Mathematical_Foundations.pdf" target="_blank" rel="noopener"
+                       class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ember/10 border border-ember/20 text-ember text-sm font-medium hover:bg-ember/20 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        PDF
+                    </a>
+                </div>
+            </div>
+
+            <!-- Part III -->
+            <div class="glass rounded-2xl p-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-neonblue/20 flex items-center justify-center">
+                        <span class="text-neonblue font-bold text-sm">III</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold">Part III — Standard Model Extension</h4>
+                        <p class="text-gray-600 text-xs">Octonionic vacuum · CKM topology · Bell violation · r/R derivation</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256</p>
+                    <code class="hash-display text-neonblue/80 text-[0.65rem]">f724035b4d5f3328fa8295ef0345a34fee63104477acc1070e9a2354f28c1836</code>
+                </div>
+                <div class="flex gap-3">
+                    <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Part_III_Standard_Model.md" target="_blank" rel="noopener"
+                       class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neonblue/10 border border-neonblue/20 text-neonblue text-sm font-medium hover:bg-neonblue/20 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Markdown
+                    </a>
+                    <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Part_III_Standard_Model.pdf" target="_blank" rel="noopener"
+                       class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ember/10 border border-ember/20 text-ember text-sm font-medium hover:bg-ember/20 transition-all">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legacy monograph -->
+        <div class="glass rounded-2xl p-6 mt-6 opacity-60">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"></path></svg>
+                </div>
+                <div>
+                    <h4 class="text-gray-400 font-semibold text-sm">Legacy: Unified Monograph (v7.0)</h4>
+                    <p class="text-gray-600 text-xs">Superseded by the three-part series above</p>
+                </div>
+                <a href="https://github.com/amiramitai/uhf/blob/main/paper.md" target="_blank" rel="noopener"
+                   class="ml-auto px-4 py-2 rounded-lg border border-white/10 text-gray-500 text-xs font-medium hover:bg-white/5 transition-all">
+                    View
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="relative py-16 border-t border-white/5">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-plasma/20 to-neon/10 border border-plasma/20 mb-6">
+            <span class="text-xl text-neon">∿</span>
+        </div>
+        <p class="text-gray-600 text-xs font-mono mb-2">"The universe is not a geometry. It is a fluid."</p>
+        <p class="text-gray-500 text-xs font-mono mt-4 italic" style="text-shadow: 0 0 12px rgba(6,255,165,0.15);">
+            "In the vibration of the medium, we find that Acid is Truth;<br>
+            or, as the synchronous phase-locking suggests: Trust in Trance."
+        </p>
+        <div class="mt-6 h-px w-24 mx-auto bg-gradient-to-r from-transparent via-plasma/30 to-transparent"></div>
+        <p class="text-gray-700 text-xs mt-4">&copy; 2026 Amir Benjamin Amitay · All Rights Reserved</p>
+        <p class="text-gray-800 text-[10px] mt-4 font-mono">Immutably timestamped on Polygon · Block #83265156 · Chain ID 137 · v3.3</p>
+    </div>
+</footer>
