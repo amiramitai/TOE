@@ -124,6 +124,7 @@
             <a href="#simulations" class="text-gray-400 hover:text-neon transition-colors">Simulations</a>
             <a href="#proof" class="text-gray-400 hover:text-neon transition-colors">Proof</a>
             <a href="#access" class="text-gray-400 hover:text-neon transition-colors">Access</a>
+            <a href="#peer-review" class="text-gray-400 hover:text-neon transition-colors">Peer Review</a>
         </div>
     </div>
 </nav>
@@ -706,6 +707,18 @@
             <h4 class="text-white font-semibold mb-4">On-Chain Version History</h4>
             <div class="space-y-3">
                 <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.5-Sim</span>
+                    <span class="text-gray-600">Simulation Suite · Block #83336794</span>
+                    <code class="text-gray-400 hidden sm:inline">8f00520b...bc0d8b6</code>
+                    <a href="https://polygonscan.com/tx/0x22bf049c114f01ddab790df6d980f4bd9faf4eb145ef619bdc68f3bbfd861658" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.5-Add</span>
+                    <span class="text-gray-600">Defense Addendum · Block #83336785</span>
+                    <code class="text-gray-400 hidden sm:inline">9cc42b74...d5094d</code>
+                    <a href="https://polygonscan.com/tx/0x255e56192dbf14cd7edb6f068e5c93c95723edc376e3c262d762816ff74c49e5" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-neon">v8.0.2</span>
                     <span class="text-gray-600">Part I · Block #83327380</span>
                     <code class="text-gray-400 hidden sm:inline">f86791ee...9659</code>
@@ -890,11 +903,11 @@
 
         <!-- Timestamp visual -->
         <div class="glass-neon rounded-2xl p-6 text-center">
-            <p class="text-[10px] font-mono text-neon/60 uppercase tracking-wider mb-2">Latest Seal — v8.0.2 Hydrodynamic Integration</p>
+            <p class="text-[10px] font-mono text-neon/60 uppercase tracking-wider mb-2">Latest Seal — v8.5 Defense Addendum + Simulation Suite</p>
             <p class="font-mono text-neon text-lg sm:text-xl font-semibold text-glow">
-                February 22, 2026 · v8.0.2 — Hydrodynamic Integration
+                February 22, 2026 · v8.5 — Defense Addendum &amp; Simulation Suite
             </p>
-            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 37 versions sealed (3 papers)</p>
+            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 39 seals (3 papers + addendum + simulation)</p>
         </div>
     </div>
 </section>
@@ -1016,6 +1029,127 @@
                    class="ml-auto px-4 py-2 rounded-lg border border-white/10 text-gray-500 text-xs font-medium hover:bg-white/5 transition-all">
                     View
                 </a>
+            </div>
+        </div>
+
+        <!-- Defense Addendum -->
+        <div class="glass rounded-2xl p-8 mt-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-neon/20 flex items-center justify-center">
+                    <span class="text-neon font-bold text-base">⊕</span>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-white font-semibold">Defense Addendum — Empirical Rebuttals</h4>
+                    <p class="text-gray-600 text-xs">9 objection categories · LIGO SNR · NANOGrav ΔAIC · JWST · Core-Cusp · Muon g-2</p>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256 · Polygon Block #83336785</p>
+                <code class="hash-display text-neon/80 text-[0.65rem]">9cc42b74340abfd987f5153d8ebfcff9cdea2bec2896ab18cfe95937d7d5094d</code>
+            </div>
+            <div class="flex gap-3">
+                <a href="https://github.com/amiramitai/uhf/blob/main/UHF_Defense_Addendum.md" target="_blank" rel="noopener"
+                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-neon/10 border border-neon/20 text-neon text-sm font-medium hover:bg-neon/20 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Markdown
+                </a>
+                <a href="https://polygonscan.com/tx/0x255e56192dbf14cd7edb6f068e5c93c95723edc376e3c262d762816ff74c49e5" target="_blank" rel="noopener"
+                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-plasma/10 border border-plasma/20 text-plasma text-sm font-medium hover:bg-plasma/20 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    On-Chain Proof ↗
+                </a>
+            </div>
+        </div>
+
+        <!-- Simulation Suite -->
+        <div class="glass rounded-2xl p-8 mt-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-ember/20 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-ember" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-white font-semibold">Simulation Suite — RTX 3090 Verification Code</h4>
+                    <p class="text-gray-600 text-xs">Python · GPU-accelerated · LIGO · NANOGrav · JWST · Core-Cusp · Muon g-2 hunters</p>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="text-[10px] font-mono text-gray-600 uppercase tracking-wider mb-1">SHA-256 · Polygon Block #83336794</p>
+                <code class="hash-display text-ember/80 text-[0.65rem]">8f00520bcf7e386f30081310f80329c09c0e2ccd373aae338f7105702bc0d8b6</code>
+            </div>
+            <div class="flex gap-3">
+                <a href="https://github.com/amiramitai/uhf/tree/main/simulation" target="_blank" rel="noopener"
+                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-ember/10 border border-ember/20 text-ember text-sm font-medium hover:bg-ember/20 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    Browse on GitHub
+                </a>
+                <a href="https://polygonscan.com/tx/0x22bf049c114f01ddab790df6d980f4bd9faf4eb145ef619bdc68f3bbfd861658" target="_blank" rel="noopener"
+                   class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-plasma/10 border border-plasma/20 text-plasma text-sm font-medium hover:bg-plasma/20 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    On-Chain Proof ↗
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ PEER REVIEW ═══════════════════════ -->
+<section id="peer-review" class="relative py-24 sm:py-32">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <div class="h-px flex-1 bg-gradient-to-r from-transparent to-neon/30"></div>
+            <h2 class="text-xs font-mono tracking-[0.3em] uppercase text-neon">Open Science</h2>
+            <div class="h-px flex-1 bg-gradient-to-l from-transparent to-neon/30"></div>
+        </div>
+
+        <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white text-center mb-4">Peer Review Invitation</h3>
+        <p class="text-gray-500 text-center max-w-2xl mx-auto mb-12 text-sm sm:text-base">
+            UHF makes specific, falsifiable predictions. If you believe you have found an error in the mathematics, a failed prediction, or a stronger alternative explanation, we want to hear it.
+        </p>
+
+        <div class="glass-neon rounded-2xl p-8 mb-6">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-3 h-3 rounded-full bg-neon animate-pulse"></div>
+                <h4 class="text-white font-semibold">How to Submit a Review</h4>
+            </div>
+            <ol class="space-y-4 text-sm text-gray-400">
+                <li class="flex gap-3">
+                    <span class="text-neon font-mono font-bold shrink-0">1.</span>
+                    <span>Open a <strong class="text-white">GitHub Issue</strong> in the <a href="https://github.com/amiramitai/uhf/issues" target="_blank" rel="noopener" class="text-neon hover:underline">amiramitai/uhf</a> repository.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-neon font-mono font-bold shrink-0">2.</span>
+                    <span>Label your issue with one of: <code class="text-plasma bg-plasma/10 px-1.5 py-0.5 rounded text-xs">objection</code>, <code class="text-ember bg-ember/10 px-1.5 py-0.5 rounded text-xs">proof-of-error</code>, or <code class="text-neonblue bg-neonblue/10 px-1.5 py-0.5 rounded text-xs">proposed-test</code>.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-neon font-mono font-bold shrink-0">3.</span>
+                    <span>Cite the specific equation, section, or prediction you are challenging. Reference the SHA-256-anchored version so the record is unambiguous.</span>
+                </li>
+                <li class="flex gap-3">
+                    <span class="text-neon font-mono font-bold shrink-0">4.</span>
+                    <span>Every substantive critique will receive a written response. Decisive falsifications will be acknowledged publicly and on-chain.</span>
+                </li>
+            </ol>
+            <div class="mt-8 pt-6 border-t border-neon/10">
+                <a href="https://github.com/amiramitai/uhf/issues/new" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-neon/10 border border-neon/30 text-neon font-medium hover:bg-neon/20 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    Open a Review Issue on GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-4 text-center">
+            <div class="glass rounded-xl p-5">
+                <p class="text-2xl font-bold text-neon mb-1">9</p>
+                <p class="text-gray-600 text-xs">Objection categories addressed in the Defense Addendum</p>
+            </div>
+            <div class="glass rounded-xl p-5">
+                <p class="text-2xl font-bold text-plasma mb-1">0</p>
+                <p class="text-gray-600 text-xs">Free parameters in the muon g-2 prediction (Δaμ = 1.58×10⁻⁹)</p>
+            </div>
+            <div class="glass rounded-xl p-5">
+                <p class="text-2xl font-bold text-ember mb-1">∞</p>
+                <p class="text-gray-600 text-xs">Reviewers welcome — the framework stands or falls on empirical contact</p>
             </div>
         </div>
     </div>

@@ -19,9 +19,9 @@ const ABI = [
 ];
 
 const ZIP_PATH = "./out/UHF_Simulation_Suite.zip";
-const VERSION = "8.0-Simulation";
+const VERSION = "8.5-Simulation";
 const LABEL = "UHF Simulation Suite (RTX 3090 Verification Code)";
-const EXPECTED_HASH = "ed4888b48884da93d6db5d9d8cee6a5066e1d4dd60fb8e1ecce7337d3601d8e4";
+const EXPECTED_HASH = "8f00520bcf7e386f30081310f80329c09c0e2ccd373aae338f7105702bc0d8b6";
 
 async function main() {
     // Build the zip first
