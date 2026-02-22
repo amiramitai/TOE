@@ -234,7 +234,7 @@
                     <span class="text-ember font-semibold">The Crisis:</span> The muon magnetic moment deviates from the Standard Model by 5σ (~2.5 × 10⁻⁹) with no candidate mechanism.
                 </p>
                 <p class="text-gray-400 text-xs leading-relaxed">
-                    <span class="text-neon font-semibold">UHF Resolution:</span> Fermions are torus knots (T_{p,q}). The muon (T_{2,5}) has tighter geometric curvature than the electron (T_{2,3}), introducing a hydrodynamic added mass via r/R = 1/√(2π²).
+                    <span class="text-neon font-semibold">UHF Resolution:</span> Fermions are torus knots T(p,q). The muon T(2,5) has tighter geometric curvature than the electron T(2,3), introducing a hydrodynamic added mass via r/R = 1/√(2π²).
                 </p>
                 <div class="mt-4 pt-4 border-t border-neon/10 flex items-center gap-2">
                     <div class="w-2 h-2 rounded-full bg-neon animate-pulse"></div>
