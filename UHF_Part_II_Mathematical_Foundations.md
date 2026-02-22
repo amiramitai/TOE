@@ -192,7 +192,7 @@ $$H_{\text{eff}} = e^\mu_a(\mathbf{p})\,\sigma^a\,(p_\mu - p_{\mu}^{(0)})$$
 
 where $e^\mu_a$ is an emergent vierbein and $\sigma^a$ are the Pauli matrices. The key result is that the **Lorentz group $SO(3,1)$ is an infrared fixed point** of the RG flow for such systems. LV operators generated at the lattice scale have scaling dimensions $\Delta > 0$ relative to the Lorentz-symmetric fixed point; they are *irrelevant* in the Wilsonian sense and flow to zero as $\ell \to \infty$. Specifically, if $\Lambda_{\text{UV}} \sim E_P$ is the Planck-scale cutoff and $E$ the observation energy, then:
 
-$$\frac{\Delta c}{c}\bigg|_{\text{IR}} \sim \left(\frac{E}{\Lambda_{\text{UV}}}\right)^{\!\Delta} \;\xrightarrow{\;E \ll E_P\;}\; 0$$
+$$\frac{\Delta c}{c}\bigg|_{\text{IR}} \sim \left(\frac{E}{\Lambda_{\text{UV}}}\right)^{\!\Delta} \;\longrightarrow\; 0 \quad (E \ll E_P)$$
 
 The convergence is *power-law* in the energy ratio, not fine-tuned. Topology forces the RG flow precisely to exact Lorentz symmetry at macroscopic scales. This mechanism does not require the microscopic dynamics to be Lorentz-invariant; it requires only that the order parameter manifold $\mathcal{M}$ possess topologically stable Fermi points (guaranteed by $\pi_3(\mathcal{M}) \neq 0$ for the UHF spinor condensate, cf. Section 9.3.4). The bound from gamma-ray birefringence ($\Delta c/c < 10^{-38}$, Vasileiou et al. 2013) is satisfied automatically for any observation at $E/E_P < 10^{-13}$—i.e., for all laboratory and astrophysical photons.
 
@@ -430,7 +430,7 @@ The conditions for LSZ validity are:
 3. **Positive spectral density**: $\rho_{\text{cont}}(s) \geq 0$ for $s > 0$ — enforced by the BRST unitarity ($S_{\text{phys}}^\dagger S_{\text{phys}} = \mathbf{1}$, Section III-C Step 4a).
 4. **S-matrix analyticity**: The framework establishes the isolated IR pole structure and positive residue required for effective LSZ scattering in the macroscopic regime.
 
-All four conditions are satisfied. The emergent gauge theory of the UHF is therefore fully compatible with the LSZ reduction formalism: physical scattering amplitudes can be extracted from the 1PI effective action via the standard procedure, and the resulting S-matrix is analytic, unitary, and crossing-symmetric.
+All four conditions are satisfied. The emergent gauge theory of the UHF is therefore fully compatible with the LSZ reduction formalism: physical scattering amplitudes can be extracted from the 1PI effective action via the standard procedure, and the resulting S-matrix is unitary and possesses the requisite IR pole structure for effective low-energy scattering.
 
 **Result (Proof I).** Integrating out the $Q_{\text{vac}} = 0.31\%$ density sector yields exactly zero longitudinal mass ($\delta m^2 = 0$) for both the $U(1)$ and $SU(3)_C$ gauge bosons. The vacuum polarization tensor is strictly transverse:
 
@@ -494,7 +494,7 @@ $$\lim_{t \to \pm\infty} \rho_{\text{aux}}(t) = |\Omega\rangle\langle\Omega|_{\t
 
 This convergence is exponential in the trace norm: $\|\rho_{\text{aux}}(t) - |\Omega\rangle\langle\Omega|_{\text{aux}}\|_1 \leq C\,e^{-\gamma_{\text{gap}}\,|t|}$. Consequently, the asymptotic entanglement entropy between sectors vanishes strictly:
 
-$$S_{\text{ent}}(t) = -\text{Tr}_{\text{aux}}\!\left[\rho_{\text{aux}}(t)\,\ln\rho_{\text{aux}}(t)\right] \xrightarrow{t \to \pm\infty} 0$$
+$$S_{\text{ent}}(t) = -\text{Tr}_{\text{aux}}\!\left[\rho_{\text{aux}}(t)\,\ln\rho_{\text{aux}}(t)\right] \longrightarrow 0 \quad (t \to \pm\infty)$$
 
 **(d) Exact sector factorisation.** With the auxiliary state projected onto the 1-dimensional ground-state ray $|\Omega\rangle\langle\Omega|_{\text{aux}}$, the asymptotic tensor product factorises exactly:
 
@@ -568,7 +568,7 @@ The S-matrix is block-diagonal by topological charge conservation — not by an 
 
 **Conclusion (Lemma M.6).** There is no empty vacuum — the universe is a continuous GP fluid, and mass is the hydrodynamic inertia of topological defects: $m = E_{\text{defect}}/c_s^2$. Kelvin's Circulation Theorem and the self-adjoint GP Hamiltonian guarantee that all scattering processes are closed-system energy exchanges within the fluid continuum. High-energy collisions radiate strictly unitary acoustic phonons into the fluid, not into any external environment. The S-matrix satisfies $S^\dagger S = \mathbb{I}$ exactly, as an operator identity on $\mathcal{F}_{\text{GP}}$, with the optical theorem and LSZ analyticity as immediate consequences. Block-diagonalisation by topological charge is a physical consequence of circulation conservation in a barotropic superfluid. $\blacksquare$
 
-**Step 4c (Lemma P): Wilsonian Emergence of LSZ Analyticity.** The Hydrodynamic Defect Scattering theorem (Lemma M.6) establishes exact S-matrix unitarity from the closed GP Hamiltonian. We now prove that the **exact relativistic analyticity** required by the LSZ reduction formula is an *emergent infrared phenomenon* — not an exact UV truth — arising from the Wilsonian RG flow of the GP condensate.
+**Step 4c (Lemma P): Wilsonian Emergence of LSZ Analyticity.** The Hydrodynamic Defect Scattering theorem (Lemma M.6) establishes exact S-matrix unitarity from the closed GP Hamiltonian. We now prove that the isolated IR pole structure and positive residue required for effective LSZ scattering are emergent infrared phenomena — not an exact UV truth — arising from the Wilsonian RG flow of the GP condensate.
 
 **Wilsonian RG flow to the conformal acoustic metric.** We apply Wilsonian Renormalization Group (RG) flow to the GP effective action. Starting from the full GP Lagrangian with UV cutoff $\Lambda = \xi^{-1}$, we integrate out modes shell by shell from $\Lambda$ down to an infrared scale $\mu \ll \xi^{-1}$. The effective action at scale $\mu$ flows to the stable fixed point:
 
@@ -606,7 +606,7 @@ $$\langle p_1, \ldots, p_m; \text{out} | k_1, \ldots, k_n; \text{in} \rangle_{\t
 where $\widetilde{G}^{(n+m)}_{\text{phys}}$ are the amputated Green functions of the physical-sector fields, computed from the 1PI effective action of Section III-D with $\Pi_L(q^2) \equiv 0$.
 **Step 6 (No semigroup-Hamiltonian mixing).** The key structural advantage of the Stinespring approach is that no step involves applying Hamiltonian limits to the Lindblad semigroup. The logical chain is:
 
-$$\text{Lindblad } e^{\mathcal{L}t} \xrightarrow{\text{Stinespring}} U(t) \xrightarrow{\text{Haag-Ruelle}} S^{\text{total}} \xrightarrow{\text{Kelvin}} \bigoplus_Q S_Q \xrightarrow{S^\dagger S = \mathbb{I}} S_{\text{phys}}\;\text{(strictly unitary)}$$
+$$\text{Lindblad } e^{\mathcal{L}t} \implies U(t) \implies S^{\text{total}} \implies \bigoplus_Q S_Q \implies S_{\text{phys}}\;\text{(strictly unitary)}$$
 
 Each arrow is mathematically rigorous: Stinespring dilation is a theorem of operator algebras, Haag-Ruelle theory is standard axiomatic QFT, and the Hydrodynamic Defect Scattering theorem (Proof M.6) proves that the GP condensate is a closed Hamiltonian system — there is no external environment. Kelvin's Circulation Theorem partitions the Fock space by conserved winding number, and the self-adjoint GP Hamiltonian guarantees $S^\dagger S = \mathbb{I}$ as an operator identity. There is no gap where a heuristic argument is required.
 
@@ -843,7 +843,7 @@ $$\frac{d^2\mathcal{A}}{ds^2}\bigg|_{s=0} = \frac{2\,g_\text{eff}}{f_\pi^4} > 0 
 
 **The Weinberg soft graviton theorem as a hydrodynamic identity.** Weinberg (1965) proved that in any theory with a massless spin-2 particle coupling universally to the stress-energy tensor, the scattering amplitude in the limit where one graviton becomes soft ($q \to 0$) factorizes as:
 
-$$\mathcal{A}_{n+1}(q, \epsilon; p_1, \ldots, p_n) \xrightarrow{q \to 0} \left[\sum_{i=1}^n \frac{\epsilon_{\mu\nu}\, p_i^\mu p_i^\nu}{p_i \cdot q}\right] \mathcal{A}_n(p_1, \ldots, p_n)$$
+$$\mathcal{A}_{n+1}(q, \epsilon; p_1, \ldots, p_n) \longrightarrow \left[\sum_{i=1}^n \frac{\epsilon_{\mu\nu}\, p_i^\mu p_i^\nu}{p_i \cdot q}\right] \mathcal{A}_n(p_1, \ldots, p_n) \quad (q \to 0)$$
 
 where $\epsilon_{\mu\nu}$ is the graviton polarization tensor. In the UHF, this theorem is not an independent axiom but a *consequence* of the fluid conservation law. The soft graviton is a long-wavelength acoustic phonon (the trace mode of the metric perturbation), and its coupling to matter is through the stress-energy tensor $T^{\mu\nu}$ via the acoustic metric:
 
@@ -942,7 +942,7 @@ $$\mathcal{M}^{TT} = -\frac{\kappa^2}{4t}\left[T_{\mu\nu}^{(13)}\,P^{(2)\,\mu\nu
 
 where $T_{\mu\nu}^{(ij)} = \bar{u}(p_i)\left[\gamma_\mu p_\nu + \gamma_\nu p_\mu - \eta_{\mu\nu}(\not{p} - m)\right]u(p_j)/2$ and $t = q^2$. In the non-relativistic limit $|\mathbf{p}| \ll m$, this reproduces the Newtonian potential:
 
-$$\mathcal{M}^{TT} \xrightarrow{NR} \frac{4\pi G\,m_1\,m_2}{|\mathbf{q}|^2}$$
+$$\mathcal{M}^{TT} \longrightarrow \frac{4\pi G\,m_1\,m_2}{|\mathbf{q}|^2} \quad (\text{NR limit})$$
 
 confirming that the emergent graviton mediates the $1/r$ potential derived from the Bjerknes force in Section 5.
 
@@ -1482,7 +1482,7 @@ These $n$-point Wightman functions are tempered distributions, symmetric under p
 
 **Structural isomorphism, not approximation.** The intertwiner $\mathcal{U}$ is an *exact* unitary equivalence, not a perturbative approximation. The discrete-to-continuum limit (Section 9.3.21) and the Madelung-LSZ map (Section 9.3.20) compose to give a structural isomorphism:
 
-$$\mathcal{H}_{\text{lattice}} \xrightarrow{\;\text{Trotter-Kato}\;} \mathcal{H}_{\text{Bose}} \xrightarrow{\;\;\mathcal{U}\;\;} \mathcal{H}_{\text{QFT}} \xrightarrow{\;\text{Wightman}\;} \text{Axiomatic QFT}$$
+$$\mathcal{H}_{\text{lattice}} \implies \mathcal{H}_{\text{Bose}} \implies \mathcal{H}_{\text{QFT}} \implies \text{Axiomatic QFT}$$
 
 The UHF does not approximate quantum field theory — it *is* quantum field theory, derived from first principles via fluid dynamics. The Wightman axioms are not imposed but derived as structural consequences. The gap between discrete sub-Planckian dynamics and continuous relativistic field theory is bridged by a chain of exact mathematical isomorphisms, completing the functional-analytic closure of the framework.
 
@@ -1541,7 +1541,7 @@ The following analytic verifications are established in this paper:
 | 19 | Tensor Amplitude & Helicity | $h_{\pm 2}$ propagate; $h_0, h_{\pm 1}$ decouple | ✓ |
 | 20 | Microcausality & EFT Matching | $v_f \leq c$; Donoghue coefficients matched | ✓ |
 | 21 | Non-Perturbative Radiative Stability | $SO(3,1)_{\text{diag}}$ custodial symmetry exact | ✓ |
-| 22 | Axiomatic Completeness (Wightman Closure) | All four Wightman axioms derived | ✓ |
+| 22 | Effective Axiomatic Closure | Wightman axioms satisfied in the macroscopic IR effective limit | ✓ |
 | 22a | Haag's Theorem Resolution | AQFT net construction; exact for $na^3 \ll 1$ | ✓ |
 
 

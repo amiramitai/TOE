@@ -257,7 +257,7 @@ acquires a direct physical interpretation: $F_{\mu\nu}^a$ measures the *failure 
 
 **Conclusion (Lemma O.6).** The 8-dimensional tangent space $H^1(\pi_1(M), \text{Ad}_\rho) \cong \mathbb{R}^8$ acquires a non-Abelian Lie bracket from the **physical kinematics of vortex reconnection** in the GP condensate. Strand crossings are inherently non-commutative in three dimensions; their consistency is governed by the Yang-Baxter equation, whose classical $r$-matrix yields the structure constants $f^{abc}$ as topological invariants of the helicity exchange during reconnection. The Biot-Savart locality of the GP dynamics ensures that $[T^a, T^b] = if^{abc}T^c$ holds pointwise, establishing a local gauge algebra — not a global symmetry — from macroscopic vortex kinematics:
 
-$$H^1 \cong \mathbb{R}^8 \xrightarrow{\text{Biot-Savart}} R_{ab}\;(\text{crossing}) \xrightarrow{\text{Yang-Baxter}} f^{abc} \xrightarrow{\text{Cup}_{\kappa} < 0} \mathfrak{su}(3)$$
+$$H^1 \cong \mathbb{R}^8 \implies R_{ab}\;(\text{crossing}) \implies f^{abc} \implies \mathfrak{su}(3)$$
 
 $\blacksquare$
 
@@ -313,7 +313,7 @@ The Vortex Reconnection Kinematics (Proof O.6) establish this as a fully dynamic
 
 **Summary.** The chain of identifications is:
 
-$$M = S^3 \setminus T(3,4) \xrightarrow{H^1(\pi_1(M), \text{Ad}_\rho)} d = 8 \xrightarrow{\text{Atiyah-Bott}} r = 2 \xrightarrow{\text{Biot-Savart} \to \text{Yang-Baxter}} [T^a, T^b] = if^{abc}T^c \xrightarrow{\text{Cup}_{\kappa} < 0} \mathfrak{su}(3)$$
+$$M = S^3 \setminus T(3,4) \implies d = 8 \implies r = 2 \implies [T^a, T^b] = if^{abc}T^c \implies \mathfrak{su}(3)$$
 
 The isomorphism is exact: the 8 generators, the rank-2 Cartan structure, the non-Abelian Lie bracket (physically derived from vortex reconnection via the Biot-Savart law and Yang-Baxter equation, Proof O.6), and the compact real form (forced by the strictly negative-definite intersection pairing) all emerge from the topology of the $T(3,4)$ knot complement. The 8-dimensional vector space is forced into a fully dynamic local gauge algebra by the 3D kinematics of vortex line crossings in the GP condensate.
 
@@ -382,9 +382,12 @@ $$\alpha_s(\mu) = \frac{\alpha_s(\mu_0)}{1 + \frac{b_0\,\alpha_s(\mu_0)}{2\pi}\l
 
 with $\mu_0 = E_P$ (Planck scale) and $\alpha_s(E_P) = g_{YM}^2(E_P)/(4\pi) = 1/(2\pi \rho_0^{3/2})$. The logarithmic running from $E_P$ to $\Lambda_{\text{QCD}}$ over 19 decades in energy produces the observed strong coupling at low energies.
 
-**Summary: from GP to Yang-Mills.** The complete derivation chain is:
+**Summary: from GP to Yang-Mills.** The derivations are established as follows:
 
-$$\rho_0\,\xi^2\,K_{\text{eff}}\,(\partial_\mu \hat{\mathbf{e}}_a)^2 \xrightarrow{\theta^a \to gA^a} \frac{1}{4g_{YM}^2}F_{\mu\nu}^a F_a^{\mu\nu} \xrightarrow{\mathfrak{su}(3)\text{ from Proof O}} SU(3)_C\;\text{Yang-Mills} \xrightarrow{b_0 = 11} \text{asymptotic freedom}$$
+1.  The torsional stiffness of the spinor triad generates the kinetic term.
+2.  The kinematic map $\theta^a \to gA^a$ yields the Yang-Mills action.
+3.  The $\mathfrak{su}(3)$ algebra (Proof O) defines the color group.
+4.  The $b_0 = 11$ coefficient ensures asymptotic freedom.
 
 Theorem-complete closure for the emergence of a BRST-consistent gauge-fixed Effective Field Theory (EFT) in the macroscopic IR regime ($k \ll \xi^{-1}$). the connection $A_\mu^a(x)$ propagates, self-interacts via the non-Abelian vertices dictated by the $\mathfrak{su}(3)$ algebra (derived from the $T(3,4)$ character variety, Proof O), and runs logarithmically under the one-loop $\beta$-function with $b_0 = 11$. Combined with the BRST-Lindblad commutativity established in Part II (Proof F), which guarantees $m_g = 0$ exactly, this constitutes a complete derivation of $SU(3)_C$ Yang-Mills gauge theory from the Gross-Pitaevskii dynamics of the spinor condensate.
 
@@ -459,7 +462,7 @@ This is the **non-Abelian Gauss law** — the $\mu = 0$ component of the Yang-Mi
 
 The chain of derivations is now complete:
 
-$$\text{GP equation} \xrightarrow{\text{Madelung}} (\rho, \mathbf{v}, \chi) \xrightarrow{\text{torsion}} A_\mu^a \xrightarrow{T(3,4)\text{ vortices}} F_{\mu\nu}^a \neq 0 \xrightarrow{\text{Gauss law}} D_\mu F^{a\,\mu\nu} = J^{a\,\nu}$$
+$$\text{GP equation} \implies (\rho, \mathbf{v}, \chi) \implies A_\mu^a \implies F_{\mu\nu}^a \neq 0 \implies D_\mu F^{a\,\mu\nu} = J^{a\,\nu}$$
 
 **Asymptotic freedom.** The negative sign of $\beta(g)$ implies *asymptotic freedom*: the coupling $g(\mu)$ decreases logarithmically as $\mu \to \infty$. In the UHF, this has a transparent physical interpretation: at short distances ($r \ll \xi$), the torsional restoring force of the color-locked triad weakens because the rotational stiffness of the triad scales as $\mu_{\text{shear}} \cdot r^2$, decreasing with decreasing $r$. At large distances ($r \gg \xi$), the torsional modes become strongly coupled (confinement), as derived in Section 9.3.27.
 
@@ -1153,11 +1156,11 @@ print(f"Agreement: {abs(ell_1 - 220)/220 * 100:.2f}%")
 - **Search and Destroy (Topological Scrub):** All remnant references to Wirtinger generators, crossing-number-8 derivations, Gell-Mann matrices used for $\mathfrak{su}(3)$ derivation, and circular $f^{abc}$ imports purged from Proofs G, H, and §9.3.25a. Downstream sections now consistently reference the Character Variety isomorphism (Proof O). Only the legitimate Gell-Mann-Nishijima relation (electroweak sector) survives.
 - **Atiyah-Bott Symplectic Functor (Proof O.3, Section 9.3.25 Step (iv)):** Removed heuristic leap from $\mathbb{Z}^2$ to Lie algebra rank. Introduced the Atiyah-Bott Symplectic Reduction on $\partial M \cong T^2$: the Goldman symplectic form canonically induces the Lie bracket; the Atiyah-Bott functor maps $\pi_1(T^2) \cong \mathbb{Z}^2$ exactly to the maximal torus of the emergent gauge group, rigorously dictating Cartan rank $r = 2$. Negative-definite intersection form derived from the Kähler geometry of the character variety via transgression $\text{Hess}_{\text{CS}} = -\omega_{\text{G}} \circ J$. Cartan classification achieved with zero external assumptions.
 - **Goldman Bracket Functor (Proof O.4, Section 9.3.25 Step (iv-b)):** Derived the Lie bracket $[T^a, T^b] = if^{abc}T^c$ functorially from the Goldman bracket on the moduli space of flat connections. Geometric quantisation (Kostant-Souriau) maps the Goldman-Poisson bracket to the Lie algebra commutator, with structure constants determined entirely by intersection numbers on the character variety. Restriction to the real slice (compact flat connections with $E_{\text{GP}} > 0$) forces the compact real form $\mathfrak{su}(3)$, excluding all non-compact alternatives. Functorial chain closed: $\pi_1(M) \to \omega_{\text{G}} \to \{\cdot,\cdot\}_{\text{Poisson}} \to [T^a, T^b] \to \mathfrak{su}(3)$.
-- **Group Cohomology Tangent Space (Proof O.5, Section 9.3.25 Step (iv-c)):** Replaced the infinite-dimensional Goldman bracket Poisson assertion with the finite-dimensional Group Cohomology Tangent Space theorem: $T_{[\rho]}\mathfrak{X}_{\text{na}}(M) \cong H^1(\pi_1(M),\,\text{Ad}_\rho)$, computed via Fox calculus to $\dim_{\mathbb{C}} H^1 = 4$ ($\dim_{\mathbb{R}} = 8$). Cup-product intersection pairing $\langle \alpha \cup \beta,\,[M]\rangle$ evaluated with the Killing form yields signature $(0,8)$ — strictly negative-definite — forcing the compact real form $\mathfrak{su}(3)$ and excluding all non-compact alternatives ($\mathfrak{sl}(3,\mathbb{R})$, $\mathfrak{su}(2,1)$). Functorial chain updated: $M \xrightarrow{H^1(\pi_1(M),\text{Ad}_\rho)} d=8 \xrightarrow{\text{Atiyah-Bott}} r=2 \xrightarrow{\text{Goldman}} [T^a,T^b] \xrightarrow{\text{Cup}_\kappa < 0} \mathfrak{su}(3)$.
+- **Group Cohomology Tangent Space (Proof O.5, Section 9.3.25 Step (iv-c)):** Replaced the infinite-dimensional Goldman bracket Poisson assertion with the finite-dimensional Group Cohomology Tangent Space theorem: $T_{[\rho]}\mathfrak{X}_{\text{na}}(M) \cong H^1(\pi_1(M),\,\text{Ad}_\rho)$, computed via Fox calculus to $\dim_{\mathbb{C}} H^1 = 4$ ($\dim_{\mathbb{R}} = 8$). Cup-product intersection pairing $\langle \alpha \cup \beta,\,[M]\rangle$ evaluated with the Killing form yields signature $(0,8)$ — strictly negative-definite — forcing the compact real form $\mathfrak{su}(3)$ and excluding all non-compact alternatives ($\mathfrak{sl}(3,\mathbb{R})$, $\mathfrak{su}(2,1)$). Functorial sequence: (1) $M$ topology via $H^1$ fixes dimension 8; (2) Atiyah-Bott reduction fixes rank 2; (3) Goldman bracket defines Lie structure; (4) Negative Cup product selects $\mathfrak{su}(3)$.
 
 **Version 8.0.2** (February 22, 2026) — Hydrodynamic Integration.
 
-- **Vortex Reconnection Kinematics (Proof O.6, Section 9.3.25 Step (iv-d)):** Replaced abstract tangent-space arguments with 3D GP fluid kinematics. The crossing of vortex lines (helicity exchange) is physically non-commutative in three dimensions. The Biot-Savart law and Yang-Baxter equation govern sequential reconnection consistency, with the classical $r$-matrix yielding the structure constants $f^{abc}$ as topological invariants of helicity exchange. Local Lie bracket $[T^a, T^b] = if^{abc}T^c$ derived from macroscopic vortex reconnection kinematics. Chain: $H^1 \cong \mathbb{R}^8 \xrightarrow{\text{Biot-Savart}} R_{ab} \xrightarrow{\text{Yang-Baxter}} f^{abc} \xrightarrow{\text{Cup}_\kappa < 0} \mathfrak{su}(3)$.
+- **Vortex Reconnection Kinematics (Proof O.6, Section 9.3.25 Step (iv-d)):** Replaced abstract tangent-space arguments with 3D GP fluid kinematics. The crossing of vortex lines (helicity exchange) is physically non-commutative in three dimensions. The Biot-Savart law and Yang-Baxter equation govern sequential reconnection consistency, with the classical $r$-matrix yielding the structure constants $f^{abc}$ as topological invariants of helicity exchange. Local Lie bracket $[T^a, T^b] = if^{abc}T^c$ derived from macroscopic vortex reconnection kinematics. The sequence is: (1) Biot-Savart law maps $H^1$ to $R_{ab}$; (2) Yang-Baxter equation yields $f^{abc}$; (3) Negative Cup product enforces $\mathfrak{su}(3)$.
 
 **On-chain registration (Polygon mainnet, contract `0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054`):**
 - Blocks #83322923–83322930 (Parts I–III, Proofs M.3/N.3/O.3). SHA-256 hashes verifiable at [PolygonScan](https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054).
