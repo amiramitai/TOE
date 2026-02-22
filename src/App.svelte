@@ -706,22 +706,40 @@
             <h4 class="text-white font-semibold mb-4">On-Chain Version History</h4>
             <div class="space-y-3">
                 <div class="flex items-center gap-3 text-xs font-mono">
-                    <span class="text-neon">v8.0.1</span>
+                    <span class="text-neon">v8.0.2</span>
+                    <span class="text-gray-600">Part I · Block #83327380</span>
+                    <code class="text-gray-400 hidden sm:inline">f86791ee...9659</code>
+                    <a href="https://polygonscan.com/tx/0x99b54178bf47b41f2ad899d4deeef8b5552b9daa94d94dc7677bad08c08d7626" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.0.2</span>
+                    <span class="text-gray-600">Part II · Block #83327384</span>
+                    <code class="text-gray-400 hidden sm:inline">b0e0e4cc...66f6</code>
+                    <a href="https://polygonscan.com/tx/0x85afaff0dab61e324155d5ed03b8dfdb222cc77cdfb6bdbf17d20545e0710990" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-neon">v8.0.2</span>
+                    <span class="text-gray-600">Part III · Block #83327387</span>
+                    <code class="text-gray-400 hidden sm:inline">4acb9c6a...cbbc</code>
+                    <a href="https://polygonscan.com/tx/0x904a08e4447509b2c5f2edeffef3cca741a699fa0bd9e22dad562509bd6f6e40" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono">
+                    <span class="text-glow/60">v8.0.1</span>
                     <span class="text-gray-600">Part I · Block #83324343</span>
                     <code class="text-gray-400 hidden sm:inline">18454ef4...54c82</code>
-                    <a href="https://polygonscan.com/tx/0xc6015afc1d6dc376fac832eb71167661f322091d6977bf0a6df95d5c1e9b8d61" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                    <a href="https://polygonscan.com/tx/0xc6015afc1d6dc376fac832eb71167661f322091d6977bf0a6df95d5c1e9b8d61" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
-                    <span class="text-neon">v8.0.1</span>
+                    <span class="text-glow/60">v8.0.1</span>
                     <span class="text-gray-600">Part II · Block #83324350</span>
                     <code class="text-gray-400 hidden sm:inline">2ff225cc...8f79</code>
-                    <a href="https://polygonscan.com/tx/0x15b6c5de0265fd064df9d54381eb56a9dc825073982e2553b51ded7b698dc5e0" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                    <a href="https://polygonscan.com/tx/0x15b6c5de0265fd064df9d54381eb56a9dc825073982e2553b51ded7b698dc5e0" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
-                    <span class="text-neon">v8.0.1</span>
+                    <span class="text-glow/60">v8.0.1</span>
                     <span class="text-gray-600">Part III · Block #83324354</span>
                     <code class="text-gray-400 hidden sm:inline">e7aad6ea...274b</code>
-                    <a href="https://polygonscan.com/tx/0x4e0259a6fd4f9d9839a84d2cb94de8270cb68c09e18021c43a43561be4560950" target="_blank" class="text-neon/60 hover:text-neon ml-auto">tx ↗</a>
+                    <a href="https://polygonscan.com/tx/0x4e0259a6fd4f9d9839a84d2cb94de8270cb68c09e18021c43a43561be4560950" target="_blank" class="text-glow/40 hover:text-glow ml-auto">tx ↗</a>
                 </div>
                 <div class="flex items-center gap-3 text-xs font-mono">
                     <span class="text-glow/60">v8.0.1</span>
@@ -872,11 +890,11 @@
 
         <!-- Timestamp visual -->
         <div class="glass-neon rounded-2xl p-6 text-center">
-            <p class="text-[10px] font-mono text-neon/60 uppercase tracking-wider mb-2">Latest Seal — v8.0.1 Theorem-Grade QFT Integration</p>
+            <p class="text-[10px] font-mono text-neon/60 uppercase tracking-wider mb-2">Latest Seal — v8.0.2 Hydrodynamic Integration</p>
             <p class="font-mono text-neon text-lg sm:text-xl font-semibold text-glow">
-                February 22, 2026 · v8.0.1 — Proofs M.5 / N.5 / O.5
+                February 22, 2026 · v8.0.2 — Hydrodynamic Integration
             </p>
-            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 31 versions sealed (3 papers)</p>
+            <p class="text-gray-600 text-xs mt-2">Polygon PoS · Chain ID 137 · UHFPaperRegistry · 37 versions sealed (3 papers)</p>
         </div>
     </div>
 </section>

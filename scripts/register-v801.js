@@ -29,21 +29,21 @@ const ABI = [
 const PAPERS = [
     {
         file: "UHF_Part_I_Core.md",
-        version: "8.0.1-Part-I",
+        version: "8.0.2-Part-I",
         label: "UHF Part I — Physical Core",
-        expectedHash: "18454ef4e5cd27eee16ae68c09d0eaad48ffd94136d6b3540c61019840a54c82"
+        expectedHash: "f86791ee45b3a6a2d9c82694f55351a7c442c3068379152b216ae69075ce9659"
     },
     {
         file: "UHF_Part_II_Mathematical_Foundations.md",
-        version: "8.0.1-Part-II",
+        version: "8.0.2-Part-II",
         label: "UHF Part II — Mathematical Foundations",
-        expectedHash: "2ff225cc615c1e46b7dc1b14036468dbd2e9fe19fdf7d1b6d9f4e1c9c42e8f79"
+        expectedHash: "b0e0e4cc89efebd281d8c347aee5890cb706c14541a6e1178f421f05be3266f6"
     },
     {
         file: "UHF_Part_III_Standard_Model.md",
-        version: "8.0.1-Part-III",
+        version: "8.0.2-Part-III",
         label: "UHF Part III — Standard Model Extension",
-        expectedHash: "e7aad6eabd1503b73b1bc1610289b311f223abc3038a194a04c84b0daf95274b"
+        expectedHash: "4acb9c6a36a2326b6676b0e87991c71d28804550a52cdd593598e54f75e2cbbc"
     }
 ];
 
