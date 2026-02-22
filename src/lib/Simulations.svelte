@@ -29,12 +29,12 @@ const loaders = {
   lisa:    () => import('./sims/lisa.js'),
 };
 
-let active = $state('mermin');
-let viewportEl = $state();
-let controlsEl = $state();
-let hudEl = $state();
+let active = 'mermin';
+let viewportEl;
+let controlsEl;
+let hudEl;
 let currentInstance = null;
-let loading = $state(false);
+let loading = false;
 
 async function switchTo(id) {
   if (id === active && currentInstance) return;
@@ -66,8 +66,9 @@ async function switchTo(id) {
   loading = false;
 }
 
-$effect(() => {
-  if (viewportEl && controlsEl && hudEl && !currentInstance && !loading) {
+onMount(() => {
+  // DOM is ready, kick off first simulation
+  if (viewportEl && controlsEl && hudEl) {
     switchTo('mermin');
   }
 });
@@ -87,7 +88,7 @@ onDestroy(() => {
       <button
         class="sim-tab"
         class:active={active === sim.id}
-        onclick={() => switchTo(sim.id)}
+        on:click={() => switchTo(sim.id)}
       >
         <span class="dot"></span>
         <span class="hidden sm:inline">{sim.label}</span>
