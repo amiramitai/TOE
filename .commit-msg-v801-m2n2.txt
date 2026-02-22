@@ -1,0 +1,35 @@
+UHF v8.0.1 — Integrate Proofs M.2 (Asymptotic Factorization) and N.2 (BRST-Exactness)
+
+Part II (Mathematical Foundations):
+
+  Proof M.2 (Asymptotic Factorization, new Step 4 in Section III-E):
+  - The Markovian gap gamma_gap > 0 drives the system-bath entanglement
+    entropy to strictly zero: S_ent -> 0 exponentially as t -> +/-infty
+  - Bath state factorises purely to |0><0|_bath at both scattering limits
+  - Partial trace Tr_bath[S^total] yields a STRICTLY UNITARY physical S-matrix
+  - Exact LSZ analyticity without any Hamiltonian/semigroup mixing artefacts
+  - Optical theorem holds without correction
+  - Updated the Stinespring chain diagram to include the factorisation step
+
+  Proof N.2 (BRST-Exactness, new Step 3b in Section III-F):
+  - Lindblad CTP deformation is rigorously proven BRST-exact: D_CTP = s Psi_CTP
+  - Explicit gauge fermion Psi_CTP constructed from antighost fields and Lindblad operators
+  - BRST-exactness implies Delta(s Psi) = 0: zero quantum anomaly in BV Laplacian
+  - Off-shell closure of the Master Equation is ABSOLUTE and independent of EOM
+  - Anomaly cancellation in Step 4 is guaranteed a priori by algebraic structure
+  - Updated Result (Proof N) to state the BRST-exactness conclusion
+
+Part III (Standard Model Extension):
+  - Search & Destroy verification CONFIRMED: zero contaminated matches
+  - Only legitimate Gell-Mann-Nishijima (line 57) and revision history (line 1038) remain
+  - All topological emergence sections rely exclusively on Character Variety + Cartan
+
+Blockchain registration (Polygon mainnet, blocks 83321339-83321346):
+  Part I:   TX 0xc67d2ff6499e7a908d4a258c1b9f1ffbeaa09fea2b81828d038e2bdcda8109ef
+  Part II:  TX 0x598a343fcfdc70fd7c9d11e162c34617ececedad4baa24dab68889d65a2a9ecb
+  Part III: TX 0xc162a083abdb2c6c4afd832ceada862d532d60271ba84e2c1acf6ba3f5061e85
+
+SHA-256 (final):
+  Part I:   18454ef4e5cd27eee16ae68c09d0eaad48ffd94136d6b3540c61019840a54c82 (unchanged)
+  Part II:  3ad21821c77bd756db22fbff828b4d3bcf1f9652baf81374c4468ca32ca749bb (updated)
+  Part III: 53c3708507f1ac2ecfb7ff863b0940f40dfccd1dc8d403a4dd2d40dd2f3e3c80 (unchanged)

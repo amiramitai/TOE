@@ -37,7 +37,7 @@ const PAPERS = [
         file: "UHF_Part_II_Mathematical_Foundations.md",
         version: "8.0.1-Part-II",
         label: "UHF Part II — Mathematical Foundations",
-        expectedHash: "e4c5d4bffd744c0d71541653eee2ba122ac40cebe6fda5059a09785a827c5227"
+        expectedHash: "3ad21821c77bd756db22fbff828b4d3bcf1f9652baf81374c4468ca32ca749bb"
     },
     {
         file: "UHF_Part_III_Standard_Model.md",
