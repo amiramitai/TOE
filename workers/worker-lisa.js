@@ -14,8 +14,8 @@ self.onmessage = function(e) {
         // Initial Gaussian density perturbation (infalling shell)
         for (let i = 0; i < Nr; i++) {
             const r = (i + 0.5) * dr;
-            rho[i] = 1.0 + 2.0 * Math.exp(-((r - 5.0) * (r - 5.0)) / 0.5);
-            vel[i] = -0.3 * Math.exp(-((r - 5.0) * (r - 5.0)) / 0.5); // infall
+            rho[i] = 1.0 + 3.5 * Math.exp(-((r - 5.0) * (r - 5.0)) / 1.0);
+            vel[i] = -0.5 * Math.exp(-((r - 5.0) * (r - 5.0)) / 1.0); // infall
             pressure[i] = 0;
         }
         self.postMessage({
@@ -64,8 +64,8 @@ self.onmessage = function(e) {
                 const dP = (pressure[i+1] - pressure[i-1]) / (2 * dr);
                 newVel[i] = vel[i] - subDt * (vel[i] * dv + dP);
                 // Quantum pressure creates the bounce
-                if (newRho[i] > 5.0) {
-                    newVel[i] += subDt * 0.5 * (5.0 - newRho[i]); // repulsive core
+                if (newRho[i] > 2.5) {
+                    newVel[i] += subDt * 0.8 * (2.5 - newRho[i]); // repulsive core
                 }
             }
             // Boundary conditions

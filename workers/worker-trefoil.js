@@ -39,16 +39,21 @@ self.onmessage = function(e) {
             const by = pn.y - 2*p.y + pp.y;
             const bz = pn.z - 2*p.z + pp.z;
             // LIA velocity: v = kappa * (tangent x binormal) / |tangent|^2
-            const vx = (ty * bz - tz * by) / (tLen * tLen + 1e-10);
-            const vy = (tz * bx - tx * bz) / (tLen * tLen + 1e-10);
-            const vz = (tx * by - ty * bx) / (tLen * tLen + 1e-10);
+            let vx = (ty * bz - tz * by) / (tLen * tLen + 1e-10);
+            let vy = (tz * bx - tx * bz) / (tLen * tLen + 1e-10);
+            let vz = (tx * by - ty * bx) / (tLen * tLen + 1e-10);
+            // Clamp velocity to prevent numerical explosion
+            const speed = Math.sqrt(vx*vx + vy*vy + vz*vz);
+            if (speed > 2.0) { const s = 2.0 / speed; vx *= s; vy *= s; vz *= s; }
             // Apply dissipation (trefoil dissolves)
-            const noise = (Math.random() - 0.5) * 0.01 * (1 - decay);
-            newPoints.push({
-                x: p.x + dt * vx * decay + noise,
-                y: p.y + dt * vy * decay + noise,
-                z: p.z + dt * vz * decay + noise
-            });
+            const noise = (Math.random() - 0.5) * 0.003 * (1 - decay);
+            let nx = p.x + dt * vx * decay + noise;
+            let ny = p.y + dt * vy * decay + noise;
+            let nz = p.z + dt * vz * decay + noise;
+            // Clamp position within bounds
+            const pr = Math.sqrt(nx*nx + ny*ny + nz*nz);
+            if (pr > 8) { nx *= 8/pr; ny *= 8/pr; nz *= 8/pr; }
+            newPoints.push({ x: nx, y: ny, z: nz });
             // Accumulate Hamiltonian
             const dx = pn.x - p.x, dy = pn.y - p.y, dz = pn.z - p.z;
             H += dx*dx + dy*dy + dz*dz;

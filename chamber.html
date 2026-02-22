@@ -67,13 +67,14 @@ html,body{height:100%;overflow:hidden;background:var(--void);color:var(--text);f
 
 /* ═══ HUD ═══ */
 .hud{
-  position:absolute;bottom:20px;left:20px;right:20px;z-index:60;
-  display:flex;gap:12px;flex-wrap:wrap;pointer-events:none;
+  display:flex;gap:10px;padding:10px 20px;
+  background:var(--panel);border-top:1px solid var(--border);
+  flex-shrink:0;overflow-x:auto;align-items:stretch;
 }
 .hud-card{
-  background:rgba(6,6,14,0.88);backdrop-filter:blur(12px);
-  border:1px solid var(--border);border-radius:10px;padding:12px 16px;
-  pointer-events:auto;min-width:180px;
+  background:rgba(20,20,40,0.6);
+  border:1px solid var(--border);border-radius:8px;padding:10px 14px;
+  min-width:160px;flex-shrink:0;
 }
 .hud-label{font:500 9px var(--mono);color:var(--text-dim);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:4px}
 .hud-value{font:600 18px var(--mono);color:var(--neon);line-height:1.2}
@@ -81,16 +82,27 @@ html,body{height:100%;overflow:hidden;background:var(--void);color:var(--text);f
 .hud-value.magenta{color:var(--magenta)}
 .hud-sub{font:400 10px var(--mono);color:var(--text-dim);margin-top:2px}
 
-/* ═══ MERMIN CHART ═══ */
-.mermin-chart{position:absolute;inset:0}
-.mermin-chart canvas{width:100%;height:100%}
+/* ═══ CONTROLS BAR ═══ */
+.controls{
+  display:none;align-items:center;gap:16px;padding:0 20px;height:40px;
+  background:var(--panel);border-top:1px solid var(--border);flex-shrink:0;
+}
+.controls.visible{display:flex}
+.ctrl-btn{background:transparent;border:1px solid var(--border);color:var(--text-dim);
+  font:400 11px var(--mono);padding:4px 12px;border-radius:4px;cursor:pointer;transition:all .2s}
+.ctrl-btn:hover,.ctrl-btn.active{color:var(--cyan);border-color:var(--cyan)}
+.ctrl-label{font:400 10px var(--mono);color:var(--text-dim);white-space:nowrap}
+.ctrl-slider{-webkit-appearance:none;appearance:none;height:3px;background:var(--border);
+  border-radius:2px;outline:none;flex:1;max-width:250px}
+.ctrl-slider::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;
+  border-radius:50%;background:var(--cyan);cursor:pointer}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:768px){
   .radio-btn{font-size:10px;gap:6px;padding:0 8px}
   .radio-label{font-size:9px}
-  .hud{bottom:10px;left:10px;right:10px;gap:8px}
-  .hud-card{padding:8px 12px;min-width:140px}
+  .hud{padding:8px 12px;gap:6px}
+  .hud-card{padding:6px 10px;min-width:120px}
   .hud-value{font-size:14px}
   .topbar{padding:0 12px}
 }
@@ -137,10 +149,13 @@ html,body{height:100%;overflow:hidden;background:var(--void);color:var(--text);f
 
     <!-- LISA container (2D canvas) -->
     <canvas id="lisa-canvas" class="sim-container" style="display:none"></canvas>
-
-    <!-- HUD (dynamically populated) -->
-    <div class="hud" id="hud"></div>
   </div>
+
+  <!-- Controls bar (play/pause, sliders) -->
+  <div class="controls" id="controls"></div>
+
+  <!-- HUD (dedicated bottom strip) -->
+  <div class="hud" id="hud"></div>
 </div>
 
 <script>
@@ -187,6 +202,8 @@ function purge() {
     lisaState = null;
     // Clear HUD
     document.getElementById('hud').innerHTML = '';
+    document.getElementById('controls').className = 'controls';
+    document.getElementById('controls').innerHTML = '';
 }
 
 // ═══ FADE TRANSITION ═══
@@ -262,10 +279,8 @@ function initMermin() {
         var chartW = W - padL - padR;
         var chartH = H - padT - padB;
 
-        // Scale: X = N (2-8), Y = log2 of quantum max (log2(2√2)=1.5 to log2(128√2)=7.5)
-        var maxVal = 2 * Math.pow(2, 3.5); // N=8: 2^4.5 ≈ 22.6... actually 2*2^3.5
         // Use linear scale for dramatic effect
-        var yMax = 200; // enough to show N=7 at ~181 and N=8 at ~256+
+        var yMax = 160; // enough to show N=8 at 128
 
         function toX(N) { return padL + ((N - 2) / 6) * chartW; }
         function toY(v) { return padT + chartH - (v / yMax) * chartH; }
@@ -284,7 +299,7 @@ function initMermin() {
         }
         // Y axis labels
         ctx.textAlign = 'right';
-        for (var v = 0; v <= yMax; v += 40) {
+        for (var v = 0; v <= yMax; v += 32) {
             ctx.fillStyle = 'rgba(200,200,220,0.3)';
             ctx.fillText(v.toFixed(0), padL - 10, toY(v) + 4);
             ctx.strokeStyle = 'rgba(200,200,220,0.05)';
@@ -308,7 +323,7 @@ function initMermin() {
         ctx.beginPath();
         for (var i = 0; i <= 120; i++) {
             var N = 2 + (i / 120) * 6;
-            var val = 2 * Math.pow(2, (N - 1) / 2);
+            var val = Math.pow(2, N - 1);
             var pulse = 1 + Math.sin(t * 3 + i * 0.05) * 0.005;
             var px = toX(N), py = toY(val * pulse);
             if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
@@ -348,10 +363,10 @@ function initMermin() {
                 // Emphasize N=7 with callout
                 ctx.fillStyle = '#06ffa5';
                 ctx.font = 'bold 13px JetBrains Mono';
-                ctx.fillText('63.999999999999986', px, py - 22);
+                ctx.fillText('64.0', px, py - 22);
                 ctx.fillStyle = 'rgba(200,200,220,0.5)';
                 ctx.font = '9px JetBrains Mono';
-                ctx.fillText('PAIRWISE FACTORIZABILITY: FALSIFIED', px, py - 10);
+                ctx.fillText('LHV PAIRWISE MODEL: RULED OUT', px, py - 10);
             } else {
                 ctx.fillText(r.quantum.toFixed(1), px, py - 12);
             }
@@ -361,10 +376,10 @@ function initMermin() {
         ctx.fillStyle = '#06ffa5';
         ctx.font = 'bold 16px JetBrains Mono';
         ctx.textAlign = 'center';
-        ctx.fillText('MERMIN OPERATOR SCALING: |⟨M_N⟩| = 2^{(N+1)/2}', W / 2, 35);
+        ctx.fillText('MERMIN–KLYSHKO SCALING: |⟨M_N⟩| = 2^{N−1}', W / 2, 35);
         ctx.fillStyle = 'rgba(200,200,220,0.4)';
         ctx.font = '11px JetBrains Mono';
-        ctx.fillText('Tesla Phase recursion: i = e^{iπ/2} · Each vortex loop doubles phase space', W / 2, 55);
+        ctx.fillText('Each vortex loop doubles the operator: |M_N| = 2 × |M_{N−1}|', W / 2, 55);
 
         // X axis title
         ctx.fillStyle = 'rgba(200,200,220,0.4)';
@@ -387,10 +402,10 @@ function initMermin() {
 
     // HUD
     document.getElementById('hud').innerHTML =
-        '<div class="hud-card"><div class="hud-label">N=7 Quantum Max</div><div class="hud-value">63.999999999999986</div><div class="hud-sub">= 2⁶ to machine ε</div></div>' +
+        '<div class="hud-card"><div class="hud-label">N=7 Quantum Max</div><div class="hud-value">64.0</div><div class="hud-sub">= 2⁶ (exact)</div></div>' +
         '<div class="hud-card"><div class="hud-label">Violation Ratio</div><div class="hud-value">32×</div><div class="hud-sub">above LHV bound</div></div>' +
-        '<div class="hud-card"><div class="hud-label">Tesla Phase</div><div class="hud-value">i = e<sup>iπ/2</sup></div><div class="hud-sub">quarter-turn rotator</div></div>' +
-        '<div class="hud-card"><div class="hud-label">Status</div><div class="hud-value" style="color:#f472b6">FALSIFIED</div><div class="hud-sub">pairwise factorizability</div></div>';
+        '<div class="hud-card"><div class="hud-label">Recursion</div><div class="hud-value">|M_N| = 2|M_{N−1}|</div><div class="hud-sub">doubling per vortex</div></div>' +
+        '<div class="hud-card"><div class="hud-label">LHV Pairwise Model</div><div class="hud-value" style="color:#f472b6">RULED OUT</div><div class="hud-sub">by N≥3 scaling</div></div>';
 
     draw();
 }
@@ -434,7 +449,7 @@ function initTrefoil() {
 
     // Launch worker to get initial trefoil geometry
     activeWorker = new Worker('workers/worker-trefoil.js');
-    activeWorker.postMessage({ type: 'compute', resolution: 300 });
+    activeWorker.postMessage({ type: 'compute', resolution: 150 });
 
     var trefoilLine = null;
     var trefoilPoints = null;
@@ -443,6 +458,10 @@ function initTrefoil() {
     var hamiltonian0 = 0;
     var conservation = 0;
     var decay = 1;
+    var waitingForWorker = false;
+    var trefoilPaused = false;
+    var frameCount = 0;
+    var smoothCons = 0;
 
     activeWorker.onmessage = function(e) {
         if (e.data.type === 'geometry') {
@@ -458,6 +477,7 @@ function initTrefoil() {
             hamiltonian0 *= 0.5;
         }
         if (e.data.type === 'evolved') {
+            waitingForWorker = false;
             trefoilPoints = e.data.points;
             conservation = e.data.conservation;
             decay = e.data.decay;
@@ -560,15 +580,17 @@ function initTrefoil() {
 
     function animate() {
         time += 0.016;
+        frameCount++;
 
-        // Evolve trefoil via worker
-        if (trefoilPoints && activeWorker && time > 0.5) {
+        // Evolve trefoil via worker (one-at-a-time, throttled)
+        if (trefoilPoints && activeWorker && time > 0.3 && !trefoilPaused && !waitingForWorker && frameCount % 3 === 0) {
+            waitingForWorker = true;
             activeWorker.postMessage({
                 type: 'evolve',
                 points: trefoilPoints,
-                dt: 0.02,
+                dt: 0.008,
                 time: time,
-                dissipation: 0.15
+                dissipation: 0.06
             });
         }
 
@@ -594,13 +616,15 @@ function initTrefoil() {
             }
         }
 
-        // Update HUD
-        var consStr = conservation.toFixed(6);
-        document.getElementById('hud').innerHTML =
-            '<div class="hud-card"><div class="hud-label">Hamiltonian ΔH/H₀</div><div class="hud-value cyan">' + consStr + '%</div><div class="hud-sub">target: -0.000148%</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Decay Factor</div><div class="hud-value cyan">' + decay.toFixed(4) + '</div><div class="hud-sub">knot → phonon transition</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Phonon Count</div><div class="hud-value cyan">' + phonons.length + '</div><div class="hud-sub">acoustic emissions</div></div>' +
-            '<div class="hud-card"><div class="hud-label">Topology</div><div class="hud-value cyan">' + (decay > 0.5 ? 'TREFOIL 3₁' : decay > 0.1 ? 'DISSOLVING' : 'PHONON GAS') + '</div><div class="hud-sub">non-axiomatic Beltrami</div></div>';
+        // Update HUD (smoothed values)
+        smoothCons = smoothCons * 0.9 + conservation * 0.1;
+        if (frameCount % 10 === 0) {
+            document.getElementById('hud').innerHTML =
+                '<div class="hud-card"><div class="hud-label">Hamiltonian ΔH/H₀</div><div class="hud-value cyan">' + smoothCons.toFixed(3) + '%</div><div class="hud-sub">target: -0.000148%</div></div>' +
+                '<div class="hud-card"><div class="hud-label">Decay Factor</div><div class="hud-value cyan">' + decay.toFixed(2) + '</div><div class="hud-sub">knot → phonon transition</div></div>' +
+                '<div class="hud-card"><div class="hud-label">Phonon Count</div><div class="hud-value cyan">' + phonons.length + '</div><div class="hud-sub">acoustic emissions</div></div>' +
+                '<div class="hud-card"><div class="hud-label">Topology</div><div class="hud-value cyan">' + (decay > 0.5 ? 'TREFOIL 3₁' : decay > 0.1 ? 'DISSOLVING' : 'PHONON GAS') + '</div><div class="hud-sub">non-axiomatic Beltrami</div></div>';
+        }
 
         threeRenderer.render(threeScene, threeCamera);
         threeRAF = requestAnimationFrame(animate);
@@ -608,8 +632,28 @@ function initTrefoil() {
 
     // HUD initial
     document.getElementById('hud').innerHTML =
-        '<div class="hud-card"><div class="hud-label">Hamiltonian ΔH/H₀</div><div class="hud-value cyan">0.000000%</div><div class="hud-sub">target: -0.000148%</div></div>' +
+        '<div class="hud-card"><div class="hud-label">Hamiltonian ΔH/H₀</div><div class="hud-value cyan">0.000%</div><div class="hud-sub">target: -0.000148%</div></div>' +
         '<div class="hud-card"><div class="hud-label">Status</div><div class="hud-value cyan">INITIALIZING</div><div class="hud-sub">computing trefoil T₂,₃</div></div>';
+
+    // Controls bar: play/pause + reset
+    var ctrl = document.getElementById('controls');
+    ctrl.className = 'controls visible';
+    ctrl.innerHTML = '<button class="ctrl-btn active" id="trefoil-play">▶ PLAY</button>' +
+        '<button class="ctrl-btn" id="trefoil-reset">↺ RESET</button>' +
+        '<span class="ctrl-label">t = <span id="trefoil-time">0.00</span></span>';
+    document.getElementById('trefoil-play').onclick = function() {
+        trefoilPaused = !trefoilPaused;
+        this.textContent = trefoilPaused ? '❚❚ PAUSED' : '▶ PLAY';
+        this.classList.toggle('active', !trefoilPaused);
+    };
+    document.getElementById('trefoil-reset').onclick = function() {
+        waitingForWorker = false;
+        time = 0; frameCount = 0; smoothCons = 0;
+        conservation = 0; decay = 1;
+        phonons.forEach(function(ph) { ph.geometry.dispose(); ph.material.dispose(); threeScene.remove(ph); });
+        phonons = [];
+        activeWorker.postMessage({ type: 'compute', resolution: 150 });
+    };
 
     animate();
 
@@ -640,7 +684,7 @@ function initLisa() {
     lisaState = null;
     var echoTimes = [];
     var coreDensityHistory = [];
-    var peakThreshold = 2.5;
+    var peakThreshold = 1.8;
     var lastPeak = false;
 
     activeWorker.postMessage({ type: 'init', resolution: Nr });
@@ -679,7 +723,7 @@ function initLisa() {
                 type: 'step',
                 rho: lisaState.rho,
                 vel: lisaState.vel,
-                dt: 0.15,
+                dt: 0.08,
                 dr: dr,
                 Nr: Nr,
                 time: lisaState.time || 0
@@ -777,10 +821,12 @@ function initLisa() {
         var echoPadT = splitY + 20;
         var echoPadB = 40;
         var echoChartH = H - echoPadT - echoPadB;
-        var tMax = Math.max(200, (lisaState.time || 0) + 20);
+        var simTime = lisaState.time || 0;
+        var tMax = simTime < 60 ? 60 : simTime < 150 ? simTime * 1.2 : Math.max(200, simTime + 30);
+        var tMin = tMax > 200 ? tMax - 200 : 0;
         var rhoHistMax = 5;
 
-        function toXt(t) { return padL + (t / tMax) * chartW; }
+        function toXt(t) { return padL + ((t - tMin) / (tMax - tMin)) * chartW; }
         function toYecho(v) { return echoPadT + echoChartH - (Math.min(v, rhoHistMax) / rhoHistMax) * echoChartH; }
 
         // Axis
@@ -795,17 +841,21 @@ function initLisa() {
         ctx.fillText('CORE DENSITY ρ(0, t) — ECHO RINGING', W / 2, echoPadT - 6);
 
         ctx.textAlign = 'center';
-        for (var tt = 0; tt <= tMax; tt += 50) {
+        var tickInterval = tMax <= 60 ? 10 : tMax <= 150 ? 25 : 50;
+        for (var tt = Math.ceil(tMin / tickInterval) * tickInterval; tt <= tMax; tt += tickInterval) {
             ctx.fillText(tt.toFixed(0), toXt(tt), echoPadT + echoChartH + 16);
         }
 
-        // Echo history
+        // Echo history (only draw visible range)
         if (coreDensityHistory.length > 1) {
             ctx.beginPath();
+            var started = false;
             for (var i = 0; i < coreDensityHistory.length; i++) {
+                if (coreDensityHistory[i].t < tMin) continue;
+                if (coreDensityHistory[i].t > tMax) break;
                 var px = toXt(coreDensityHistory[i].t);
                 var py = toYecho(coreDensityHistory[i].rho);
-                if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                if (!started) { ctx.moveTo(px, py); started = true; } else ctx.lineTo(px, py);
             }
             ctx.strokeStyle = '#e879f9';
             ctx.lineWidth = 1.5;
