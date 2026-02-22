@@ -4,7 +4,7 @@
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
-**Version:** 8.0 FINAL
+**Version:** 8.0.1
 **Series:** Part III of III
 
 ---
@@ -172,7 +172,44 @@ $$\kappa_{ab} = \sum_{c,d=1}^{8} f^{acd}\,f^{bdc} = -\sum_{c,d} f^{acd}\,f^{bcd}
 
 For the diagonal elements ($a = b$): $\kappa_{aa} = -\sum_{c,d} (f^{acd})^2$. Evaluating for $a = 1$: the non-zero $f^{1cd}$ are $f^{123} = 1$, $f^{147} = 1/2$, $f^{156} = -1/2$, giving $\kappa_{11} = -(1 + 1/4 + 1/4 + 1 + 1/4 + 1/4) = -3$. By the Cartan-Killing theorem, $\kappa_{aa} = -3$ for all $a = 1, \ldots, 8$ (verified by direct computation for each generator). For the off-diagonal elements ($a \neq b$): $\kappa_{ab} = 0$ by the orthogonality of the root vectors in the Cartan-Weyl basis.
 
-Therefore $\kappa_{ab} = -3\,\delta_{ab}$, which is **negative-definite**. By the Cartan criterion, the algebra is semi-simple. By the classification of 8-dimensional semi-simple Lie algebras with $\kappa_{ab} = -3\,\delta_{ab}$, the algebra is *uniquely* $\mathfrak{su}(3)$ — no other rank-2 simple Lie algebra of dimension 8 exists. $\blacksquare$
+Therefore $\kappa_{ab} = -3\,\delta_{ab}$, which is **negative-definite**. By the Cartan criterion, the algebra is semi-simple and *compact* (since a negative-definite Killing form implies compactness of the associated Lie group). $\blacksquare$
+
+**Cartan Uniqueness Theorem for the Emergent Gauge Algebra (Proof J).**
+
+The Killing form computation above establishes that the Wirtinger algebra has $\kappa_{ab} = -3\,\delta_{ab}$ (negative-definite, compact, semi-simple). We now apply Cartan's classification theorem to prove that this algebra is *uniquely* $\mathfrak{su}(3)$, with no other possibility.
+
+**Step 1 (Dimension and rank).** The Wirtinger presentation of $\pi_1(S^3 \setminus T(3,4))$ yields exactly 8 generators (Section (i) above). The algebra therefore has $\dim \mathfrak{g} = 8$. The Cartan subalgebra — the maximal simultaneously diagonalizable subalgebra — consists of the two diagonal Gell-Mann generators $T^3$ and $T^8$ (the isospin and hypercharge generators), giving $\operatorname{rank} \mathfrak{g} = 2$.
+
+**Step 2 (Cartan's classification).** By the Cartan-Killing classification of compact simple Lie algebras, the complete list of rank-2 algebras is:
+
+| Algebra | Rank | Dimension | Dynkin diagram |
+|---|---|---|---|
+| $\mathfrak{su}(3) \cong A_2$ | 2 | 8 | $\circ$—$\circ$ |
+| $\mathfrak{sp}(4) \cong B_2 \cong C_2$ | 2 | 10 | $\circ$=$\Rightarrow$$\circ$ |
+| $\mathfrak{g}_2$ | 2 | 14 | $\circ$≡$\Rightarrow$$\circ$ |
+
+The *only* rank-2 compact simple Lie algebra of dimension 8 is $A_2 \cong \mathfrak{su}(3)$. The algebras $B_2$ and $G_2$ are excluded by their dimensions (10 and 14, respectively).
+
+**Step 3 (Elimination of non-compact real forms).** For a *complex* simple Lie algebra of type $A_2$, there are exactly two real forms:
+
+1. **$\mathfrak{su}(3)$** (compact real form): $\kappa_{ab}$ is negative-definite.
+2. **$\mathfrak{sl}(3, \mathbb{R})$** (split real form): $\kappa_{ab}$ has signature $(3, 5)$ — i.e., 3 positive and 5 negative eigenvalues.
+
+There is also the *quaternionic* real form $\mathfrak{su}(2,1)$, with $\kappa_{ab}$ of signature $(5, 3)$.
+
+Since the Killing form computed in Step (iv) is $\kappa_{ab} = -3\,\delta_{ab}$ (negative-definite, signature $(0, 8)$), both $\mathfrak{sl}(3, \mathbb{R})$ and $\mathfrak{su}(2,1)$ are **excluded**. The only real form with a negative-definite Killing form is the compact form $\mathfrak{su}(3)$.
+
+**Step 4 (Physical origin of compactness).** The negative-definiteness of $\kappa_{ab}$ is not a mathematical accident — it is a direct consequence of the *energetic stability* of the GP condensate. The Killing form is related to the quadratic Casimir by $\kappa_{ab} = -C_A\,\delta_{ab}$, where $C_A = 3$ is the adjoint Casimir. The sign of $C_A$ is fixed by:
+
+$$E_{\text{GP}}[A] = \frac{\rho_0}{4g_{\text{YM}}^2}\int d^3x\; F_{\mu\nu}^a F^{a\mu\nu} > 0$$
+
+(Proof G below). The GP energy is strictly positive for any non-trivial gauge configuration, which requires $C_A > 0$ and hence $\kappa_{ab} < 0$. A non-compact gauge group would yield indefinite $\kappa_{ab}$, leading to negative-energy gauge field configurations and a *thermodynamically unstable* condensate — contradicting the existence of the vortex-lattice ground state.
+
+**Result (Proof J).** By Cartan's classification, the compact simple Lie algebra of rank 2 and dimension 8 is unique:
+
+$$\dim \mathfrak{g} = 8, \quad \operatorname{rank} \mathfrak{g} = 2, \quad \kappa_{ab} = -3\,\delta_{ab} < 0 \quad \Longrightarrow \quad \mathfrak{g} \cong \mathfrak{su}(3)$$
+
+All non-compact real forms ($\mathfrak{sl}(3, \mathbb{R})$, $\mathfrak{su}(2,1)$) are excluded by the negative-definite Killing form, which is itself a consequence of GP energy positivity. The isomorphism $\pi_1(S^3 \setminus T(3,4)) \cong \mathfrak{su}(3)$ is therefore not merely verified by explicit computation but is the *unique* outcome of the Cartan classification applied to the topological data. $\blacksquare$
 
 **Summary.** The chain of identifications is:
 
@@ -987,6 +1024,10 @@ print(f"Agreement: {abs(ell_1 - 220)/220 * 100:.2f}%")
 - **$N > 2$ Entanglement (Section 9.3.28):** Extended Bell violation to $N$-party systems via Milnor invariants and Borromean ring correlations; Mermin violation scaling $|M_N| = 2^{(N-1)/2}$ verified for $N = 2$–$8$.
 - **Vortex Mermin Scaling (Section 9.3.28a, new):** Formal derivation of $\langle M_N \rangle = 2^{(N-1)/2}$ via the Tesla Phase ($i = e^{i\pi/2}$) recursion; $N = 2$ Atom axiom declaring institutional bipartite framework as a sub-structural limit.
 - **Appendix B.1 Updated:** CKM simulation now uses derived $r/R = 0.225079$ instead of fitted $r/R = 0.22$.
+
+**Version 8.0.1** (June 2025) — Ultimate QFT-Level Integration.
+
+- **Cartan Uniqueness Theorem (Proof J, Section 9.3.25, new):** Applied Cartan's classification of compact simple Lie algebras to prove that rank 2, dimension 8, and negative-definite Killing form $\kappa_{ab} = -3\,\delta_{ab}$ uniquely determine $\mathfrak{su}(3)$. Explicitly eliminated all non-compact real forms ($\mathfrak{sl}(3, \mathbb{R})$, $\mathfrak{su}(2,1)$) by signature analysis. Traced compactness to GP energy positivity.
 
 
 ---
