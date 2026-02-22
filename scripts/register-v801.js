@@ -1,16 +1,16 @@
 /**
  * register-v801.js — UHF Paper Registry v8.0.1
  *
- * Ultimate QFT-level integration (Proofs J, K, L):
- *   • Part II  — §9.3.5 III-E: Haag-Ruelle Asymptotic Decoupling (Proof K)
- *                 Møller wave operators Ω± via Cook's criterion + Markovian gap Γ_M > 0
- *                 Asymptotic states factorize: |in⟩_phys ⊗ |ρ_ss⟩_bath
- *   • Part II  — §9.3.5 III-F: Schwinger-Keldysh CTP Functional (Proof L)
- *                 Z[J+,J-] CTP path integral, BV master equation (W,W)=0,
- *                 ST identities ⇒ m² = Π_L(0) = 0 to all loop orders
- *   • Part III — §9.3.25: Cartan Uniqueness Theorem (Proof J)
- *                 rank 2, dim 8, κ_ab = -3δ_ab < 0 ⇒ uniquely su(3)
- *                 sl(3,R) and su(2,1) eliminated by signature analysis
+ * Final strict-rigor QFT integration (Proofs M, N, O):
+ *   • Part II  — §9.3.5 III-E: Stinespring Scattering Theory (Proof M)
+ *                 Stinespring dilation U(t) on H_total = H_phys x H_bath,
+ *                 Haag-Ruelle on enlarged space, S_phys = Tr_bath[S_total]
+ *   • Part II  — §9.3.5 III-F: Off-Shell BV Master Equation (Proof N)
+ *                 (W,W) = 0 off-shell on full field-antifield space,
+ *                 Delta W = 0 via Pauli-Villars + Barnich-Brandt-Henneaux
+ *   • Part III — §9.3.25: Character Variety Topological Emergence (Proof O)
+ *                 d=8 from twisted cohomology, r=2 from peripheral structure,
+ *                 kappa < 0 from Chern-Simons Hessian => uniquely su(3)
  *
  * Contract: 0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054  (Polygon Mainnet)
  */
@@ -37,13 +37,13 @@ const PAPERS = [
         file: "UHF_Part_II_Mathematical_Foundations.md",
         version: "8.0.1-Part-II",
         label: "UHF Part II — Mathematical Foundations",
-        expectedHash: "5e8269348fa54e54c4a45b58498305f5ec10fec572e719ac8246096c44d82b22"
+        expectedHash: "e4c5d4bffd744c0d71541653eee2ba122ac40cebe6fda5059a09785a827c5227"
     },
     {
         file: "UHF_Part_III_Standard_Model.md",
         version: "8.0.1-Part-III",
         label: "UHF Part III — Standard Model Extension",
-        expectedHash: "75647d4df9bd833c004a796ab88b9a8b4338796e9b9a6b38fc6be0108ed9e836"
+        expectedHash: "996460fcc0e1241a6294d9cf1b427170d9a6cb47e0ec53e122d4d3eaeaa93f5b"
     }
 ];
 

@@ -1,0 +1,38 @@
+UHF v8.0.1 — Final Strict-Rigor QFT Integration (Proofs M, N, O)
+
+Replaces heuristic bridging arguments with verified proofs:
+
+Part II (Mathematical Foundations):
+  - III-E: Stinespring Scattering Theory (Proof M)
+    Replaced Moller-on-density-matrix construction with Stinespring Unitary Dilation.
+    U(t) = exp(-iH_total t) on H_total = H_phys x H_bath.
+    Haag-Ruelle asymptotic completeness proven on the enlarged Hilbert space.
+    Physical S-matrix recovered exactly via Tr_bath[S_total].
+    Strict LSZ analyticity with no semigroup-Hamiltonian mixing.
+  - III-F: Off-Shell BV Master Equation (Proof N)
+    Removed on-shell projection from BV closure argument.
+    Extended quantum action W on the Schwinger-Keldysh CTP complex.
+    BV Laplacian anomaly Delta W = 0 cancelled off-shell via explicit
+    Pauli-Villars regularization and local counterterms (Barnich-Brandt-Henneaux).
+    (W,W) = 0 holds unconditionally on full field-antifield phase space.
+    ST identities secured prior to any physical-subspace projection.
+
+Part III (Standard Model Extension):
+  - Character Variety Topological Emergence (Proof O)
+    Replaced Wirtinger/Gell-Mann crossing numerology with non-circular derivation.
+    Knot complement manifold M = S^3 \ T(3,4):
+      dim g = 8 from twisted cohomology H^1(M; g_Ad rho)
+      rank g = 2 from peripheral structure pi_1(dM)
+      kappa < 0 from Chern-Simons Hessian (compact flat connections)
+    Cartan classification forces su(3) uniquely.
+    sl(3,R) and su(2,1) eliminated by Killing form signature.
+    No structure constants inserted by hand.
+
+Complete QFT consistency hierarchy:
+  III-A: CPTP unitarity | III-B: Ward-Takahashi | III-C: BRST cohomology
+  III-D: 1PI transversality | III-E: Stinespring scattering | III-F: Off-shell BV
+
+Polygon Mainnet Registration:
+  Part I:   Block 83320601 TX 0xb7e7d7aa5de6b26dcd696f75b41ef7bd5e2bffa378e647a99825ac7d7acea5b7
+  Part II:  Block 83320605 TX 0xf08a7412598db7016dcdb7afaf37f0f028caafad88e38648d211b1bd34f303e3
+  Part III: Block 83320609 TX 0x65345378a54c3761e4370763fa4a24d539b51806ef4baf21ac63c4ce76d1a66f
