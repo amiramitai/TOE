@@ -978,7 +978,7 @@ where the last equality follows from the UHF identification $c_s = c/\sqrt{1 + \
 
 **Kramers-Kronig dispersion relations.** The retarded acoustic Green's function $G_R(\omega, \mathbf{k})$ of the condensate satisfies the standard analyticity properties: $G_R(\omega)$ is analytic in the upper half of the complex $\omega$-plane (Im $\omega > 0$), a consequence of the *causal* structure of the GP equation — perturbations at time $t_0$ cannot affect the field at $t < t_0$. This analyticity, combined with the asymptotic behavior $G_R(\omega) \to 0$ as $|\omega| \to \infty$ (Planck-scale UV completion), guarantees the twice-subtracted Kramers-Kronig relations:
 
-$$\text{Re}\,G_R(\omega) - \text{Re}\,G_R(0) - \omega^2\,\text{Re}\,G_R''(0) = \frac{2\omega^2}{\pi}\,\mathcal{P}\!\int_0^\infty \frac{\text{Im}\,G_R(\omega')\,d\omega'}{{\omega'}({\omega'}^2 - \omega^2)}$$
+$$\text{Re}\,G_R(\omega) - \text{Re}\,G_R(0) - \omega^2\,\text{Re}\,G_R''(0) = \frac{2\omega^2}{\pi}\,\mathcal{P}\!\int_0^\infty \frac{\text{Im}\,G_R(\omega')\,d\omega'}{ {\omega'} ({\omega'}^2 - \omega^2)}$$
 
 The imaginary part $\text{Im}\,G_R(\omega) > 0$ for $\omega > 0$ (dissipation is positive semi-definite in a stable condensate), which ensures that the subtracted dispersion integral converges and yields the correct low-energy limit $v_{\text{ph}} \to c_s = c$ as $k \to 0$.
 
