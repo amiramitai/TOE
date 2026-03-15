@@ -11,9 +11,9 @@
 
 ## 0. Abstract
 
-This paper (Part III of a three-part series) extends the Unified Hydrodynamic Framework (UHF) to the Standard Model of particle physics. Starting from the constitutive superfluid axiom and the functional-analytic foundations established in Parts I and II, we derive the Standard Model gauge group $SU(3) \times SU(2) \times U(1)$ as the automorphism group of the octonionic algebraic structure of the sub-Planckian vacuum.
+This paper (Part III of a three-part series) extends the Unified Hydrodynamic Framework (UHF), treated as a topological effective field theory (EFT), to the Standard Model of particle physics. Starting from the constitutive superfluid axiom and the functional-analytic foundations established in Parts I and II, we derive the Standard Model gauge group $SU(3) \times SU(2) \times U(1)$ as the automorphism group of the octonionic algebraic structure of the vacuum at scales $\ell < \xi$.
 
-Seven analytic results are established: (1) the one-loop $\beta$-function coefficient $b_0 = 11$ from the heat kernel on the vortex graph, with the fermion trace normalization $T_F = 1/2$ resolved via the Half-Quantum Vortex identification; (2) the CKM mixing matrix from torus-knot overlap integrals, with $\theta_C = 13.08°$ as a direct, non-fitted topological consequence of the derived ratio $r/R = 1/\sqrt{2\pi^2}$; (3) the QCD string tension from the Abrikosov vortex lattice; (4) the Bell-CHSH inequality violation as a topological theorem via the Gauss linking integral, extended to $N > 2$ via Milnor invariants and Borromean ring correlations, with Mermin violation scaling $|M_N| = 2^{(N-1)/2}$ verified on RTX 3090 hardware; (5) the Reshetikhin-Turaev isomorphism $\mathcal{H}_N \cong \mathcal{V}_{\Sigma,\kappa}$; (6) frequency-dependent gravitational wave dispersion predictions for LISA; and (7) Born-rule relaxation timescale predictions for atom interferometry.
+Seven results are established within the EFT: (1) the one-loop $\beta$-function coefficient $b_0 = 11$ from the heat kernel on the vortex graph, with the fermion trace normalization $T_F = 1/2$ resolved via the Half-Quantum Vortex identification; (2) the CKM mixing matrix from torus-knot overlap integrals, with $\theta_C = 13.08°$ as a non-fitted topological consequence of the derived ratio $r/R = 1/\sqrt{2\pi^2}$; (3) the QCD string tension from the Abrikosov vortex lattice; (4) Bell-CHSH constraint violations as topological linking theorems via the Gauss linking integral, extended to $N > 2$ via Milnor invariants and Borromean ring correlations, with Mermin operator scaling $|M_N| = 2^{(N-1)/2}$ verified on GPU hardware; (5) the Reshetikhin-Turaev isomorphism $\mathcal{H}_N \cong \mathcal{V}_{\Sigma,\kappa}$; (6) frequency-dependent gravitational wave dispersion predictions for LISA; and (7) Born-rule relaxation timescale predictions for atom interferometry ($\tau_\text{Born} \approx 0.205\;\text{ms}$ for Rb-87 BEC).
 
 The torus radius ratio $r/R = 1/\sqrt{2\pi^2} \approx 0.225079$ is proved as the unique minimum of the dimensionless energy functional $f(u) = \ln(8/u) + \pi^2 u^2$, determined entirely by the balance between vortex ring self-energy and torsional elastic energy. The electromagnetic fine structure constant $\alpha \approx 1/137$ has been verified as density-independent across $0.25 < \rho/\rho_0 < 4.0$ on 3090 hardware.
 
@@ -931,7 +931,7 @@ The idea that the vacuum possesses a material substructure has a long history, f
 
 ### 9.6 Falsifiability and the Demarcation Criterion
 
-A theory of everything that cannot be falsified is not physics; it is metaphysics. We therefore summarize the specific observational predictions that distinguish the Unified Hydrodynamic Framework from both GR and standard QM:
+A foundational Effective Field Theory (EFT) that cannot be falsified is not physics; it is metaphysics. We therefore summarize the specific observational predictions that distinguish the Unified Hydrodynamic Framework from both GR and standard QM:
 
 | Prediction | SVT Prediction | GR/QM Prediction | Observable |
 |---|---|---|---|
@@ -966,7 +966,7 @@ With the integration of the CMB first acoustic peak ($\ell_1 = 221$, within $0.4
 
 ## Acknowledgments
 
-This work builds upon the extensive prior contributions of Volovik, Unruh, Huang, Barceló, Liberati, Visser, and the analog gravity community. The author gratefully acknowledges the open scientific discourse fostered by Curt Jaimungal and the *Theories of Everything* (TOE) podcast, whose rigorous explorations at the intersection of fundamental physics and the philosophy of science helped catalyze this research direction.
+This work builds upon the extensive prior contributions of Volovik, Unruh, Huang, Barceló, Liberati, Visser, and the analog gravity community. The author gratefully acknowledges the open scientific discourse fostered by Curt Jaimungal and his podcast, whose rigorous explorations at the intersection of fundamental physics and the philosophy of science helped catalyze this research direction.
 
 The author also acknowledges Roger Avary, whose appearance on *The Joe Rogan Experience* #2452 crystallized the insight that synthetic officials and institutional gatekeeping represent a systemic barrier to scientific progress — an observation that directly informed the open-source, blockchain-timestamped publication strategy of this work.
 

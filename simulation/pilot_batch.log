@@ -1,0 +1,262 @@
+nohup: ignoring input
+GPU 0: 24.44 GB free / 25.77 GB total
+
+#################################################################
+  PILOT BATCH RUNNER – BLIND COMMUNICATION PROTOCOL
+#################################################################
+  Solver:         RK4 + FD4 (strictly local, NO FFT)
+  Grid:           320^3 = 32,768,000
+  Box:            [-28.2843, +28.2843]
+  dx:             0.17678  (0.2500 xi, 4.0 cells/xi)
+  dt:             0.004687
+  Defect A:       x = -7.0711  (-10.0 xi)
+  Defect B:       x = 7.0711  (10.0 xi)
+  Separation d:   14.1421  (20.0 xi)
+  Boundary:       30.0 xi from B
+  Ring radius:    2.1213  (3.0 xi)
+  Perturbation:   sigma=0.3536 (0.5 xi), void=0.01
+  Bit '0':        dphi = +pi/2 = +1.5708
+  Bit '1':        dphi = -pi/2 = -1.5708
+  Inject at:      (-7.0711, 0.0, 0.0)
+  Noise:          sigma_theta=0.01, sigma_rho=0.001
+  Probe B:        R_B = 1.0607 (1.5 xi), 256 pts
+  t_acoustic:     14.1421
+  t_UV (k_dom):   2.7217  (v_UV = 5.20 c_s)
+  Trials:         200 (alternating bit 0/1)
+  VRAM:           1.57 GB
+
+  Imprinting two vortex rings (Abrikosov product)...
+  Imprinting Ring A...
+    Ring at (-7.071,0.0,0.0) R=2.1213: rho=[0.0000, 1.0000]
+  Imprinting Ring B...
+    Ring at (7.071,0.0,0.0) R=2.1213: rho=[0.0000, 1.0000]
+  Two-ring product: <rho>=0.999355 -> normalized
+  Combined rho: [0.0000, 1.0000]
+  Probe at B: shell R=1.0607, 256 pts
+
+  Relaxation (100 steps)...
+    step 25: <rho>=0.999995
+    step 50: <rho>=0.999990
+    step 75: <rho>=0.999986
+    step 100: <rho>=0.999982
+  Relaxed in 1.7s (59.6 s/s)
+  Pristine state saved.
+  Pristine B: O_phi=-1.049992, O_rho=0.357251
+
+  Evolution: 3017 steps/trial (t_max = 14.1422)
+  Measurements/trial: 303
+  Expected CSV rows:  ~60600
+
+  Starting 200 trials...
+  ============================================================
+  [001/200] Bit 0: 49.2s [61 s/s] | Elapsed 0.8m  ETA 2.72h
+  [002/200] Bit 1: 48.6s [62 s/s] | Elapsed 1.6m  ETA 2.69h
+  [003/200] Bit 0: 48.6s [62 s/s] | Elapsed 2.4m  ETA 2.67h
+  [004/200] Bit 1: 48.7s [62 s/s] | Elapsed 3.3m  ETA 2.66h
+  [005/200] Bit 0: 47.3s [64 s/s] | Elapsed 4.0m  ETA 2.63h
+  [006/200] Bit 1: 47.5s [63 s/s] | Elapsed 4.8m  ETA 2.60h
+  [007/200] Bit 0: 47.3s [64 s/s] | Elapsed 5.6m  ETA 2.58h
+  [008/200] Bit 1: 47.0s [64 s/s] | Elapsed 6.4m  ETA 2.56h
+  [009/200] Bit 0: 47.0s [64 s/s] | Elapsed 7.2m  ETA 2.54h
+  [010/200] Bit 1: 47.0s [64 s/s] | Elapsed 8.0m  ETA 2.52h
+  [011/200] Bit 0: 47.1s [64 s/s] | Elapsed 8.8m  ETA 2.51h
+  [012/200] Bit 1: 46.8s [64 s/s] | Elapsed 9.5m  ETA 2.49h
+  [013/200] Bit 0: 47.1s [64 s/s] | Elapsed 10.3m  ETA 2.47h
+  [014/200] Bit 1: 46.8s [64 s/s] | Elapsed 11.1m  ETA 2.46h
+  [015/200] Bit 0: 47.0s [64 s/s] | Elapsed 11.9m  ETA 2.44h
+  [016/200] Bit 1: 46.8s [64 s/s] | Elapsed 12.7m  ETA 2.43h
+  [017/200] Bit 0: 47.0s [64 s/s] | Elapsed 13.4m  ETA 2.41h
+  [018/200] Bit 1: 46.9s [64 s/s] | Elapsed 14.2m  ETA 2.40h
+  [019/200] Bit 0: 47.2s [64 s/s] | Elapsed 15.0m  ETA 2.38h
+  [020/200] Bit 1: 46.6s [65 s/s] | Elapsed 15.8m  ETA 2.37h
+  [021/200] Bit 0: 46.8s [64 s/s] | Elapsed 16.6m  ETA 2.35h
+  [022/200] Bit 1: 47.2s [64 s/s] | Elapsed 17.4m  ETA 2.34h
+  [023/200] Bit 0: 46.7s [65 s/s] | Elapsed 18.1m  ETA 2.33h
+  [024/200] Bit 1: 47.3s [64 s/s] | Elapsed 18.9m  ETA 2.31h
+  [025/200] Bit 0: 46.7s [65 s/s] | Elapsed 19.7m  ETA 2.30h
+  [026/200] Bit 1: 47.2s [64 s/s] | Elapsed 20.5m  ETA 2.29h
+  [027/200] Bit 0: 46.7s [65 s/s] | Elapsed 21.3m  ETA 2.27h
+  [028/200] Bit 1: 47.3s [64 s/s] | Elapsed 22.1m  ETA 2.26h
+  [029/200] Bit 0: 46.8s [65 s/s] | Elapsed 22.8m  ETA 2.24h
+  [030/200] Bit 1: 46.6s [65 s/s] | Elapsed 23.6m  ETA 2.23h
+  [031/200] Bit 0: 47.3s [64 s/s] | Elapsed 24.4m  ETA 2.22h
+  [032/200] Bit 1: 46.7s [65 s/s] | Elapsed 25.2m  ETA 2.20h
+  [033/200] Bit 0: 47.2s [64 s/s] | Elapsed 26.0m  ETA 2.19h
+  [034/200] Bit 1: 46.7s [65 s/s] | Elapsed 26.7m  ETA 2.18h
+  [035/200] Bit 0: 47.2s [64 s/s] | Elapsed 27.5m  ETA 2.16h
+  [036/200] Bit 1: 46.7s [65 s/s] | Elapsed 28.3m  ETA 2.15h
+  [037/200] Bit 0: 46.7s [65 s/s] | Elapsed 29.1m  ETA 2.14h
+  [038/200] Bit 1: 47.2s [64 s/s] | Elapsed 29.9m  ETA 2.12h
+  [039/200] Bit 0: 46.7s [65 s/s] | Elapsed 30.7m  ETA 2.11h
+  [040/200] Bit 1: 47.2s [64 s/s] | Elapsed 31.4m  ETA 2.10h
+  [041/200] Bit 0: 46.7s [65 s/s] | Elapsed 32.2m  ETA 2.08h
+  [042/200] Bit 1: 47.2s [64 s/s] | Elapsed 33.0m  ETA 2.07h
+  [043/200] Bit 0: 46.7s [65 s/s] | Elapsed 33.8m  ETA 2.06h
+  [044/200] Bit 1: 47.2s [64 s/s] | Elapsed 34.6m  ETA 2.04h
+  [045/200] Bit 0: 46.7s [65 s/s] | Elapsed 35.3m  ETA 2.03h
+  [046/200] Bit 1: 46.7s [65 s/s] | Elapsed 36.1m  ETA 2.02h
+  [047/200] Bit 0: 47.3s [64 s/s] | Elapsed 36.9m  ETA 2.00h
+  [048/200] Bit 1: 46.6s [65 s/s] | Elapsed 37.7m  ETA 1.99h
+  [049/200] Bit 0: 47.3s [64 s/s] | Elapsed 38.5m  ETA 1.98h
+  [050/200] Bit 1: 46.6s [65 s/s] | Elapsed 39.3m  ETA 1.96h
+  [051/200] Bit 0: 47.3s [64 s/s] | Elapsed 40.0m  ETA 1.95h
+  [052/200] Bit 1: 46.7s [65 s/s] | Elapsed 40.8m  ETA 1.94h
+  [053/200] Bit 0: 46.6s [65 s/s] | Elapsed 41.6m  ETA 1.92h
+  [054/200] Bit 1: 47.3s [64 s/s] | Elapsed 42.4m  ETA 1.91h
+  [055/200] Bit 0: 46.6s [65 s/s] | Elapsed 43.2m  ETA 1.90h
+  [056/200] Bit 1: 47.4s [64 s/s] | Elapsed 44.0m  ETA 1.88h
+  [057/200] Bit 0: 46.6s [65 s/s] | Elapsed 44.7m  ETA 1.87h
+  [058/200] Bit 1: 47.2s [64 s/s] | Elapsed 45.5m  ETA 1.86h
+  [059/200] Bit 0: 46.7s [65 s/s] | Elapsed 46.3m  ETA 1.84h
+  [060/200] Bit 1: 46.7s [65 s/s] | Elapsed 47.1m  ETA 1.83h
+  [061/200] Bit 0: 47.3s [64 s/s] | Elapsed 47.9m  ETA 1.82h
+  [062/200] Bit 1: 46.7s [65 s/s] | Elapsed 48.6m  ETA 1.80h
+  [063/200] Bit 0: 47.2s [64 s/s] | Elapsed 49.4m  ETA 1.79h
+  [064/200] Bit 1: 46.7s [65 s/s] | Elapsed 50.2m  ETA 1.78h
+  [065/200] Bit 0: 47.3s [64 s/s] | Elapsed 51.0m  ETA 1.77h
+  [066/200] Bit 1: 46.7s [65 s/s] | Elapsed 51.8m  ETA 1.75h
+  [067/200] Bit 0: 46.6s [65 s/s] | Elapsed 52.5m  ETA 1.74h
+  [068/200] Bit 1: 47.3s [64 s/s] | Elapsed 53.3m  ETA 1.73h
+  [069/200] Bit 0: 46.7s [65 s/s] | Elapsed 54.1m  ETA 1.71h
+  [070/200] Bit 1: 47.2s [64 s/s] | Elapsed 54.9m  ETA 1.70h
+  [071/200] Bit 0: 46.7s [65 s/s] | Elapsed 55.7m  ETA 1.69h
+  [072/200] Bit 1: 47.3s [64 s/s] | Elapsed 56.5m  ETA 1.67h
+  [073/200] Bit 0: 46.7s [65 s/s] | Elapsed 57.2m  ETA 1.66h
+  [074/200] Bit 1: 46.6s [65 s/s] | Elapsed 58.0m  ETA 1.65h
+  [075/200] Bit 0: 47.3s [64 s/s] | Elapsed 58.8m  ETA 1.63h
+  [076/200] Bit 1: 46.6s [65 s/s] | Elapsed 59.6m  ETA 1.62h
+  [077/200] Bit 0: 47.5s [64 s/s] | Elapsed 60.4m  ETA 1.61h
+  [078/200] Bit 1: 46.5s [65 s/s] | Elapsed 61.2m  ETA 1.59h
+  [079/200] Bit 0: 47.4s [64 s/s] | Elapsed 61.9m  ETA 1.58h
+  [080/200] Bit 1: 46.6s [65 s/s] | Elapsed 62.7m  ETA 1.57h
+  [081/200] Bit 0: 46.6s [65 s/s] | Elapsed 63.5m  ETA 1.55h
+  [082/200] Bit 1: 47.4s [64 s/s] | Elapsed 64.3m  ETA 1.54h
+  [083/200] Bit 0: 46.6s [65 s/s] | Elapsed 65.1m  ETA 1.53h
+  [084/200] Bit 1: 47.3s [64 s/s] | Elapsed 65.9m  ETA 1.52h
+  [085/200] Bit 0: 46.6s [65 s/s] | Elapsed 66.6m  ETA 1.50h
+  [086/200] Bit 1: 47.3s [64 s/s] | Elapsed 67.4m  ETA 1.49h
+  [087/200] Bit 0: 46.7s [65 s/s] | Elapsed 68.2m  ETA 1.48h
+  [088/200] Bit 1: 46.6s [65 s/s] | Elapsed 69.0m  ETA 1.46h
+  [089/200] Bit 0: 47.3s [64 s/s] | Elapsed 69.8m  ETA 1.45h
+  [090/200] Bit 1: 46.6s [65 s/s] | Elapsed 70.5m  ETA 1.44h
+  [091/200] Bit 0: 47.3s [64 s/s] | Elapsed 71.3m  ETA 1.42h
+  [092/200] Bit 1: 46.5s [65 s/s] | Elapsed 72.1m  ETA 1.41h
+  [093/200] Bit 0: 47.4s [64 s/s] | Elapsed 72.9m  ETA 1.40h
+  [094/200] Bit 1: 46.7s [65 s/s] | Elapsed 73.7m  ETA 1.38h
+  [095/200] Bit 0: 46.7s [65 s/s] | Elapsed 74.4m  ETA 1.37h
+  [096/200] Bit 1: 47.3s [64 s/s] | Elapsed 75.2m  ETA 1.36h
+  [097/200] Bit 0: 46.6s [65 s/s] | Elapsed 76.0m  ETA 1.35h
+  [098/200] Bit 1: 47.3s [64 s/s] | Elapsed 76.8m  ETA 1.33h
+  [099/200] Bit 0: 46.6s [65 s/s] | Elapsed 77.6m  ETA 1.32h
+  [100/200] Bit 1: 46.7s [65 s/s] | Elapsed 78.4m  ETA 1.31h
+  [101/200] Bit 0: 47.3s [64 s/s] | Elapsed 79.1m  ETA 1.29h
+  [102/200] Bit 1: 46.6s [65 s/s] | Elapsed 79.9m  ETA 1.28h
+  [103/200] Bit 0: 47.5s [64 s/s] | Elapsed 80.7m  ETA 1.27h
+  [104/200] Bit 1: 46.5s [65 s/s] | Elapsed 81.5m  ETA 1.25h
+  [105/200] Bit 0: 47.5s [64 s/s] | Elapsed 82.3m  ETA 1.24h
+  [106/200] Bit 1: 46.5s [65 s/s] | Elapsed 83.1m  ETA 1.23h
+  [107/200] Bit 0: 46.6s [65 s/s] | Elapsed 83.8m  ETA 1.21h
+  [108/200] Bit 1: 47.3s [64 s/s] | Elapsed 84.6m  ETA 1.20h
+  [109/200] Bit 0: 46.7s [65 s/s] | Elapsed 85.4m  ETA 1.19h
+  [110/200] Bit 1: 47.4s [64 s/s] | Elapsed 86.2m  ETA 1.18h
+  [111/200] Bit 0: 46.6s [65 s/s] | Elapsed 87.0m  ETA 1.16h
+  [112/200] Bit 1: 47.4s [64 s/s] | Elapsed 87.8m  ETA 1.15h
+  [113/200] Bit 0: 46.6s [65 s/s] | Elapsed 88.5m  ETA 1.14h
+  [114/200] Bit 1: 46.6s [65 s/s] | Elapsed 89.3m  ETA 1.12h
+  [115/200] Bit 0: 47.4s [64 s/s] | Elapsed 90.1m  ETA 1.11h
+  [116/200] Bit 1: 46.7s [65 s/s] | Elapsed 90.9m  ETA 1.10h
+  [117/200] Bit 0: 47.3s [64 s/s] | Elapsed 91.7m  ETA 1.08h
+  [118/200] Bit 1: 46.6s [65 s/s] | Elapsed 92.4m  ETA 1.07h
+  [119/200] Bit 0: 47.4s [64 s/s] | Elapsed 93.2m  ETA 1.06h
+  [120/200] Bit 1: 46.6s [65 s/s] | Elapsed 94.0m  ETA 1.04h
+  [121/200] Bit 0: 46.6s [65 s/s] | Elapsed 94.8m  ETA 1.03h
+  [122/200] Bit 1: 47.3s [64 s/s] | Elapsed 95.6m  ETA 1.02h
+  [123/200] Bit 0: 46.6s [65 s/s] | Elapsed 96.4m  ETA 1.01h
+  [124/200] Bit 1: 47.4s [64 s/s] | Elapsed 97.1m  ETA 0.99h
+  [125/200] Bit 0: 46.6s [65 s/s] | Elapsed 97.9m  ETA 0.98h
+  [126/200] Bit 1: 47.3s [64 s/s] | Elapsed 98.7m  ETA 0.97h
+  [127/200] Bit 0: 46.7s [65 s/s] | Elapsed 99.5m  ETA 0.95h
+  [128/200] Bit 1: 46.5s [65 s/s] | Elapsed 100.3m  ETA 0.94h
+  [129/200] Bit 0: 47.5s [64 s/s] | Elapsed 101.1m  ETA 0.93h
+  [130/200] Bit 1: 46.5s [65 s/s] | Elapsed 101.8m  ETA 0.91h
+  [131/200] Bit 0: 47.5s [64 s/s] | Elapsed 102.6m  ETA 0.90h
+  [132/200] Bit 1: 46.5s [65 s/s] | Elapsed 103.4m  ETA 0.89h
+  [133/200] Bit 0: 46.7s [65 s/s] | Elapsed 104.2m  ETA 0.87h
+  [134/200] Bit 1: 47.3s [64 s/s] | Elapsed 105.0m  ETA 0.86h
+  [135/200] Bit 0: 46.6s [65 s/s] | Elapsed 105.7m  ETA 0.85h
+  [136/200] Bit 1: 47.4s [64 s/s] | Elapsed 106.5m  ETA 0.84h
+  [137/200] Bit 0: 46.6s [65 s/s] | Elapsed 107.3m  ETA 0.82h
+  [138/200] Bit 1: 47.4s [64 s/s] | Elapsed 108.1m  ETA 0.81h
+  [139/200] Bit 0: 46.6s [65 s/s] | Elapsed 108.9m  ETA 0.80h
+  [140/200] Bit 1: 46.7s [65 s/s] | Elapsed 109.6m  ETA 0.78h
+  [141/200] Bit 0: 47.4s [64 s/s] | Elapsed 110.4m  ETA 0.77h
+  [142/200] Bit 1: 46.6s [65 s/s] | Elapsed 111.2m  ETA 0.76h
+  [143/200] Bit 0: 47.4s [64 s/s] | Elapsed 112.0m  ETA 0.74h
+  [144/200] Bit 1: 46.6s [65 s/s] | Elapsed 112.8m  ETA 0.73h
+  [145/200] Bit 0: 47.3s [64 s/s] | Elapsed 113.6m  ETA 0.72h
+  [146/200] Bit 1: 46.7s [65 s/s] | Elapsed 114.3m  ETA 0.70h
+  [147/200] Bit 0: 46.6s [65 s/s] | Elapsed 115.1m  ETA 0.69h
+  [148/200] Bit 1: 47.4s [64 s/s] | Elapsed 115.9m  ETA 0.68h
+  [149/200] Bit 0: 46.6s [65 s/s] | Elapsed 116.7m  ETA 0.67h
+  [150/200] Bit 1: 47.5s [64 s/s] | Elapsed 117.5m  ETA 0.65h
+  [151/200] Bit 0: 46.6s [65 s/s] | Elapsed 118.3m  ETA 0.64h
+  [152/200] Bit 1: 47.3s [64 s/s] | Elapsed 119.0m  ETA 0.63h
+  [153/200] Bit 0: 46.6s [65 s/s] | Elapsed 119.8m  ETA 0.61h
+  [154/200] Bit 1: 46.6s [65 s/s] | Elapsed 120.6m  ETA 0.60h
+  [155/200] Bit 0: 47.5s [64 s/s] | Elapsed 121.4m  ETA 0.59h
+  [156/200] Bit 1: 46.4s [65 s/s] | Elapsed 122.2m  ETA 0.57h
+  [157/200] Bit 0: 47.5s [64 s/s] | Elapsed 123.0m  ETA 0.56h
+  [158/200] Bit 1: 46.5s [65 s/s] | Elapsed 123.7m  ETA 0.55h
+  [159/200] Bit 0: 46.6s [65 s/s] | Elapsed 124.5m  ETA 0.54h
+  [160/200] Bit 1: 47.4s [64 s/s] | Elapsed 125.3m  ETA 0.52h
+  [161/200] Bit 0: 46.6s [65 s/s] | Elapsed 126.1m  ETA 0.51h
+  [162/200] Bit 1: 47.3s [64 s/s] | Elapsed 126.9m  ETA 0.50h
+  [163/200] Bit 0: 46.6s [65 s/s] | Elapsed 127.6m  ETA 0.48h
+  [164/200] Bit 1: 47.4s [64 s/s] | Elapsed 128.4m  ETA 0.47h
+  [165/200] Bit 0: 46.6s [65 s/s] | Elapsed 129.2m  ETA 0.46h
+  [166/200] Bit 1: 46.6s [65 s/s] | Elapsed 130.0m  ETA 0.44h
+  [167/200] Bit 0: 47.4s [64 s/s] | Elapsed 130.8m  ETA 0.43h
+  [168/200] Bit 1: 46.6s [65 s/s] | Elapsed 131.5m  ETA 0.42h
+  [169/200] Bit 0: 47.3s [64 s/s] | Elapsed 132.3m  ETA 0.40h
+  [170/200] Bit 1: 46.6s [65 s/s] | Elapsed 133.1m  ETA 0.39h
+  [171/200] Bit 0: 47.4s [64 s/s] | Elapsed 133.9m  ETA 0.38h
+  [172/200] Bit 1: 46.6s [65 s/s] | Elapsed 134.7m  ETA 0.37h
+  [173/200] Bit 0: 46.6s [65 s/s] | Elapsed 135.5m  ETA 0.35h
+  [174/200] Bit 1: 47.4s [64 s/s] | Elapsed 136.2m  ETA 0.34h
+  [175/200] Bit 0: 46.5s [65 s/s] | Elapsed 137.0m  ETA 0.33h
+  [176/200] Bit 1: 47.5s [64 s/s] | Elapsed 137.8m  ETA 0.31h
+  [177/200] Bit 0: 46.6s [65 s/s] | Elapsed 138.6m  ETA 0.30h
+  [178/200] Bit 1: 46.6s [65 s/s] | Elapsed 139.4m  ETA 0.29h
+  [179/200] Bit 0: 47.4s [64 s/s] | Elapsed 140.2m  ETA 0.27h
+  [180/200] Bit 1: 46.5s [65 s/s] | Elapsed 140.9m  ETA 0.26h
+  [181/200] Bit 0: 47.6s [63 s/s] | Elapsed 141.7m  ETA 0.25h
+  [182/200] Bit 1: 46.4s [65 s/s] | Elapsed 142.5m  ETA 0.23h
+  [183/200] Bit 0: 47.5s [63 s/s] | Elapsed 143.3m  ETA 0.22h
+  [184/200] Bit 1: 46.5s [65 s/s] | Elapsed 144.1m  ETA 0.21h
+  [185/200] Bit 0: 46.5s [65 s/s] | Elapsed 144.8m  ETA 0.20h
+  [186/200] Bit 1: 47.4s [64 s/s] | Elapsed 145.6m  ETA 0.18h
+  [187/200] Bit 0: 46.6s [65 s/s] | Elapsed 146.4m  ETA 0.17h
+  [188/200] Bit 1: 47.4s [64 s/s] | Elapsed 147.2m  ETA 0.16h
+  [189/200] Bit 0: 46.6s [65 s/s] | Elapsed 148.0m  ETA 0.14h
+  [190/200] Bit 1: 46.6s [65 s/s] | Elapsed 148.8m  ETA 0.13h
+  [191/200] Bit 0: 47.5s [64 s/s] | Elapsed 149.5m  ETA 0.12h
+  [192/200] Bit 1: 46.5s [65 s/s] | Elapsed 150.3m  ETA 0.10h
+  [193/200] Bit 0: 47.6s [63 s/s] | Elapsed 151.1m  ETA 0.09h
+  [194/200] Bit 1: 46.5s [65 s/s] | Elapsed 151.9m  ETA 0.08h
+  [195/200] Bit 0: 47.5s [64 s/s] | Elapsed 152.7m  ETA 0.07h
+  [196/200] Bit 1: 46.6s [65 s/s] | Elapsed 153.5m  ETA 0.05h
+  [197/200] Bit 0: 46.6s [65 s/s] | Elapsed 154.2m  ETA 0.04h
+  [198/200] Bit 1: 47.4s [64 s/s] | Elapsed 155.0m  ETA 0.03h
+  [199/200] Bit 0: 46.6s [65 s/s] | Elapsed 155.8m  ETA 0.01h
+  [200/200] Bit 1: 47.5s [64 s/s] | Elapsed 156.6m  ETA 0.00h
+
+  ============================================================
+  PILOT BATCH COMPLETE
+  ============================================================
+  Good trials:  200/200
+  NaN skipped:  0
+  Total time:   9395.4s = 2.61h
+  Output:       /mnt/d/TOE/pilot_observables.csv
+  CSV rows:     ~60600
+
+  Next: python uhf_decoder_lock.py

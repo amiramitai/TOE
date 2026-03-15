@@ -1,0 +1,196 @@
+nohup: ignoring input
+GPU 0: 24.44 GB free -> N=512
+
+Bogoliubov: eps(k) = sqrt(k^2 + k^4/4),  xi=0.7071,  c_s=1.0
+
+#################################################################
+  RUN A0: IR UNIFORM (Gaussian sigma=15xi, no trefoil) -- Pure Acoustic
+#################################################################
+  Grid:         512^3 = 134,217,728
+  Box:          L = 155.56   dx = 0.6077  (dx/xi = 0.859)
+  dt:           0.055389
+  Perturbation: Gaussian sigma=15.0xi
+  Width/dx:     17.5 cells
+  k_dom:        0.0943   v_g(k_dom) = 1.0078 c_s
+  k_edge:       0.3504   v_g(k_edge) = 1.1060 c_s
+  CFL speed:    21.9
+  Gaussian at R=75xi: exp(-12.5) = 3.73e-06
+  Uniform condensate: psi = 1.0
+  <rho> = 1.000000 -> normalized
+
+  Relaxation (50 steps)...
+    step 10: <rho>=1.000000
+    step 20: <rho>=1.000000
+    step 30: <rho>=1.000000
+    step 40: <rho>=1.000000
+    step 50: <rho>=1.000000
+  Relaxed in 6.7s (7.5 steps/s)
+  Shell 0: R=75xi  t_cs=53.0330  t_edge=47.9522
+  Shell 1: R=80xi  t_cs=56.5685  t_edge=51.1490
+  Shell 2: R=85xi  t_cs=60.1041  t_edge=54.3458
+  Shell 3: R=90xi  t_cs=63.6396  t_edge=57.5426
+  Shell 4: R=100xi  t_cs=70.7107  t_edge=63.9363
+
+  Saving state...
+
+  REFERENCE RUN (2554 steps, ~196s)...
+    t=13.2935  240/2554  [14.2 s/s]
+    t=26.5869  480/2554  [13.3 s/s]
+    t=39.8804  720/2554  [13.5 s/s]
+    t=53.1738  960/2554  [13.1 s/s]
+    t=66.4673  1200/2554  [13.2 s/s]
+    t=79.7607  1440/2554  [13.0 s/s]
+    t=93.0542  1680/2554  [13.1 s/s]
+    t=106.3477  1920/2554  [13.0 s/s]
+    t=119.6411  2160/2554  [13.1 s/s]
+    t=132.9346  2400/2554  [13.0 s/s]
+  Reference done (195.3s)
+
+  INJECTING: Gaussian sigma=15.0xi  dphi=0.0000  void=0.02
+  Baseline footprint:
+    R=75xi: rho_rms=3.698e-06  phase_mad=0.000e+00
+    R=80xi: rho_rms=6.850e-07  phase_mad=0.000e+00
+    R=85xi: rho_rms=1.264e-07  phase_mad=0.000e+00
+    R=90xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+    R=100xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+
+  PERTURBED RUN (max 2554 steps, thresh=0.0005)...
+    t=6.6467  [10.9 s/s]
+  ** PHASE    R=75xi: t=11.9641 sig=5.371e-04
+    t=13.2935  [12.1 s/s]
+  ** ACOUSTIC R=75xi: t=14.9551 (t/t_cs=0.282) sig=5.326e-04
+  ** PHASE    R=80xi: t=15.6198 sig=5.173e-04
+  ** ACOUSTIC R=80xi: t=18.6108 (t/t_cs=0.329) sig=5.159e-04
+  ** PHASE    R=85xi: t=19.2755 sig=5.003e-04
+    t=19.9402  [12.8 s/s]
+  ** ACOUSTIC R=85xi: t=22.5989 (t/t_cs=0.376) sig=5.538e-04
+  ** PHASE    R=90xi: t=23.2635 sig=5.481e-04
+  ** ACOUSTIC R=90xi: t=26.2546 (t/t_cs=0.413) sig=5.379e-04
+    t=26.5869  [13.0 s/s]
+  ** PHASE    R=100xi: t=30.5750 sig=5.211e-04
+    t=33.2336  [12.4 s/s]
+  ** ACOUSTIC R=100xi: t=33.5660 (t/t_cs=0.475) sig=5.115e-04
+    t=39.8804  [12.6 s/s]
+    t=46.5271  [12.8 s/s]
+    t=53.1738  [12.9 s/s]
+    t=59.8206  [12.6 s/s]
+    t=66.4673  [12.7 s/s]
+  Early exit at t=67.4643
+
+  ============================================================
+  RESULTS: RUN A0: IR UNIFORM (Gaussian sigma=15xi, no trefoil) -- Pure Acoustic
+  Signal = [pert(t)-ref(t)] - baseline
+  ============================================================
+  Shell   R/xi      t_cs    t_acou   t_phase   v/c_s
+  -------------------------------------------------------
+      0   75.0   53.0330   14.9551   11.9641    3.55
+      1   80.0   56.5685   18.6108   15.6198    3.04
+      2   85.0   60.1041   22.5989   19.2755    2.66
+      3   90.0   63.6396   26.2546   23.2635    2.42
+      4  100.0   70.7107   33.5660   30.5750    2.11
+
+  >> Fitted wavefront speed:  c_fit = 0.9473 c_s
+  >> Bogoliubov prediction:   v_dom = 1.0078 c_s  v_edge = 1.1060 c_s
+  >> Inner->outer ordering:  CORRECT
+  >> Detected: acoustic 5/5, phase 5/5
+  >> Ref: 195.3s  Pert: 95.5s  Total: 297.4s
+
+#################################################################
+  RUN A0b: IR UNIFORM+PHASE (Gaussian sigma=15xi, no trefoil, dphi=0.02)
+#################################################################
+  Grid:         512^3 = 134,217,728
+  Box:          L = 155.56   dx = 0.6077  (dx/xi = 0.859)
+  dt:           0.055389
+  Perturbation: Gaussian sigma=15.0xi
+  Width/dx:     17.5 cells
+  k_dom:        0.0943   v_g(k_dom) = 1.0078 c_s
+  k_edge:       0.3504   v_g(k_edge) = 1.1060 c_s
+  CFL speed:    21.9
+  Gaussian at R=75xi: exp(-12.5) = 3.73e-06
+  Uniform condensate: psi = 1.0
+  <rho> = 1.000000 -> normalized
+
+  Relaxation (50 steps)...
+    step 10: <rho>=1.000000
+    step 20: <rho>=1.000000
+    step 30: <rho>=1.000000
+    step 40: <rho>=1.000000
+    step 50: <rho>=1.000000
+  Relaxed in 3.8s (13.1 steps/s)
+  Shell 0: R=75xi  t_cs=53.0330  t_edge=47.9522
+  Shell 1: R=80xi  t_cs=56.5685  t_edge=51.1490
+  Shell 2: R=85xi  t_cs=60.1041  t_edge=54.3458
+  Shell 3: R=90xi  t_cs=63.6396  t_edge=57.5426
+  Shell 4: R=100xi  t_cs=70.7107  t_edge=63.9363
+
+  Saving state...
+
+  REFERENCE RUN (2554 steps, ~196s)...
+    t=13.2935  240/2554  [12.1 s/s]
+    t=26.5869  480/2554  [13.0 s/s]
+    t=39.8804  720/2554  [12.7 s/s]
+    t=53.1738  960/2554  [13.0 s/s]
+    t=66.4673  1200/2554  [12.8 s/s]
+    t=79.7607  1440/2554  [13.0 s/s]
+    t=93.0542  1680/2554  [12.9 s/s]
+    t=106.3477  1920/2554  [13.0 s/s]
+    t=119.6411  2160/2554  [12.9 s/s]
+    t=132.9346  2400/2554  [12.8 s/s]
+  Reference done (197.8s)
+
+  INJECTING: Gaussian sigma=15.0xi  dphi=0.0200  void=0.02
+  Baseline footprint:
+    R=75xi: rho_rms=3.698e-06  phase_mad=7.498e-08
+    R=80xi: rho_rms=6.850e-07  phase_mad=1.341e-08
+    R=85xi: rho_rms=1.264e-07  phase_mad=2.146e-09
+    R=90xi: rho_rms=0.000e+00  phase_mad=3.074e-10
+    R=100xi: rho_rms=0.000e+00  phase_mad=4.518e-12
+
+  PERTURBED RUN (max 2554 steps, thresh=0.0005)...
+    t=6.6467  [14.1 s/s]
+  ** PHASE    R=75xi: t=11.9641 sig=5.412e-04
+    t=13.2935  [13.9 s/s]
+  ** ACOUSTIC R=75xi: t=14.9551 (t/t_cs=0.282) sig=5.361e-04
+  ** PHASE    R=80xi: t=15.6198 sig=5.213e-04
+  ** ACOUSTIC R=80xi: t=18.6108 (t/t_cs=0.329) sig=5.192e-04
+  ** PHASE    R=85xi: t=19.2755 sig=5.041e-04
+    t=19.9402  [12.6 s/s]
+  ** ACOUSTIC R=85xi: t=22.2665 (t/t_cs=0.370) sig=5.028e-04
+  ** PHASE    R=90xi: t=23.2635 sig=5.523e-04
+  ** ACOUSTIC R=90xi: t=26.2546 (t/t_cs=0.413) sig=5.413e-04
+    t=26.5869  [13.0 s/s]
+  ** PHASE    R=100xi: t=30.5750 sig=5.251e-04
+    t=33.2336  [13.2 s/s]
+  ** ACOUSTIC R=100xi: t=33.5660 (t/t_cs=0.475) sig=5.148e-04
+    t=39.8804  [13.2 s/s]
+    t=46.5271  [12.8 s/s]
+    t=53.1738  [13.0 s/s]
+    t=59.8206  [13.1 s/s]
+    t=66.4673  [12.8 s/s]
+  Early exit at t=67.4643
+
+  ============================================================
+  RESULTS: RUN A0b: IR UNIFORM+PHASE (Gaussian sigma=15xi, no trefoil, dphi=0.02)
+  Signal = [pert(t)-ref(t)] - baseline
+  ============================================================
+  Shell   R/xi      t_cs    t_acou   t_phase   v/c_s
+  -------------------------------------------------------
+      0   75.0   53.0330   14.9551   11.9641    3.55
+      1   80.0   56.5685   18.6108   15.6198    3.04
+      2   85.0   60.1041   22.2665   19.2755    2.70
+      3   90.0   63.6396   26.2546   23.2635    2.42
+      4  100.0   70.7107   33.5660   30.5750    2.11
+
+  >> Fitted wavefront speed:  c_fit = 0.9462 c_s
+  >> Bogoliubov prediction:   v_dom = 1.0078 c_s  v_edge = 1.1060 c_s
+  >> Inner->outer ordering:  CORRECT
+  >> Detected: acoustic 5/5, phase 5/5
+  >> Ref: 197.8s  Pert: 95.0s  Total: 296.6s
+
+=================================================================
+  UNIFORM CONDENSATE IR RESULTS
+=================================================================
+  UNIFORM void-only: c_fit = 0.9473 c_s  (void=0.02, dphi=0.0000)
+  UNIFORM void+phase: c_fit = 0.9462 c_s  (void=0.02, dphi=0.0200)
+  Previous IR-WEAK w/ trefoil: c_fit = 3.2939 c_s
+  Previous UV:                 c_fit = 10.7678 c_s

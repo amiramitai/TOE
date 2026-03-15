@@ -62,7 +62,7 @@ def proof_N2():
     print("    • S_dissipation encodes the Lindblad master equation")
     print()
     
-    print("  The Lindblad dissipation term arises from trace-out of the auxiliary sector:")
+    print("  The Lindblad dissipation term arises from trace-out of the bath:")
     print()
     print("    S_diss = -i∫dt Σ_k γ_k [L_k ρ(t) L_k† - ½{L_k†L_k, ρ(t)}]_connected")
     print()
@@ -154,7 +154,7 @@ def proof_N2():
     print()
     print("    where:")
     print("      • L_k^μν are Lindbladian coefficients")
-    print("      • B_μν are 'auxiliary-coupling' terms built from ghosts")
+    print("      • B_μν are 'bath-coupling' terms built from ghosts")
     print("      • antifield_structure involves the antifields φ* of BV formalism")
     print()
     
@@ -384,7 +384,7 @@ def proof_N2():
     print("    ⟹ m_g = 0           (gluon massless)")
     print()
     print("  These strict vanishings are protected by BRST cohomology,")
-    print("  NOT affected by the Lindblad auxiliary sector.")
+    print("  NOT affected by the Lindblad bath.")
     print()
     
     results['st_identities_preserved'] = True
@@ -415,7 +415,7 @@ def proof_N2():
     print("         EXACTLY preserved despite the open-system deformation.")
     print()
     
-    print("  COROLLARY: The Lindblad auxiliary induces NO new BV anomaly.")
+    print("  COROLLARY: The Lindblad bath induces NO new BV anomaly.")
     print()
     print("  The master equation closure is EXACT at the functional level,")
     print("  independently of any on-shell limit.")

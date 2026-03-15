@@ -1,0 +1,129 @@
+GPU 0: 24.44 GB free -> max grid N=512
+Selecting N=512 for maximum resolution.
+
+=================================================================
+  GROSS-PITAEVSKII STRESS TEST -- RK4 + FD4 (STRICTLY LOCAL)
+  A/B DIFFERENTIAL MEASUREMENT
+=================================================================
+  Grid:             512^3 = 134,217,728 points
+  Box:              [-23.33, 23.33]^3
+  dx:               0.0912
+  dt:               0.001246
+  Healing length:   xi = 0.7071
+  dx / xi:          0.129
+  Speed of sound:   c_s = 1.0000
+  CFL num speed:    146.28 (must >> c_s=1.00)
+  Boundary R:       10.6066  (15.0 xi)
+  Acoustic travel:  t_acoustic = R/c_s = 10.6066
+  Steps to cross:   ~8511
+  Perturbation:     sigma=1.414, dphi=3.1416, void=0.1
+  Est. VRAM usage:  6.44 GB  (incl. A/B saved state)
+=================================================================
+  Solver initialized (RK4 + FD4). 134,217,728 grid points.
+
+--- Initializing Wavefunction ---
+  Imprinting trefoil vortex on GPU (512^3 grid, 500 curve pts)...
+  Trefoil imprinted. Core scale = 2.83, rho range = [0.0000, 1.0000]
+  Mean density before normalization: 0.999077
+  Mean density after normalization: 1.000000
+
+=================================================================
+  PHASE 1: RELAXATION  (RK4 + FD4)
+=================================================================
+  Relaxation step 10/50: <rho>=0.999998, max(rho)=5.0189
+  Relaxation step 20/50: <rho>=0.999996, max(rho)=6.8631
+  Relaxation step 30/50: <rho>=0.999993, max(rho)=8.9580
+  Relaxation step 40/50: <rho>=0.999991, max(rho)=13.0249
+  Relaxation step 50/50: <rho>=0.999989, max(rho)=14.5832
+  Relaxation complete (4.0s, 12.3 steps/s)
+
+=================================================================
+  PHASE 2: SETUP MEASUREMENT SHELLS
+=================================================================
+  Shell 0: R = 2.1213 = 3.0 xi, t_acoustic = 2.1213 (~1703 steps)
+  Shell 1: R = 3.5355 = 5.0 xi, t_acoustic = 3.5355 (~2837 steps)
+  Shell 2: R = 5.3033 = 7.5 xi, t_acoustic = 5.3033 (~4256 steps)
+  Shell 3: R = 7.0711 = 10.0 xi, t_acoustic = 7.0711 (~5674 steps)
+  Shell 4: R = 10.6066 = 15.0 xi, t_acoustic = 10.6066 (~8511 steps)
+
+  Saving pre-perturbation state...
+
+=================================================================
+  PHASE 3A: REFERENCE RUN (no perturbation, 17022 steps)
+=================================================================
+    REF: t=2.0937  step=1680/17022  [13.0 steps/s]
+    REF: t=4.1874  step=3360/17022  [13.0 steps/s]
+    REF: t=6.2812  step=5040/17022  [13.0 steps/s]
+    REF: t=8.3749  step=6720/17022  [13.0 steps/s]
+    REF: t=10.4686  step=8400/17022  [13.0 steps/s]
+    REF: t=12.5623  step=10080/17022  [13.0 steps/s]
+    REF: t=14.6560  step=11760/17022  [13.0 steps/s]
+    REF: t=16.7498  step=13440/17022  [13.0 steps/s]
+    REF: t=18.8435  step=15120/17022  [13.0 steps/s]
+    REF: t=20.9372  step=16800/17022  [13.0 steps/s]
+  Reference complete (1308.3s, 13.0 steps/s)
+
+=================================================================
+  PHASE 3B: RESTORE + PERTURB
+=================================================================
+
+  >>> INJECTING PERTURBATION at knot center (0,0,0)
+      sigma = 1.414, dphi = 3.1416, void = 0.1
+
+  IMMEDIATE (dt=0) differential signal:
+    Shell R=3.0xi: acoustic_from_rho0=7.7519e-01
+    Shell R=5.0xi: acoustic_from_rho0=5.2910e-01
+    Shell R=7.5xi: acoustic_from_rho0=3.5394e-01
+    Shell R=10.0xi: acoustic_from_rho0=2.2261e-01
+    Shell R=15.0xi: acoustic_from_rho0=1.1254e-01
+
+=================================================================
+  PHASE 3C: PERTURBED RUN (17022 steps)
+  Expected acoustic crossing times:
+    R=3.0xi: t_expected = 2.1213
+    R=5.0xi: t_expected = 3.5355
+    R=7.5xi: t_expected = 5.3033
+    R=10.0xi: t_expected = 7.0711
+    R=15.0xi: t_expected = 10.6066
+=================================================================
+  ** ACOUSTIC at R=3.0xi: t=0.0012 (expected=2.1213, ratio=0.001)
+  ** PHASE at R=3.0xi: t=0.0012
+  ** ACOUSTIC at R=5.0xi: t=0.0012 (expected=3.5355, ratio=0.000)
+  ** PHASE at R=5.0xi: t=0.0012
+  ** PHASE at R=7.5xi: t=0.0012
+  ** PHASE at R=10.0xi: t=0.0012
+  Noise calibrated from outermost shell: thresh_a=1.00e-06, thresh_p=1.00e-08
+  ** ACOUSTIC at R=7.5xi: t=0.0062 (expected=5.3033, ratio=0.001)
+  ** ACOUSTIC at R=10.0xi: t=0.0062 (expected=7.0711, ratio=0.001)
+  ** PHASE at R=15.0xi: t=0.0523
+  ** ACOUSTIC at R=15.0xi: t=0.2617 (expected=10.6066, ratio=0.025)
+
+=================================================================
+  RESULTS: A/B DIFFERENTIAL MULTI-SHELL ARRIVAL
+  Solver: RK4 + 4th-order finite differences (strictly local)
+  Measurement: |perturbed - reference| at each shell
+=================================================================
+     Shell    R/xi  t_expect  t_acoustic     t_phase   ratio_a
+  ---------------------------------------------------------------------------
+         0     3.0    2.1213      0.0012      0.0012     0.001
+         1     5.0    3.5355      0.0012      0.0012     0.000
+         2     7.5    5.3033      0.0062      0.0012     0.001
+         3    10.0    7.0711      0.0062      0.0012     0.001
+         4    15.0   10.6066      0.2617      0.0523     0.025
+
+  >> Acoustic wavefront speed from fit: c_fit = 34.1849 (expected c_s = 1.0000)
+  >> Acoustic inner-to-outer ordering: VIOLATED
+  >> Phase arrival spread: 0.0511 (mean=0.0115)
+  >> Phase wavefront speed: c_phase = 174.8877
+
+  >> MIXED RESULT: further analysis needed.
+     Shell 0 (R=3.0xi): phase/acoustic = 1.000
+     Shell 1 (R=5.0xi): phase/acoustic = 1.000
+     Shell 2 (R=7.5xi): phase/acoustic = 0.200
+     Shell 3 (R=10.0xi): phase/acoustic = 0.200
+     Shell 4 (R=15.0xi): phase/acoustic = 0.200
+
+  Reference run: 1308.3s
+  Perturbed run: 26.3s (336 steps)
+  Performance: 12.8 steps/s
+  Total wall time: 1338.7s

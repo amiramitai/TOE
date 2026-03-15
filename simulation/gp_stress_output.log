@@ -1,0 +1,80 @@
+GPU 0: 24.44 GB free -> max grid N=512
+Selecting N=512 for maximum resolution.
+
+=================================================================
+  GROSS-PITAEVSKII STRESS TEST PARAMETERS
+=================================================================
+  Grid:             512^3 = 134,217,728 points
+  Box:              [-23.33, 23.33]^3
+  dx:               0.0912
+  dt:               0.001662
+  Healing length:   xi = 0.7071
+  dx / xi:          0.129
+  Speed of sound:   c_s = 1.0000
+  Boundary R:       10.6066  (15.0 xi)
+  Acoustic travel:  t_acoustic = R/c_s = 10.6066
+  Interaction g:    1.0
+  Background rho0:  1.0
+  Chemical pot mu:  1.0
+  Perturbation:     sigma=1.414, dphi=1.5708
+  Est. VRAM usage:  4.29 GB
+=================================================================
+  Building k^2 spectral grid...
+  Solver initialized. 134,217,728 grid points, 4096 boundary samples.
+
+--- Initializing Wavefunction ---
+  Imprinting trefoil vortex on GPU (512^3 grid, 500 curve pts)...
+  Trefoil imprinted. Core scale = 2.83, rho range = [0.0000, 1.0000]
+  Computing density for normalization...
+  Density computed.
+  Mean density before normalization: 0.999077
+  Mean density after normalization: 1.000000
+
+=================================================================
+  PHASE 1: RELAXATION
+=================================================================
+  Relaxation step 10/50: <rho>=0.999999, max(rho)=7.1320
+  Relaxation step 20/50: <rho>=0.999998, max(rho)=8.2632
+  Relaxation step 30/50: <rho>=0.999997, max(rho)=10.4075
+  Relaxation step 40/50: <rho>=0.999996, max(rho)=10.4621
+  Relaxation step 50/50: <rho>=0.999995, max(rho)=11.3615
+  Relaxation complete (2.8s)
+
+=================================================================
+  PHASE 2: BASELINE MEASUREMENT
+=================================================================
+  Baseline acoustic RMS: 0.00000000e+00
+  Baseline phase MAD:    0.00000000e+00
+
+=================================================================
+  PHASE 3: PERTURBATION INJECTION
+=================================================================
+
+  >>> INJECTING PERTURBATION at knot center (0,0,0)
+      sigma = 1.414, delta_phi = 1.5708
+
+  IMMEDIATE (dt=0) post-perturbation:
+    Acoustic signal: 0.00000000e+00
+    Phase signal:    0.00000000e+00
+
+=================================================================
+  PHASE 4: SIGNAL TRACKING
+  Expected acoustic arrival at t=10.6066 (~6384 steps)
+=================================================================
+  ** Acoustic signal TRIGGERED at t=0.0017 (sig=2.295400e-02, R/cs=10.6066)
+  ** Phase signal TRIGGERED at t=0.0017 (sig=9.961346e-03)
+
+=================================================================
+  RESULTS
+=================================================================
+  Expected acoustic time R/c_s:   10.606602
+  Measured dt_acoustic:           0.001662  (ratio=0.000)
+  Measured dt_phase:              0.001662
+
+  DELTA = dt_acoustic - dt_phase = 0.000000
+
+  >> INCONCLUSIVE: acoustic arrived too fast.
+  >> Possible numerical dispersion artifact.
+
+  Simulation time: 0.1s (12767 steps)
+  Performance: 109174.1 steps/s

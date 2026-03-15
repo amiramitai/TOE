@@ -1,0 +1,202 @@
+GPU 0: 24.44 GB free -> N=512
+
+Bogoliubov: eps(k) = sqrt(k^2 + k^4/4),  xi=0.7071,  c_s=1.0
+
+#################################################################
+  RUN A: IR LIMIT (Gaussian sigma=15xi) -- Emergent GR
+#################################################################
+  Grid:         512^3 = 134,217,728
+  Box:          L = 155.56   dx = 0.6077  (dx/xi = 0.859)
+  dt:           0.055389
+  Perturbation: Gaussian sigma=15.0xi
+  Width/dx:     17.5 cells
+  k_dom:        0.0943   v_g(k_dom) = 1.0078 c_s
+  k_edge:       0.3504   v_g(k_edge) = 1.1060 c_s
+  CFL speed:    21.9
+  Gaussian at R=75xi: exp(-12.5) = 3.73e-06
+  Trefoil: scale=2.83, rho=[0.0011, 1.0000]
+  <rho> = 0.999997 -> normalized
+
+  Relaxation (50 steps)...
+    step 10: <rho>=0.999999
+    step 20: <rho>=0.999999
+    step 30: <rho>=0.999998
+    step 40: <rho>=0.999998
+    step 50: <rho>=0.999997
+  Relaxed in 4.0s (12.5 steps/s)
+  Shell 0: R=75xi  t_cs=53.0330  t_edge=47.9522
+  Shell 1: R=80xi  t_cs=56.5685  t_edge=51.1490
+  Shell 2: R=85xi  t_cs=60.1041  t_edge=54.3458
+  Shell 3: R=90xi  t_cs=63.6396  t_edge=57.5426
+  Shell 4: R=100xi  t_cs=70.7107  t_edge=63.9363
+
+  Saving state...
+
+  REFERENCE RUN (2554 steps, ~196s)...
+    t=13.2935  240/2554  [12.4 s/s]
+    t=26.5869  480/2554  [13.0 s/s]
+    t=39.8804  720/2554  [12.8 s/s]
+    t=53.1738  960/2554  [13.0 s/s]
+    t=66.4673  1200/2554  [12.9 s/s]
+    t=79.7607  1440/2554  [13.0 s/s]
+    t=93.0542  1680/2554  [12.9 s/s]
+    t=106.3477  1920/2554  [13.0 s/s]
+    t=119.6411  2160/2554  [12.9 s/s]
+    t=132.9346  2400/2554  [13.0 s/s]
+  Reference done (197.9s)
+
+  INJECTING: Gaussian sigma=15.0xi  dphi=3.1416  void=0.1
+  Baseline footprint:
+    R=75xi: rho_rms=3.429e-06  phase_mad=1.178e-05
+    R=80xi: rho_rms=6.713e-07  phase_mad=2.106e-06
+    R=85xi: rho_rms=1.917e-07  phase_mad=3.367e-07
+    R=90xi: rho_rms=1.304e-08  phase_mad=4.810e-08
+    R=100xi: rho_rms=2.634e-09  phase_mad=5.354e-10
+
+  PERTURBED RUN (max 2554 steps, thresh=0.005)...
+    t=6.6467  [13.6 s/s]
+  ** ACOUSTIC R=75xi: t=11.2994 (t/t_cs=0.213) sig=5.897e-03
+  ** ACOUSTIC R=80xi: t=12.2964 (t/t_cs=0.217) sig=5.203e-03
+  ** PHASE    R=75xi: t=12.9611 sig=5.206e-03
+    t=13.2935  [13.6 s/s]
+  ** ACOUSTIC R=85xi: t=13.6258 (t/t_cs=0.227) sig=5.894e-03
+  ** PHASE    R=80xi: t=14.6228 sig=5.398e-03
+  ** ACOUSTIC R=90xi: t=14.6228 (t/t_cs=0.230) sig=5.202e-03
+  ** PHASE    R=85xi: t=16.2845 sig=5.241e-03
+  ** ACOUSTIC R=100xi: t=17.2815 (t/t_cs=0.244) sig=5.345e-03
+  ** PHASE    R=90xi: t=17.9462 sig=5.218e-03
+    t=19.9402  [12.7 s/s]
+  ** PHASE    R=100xi: t=21.6019 sig=5.096e-03
+    t=26.5869  [13.0 s/s]
+    t=33.2336  [13.1 s/s]
+    t=39.8804  [13.1 s/s]
+  Early exit at t=43.5361
+
+  ============================================================
+  RESULTS: RUN A: IR LIMIT (Gaussian sigma=15xi) -- Emergent GR
+  Signal = [pert(t)-ref(t)] - baseline
+  ============================================================
+  Shell   R/xi      t_cs    t_acou   t_phase   v/c_s
+  -------------------------------------------------------
+      0   75.0   53.0330   11.2994   12.9611    4.69
+      1   80.0   56.5685   12.2964   14.6228    4.60
+      2   85.0   60.1041   13.6258   16.2845    4.41
+      3   90.0   63.6396   14.6228   17.9462    4.35
+      4  100.0   70.7107   17.2815   21.6019    4.09
+
+  >> Fitted wavefront speed:  c_fit = 2.9485 c_s
+  >> Bogoliubov prediction:   v_dom = 1.0078 c_s  v_edge = 1.1060 c_s
+  >> Inner->outer ordering:  CORRECT
+  >> Detected: acoustic 5/5, phase 5/5
+  >> Ref: 197.9s  Pert: 61.4s  Total: 263.3s
+
+#################################################################
+  RUN B: UV LIMIT (compact R_cut=1xi) -- Emergent QM
+#################################################################
+  Grid:         512^3 = 134,217,728
+  Box:          L = 23.33   dx = 0.0912  (dx/xi = 0.129)
+  dt:           0.001246
+  Perturbation: compact bump R_cut=1.0xi
+  Width/dx:     7.8 cells
+  k_dom:        2.6189   v_g(k_dom) = 4.7697 c_s
+  k_edge:       7.8567   v_g(k_edge) = 15.4745 c_s
+  CFL speed:    146.3
+  EXACTLY ZERO beyond R_cut = 1.0 xi
+  Trefoil: scale=2.83, rho=[0.0000, 1.0000]
+  <rho> = 0.999077 -> normalized
+
+  Relaxation (50 steps)...
+    step 10: <rho>=0.999998
+    step 20: <rho>=0.999996
+    step 30: <rho>=0.999993
+    step 40: <rho>=0.999991
+    step 50: <rho>=0.999989
+  Relaxed in 4.1s (12.3 steps/s)
+  Shell 0: R=3xi  t_cs=2.1213  t_edge=0.1371
+  Shell 1: R=5xi  t_cs=3.5355  t_edge=0.2285
+  Shell 2: R=7.5xi  t_cs=5.3033  t_edge=0.3427
+  Shell 3: R=10xi  t_cs=7.0711  t_edge=0.4569
+  Shell 4: R=15xi  t_cs=10.6066  t_edge=0.6854
+
+  Saving state...
+
+  REFERENCE RUN (17022 steps, ~1309s)...
+    t=2.0937  1680/17022  [12.9 s/s]
+    t=4.1874  3360/17022  [13.0 s/s]
+    t=6.2812  5040/17022  [13.0 s/s]
+    t=8.3749  6720/17022  [13.0 s/s]
+    t=10.4686  8400/17022  [13.0 s/s]
+    t=12.5623  10080/17022  [13.0 s/s]
+    t=14.6560  11760/17022  [13.0 s/s]
+    t=16.7498  13440/17022  [13.0 s/s]
+    t=18.8435  15120/17022  [13.0 s/s]
+    t=20.9372  16800/17022  [13.0 s/s]
+  Reference done (1306.3s)
+
+  INJECTING: compact bump R_cut=1.0xi  dphi=3.1416  void=0.1
+  Baseline footprint:
+    R=3xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+    R=5xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+    R=7.5xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+    R=10xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+    R=15xi: rho_rms=0.000e+00  phase_mad=0.000e+00
+
+  PERTURBED RUN (max 17022 steps, thresh=0.005)...
+  ** ACOUSTIC R=3xi: t=0.1047 (t/t_cs=0.049) sig=1.375e-02
+  ** PHASE    R=3xi: t=0.1047 sig=5.689e-02
+  ** ACOUSTIC R=5xi: t=0.1570 (t/t_cs=0.044) sig=5.050e-03
+  ** PHASE    R=5xi: t=0.1570 sig=6.555e-03
+  ** ACOUSTIC R=7.5xi: t=0.3141 (t/t_cs=0.059) sig=9.166e-03
+  ** PHASE    R=7.5xi: t=0.3141 sig=6.298e-03
+  ** ACOUSTIC R=10xi: t=0.4187 (t/t_cs=0.059) sig=5.296e-03
+  ** PHASE    R=10xi: t=0.5758 sig=6.008e-03
+  ** ACOUSTIC R=15xi: t=0.8898 (t/t_cs=0.084) sig=5.932e-03
+    t=1.0469  [13.0 s/s]
+    t=2.0937  [13.0 s/s]
+    t=3.1406  [13.1 s/s]
+    t=4.1874  [13.1 s/s]
+    t=5.2343  [13.1 s/s]
+    t=6.2812  [13.1 s/s]
+    t=7.3280  [13.1 s/s]
+    t=8.3749  [13.1 s/s]
+    t=9.4217  [13.1 s/s]
+    t=10.4686  [13.0 s/s]
+    t=11.5155  [13.0 s/s]
+    t=12.5623  [13.0 s/s]
+    t=13.6092  [13.0 s/s]
+    t=14.6560  [13.0 s/s]
+    t=15.7029  [13.0 s/s]
+    t=16.7498  [13.0 s/s]
+    t=17.7966  [13.0 s/s]
+    t=18.8435  [13.0 s/s]
+    t=19.8903  [13.0 s/s]
+    t=20.9372  [13.0 s/s]
+
+  ============================================================
+  RESULTS: RUN B: UV LIMIT (compact R_cut=1xi) -- Emergent QM
+  Signal = [pert(t)-ref(t)] - baseline
+  ============================================================
+  Shell   R/xi      t_cs    t_acou   t_phase   v/c_s
+  -------------------------------------------------------
+      0    3.0    2.1213    0.1047    0.1047   20.26
+      1    5.0    3.5355    0.1570    0.1570   22.52
+      2    7.5    5.3033    0.3141    0.3141   16.89
+      3   10.0    7.0711    0.4187    0.5758   16.89
+      4   15.0   10.6066    0.8898       ---   11.92
+
+  >> Fitted wavefront speed:  c_fit = 10.7678 c_s
+  >> Bogoliubov prediction:   v_dom = 4.7697 c_s  v_edge = 15.4745 c_s
+  >> Inner->outer ordering:  CORRECT
+  >> Detected: acoustic 5/5, phase 4/5
+  >> Ref: 1306.3s  Pert: 1305.9s  Total: 2616.2s
+
+=================================================================
+  COMBINED VERDICT: IR vs UV BOGOLIUBOV DISPERSION
+=================================================================
+  IR (Gaussian, width=15.0xi): c_fit = 2.9485 c_s  (v_dom=1.0078, v_edge=1.1060)
+  UV (compact, width=1.0xi): c_fit = 10.7678 c_s  (v_dom=4.7697, v_edge=15.4745)
+
+  >> SPEED RATIO:  UV / IR = 3.65
+  >> Predicted ratio (edge):  13.99
+
+  >> IR wavefront at 2.95 c_s -- not phononic.

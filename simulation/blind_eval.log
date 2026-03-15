@@ -1,0 +1,177 @@
+nohup: ignoring input
+GPU 0: 24.44 GB free / 25.77 GB total
+
+#################################################################
+  PHASE 2: BLIND EVALUATION — 800 TRIALS + NULL CONTROLS
+#################################################################
+  Solver:         RK4 + FD4 (strictly local, NO FFT)
+  Grid:           320^3 = 32,768,000
+  dx:             0.17678  (0.2500 xi)
+  dt:             0.004687
+  Defect A:       x = -7.0711
+  Defect B:       x = 7.0711
+  d = 14.1421   t_acoustic = 14.1421
+  Noise:          σ_θ = 0.01,  σ_ρ = 0.001
+  LOCKED DECODER:
+    STEP_RHO = 2380  (t = 11.156250)
+    STEP_PHI = 2650  (t = 12.421875)
+    THETA_PHI = 0.205264
+    THETA_RHO = 0.909564
+  Blind trials:   800
+  Null trials:    100 (phase-randomized)
+  Label shuffles: 10000
+
+  Imprinting two vortex rings (Abrikosov product)...
+  Imprinting Ring A...
+    Ring at (-7.071,0.0,0.0) R=2.1213: rho=[0.0000, 1.0000]
+  Imprinting Ring B...
+    Ring at (7.071,0.0,0.0) R=2.1213: rho=[0.0000, 1.0000]
+  Two-ring product: <rho>=0.999355 -> normalized
+  Combined rho: [0.0000, 1.0000]
+  Probe at B: shell R=1.0607, 256 pts
+
+  Relaxation (100 steps)...
+    step 25: <rho>=0.999995
+    step 50: <rho>=0.999990
+    step 75: <rho>=0.999986
+    step 100: <rho>=0.999982
+  Relaxed in 1.6s
+  Pristine state saved.
+  Bit assignment (RNG 20260312): 408 x Bit 0, 392 x Bit 1
+
+  =======================================================
+  PHASE A: 800 BLIND TRIALS
+  =======================================================
+  [0001/800] Bit 1: 41.7s | Elapsed 0.7m  ETA 10.42h
+  [0002/800] Bit 1: 43.2s | Elapsed 1.4m  ETA 10.59h
+  [0003/800] Bit 0: 41.9s | Elapsed 2.1m  ETA 10.53h
+  [0020/800] Bit 1: 40.9s | Elapsed 13.7m  ETA 10.07h
+  [0040/800] Bit 0: 41.0s | Elapsed 27.4m  ETA 9.82h
+  [0060/800] Bit 0: 40.5s | Elapsed 41.0m  ETA 9.58h
+  [0080/800] Bit 1: 40.6s | Elapsed 54.6m  ETA 9.33h
+  [0100/800] Bit 1: 41.5s | Elapsed 68.3m  ETA 9.10h
+  [0120/800] Bit 0: 40.6s | Elapsed 81.8m  ETA 8.87h
+  [0140/800] Bit 0: 41.7s | Elapsed 95.5m  ETA 8.64h
+  [0160/800] Bit 0: 40.5s | Elapsed 109.1m  ETA 8.41h
+  [0180/800] Bit 1: 40.5s | Elapsed 122.7m  ETA 8.18h
+  [0200/800] Bit 0: 40.6s | Elapsed 136.3m  ETA 7.95h
+  [0220/800] Bit 0: 41.8s | Elapsed 149.9m  ETA 7.72h
+  [0240/800] Bit 0: 40.5s | Elapsed 163.5m  ETA 7.49h
+  [0260/800] Bit 1: 40.5s | Elapsed 177.1m  ETA 7.27h
+  [0280/800] Bit 1: 40.5s | Elapsed 190.7m  ETA 7.04h
+  [0300/800] Bit 1: 40.5s | Elapsed 204.3m  ETA 6.81h
+  [0320/800] Bit 1: 40.6s | Elapsed 217.9m  ETA 6.58h
+  [0340/800] Bit 1: 40.6s | Elapsed 231.5m  ETA 6.36h
+  [0360/800] Bit 0: 40.4s | Elapsed 245.1m  ETA 6.13h
+  [0380/800] Bit 1: 40.6s | Elapsed 258.7m  ETA 5.90h
+  [0400/800] Bit 0: 42.0s | Elapsed 272.4m  ETA 5.67h
+  [0420/800] Bit 0: 40.4s | Elapsed 286.0m  ETA 5.45h
+  [0440/800] Bit 1: 40.3s | Elapsed 299.6m  ETA 5.22h
+  [0460/800] Bit 1: 40.6s | Elapsed 313.2m  ETA 4.99h
+  [0480/800] Bit 0: 42.1s | Elapsed 326.8m  ETA 4.77h
+  [0500/800] Bit 0: 39.4s | Elapsed 340.4m  ETA 4.54h
+  [0520/800] Bit 0: 40.4s | Elapsed 354.0m  ETA 4.31h
+  [0540/800] Bit 1: 40.5s | Elapsed 367.6m  ETA 4.08h
+  [0560/800] Bit 1: 40.4s | Elapsed 381.2m  ETA 3.86h
+  [0580/800] Bit 1: 40.4s | Elapsed 394.8m  ETA 3.63h
+  [0600/800] Bit 0: 40.4s | Elapsed 408.4m  ETA 3.40h
+  [0620/800] Bit 1: 40.3s | Elapsed 422.1m  ETA 3.18h
+  [0640/800] Bit 1: 42.1s | Elapsed 435.7m  ETA 2.95h
+  [0660/800] Bit 0: 40.6s | Elapsed 449.3m  ETA 2.72h
+  [0680/800] Bit 0: 42.5s | Elapsed 462.9m  ETA 2.50h
+  [0700/800] Bit 1: 40.5s | Elapsed 476.5m  ETA 2.27h
+  [0720/800] Bit 1: 40.5s | Elapsed 490.1m  ETA 2.04h
+  [0740/800] Bit 1: 40.1s | Elapsed 503.7m  ETA 1.82h
+  [0760/800] Bit 0: 40.7s | Elapsed 517.3m  ETA 1.59h
+  [0780/800] Bit 1: 40.4s | Elapsed 530.9m  ETA 1.36h
+  [0800/800] Bit 0: 40.4s | Elapsed 544.5m  ETA 1.13h
+
+  Blind trials complete: 800/800 valid (9.08h)
+
+  =======================================================
+  PHASE B: BLIND DECODE (locked thresholds)
+  =======================================================
+  Phase predictions:   408 x '0',  392 x '1'
+  Density predictions: 408 x '0',  392 x '1'
+
+  =======================================================
+  PHASE C: UNBLIND — PRIMARY METRICS
+  =======================================================
+
+  --- PHASE CHANNEL ---
+  Accuracy:     1.0000  (800/800)
+  p-value:      10^(-175.1)
+  ROC AUC:      1.000000
+  MI (bits):    0.999711
+
+  --- DENSITY CHANNEL ---
+  Accuracy:     1.0000  (800/800)
+  p-value:      10^(-175.1)
+  ROC AUC:      1.000000
+  MI (bits):    0.999711
+
+  =======================================================
+  PHASE D: LABEL-SHUFFLED NULL (10,000 shuffles)
+  =======================================================
+  Shuffled accuracy (phase):
+    mean = 0.5000 ± 0.0178  max = 0.5625
+  Shuffled accuracy (density):
+    mean = 0.5000 ± 0.0178  max = 0.5625
+  Shuffled AUC (phase):
+    mean = 0.4997 ± 0.0208
+  Shuffled MI (phase):
+    mean = 0.000918 ± 0.001280
+
+  =======================================================
+  PHASE E: PHASE-RANDOMIZED NULL (100 GPU trials)
+  =======================================================
+  [NULL 001/100] dphi=+1.906  40.7s | Elapsed 0.7m
+  [NULL 002/100] dphi=+0.173  42.1s | Elapsed 1.4m
+  [NULL 003/100] dphi=-2.393  40.5s | Elapsed 2.1m
+  [NULL 020/100] dphi=-0.165  40.1s | Elapsed 13.6m
+  [NULL 040/100] dphi=+2.095  40.4s | Elapsed 27.3m
+  [NULL 060/100] dphi=+2.510  42.3s | Elapsed 40.9m
+  [NULL 080/100] dphi=-0.350  43.1s | Elapsed 54.5m
+  [NULL 100/100] dphi=-0.897  40.6s | Elapsed 68.2m
+
+  Phase-randomized null (100 valid, 68.2m):
+    Phase accuracy:   0.9700  (expect ~0.50)
+    Density accuracy: 0.9800  (expect ~0.50)
+
+
+#################################################################
+  PHASE 2 — FINAL STATISTICAL SUMMARY
+#################################################################
+
+  Valid trials:     800 / 800
+  Bit distribution: 408 x Bit 0, 392 x Bit 1
+  Total runtime:    10.21h
+
+  ┌─────────────────┬────────────────┬────────────────┬──────────┐
+  │ Metric          │ Phase Channel  │ Density Chan.  │ Target   │
+  ├─────────────────┼────────────────┼────────────────┼──────────┤
+  │ Accuracy        │        1.0000 │        1.0000 │ > 0.65   │
+  │ p-value (log₁₀) │        -175.1 │        -175.1 │ < -8     │
+  │ ROC AUC         │      1.000000 │      1.000000 │ > 0.70   │
+  │ MI (bits)       │      0.999711 │      0.999711 │ > 0.03   │
+  └─────────────────┴────────────────┴────────────────┴──────────┘
+
+  ┌──────────────────┬────────────────┬────────────────────────┐
+  │ Null Control     │ Accuracy       │ Comment                │
+  ├──────────────────┼────────────────┼────────────────────────┤
+  │ Label-shuffled   │        0.5000 │ ± 0.0178  (10k shuffles) │
+  │ Phase-randomized │        0.9700 │ expect ~0.50           │
+  └──────────────────┴────────────────┴────────────────────────┘
+
+  ┌─ PASS / FAIL ──────────────────────────────────────────┐
+  │ Accuracy > 0.65:       PASS   (1.0000)               │
+  │ p-value < 10⁻⁸:       PASS   (10^-175.1)           │
+  │ AUC > 0.70:            PASS   (1.000000)         │
+  │ MI > 0.03 bits:        PASS   (0.999711)         │
+  │ Shuffled null ~ 0.50:  PASS   (0.5000)             │
+  │ Phase-rand null ~ 0.50:FAIL   (0.9700)             │
+  ├─────────────────────────────────────────────────────────┤
+  │  >> FAILED: Phase-null                                  │
+  └─────────────────────────────────────────────────────────┘
+
+  Output CSV: /mnt/d/TOE/blind_scores.csv

@@ -39,7 +39,7 @@ THEOREM (Unified BV/CTP Cohomological Renormalization):
                       (Chern-Wess-Zumino form)
     
       • τ_diss:       Dissipative contact anomaly from Lindblad term
-                      Coupling fermion loops to auxiliary environment
+                      Coupling fermion loops to bath environment
                       Localized at the CTP contour junction
     
       • τ_contact:    Branch discontinuities across ±  Keldysh directions
@@ -86,9 +86,9 @@ THEOREM (Unified BV/CTP Cohomological Renormalization):
     
     PART 3: Lindblad dissipative anomalies in Keldysh space
     ─────────────────────────────────────────────────────────
-    The Lindblad term couples to auxiliary environment via jump operators L_j:
+    The Lindblad term couples to bath environment via jump operators L_j:
     
-        A_Lindblad = ∫ d⁴x [φ_+ L_j φ_+† - φ_- L_j φ_-† + (auxiliary interaction)]
+        A_Lindblad = ∫ d⁴x [φ_+ L_j φ_+† - φ_- L_j φ_-† + (bath interaction)]
     
     The BRST extension of this to ghost fields introduces a deformation:
     
@@ -222,7 +222,7 @@ THEOREM (Unified BV/CTP Cohomological Renormalization):
       • All Ward identities exact (no anomalies)
       • Trace anomaly vanishes on-shell (Weyl invariance preserved)
     
-    Specifically for the system+auxiliary theory:
+    Specifically for the system+bath theory:
         Tr[(φ_+ φ_+† - φ_- φ_-†)] = 0  (off-shell, in Γ)
     
     This closure is NON-PERTURBATIVE once Δ(W+S_counter)=0 is achieved.
@@ -500,7 +500,7 @@ def proof_N5():
     print("")
     print("  M.4 (Davies Hamiltonian):")
     print("    → Asymptotic factorization forced by dynamics")
-    print("    → Both system and auxiliary have well-defined scattering")
+    print("    → Both system and bath have well-defined scattering")
     print("    → No entropy generated (vacuum sector closed)")
     print("")
     print("  N.3 (Fujikawa Heat-Kernel):")
@@ -520,7 +520,7 @@ def proof_N5():
     print("  All agree: det J = 1, no anomalies survive renormalization")
     print("")
     print("  Logic:")
-    print("    (a) M.4 → asymptotic auxiliary factorization is forced")
+    print("    (a) M.4 → asymptotic bath factorization is forced")
     print("    (b) N.3 → measure is invariant under field redefinition")
     print("    (c) N.5 → off-shell quantum action is anomaly-free")
     print("    (a)+(b)+(c) → consistent unified framework")
@@ -566,7 +566,7 @@ def proof_N5():
         • Path integral measure det J = 1 (invariant)
 
     (7) This proof unifies:
-        • M.4: Asymptotic auxiliary factorization (no entropy)
+        • M.4: Asymptotic bath factorization (no entropy)
         • N.3: Measure invariance (Fujikawa = 1)
         • N.5: Off-shell renormalization (Δ Γ = 0)
         into a single, consistent cohomological framework.

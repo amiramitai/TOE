@@ -1,0 +1,144 @@
+nohup: ignoring input
+GPU 0: 24.44 GB free -> N=672
+
+#################################################################
+  HYDRODYNAMIC EPR ENTANGLEMENT TEST
+#################################################################
+  Grid:           672^3 = 303,464,448
+  Box:            [-25.0, +25.0],  dx = 0.07440
+  dx/xi:          0.1052  (9.5 cells/xi)
+  dt:             0.000830
+  Particle A:     x = -10.0  (= -14.1 xi)
+  Particle B:     x = 10.0  (= 14.1 xi)
+  Distance D:     20.0  (= 28.3 xi)
+  Ring radius:    2.1213  (= 3.0 xi)
+  Perturbation:   Gaussian sigma = 0.3536  (= 0.5 xi)
+  sigma/dx:       4.8 cells
+  Phase kick:     3.1416,  void = 0.01
+  t_acoustic:     20.0000  (D / c_s)
+  t_UV (k_dom):   3.8490  (D / v_g)
+  v_UV / c_s:     5.20
+  Injection at:   (-10.0, 0.0, 0.0) [ring A center, rho~1]
+  CFL speed:      179.2
+
+  Imprinting two vortex rings (Abrikosov product)...
+  Imprinting Ring A...
+    Ring at (-10.0,0.0,0.0) R=2.121: rho=[0.0009, 1.0000]
+  Imprinting Ring B...
+    Ring at (10.0,0.0,0.0) R=2.121: rho=[0.0009, 1.0000]
+  Two-ring product: <rho>=0.999067 -> normalized
+  Combined rho: [0.0009, 1.0000]
+  Detection shells (distance from A):
+    d5: x=-5, d=5, t_cs=5.00, t_UV=0.96
+    d10: x=0, d=10, t_cs=10.00, t_UV=1.92
+    d15: x=5, d=15, t_cs=15.00, t_UV=2.89
+    d20: x=10, d=20, t_cs=20.00, t_UV=3.85
+  B ring filament: 64 points on ring at x=10.0
+  Probe radius: 0.7071 (1.0 xi), 256 pts/shell
+
+  Relaxation (100 steps)...
+    step 20: <rho>=0.999998
+    step 40: <rho>=0.999996
+    step 60: <rho>=0.999994
+    step 80: <rho>=0.999992
+    step 100: <rho>=0.999990
+  Relaxed in 19.7s (5.1 steps/s)
+
+  Saving state...
+
+  REFERENCE RUN (36127 steps, t_max=30.00, ~6021s)...
+    t=2.9994  3612/36127  [5.8 s/s]
+    t=5.9989  7224/36127  [5.7 s/s]
+    t=8.9983  10836/36127  [5.7 s/s]
+    t=11.9978  14448/36127  [5.7 s/s]
+    t=14.9972  18060/36127  [5.7 s/s]
+    t=17.9967  21672/36127  [5.8 s/s]
+    t=20.9961  25284/36127  [5.8 s/s]
+    t=23.9955  28896/36127  [5.8 s/s]
+    t=26.9950  32508/36127  [5.8 s/s]
+    t=29.9944  36120/36127  [5.8 s/s]
+  Reference done (6243.4s)
+
+  INJECTING UV PERTURBATION AT PARTICLE A's CENTER
+    Location: (-10.0, 0.0, 0.0)
+    sigma=0.3536, dphi=3.1416, void=0.01
+  Baseline footprint (perturbation at t=0):
+         A: rho_rms=1.306e-01, phase_mad=4.267e-01
+        d5: rho_rms=0.000e+00, phase_mad=0.000e+00
+       d10: rho_rms=0.000e+00, phase_mad=0.000e+00
+       d15: rho_rms=0.000e+00, phase_mad=0.000e+00
+       d20: rho_rms=0.000e+00, phase_mad=0.000e+00
+    B_ring: rho_rms=0.000e+00, phase_mad=0.000e+00
+
+  PERTURBED RUN (36127 steps, base_thresh=0.001)...
+  ** A RESPONSE: t=0.0008  sig=2.432e-03
+  ** d5 DENSITY:  t=0.2840  (t/t_ac=0.014)  sig=1.056e-03
+  ** d5 PHASE:    t=0.3438  (t/t_ac=0.017)  sig=1.175e-03
+  ** d10 DENSITY:  t=0.6726  (t/t_ac=0.034)  sig=1.057e-03
+  ** d10 PHASE:    t=0.7773  (t/t_ac=0.039)  sig=1.033e-03
+  ** d15 DENSITY:  t=1.1211  (t/t_ac=0.056)  sig=1.071e-03
+  ** d15 PHASE:    t=1.3004  (t/t_ac=0.065)  sig=1.034e-03
+  ** B_ring PHASE:    t=1.5097  (t/t_ac=0.075)  sig=1.120e-03
+  ** d20 PHASE:    t=1.6442  (t/t_ac=0.082)  sig=1.029e-03
+  ** d20 DENSITY:  t=2.3467  (t/t_ac=0.117)  sig=1.060e-03
+  ** B_ring DENSITY:  t=2.4364  (t/t_ac=0.122)  sig=1.330e-03
+    t=2.9994  3612/36127  [5.8 s/s]
+  Early exit at t=5.8677
+
+=================================================================
+  EPR ENTANGLEMENT TEST RESULTS
+=================================================================
+  Solver:         RK4 + FD4 (strictly local, NO FFT)
+  Grid:           672^3 = 303,464,448
+  Particle A:     x = -10.0  (-14.1 xi)
+  Particle B:     x = 10.0  (14.1 xi)
+  Distance:       D = 20.0  (28.3 xi)
+  Injection:      at (-10.0,0.0,0.0)
+  Perturbation:   sigma=0.5xi, dphi=pi, void=0.01
+  Threshold:      0.001
+  t_acoustic:     20.0000
+  t_UV (k_dom):   3.8490
+  v_UV / c_s:     5.20
+
+  --- ARRIVAL TABLE ---
+    Shell      d      t_cs      t_UV     t_rho   t_phase   v/c_s
+  ------------------------------------------------------------
+       d5      5      5.00      0.96    0.2840    0.3438   17.61
+      d10     10     10.00      1.92    0.6726    0.7773   14.87
+      d15     15     15.00      2.89    1.1211    1.3004   13.38
+      d20     20     20.00      3.85    2.3467    1.6442    8.52
+   B_ring     20     20.00      3.85  2.436423788265306  1.5096859056122447  8.21
+
+  >> Fitted wavefront speed: c_fit = 7.5339 c_s
+  >> Bogoliubov prediction:  v_dom = 5.1962 c_s
+  >> Inner->outer ordering: CORRECT
+
+  --- TIMING ---
+  Relaxation:  19.7s
+  Reference:   6243.4s
+  Perturbed:   1229.0s
+  Total:       7492.1s
+
+  --- CROSS-CORRELATION (A vs B @ d=20) ---
+  Peak correlation:  CC = 0.2222 at lag = 0.5573
+  Implied speed:     v = 35.89 c_s
+  t_lag / t_acoustic = 0.0279
+
+  =======================================================
+  >> B RESPONSE TIME:  t = 2.3467
+  >>   = 0.1173 * t_acoustic
+  >>   v_effective = 8.52 c_s
+  >>
+  >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  >> HYDRODYNAMIC EPR ENTANGLEMENT CONFIRMED
+  >>
+  >> The UV Bogoliubov channel (v_g = 5.2 c_s)
+  >> transmitted a perturbation from Particle A to
+  >> Particle B at 8.5x the emergent light
+  >> speed (c_s), using a STRICTLY LOCAL solver.
+  >>
+  >> eps(k) = sqrt(k^2 + k^4/4) enables
+  >> superluminal information transfer between
+  >> spatially separated topological defects.
+  >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  =======================================================
