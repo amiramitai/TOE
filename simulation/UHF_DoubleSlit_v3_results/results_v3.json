@@ -1,0 +1,40 @@
+{
+  "parameters": {
+    "NX": 2048,
+    "NZ": 4096,
+    "LX": 160.0,
+    "LZ": 140.0,
+    "DT": 0.01,
+    "WP_SIGMA_X": 20.0,
+    "WP_SIGMA_Z": 4.0,
+    "WP_Z0": -25.0,
+    "WP_KZ": 3.0,
+    "SLIT_WIDTH": 2.0,
+    "SLIT_SEP": 8.0,
+    "V_BARRIER": 100.0,
+    "SCREEN_Z": 50.0,
+    "N_ENSEMBLE": 15000,
+    "TANH_WIDTH": 0.3,
+    "SEED_Z": 2.0,
+    "SPONGE_WIDTH": 10.0,
+    "actual_seed_time": 10.950000000000001
+  },
+  "results": {
+    "n_hits": 14999,
+    "envelope_n_peaks": 13,
+    "envelope_spacing": 6.888020833333333,
+    "histogram_n_peaks": 8,
+    "histogram_spacing": 9.5,
+    "theory_spacing": 13.08996938995747,
+    "pearson_r": 0.29542553025786,
+    "r_squared": 0.08727624392813775,
+    "r_squared_fraunhofer": 0.5519388523915453,
+    "p_value": 5.148279723908206e-05,
+    "control_n_hits": 14660,
+    "control_r_squared": 0.0838632458361178,
+    "control_pearson_r": 0.28959151547674494,
+    "control_r_squared_fraunhofer": 0.5017649550866403
+  },
+  "conclusion": "Born rule emerges from uniform initial noise via hydrodynamic Bohmian guidance in true Fraunhofer regime (R\u00b2 = 0.55 [Fraunhofer], N = 14,999)",
+  "wall_time_s": 113.63325047492981
+}

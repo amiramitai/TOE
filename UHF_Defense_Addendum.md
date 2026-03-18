@@ -39,6 +39,8 @@ $$\frac{V_{total}}{M} = \frac{N V_0}{N m_0} = \frac{V_0}{m_0} = \text{constant}$
 
 The macroscopic density of the composite object (neutron star vs. gas cloud) is entirely irrelevant. The acoustic radiation force couples to the quantized number of topological defects, establishing exact equivalence between inertial mass and "gravitational" acoustic charge at the fundamental level.
 
+Furthermore, this exact equivalence formally extends to the Strong Equivalence Principle (SEP) and the Nordtvedt effect. A macroscopic body's inertial mass includes the elastic binding energy stored in the vortex lattice (e.g., gluon-chain tension). Because the acoustic metric couples to the total stress-energy tensor (as proven in Part II, Section 9.3.9), the Bjerknes acoustic radiation force natively couples to both the rest mass of the individual defects and the elastic binding energy of the condensate between them. This structural guarantee ensures that all macroscopic bodies, regardless of their internal binding energy or composition, fall at the exact same rate, rigorously preserving the SEP and satisfying lunar laser ranging bounds.
+
 ## 4. Gravitational Wave Catalogs: The LIGO Blindspot and NANOGrav Empirical Fit
 
 **The Objection:** Existing LIGO/Virgo O3 matched-filter searches report no evidence for gravitational wave dispersion. Furthermore, the NANOGrav 15-year stochastic background limits strongly prefer Hellings-Downs correlated models. The reviewer asserts the UHF's dispersive predictions should already be excluded by these catalog bounds.
@@ -67,6 +69,8 @@ We fit the UHF viscoelastic attenuation model against the NANOGrav 15-year free-
 - **UHF Viscoelastic Model:** $\chi^2_\nu = 0.14$, $\text{AIC} = 4.86$
 
 The difference of $\Delta\text{AIC} \approx 37.69$ provides decisive statistical evidence that the spectral shape of the NANOGrav dataset heavily favors a low-frequency attenuation mechanism over a pure GR power law. The data physically supports the UHF spectral attenuation prediction.
+
+Crucially, while standard astrophysical foreground models (such as SMBHB environmental friction or stellar hardening) can mimic low-frequency spectral flattening, the UHF predicts a universal viscoelastic turnover governed strictly by the Maxwell relaxation time $\tau_M$. If the turnover is due to astrophysical hardening, the attenuation will vary directionally based on local galactic environments and differing source populations. Conversely, the UHF vacuum mechanism dictates that the Maxwell transfer function $\mathcal{H}(\omega)$ applies uniformly across all spatial directions and baselines. This absolute spatial isotropy makes the fundamental UHF prediction cleanly separable from $\Lambda$CDM astrophysics in future, higher-resolution PTA datasets.
 
 ## 5. The $b_0 = 11$ "Pure-Gauge" Trap and Fermionic Screening
 
@@ -137,6 +141,8 @@ Standard $\Lambda$CDM predicts that massive galaxies ($\sim 10^{10.5} M_\odot$) 
 
 In the UHF, Dark Matter is an inviscid superfluid. The absence of collisionless heating, combined with the attractive Bjerknes acoustic force, dramatically lowers the effective collapse threshold to $\delta_c \approx 1.15$. We integrated the modified Press-Schechter mass function and found a **6.01x enhancement factor** in cumulative halo density at $z = 10$. The UHF mathematically predicts the exact abundance of massive early galaxies observed by JWST.
 
+Importantly, this mechanism does not destabilize the precisely measured Cosmic Microwave Background (CMB) power spectrum. As established by the Viscoelastic Phase Transition (Part I, Appendix A.11), at the CMB epoch ($z \sim 1100$), the condensate is in its stiff, elastic regime ($\omega_H \tau_M \gg 1$). In this state, the medium behaves exactly like standard Cold Dark Matter, perfectly preserving the acoustic peaks and the Silk damping tail. It is only as the universe expands and transitions into the fluid regime ($z < z_{\text{trans}}$) that the inviscid dynamics take over, perfectly timing the accelerated collapse threshold for the JWST epoch ($z \sim 10$).
+
 ### 9.2 The Dark Matter Core-Cusp Problem
 
 N-body simulations of collisionless Cold Dark Matter universally predict a central density cusp ($\rho \propto r^{-1}$) in galactic halos (the NFW profile). Dwarf galaxy rotation curves (e.g., SPARC dataset) definitively observe flat cores ($\alpha \approx 0$).
@@ -154,3 +160,5 @@ Applying the exact, parameter-free geometric ratio of the vortex torus derived i
 $$\Delta a_\mu^{\text{UHF}} = 1.58 \times 10^{-9}$$
 
 This first-order geometric approximation natively captures 63% of the total observed anomaly, placing it exactly in the correct $10^{-9}$ magnitude scale with zero free parameters. The residual gap corresponds physically to the higher-order knot invariants (Writhe and Self-Linking Number), which map to the 2-loop and 3-loop corrections in perturbative QFT. The $g-2$ anomaly is not a breakdown of physics; it is the measurable hydrodynamic signature of the $T_{2,5}$ knot curvature.
+
+This geometric penalty does not corrupt the exceptionally precise measurement of the electron's magnetic moment. In the UHF, the electron is the base-state trefoil knot, $T_{2,3}$. The framework utilizes the $T_{2,3}$ hydrodynamic inertia to calibrate the baseline QED coupling ($\alpha$), structurally anchoring the electron $g-2$ to standard Schwinger and Feynman loops. The topological anomaly manifests only for higher-generation knots (like the $T_{2,5}$ muon), where the tighter curvature radius ($q_\mu = 5$) introduces the $(r/R)^2$ topological screening penalty relative to the calibrated base state.

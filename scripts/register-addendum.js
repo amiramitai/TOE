@@ -1,10 +1,12 @@
 /**
- * register-addendum.js — UHF Defense Addendum v8.5-Addendum
+ * register-addendum.js — UHF Defense Addendum v9.0-Addendum
  *
  * Registers the SHA-256 of UHF_Defense_Addendum.md on Polygon Mainnet.
  * The addendum provides empirical rebuttals to 9 categories of criticism,
  * including NANOGrav ΔAIC≈37.69, LIGO SNR mismatch 4.46×10⁻⁸, JWST
  * halo enhancement 6.01×, Core-Cusp α=-0.00, and muon g-2 Δaμ=1.58×10⁻⁹.
+ * v9.0: Added SEP/Nordtvedt extension, NANOGrav isotropy discriminant,
+ *       CMB stability argument, and electron g-2 calibration safeguard.
  *
  * Contract: 0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054  (Polygon Mainnet)
  */
@@ -23,15 +25,15 @@ const ABI = [
 const PAPERS = [
     {
         file: "UHF_Defense_Addendum.md",
-        version: "8.5.1-Addendum",
-        label: "UHF Defense Addendum (Markdown) — with author/date header",
-        expectedHash: "f1d8eb722508326ba08255438d762efab453c73e782a5e05f9bd6aa70688e355"
+        version: "9.0-Addendum",
+        label: "UHF Defense Addendum (Markdown) — v9.0 fortifications",
+        expectedHash: "a34037ded656d7e75e5b1094eb6caf7a0aef8031da6dc37abe43d67fd4fe2f39"
     },
     {
         file: "UHF_Defense_Addendum.pdf",
-        version: "8.5.1-Addendum-PDF",
-        label: "UHF Defense Addendum (PDF) — with author/date header",
-        expectedHash: "e5740f8ad393449e9a1548d4e1b059cd7663ca7fd23e759a60850786058187b2"
+        version: "9.0-Addendum-PDF",
+        label: "UHF Defense Addendum (PDF) — v9.0 fortifications",
+        expectedHash: "61bbba9777e54c1dbd7b6ed03cd36d7b10fd2bc6c9657b7be1ac904ddd47ab76"
     }
 ];
 

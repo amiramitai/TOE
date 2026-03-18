@@ -1,0 +1,36 @@
+{
+  "parameters": {
+    "NX": 2048,
+    "LX": 80.0,
+    "DT": 0.02,
+    "WP_SIGMA_X": 4.0,
+    "WP_SIGMA_Y": 20.0,
+    "WP_X0": -20.0,
+    "WP_KX": 1.5,
+    "SLIT_WIDTH": 2.0,
+    "SLIT_SEP": 8.0,
+    "V_BARRIER": 100.0,
+    "SCREEN_X": 15.0,
+    "N_ENSEMBLE": 2000,
+    "TANH_WIDTH": 0.3,
+    "SEED_X": 2.0,
+    "SEED_TIME": 12.0
+  },
+  "results": {
+    "n_seeded": 2000,
+    "n_hits": 2000,
+    "envelope_n_peaks": 7,
+    "envelope_spacing": 4.583333333333333,
+    "histogram_n_peaks": 3,
+    "histogram_spacing": 6.75,
+    "theory_spacing": 7.853981633974482,
+    "pearson_r": 0.9137510201508927,
+    "r_squared": 0.8349409268267971,
+    "p_value": 8.036749036190229e-34,
+    "control_n_hits": 1981,
+    "control_r_squared": 0.9599320154915348,
+    "control_pearson_r": 0.9797612032998321
+  },
+  "conclusion": "Born rule emerges from uniform initial noise via hydrodynamic Bohmian guidance (R\u00b2 = 0.83, N_hits = 2000)",
+  "wall_time_s": 10.578179836273193
+}

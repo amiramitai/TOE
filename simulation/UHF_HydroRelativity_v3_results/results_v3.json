@@ -1,0 +1,31 @@
+{
+  "velocities": [
+    0.5,
+    0.7,
+    0.85,
+    0.95
+  ],
+  "fwhm_ratios": [
+    0.8510984331624228,
+    0.6960193964081859,
+    0.508132353772882,
+    0.29585965900508365
+  ],
+  "period_ratios": [
+    1.00669224273948,
+    1.2275996487376557,
+    1.6825998579203074,
+    2.836937242806159
+  ],
+  "energy_ratios": [
+    1.1617791990566824,
+    1.4167368361801638,
+    1.930884311167154,
+    3.2701715349811207
+  ],
+  "R2_L": 0.993234897292237,
+  "R2_T": 0.883810863243583,
+  "R2_E": 0.9977527234499528,
+  "conclusion": "Relativistic Klein-Gordon superfluid yields Lorentz contraction and relativistic energy matching gamma to R\u00b2_L=0.9932, R\u00b2_E=0.9978, R\u00b2_T=0.8838 \u2192 hydrodynamic special relativity confirmed",
+  "plot": "UHF_HydroRelativity_v3_results/hydro_relativity_v3.png"
+}

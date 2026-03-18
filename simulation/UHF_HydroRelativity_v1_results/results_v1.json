@@ -1,0 +1,61 @@
+{
+  "parameters": {
+    "NX": 2048,
+    "NZ": 1536,
+    "LX": 120.0,
+    "LZ": 160.0,
+    "DT": 0.02,
+    "DIPOLE_D": 4.0,
+    "RAMP_TIME": 50.0,
+    "EVOLVE_TIME": 300.0,
+    "FORCES": [
+      0.005,
+      0.01,
+      0.02,
+      0.05
+    ]
+  },
+  "results_per_force": [
+    {
+      "F": 0.005,
+      "max_v": 0.0207113550172877,
+      "n_pts": 0,
+      "m_eff_min": null,
+      "m_eff_max": null,
+      "destab": false,
+      "wall": 117.43821716308594
+    },
+    {
+      "F": 0.01,
+      "max_v": 0.020824312129695884,
+      "n_pts": 2,
+      "m_eff_min": 41.4463806011208,
+      "m_eff_max": 42.46497179046289,
+      "destab": false,
+      "wall": 116.77188730239868
+    },
+    {
+      "F": 0.02,
+      "max_v": 0.020865068840674905,
+      "n_pts": 0,
+      "m_eff_min": null,
+      "m_eff_max": null,
+      "destab": false,
+      "wall": 117.27484011650085
+    },
+    {
+      "F": 0.05,
+      "max_v": 0.01498805313049932,
+      "n_pts": 0,
+      "m_eff_min": null,
+      "m_eff_max": null,
+      "destab": false,
+      "wall": 116.25279498100281
+    }
+  ],
+  "fit": {
+    "m0": null,
+    "r_squared": null
+  },
+  "conclusion": "Deviation or collapse before c_s \u2192 hypothesis falsified (R\u00b2=N/A, max v=0.02 c_s)"
+}

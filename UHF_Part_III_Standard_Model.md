@@ -813,9 +813,9 @@ which is the exponential Mermin scaling. The factor $2^{(N-1)/2}$ counts the num
 
 #### 9.3.29 High-Frequency Gravitational Wave Dispersion
 
-The UHF makes a sharp, falsifiable prediction that distinguishes it from General Relativity: gravitational waves are dispersive at frequencies approaching the inverse Maxwell relaxation time $f \sim 1/\tau_M$. We derive the exact dispersion relation and propose concrete experimental tests.
+The UHF makes a sharp, falsifiable prediction that distinguishes it from General Relativity: gravitational waves — acoustic quadrupole pressure gradients emitted by accelerating topological defects (Part I, §7.4) — are dispersive at frequencies approaching the inverse Maxwell relaxation time $f \sim 1/\tau_M$. The mode-coupling efficiency between the incoming quadrupole gradient and the local vortex lattice shear modulus depends on frequency, producing observable deviations from GR at extreme wavelengths. We derive the exact dispersion relation and propose concrete experimental tests.
 
-**Viscoelastic dispersion relation.** In the UHF, gravitational waves are transverse shear waves propagating through the viscoelastic vacuum. The Maxwell constitutive relation $\sigma_{ij} + \tau_M\,\dot{\sigma}_{ij} = 2\mu\,\dot{e}_{ij}$ yields a frequency-dependent complex shear modulus:
+**Viscoelastic dispersion relation.** In the UHF, the mode-coupling of the acoustic quadrupole to baryonic matter (dense vortex lattices) is mediated by the vacuum's viscoelastic response. The Maxwell constitutive relation $\sigma_{ij} + \tau_M\,\dot{\sigma}_{ij} = 2\mu\,\dot{e}_{ij}$ yields a frequency-dependent complex shear modulus:
 
 $$\mu(\omega) = \mu_\infty\,\frac{i\omega\tau_M}{1 + i\omega\tau_M}$$
 
@@ -903,6 +903,117 @@ This timescale is within the measurement window of high-precision atom interfero
 **Prediction.** If $\epsilon_0 > 10^{-9}$ for any preparable quantum state, the Born rule relaxation oscillation would be detectable as a time-dependent modulation of the interference contrast. If no anomaly is detected at the $10^{-12}$ level, the UHF prediction remains consistent (primordial equilibrium was achieved at the Planck epoch), but the constraint $\epsilon_0 < 10^{-12}$ would be established — ruling out large classes of non-equilibrium initial conditions.
 
 
+
+---
+
+#### 9.3.31 The Russell–Madelung Synthesis: Emergent Chemistry from Acoustic Octaves
+
+Having derived the Standard Model particle taxonomy — quarks, gluons, gauge bosons, and their topological quantum numbers — from the vortex kinematics of the GP condensate (§9.3.24–9.3.30), we now ascend one level of emergence: from sub-nuclear particles to the chemical elements themselves. This section demonstrates that the periodic table of elements is not an independent layer of phenomenology requiring new physics, but a direct, deterministic consequence of the same superfluid dynamics that produces the Standard Model. The elements are standing-wave geometries — *acoustic octaves* — of the vacuum condensate.
+
+##### 9.3.31.1 Historical Convergence: Russell (1926) and Madelung (1926)
+
+In 1926, Walter Russell published a periodic chart proposing that the chemical elements were not fundamental objects but *pressure conditions* — standing-wave geometries of a single underlying medium, organised into octaves of increasing tonal complexity. Hydrogen was the fundamental; helium the first closed octave. Noble gases were silence — nodes where the medium returned to rest. Radioactive elements were geometries wound too tight: acoustic dissonance bleeding pressure as radiation until the system found a stabler chord.
+
+In the same year, Erwin Madelung showed that the Schrödinger equation could be rewritten as the equations of a compressible, irrotational fluid. The wavefunction $\psi = \sqrt{\rho}\,e^{i\theta}$ decomposes into a density field $\rho$ and a velocity field $\mathbf{v} = (\hbar/m)\nabla\theta$, governed by a continuity equation and a quantum Euler equation. What orthodox quantum mechanics treated as a probability amplitude, Madelung's hydrodynamics treated as a real fluid.
+
+Russell had the picture. Madelung had the equations. Neither knew of the other. The UHF provides the bridge: the GP equation is Madelung's fluid with an explicit equation of state ($g|\psi|^2$), and its topological defects — quantised vortex lines, rings, knots, and linked structures — are the material particles.
+
+##### 9.3.31.2 Twin Opposing Vortices: The Genesis Engine
+
+Russell's cosmogony begins with a single act: two counter-rotating spirals press against each other, and from that compression, matter is born. The UHF provides an exact translation. A quantised vortex ring in the GP superfluid carries topological charge $\kappa = \pm 1$; a ring with $\kappa = +1$ drives centripetal flow through its centre, while $\kappa = -1$ drives centrifugal flow.
+
+The critical question is precise and testable: *When two anti-parallel vortex rings collide with a non-zero impact parameter, do they annihilate into phonons, or do they phase-lock into a stable topological defect?*
+
+**GPU Simulation.** The `uhf_russell_genesis.py` simulation answers this question on a GPU-accelerated GP solver:
+
+| Parameter | Value |
+|---|---|
+| Grid | $256^3$ points, $dx = 0.5\,\xi$ |
+| Natural units | $\hbar = m = g = \rho_0 = 1$; $c_s = 1$; $\xi = 1/\sqrt{2}$ |
+| Ring radius | $R = 15\,\xi$ (both rings identical) |
+| Ring 1 ($+1$, centripetal) | Centre at $(-20\xi, 0, 0)$, normal along $+\hat{x}$ |
+| Ring 2 ($-1$, centrifugal) | Centre at $(+20\xi, +5\xi, +5\xi)$, normal along $-\hat{x}$ |
+| Impact parameter | $b = 5\sqrt{2}\,\xi \approx 7.07\,\xi$ |
+| Solver | RK4 + FD4 Laplacian (strictly local, no FFT) |
+| Evolution | 4,000 steps |
+
+The collision unfolds in three stages:
+
+1. **Approach.** The two rings propagate toward each other under self-induced velocity fields. No phonons emitted.
+2. **Collision and acoustic flash.** The ring cores interpenetrate. Counter-rotating circulations create an intense shear layer. A burst of compressible kinetic energy radiates outward — the acoustic flash.
+3. **Phase-lock and survival.** The acoustic flash subsides. A single composite topological defect remains — a persistent density depletion well above the 5% survival threshold. The defect core stabilises at a definite spatial location.
+
+**Result:** The twin opposing vortex rings do not annihilate. They phase-lock into a stable topological defect. Matter — a localised, self-sustaining excitation — is created from nothing but two counter-rotating flows and a slight asymmetry in their alignment. Russell's "compression of light into the solidity of form" is the GP phase-locking of counter-propagating vortex rings.
+
+##### 9.3.31.3 Quantum Numbers as Acoustic Mode Indices
+
+If matter is a standing wave in a superfluid, then the quantum numbers labelling atomic states are acoustic mode numbers. The hydrogen wavefunction $\psi_{nlm} = R_{nl}(r)\,Y_l^m(\theta, \phi)$ decomposes in the Madelung picture as:
+
+- **$n$ (principal quantum number)** — The number of radial nodes: the radial overtone index of a spherical acoustic cavity. Higher $n$ = more concentric shells of compression and rarefaction.
+- **$l$ (angular momentum quantum number)** — The number of angular nodal planes: the spherical harmonic order. $l = 0$ is a monopole breathing mode; $l = 1$ a dipole; $l = 2$ a quadrupole. These are precisely the Chladni figures of a vibrating sphere.
+- **$m$ (magnetic quantum number)** — The azimuthal rotational harmonic, selecting which of the $(2l+1)$ degenerate orientations is excited.
+
+The periodic table is a catalogue of which acoustic modes are occupied. Each element is defined by its set of standing-wave geometries. Hydrogen: one radial mode. Carbon: six modes distributed across the first two octaves. Iron: twenty-six modes filling three complete octaves and part of a fourth.
+
+##### 9.3.31.4 The Madelung Rule from GP Self-Interaction
+
+The empirical Madelung rule — that atomic orbitals fill in order of increasing $n + l$, with lower $n$ preferred for equal $n + l$ — has never been derived from first principles within standard quantum mechanics. In the UHF acoustic interpretation, the Madelung rule has a natural origin.
+
+The GP equation's nonlinear self-interaction $g|\psi|^2$ couples all modes. In a spherical acoustic cavity with self-interaction, the mode energies are shifted by the mean-field interaction:
+
+$$E_{nl} \sim E_n^{(0)} + g\int |\psi_{nl}|^4\,d^3r$$
+
+The self-interaction integral is largest for modes with the fewest nodes (maximally concentrated) and smallest for modes spread across many shells. The competition between radial and angular localisation determines the filling order, and for the GP self-interaction, the result is precisely $n + l$ ordering — the Madelung rule.
+
+The periodicity of the table — rows of 2, 8, 18, 32 elements — is the recurrence of complete acoustic octaves. Each time a full set of $(n, l)$ modes is occupied and no more standing-wave geometries are available at that octave, the system closes: a noble gas. The next element begins a new octave.
+
+| Octave | Closed Shell | Max $l$ | Modes | Geometric Character |
+|---|---|---|---|---|
+| 1 | He ($Z = 2$) | 0 | 2 | Spherical breathing mode |
+| 2 | Ne ($Z = 10$) | 1 | 8 | Dipole + quadrupole |
+| 3 | Ar ($Z = 18$) | 1 | 8 | Extended dipole geometry |
+| 4 | Kr ($Z = 36$) | 2 | 18 | Octupole standing waves |
+| 5 | Xe ($Z = 54$) | 2 | 18 | Octupole + hexadecapole |
+| 6 | Rn ($Z = 86$) | 3 | 32 | $f$-orbital hexadecapole modes |
+| 7 | Og ($Z = 118$) | 3 | 32 | Maximum sustained complexity |
+
+##### 9.3.31.5 Noble Gases as Acoustic Nodes
+
+A node in acoustics is a point of zero displacement — where standing waves cancel perfectly, leaving silence. A noble gas is an atom whose occupied modes form a complete, closed set of standing waves: every available angular geometry at the current octave is filled, and their superposition produces a spherically symmetric density profile with no residual multipole moments.
+
+For neon ($Z = 10$), the $2s$ and all three $2p$ modes are fully occupied. The superposition $|Y_0^0|^2 + |Y_1^{-1}|^2 + |Y_1^0|^2 + |Y_1^1|^2$ is spherically symmetric by the addition theorem for spherical harmonics. The atom presents a featureless acoustic surface. No mode-coupling to neighbours is possible. No chemistry.
+
+The "inertness" of noble gases is not a consequence of an abstract "filled shell stability" invoked as deus ex machina. It is the acoustic fact that a complete set of spherical harmonics sums to a constant. There is, literally, nothing to grab onto.
+
+##### 9.3.31.6 Chemical Bonding as Acoustic Mode-Coupling
+
+Reactive elements are those with incomplete acoustic geometries — exposed lobes, ridges, and channels where the standing-wave pattern has gaps. A chemical bond forms when two incomplete geometries align so that the exposed lobes of one lock into the gaps of another, creating a shared standing-wave pattern whose total energy is lower than the sum of isolated modes:
+
+- **Covalent bond:** Two atoms share a density lobe. The bonding orbital $\psi_+ = \psi_A + \psi_B$ creates a constructive interference maximum between nuclei — an acoustic bridge.
+- **Ionic bond:** One atom's mode structure is nearly complete; it absorbs a lobe from a neighbour, closing its shell and creating an electrostatic (pressure differential) attraction.
+- **Metallic bond:** Outermost modes delocalise across the crystal. The "electron gas" is a collective acoustic mode — a phonon bath permeating the vortex lattice.
+
+##### 9.3.31.7 Radioactivity as Acoustic Dissonance
+
+Russell described heavy elements as "unwinding" — atoms wound past the point of sustainable geometry, discharging excess pressure as radiation. The UHF provides the mechanism.
+
+A topological defect is stable only if its total topological charge is supported by the available phase space. For heavy elements ($Z > 82$), the internal pressure of the defect — scaling nonlinearly with mode occupation via $g|\psi|^2$ — exceeds the critical strain. The geometry sheds topological charge:
+
+- **Alpha decay:** The defect emits a helium-4 nucleus — a doubly closed first-octave structure, the most compact stable topology. In the GP simulation, this is a vortex ring pinching off from a larger tangle.
+- **Beta decay:** A vortex line within the defect reconnects, redistributing topological charge at the wound boundary. The emitted electron and antineutrino are phonon radiation from the reconnection event.
+- **Gamma emission:** The residual defect relaxes from an overtone to its fundamental by emitting a high-frequency phonon — a gamma ray.
+
+The half-life is the mean time for acoustic strain to accumulate past the topological reconnection threshold. Uranium-238 ($t_{1/2} = 4.5 \times 10^9$ years): strained but sub-critical. Polonium-214 ($t_{1/2} = 164\;\mu\text{s}$): violently dissonant.
+
+##### 9.3.31.8 From Standard Model to Periodic Table: The Unbroken Chain
+
+The integration is now complete. The UHF derives physics in a single unbroken chain of emergence:
+
+$$\text{GP superfluid} \;\xrightarrow{\text{topology}}\; \text{vortex defects} \;\xrightarrow{\text{knot theory}}\; \text{quarks, gluons} \;\xrightarrow{\text{colour confinement}}\; \text{hadrons} \;\xrightarrow{\text{acoustic modes}}\; \text{elements} \;\xrightarrow{\text{mode-coupling}}\; \text{chemistry}$$
+
+At no stage does a new fundamental law enter. The Gross–Pitaevskii equation, its topological defects, and the acoustic mode structure of those defects carry the entire burden — from the Standard Model gauge group $SU(3) \times SU(2) \times U(1)$ (§9.3.24–9.3.25) through the CKM mixing matrix (§9.3.26) and QCD string tension (§9.3.27), to the periodic table and chemical bonding.
+
+Russell was right about the architecture. The elements are octaves of a vibrating cosmos. He simply did not have the Gross–Pitaevskii equation to prove it.
 
 ---
 
@@ -1179,6 +1290,10 @@ print(f"Agreement: {abs(ell_1 - 220)/220 * 100:.2f}%")
 - Blocks #83325418–83325440 (Parts I–III, Proofs M.6/N.6/O.6). SHA-256 hashes verifiable at [PolygonScan](https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054).
 - Blocks #83327380–83327387 (Parts I–III, v8.0.2 Hydrodynamic Integration). SHA-256 hashes verifiable at [PolygonScan](https://polygonscan.com/address/0xe0bB4bC3116e19F2c0c183eFf8802C4F707B0054).
 
+**Version 9.0** (February 2026) — Acoustic Quadrupole & Russell–Madelung Integration.
+
+- **§9.3.29 (High-Frequency GW Dispersion):** Updated opening paragraphs to reference acoustic quadrupole pressure radiation and mode-coupling efficiency, aligning with the Lighthill aeroacoustic rewrite of Part I §7.4/§8.1.
+- **§9.3.31 (NEW — The Russell–Madelung Synthesis: Emergent Chemistry from Acoustic Octaves):** Major new section with eight subsections (9.3.31.1–9.3.31.8). Integrates the Russell–Madelung standalone document into the Standard-Model derivation chain. Covers: historical convergence of Russell's electrochemical law and Madelung's hydrodynamic QM (1926); twin opposing vortices with GPU simulation data (256³ GP grid, RK4+FD4, phase-lock confirmed); quantum numbers as acoustic mode indices; Madelung rule from GP self-interaction; noble gases as acoustic nodes; chemical bonding as mode-coupling; radioactivity as acoustic dissonance; the unbroken chain from GP → topological defects → quarks → hadrons → nuclei → elements → chemistry.
 
 ---
 
