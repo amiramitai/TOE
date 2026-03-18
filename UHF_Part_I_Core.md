@@ -17,7 +17,7 @@ The primary utility of the UHF lies in its behavior in the strong-field and high
 
 **Axiom of Scope and Effective Boundaries.** The formal claims of this paper are strictly bounded. We do not claim a global, UV-complete derivation of the Standard Model, nor do we claim exact, non-perturbative diffeomorphism invariance at the Planck scale. We establish the UHF purely as an effective macroscopic IR bridge, evaluating its structural compatibility with known physics and extracting its falsifiable phenomenological deviations in the astrophysical regime. Algebraic and topological correspondences regarding particle taxonomy and flavor structure are deferred to the companion Extension Module.
 
-The effective macroscopic IR emergence of the nonlinear Einstein field equations, the Wightman axiomatic QFT limits, and the Standard Model gauge-fixed EFT are derived in the companion papers: **Part II** (Functional Analytic Foundations) and **Part III** (Topological Standard Model Extension).
+The effective macroscopic IR emergence of the nonlinear Einstein field equations and the Wightman axiomatic QFT limits are developed in the companion paper, **Part II**. Algebraic and topological correspondences regarding the Standard Model particle taxonomy are explored as conditional hypotheses in **Extension Module A** (Part III).
 
 ---
 
@@ -60,6 +60,8 @@ To maintain rigorous epistemic transparency, we classify every input to the fram
 | 8 | Singularity avoidance (BSSN-EKG) | $\alpha_{\min} > 0$ under full 3D metric backreaction | A1, A2, A9 | — | 0 |
 | 9 | Solar deflection | 1.7505 arcsec (= GR exactly) | A1, A9 | — | 0 |
 | 10 | Ponderomotive force inversion | $F_x$ sign reversal at $A_\text{drive} = 0.1$ | A1, A2, A5 | — | 0 |
+
+**Note:** Predictions relying on Inputs A7 and A8 (e.g., the Muon $g-2$ anomaly) are conditional consequences of the topological and algebraic postulates explored in Extension Module A, rather than first-principles predictions of the core superfluid EFT.
 
 **Key observation:** Prediction #2 (NANOGrav) is the **only** result with a fitted parameter ($\tau_M$). All other predictions are forward — their numerical values were not reverse-engineered from the target observables. None of the 800-trial blind gauntlet parameters (decoder thresholds, readout times, noise floors) were adjusted after the 12-trial pilot phase.
 
