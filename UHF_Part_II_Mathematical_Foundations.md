@@ -1,6 +1,6 @@
 # The Unified Hydrodynamic Framework — Part II: Mathematical Foundations
 
-## Wightman Axioms, Trotter-Kato Convergence, and the Haag Resolution in the Viscoelastic Condensate
+## Effective IR Wightman Compliance, Post-Newtonian Isomorphism, and the Finite-Volume Haag Bypass
 
 **Author:** Amir Benjamin Amitay
 **Date:** February 22, 2026
@@ -11,34 +11,25 @@
 
 ## 0. Abstract
 
-This paper (Part II of a three-part series) establishes the functional-analytic foundations of the Unified Hydrodynamic Framework (UHF), treated as an effective field theory (EFT) strictly within the macroscopic IR regime $k \ll \xi^{-1}$. Starting from the constitutive order parameter $\Psi$ introduced in Part I, we show that the emergent quantum field theory satisfies all four Wightman axioms as effective structural theorems of the underlying Gross-Pitaevskii fluid dynamics.
+This paper (Part II of the Unified Hydrodynamic Framework series) establishes the effective functional-analytic structure of the sub-Planckian superfluid vacuum in the macroscopic infrared (IR) limit ($k \ll \xi^{-1}$). Rather than attempting a UV-complete reconstruction of Quantum Field Theory, we demonstrate how the structural properties of relativistic QFT and General Relativity emerge asymptotically from the coarse-grained dynamics of the Gross-Pitaevskii fluid.
 
-The derivation proceeds through twenty-three sections: (1) the recovery of the nonlinear Einstein field equations from acoustic backreaction, with an explicit advective-Christoffel mapping $(\mathbf{v}\cdot\nabla)\mathbf{v} \leftrightarrow \Gamma\Gamma$; (2) topological protection of Lorentz symmetry; (3–16) the full apparatus of emergent graviton amplitudes, S-matrix unitarity, microcausality, EFT matching, and Hamiltonian constraint closure; (17–22) the Källén-Lehmann representation, the discrete-to-continuum map, the Trotter-Kato convergence proof, and Nelson's analytic-vector criterion for boost generators; and (23) the Wightman-Madelung isomorphism $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ via the rigged Hilbert space framework.
+We establish an iterative Post-Newtonian isomorphism, showing how acoustic backreaction—the advective nonlinearity of the fluid Euler equations—maps onto the quadratic Christoffel interactions of the Einstein field equations. Furthermore, we address the compatibility of the emergent gauge sectors with standard S-matrix theory. By modeling the transverse spin-sector (electromagnetism) as an open quantum system weakly coupled to the turbulent density sector (gravity) via Lindblad dynamics, we show that the emergent photons remain effectively massless, protected by a perturbative topological superselection rule. Finally, we demonstrate that within the finite cosmological volume, the framework effectively bypasses the interaction-picture obstructions of Haag's theorem, allowing the Bogoliubov quasiparticle spectrum to satisfy the Wightman axioms asymptotically in the IR limit. Formal operator-algebraic proofs (including Stinespring dilations and Trotter-Kato convergence) are deferred to Extension Module B.
 
-Haag's theorem is resolved within the EFT: the Bogoliubov-Fock to Wightman isomorphism is established as an effective unitary equivalence in the weak-interaction ($na^3 \ll 1$) or finite-volume (IR-cutoff) regime, and the thermodynamic limit is taken via the Algebraic QFT (AQFT) net construction, bypassing the interaction-picture obstruction entirely.
-
-**Topological Linking and Bell-CHSH Constraints.** Within the EFT, correlations between vortex-loop pairs are constrained by the Gauss linking integral $\text{Lk}(\gamma_i, \gamma_j) = (4\pi)^{-1}\oint\oint (\mathbf{r}_i - \mathbf{r}_j) \cdot (d\mathbf{r}_i \times d\mathbf{r}_j)/|\mathbf{r}_i - \mathbf{r}_j|^3$, a global topological invariant that cannot be factored into local hidden variables. Since $\text{Lk}$ is fixed at pair creation and is invariant under local deformations that do not pass one loop through another, no measurement on one vortex loop can alter the linking number observed by a spacelike-separated party. This satisfies the no-communication theorem while producing Bell-CHSH violations at the Tsirelson bound $|S| = 2\sqrt{2}$.
-
-**$N$-Partite Extension via Milnor Invariants.** The irreducibility of $N \geq 3$ entanglement is verified numerically via the Milnor triple linking invariant $\bar{\mu}(123)$ for Borromean vortex configurations: pairwise $\text{Lk}(\gamma_i, \gamma_j) = 0$ for all $i \neq j$, yet $\bar{\mu}(123) = \pm 1 \neq 0$, confirming genuinely tripartite correlations irreducible to bipartite linking. Mermin operator scaling $|M_N| = 2^{N-1}$ is verified on GPU hardware up to $N = 8$ parties, exceeding the local-hidden-variable bound $|M_N|_{\text{LHV}} \leq 2$ by a factor of $2^{N-2}$.
-
-**Topological Stability.** All stable linked configurations satisfy $|\text{Lk}| = 1.000 \pm 10^{-12}$ and Borromean-unlinked pairs satisfy $|\text{Lk}| < 10^{-12}$, confirming that topological charge is quantized to machine precision.
-
-**Axiom of Scope and Theorem Boundaries.** To ensure rigorous mathematical hygiene and prevent category errors regarding the ultraviolet completion, the formal claims of the Unified Hydrodynamic Framework (UHF) are strictly bounded as follows:
-
-- **What the framework claims:** We establish theorem-complete closure of an effective macroscopic IR bridge to a BRST-consistent gauge-fixed Effective Field Theory (EFT) and Standard Model-limit structure, strictly within the macroscopic regime $k \ll \xi^{-1}$.
-- **What the framework does NOT claim:** We do not claim a global UV-complete reconstruction theorem of standard QFT. We do not claim unrestricted Wightman axiomatic closure outside the effective macroscopic IR regime. We do not claim exact unitary equivalence outside the stated IR or finite-volume effective settings.
-
-All subsequent proofs, isomorphisms, and verifications must be read strictly within this bounded effective macroscopic limit.
+**Axiom of Scope and Theorem Boundaries.** The claims herein are strictly bounded to the effective macroscopic limit. We do not claim that the emergent acoustic metric constitutes an exact, non-perturbative derivation of the nonlinear Einstein-Hilbert action at all scales, nor do we claim exact unitary equivalence outside finite-volume effective settings. The framework is presented as an emergent Effective Field Theory (EFT) whose deviations from exact symmetries at the UV cutoff provide testable phenomenological signatures.
 
 ---
 
 ## 9. Mathematical Foundations of the Unified Hydrodynamic Framework
 
-This paper presents the functional-analytic foundations of the UHF, building upon the four-pillar physical derivation established in Part I. All section numbering is retained from the unified monograph for cross-referencing.
+### 9.1 Introduction to the Effective IR Bridge
 
-### 9.3 Resolution of Advanced Theoretical Challenges
+A common critique of analog gravity and emergent spacetime models is the difficulty of recovering the exact structural features of General Relativity (nonlinear diffeomorphism invariance) and Quantum Field Theory (strict gauge invariance, S-matrix analyticity) from a Galilean fluid substrate. The Unified Hydrodynamic Framework (UHF) addresses this not by claiming the underlying fluid perfectly mirrors these symmetries at the microscopic level, but by demonstrating how these symmetries act as powerful infrared (IR) attractors.
 
-#### 9.3.1 The Non-Linearity of General Relativity (Acoustic Backreaction)
+In this section, we analyze the functional-analytic bridge between the discrete, sub-Planckian fluid dynamics and the continuous, relativistic fields observed at macroscopic scales. We focus on physical mechanisms: how acoustic backreaction mimics gravitational self-interaction, how topological order protects emergent Lorentz invariance from radiative decay, and how the spin-stiffness of the condensate prevents the catastrophic overdamping of transverse electromagnetic waves. By restricting our claims to the effective macroscopic regime, we show that the UHF satisfies the necessary physical prerequisites for an emergent universe without violating established no-go theorems regarding exact UV completions.
+
+### 9.3 Effective Analysis of Advanced Theoretical Challenges
+
+#### 9.3.1 Post-Newtonian Isomorphism: Acoustic Backreaction and Gravitational Self-Interaction
 
 The linearized Einstein equations $\Box\,\bar{h}_{\mu\nu} = -16\pi G\, T_{\mu\nu}/c^4$ were derived in Section 5.5 (see Part I) from the fluid continuity and Euler equations. A natural objection is: General Relativity is *nonlinear*—gravity gravitates. How can a linear acoustic derivation capture the full Einstein tensor $G_{\mu\nu}$, which contains products of Christoffel symbols?
 
@@ -73,7 +64,7 @@ In summary: "gravity gravitates" in the UHF because *sound alters the medium thr
 
 The first row is the central result: the *advective acceleration* $(\mathbf{v} \cdot \nabla)\mathbf{v}$ generates precisely the $\Gamma\Gamma$ terms. To see this explicitly, expand the acoustic metric $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ with $h_{00} = -2\phi/c_s^2$, $h_{0i} = -v_i/c_s$, $h_{ij} = -2\phi\delta_{ij}/c_s^2$. The Christoffel symbols $\Gamma^i{}_{0j} = \partial_j v_i / (2c_s)$ encode the velocity gradient, and their product $\Gamma^i{}_{0j}\Gamma^j{}_{0k} = (\partial_j v_i)(\partial_k v_j)/(4c_s^2)$ is manifestly the quadratic part of the Euler advection $(\mathbf{v}\cdot\nabla)\mathbf{v}$ in index notation. This is not an analogy: it is an algebraic identity linking the fluid and geometric descriptions, confirming that "gravity gravitates" within the UHF via the same mathematical mechanism as in GR.
 
-**From fluid conservation to the nonlinear Einstein field equations.** We now prove that the full, nonlinear Einstein equations $G_{\mu\nu} = 8\pi G\, T_{\mu\nu}/c^4$ are not merely reproduced order by order, but are an *unavoidable macroscopic identity* of the superfluid.
+**From fluid conservation to the effective Einstein field equations.** We now demonstrate that the iterative Post-Newtonian expansion of the acoustic backreaction converges toward the full Einstein tensor $G_{\mu\nu} = 8\pi G\, T_{\mu\nu}/c^4$ as an attractive IR fixed point of the superfluid dynamics.
 
 The argument proceeds in three steps:
 
@@ -96,7 +87,7 @@ where $G^{\mu\nu} = R^{\mu\nu} - \frac{1}{2}g^{\mu\nu}R$ is the Einstein tensor.
 
 $$G_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu}$$
 
-The full, nonlinear Einstein field equations are therefore not a postulate in the UHF. They are the *unique macroscopic thermodynamic identity* that any diffeomorphism-invariant acoustic metric must satisfy when dynamically coupled to a conserved stress-energy tensor. The nonlinear self-coupling of gravity — "gravity gravitates" — is an unavoidable consequence of the fluid equations, just as the Navier-Stokes nonlinearity $(\mathbf{v} \cdot \nabla)\mathbf{v}$ is an unavoidable consequence of Newton's second law applied to a continuum.
+Within the effective macroscopic regime, the full nonlinear Einstein field equations therefore emerge as the unique IR fixed point of the acoustic backreaction expansion: Lovelock's theorem constrains the only possible divergence-free, second-rank tensor built from the metric and its derivatives, and the linearized boundary condition fixes all remaining freedom. The nonlinear self-coupling of gravity — "gravity gravitates" — maps onto the advective nonlinearity of the Euler equations, with the exact nonlinear Einstein-Hilbert action serving as the target attractor rather than a derived identity at all scales.
 
 **Axiomatic Structural Recovery and Scale-Invariant Energy Transport.** The recovery of the Einstein equations from fluid conservation is not merely formal — it is *quantitative*. The ratio of the emergent gravitational coupling to the microscopic acoustic coupling defines the Axiomatic Structural Recovery coefficient:
 
@@ -265,7 +256,7 @@ $$Q_{\text{vac}} = 0.31\%\;\text{per Kuramoto cycle}$$
 
 This deficit arises from the finite spin-orbit coupling at the lattice scale, which is not strictly zero but exponentially suppressed: $g_{\text{SO}} \sim e^{-E_P/E_{\text{lattice}}} \approx 3.1 \times 10^{-3}$. The superselection rule is therefore *perturbative*, not exact — but the perturbation is so small that its physical consequences are negligible for all observable processes.
 
-**III-B. Topological Ward-Takahashi Identity and Exact Photon Masslessness.**
+**III-B. Topological Ward-Takahashi Identity and Effective Photon Masslessness.**
 
 The naive one-loop estimate of the emergent photon mass from the $Q_{\text{vac}}$ leakage gives:
 
@@ -283,17 +274,17 @@ $$[Q, L_k] = 0 \quad \forall\; k$$
 
 This is the **Topological Ward-Takahashi Identity**: the topological charge commutes with all Lindblad generators. Its physical consequence is immediate. The photon mass operator $\hat{m}_\gamma^2$ transforms as a helicity-0 scalar under the emergent $U(1)$ gauge group (generated by $\hat{Q}$). But any mass term $m_\gamma^2 A_\mu A^\mu$ in the effective Lagrangian would violate the Ward identity $\partial_\mu J^\mu = 0$ (helicity conservation) unless $m_\gamma^2 = 0$ identically. Since $n \in \mathbb{Z}$ cannot change under continuous Lindblad evolution, the Ward identity is *topologically protected* — it cannot be broken at any order in perturbation theory, nor by any non-perturbative Lindblad channel.
 
-**Result:** The emergent photon mass is *exactly* zero to all orders:
+**Result:** The emergent photon acquires an exponentially suppressed Proca mass, physically indistinguishable from zero:
 
-$$m_\gamma = 0 \quad\text{(exact, topologically protected)}$$
+$$m_\gamma \lesssim e^{-E_P/E_{\text{obs}}} \quad\text{(topologically protected, exponentially suppressed)}$$
 
-The naive estimate $m_\gamma^{\text{naive}} \sim 5.0 \times 10^{-35}\;\text{eV}$ (from the residual RG-suppressed self-energy $Q_{\text{vac}}^2 \cdot E_{\text{obs}}^2 / E_P$) is itself an artefact of treating the $U(1)$ Ward identity as an approximate energy symmetry. The topological protection from $[Q, L_k] = 0$ is *stronger* than any perturbative bound: because $n \in \mathbb{Z}$ is discrete, no continuous deformation — including arbitrarily high-loop radiative corrections or non-perturbative tunnelling — can generate a mass. The photon is massless for the same reason that a knot cannot be untied by smooth deformations.
+The naive estimate $m_\gamma^{\text{naive}} \sim 5.0 \times 10^{-35}\;\text{eV}$ (from the residual RG-suppressed self-energy $Q_{\text{vac}}^2 \cdot E_{\text{obs}}^2 / E_P$) is itself an artefact of treating the $U(1)$ Ward identity as an approximate energy symmetry. The topological protection from $[Q, L_k] = 0$ provides a far stronger suppression: because $n \in \mathbb{Z}$ is discrete, no continuous deformation — including arbitrarily high-loop radiative corrections or non-perturbative tunnelling — can generate a mass term at any physically accessible energy scale. The photon mass is suppressed by the ratio of the macroscopic observation scale to the Planck scale, making it physically zero for all astrophysical purposes without requiring an absolute mathematical proof of exact vanishing.
 
-This result supersedes the earlier RG-suppressed estimate $m_\gamma^{\text{phys}} \lesssim 7.9 \times 10^{-35}\;\text{eV}$ and establishes that the UHF predicts *exact* photon masslessness, consistent with and stronger than the current experimental bound ($m_\gamma < 10^{-32}\;\text{eV}$, PDG 2024).
+This result establishes that the UHF predicts effective photon masslessness consistent with and far exceeding the current experimental bound ($m_\gamma < 10^{-32}\;\text{eV}$, PDG 2024). The exponential suppression $e^{-E_P/E}$ ensures that any induced Proca mass is negligible to all measurable precision.
 
 **III-C. BRST-Lindblad Commutativity and the Unitarity Seal (Proof F).**
 
-The topological protection argument of Section III-B guarantees $m_\gamma = 0$ for the emergent $U(1)$ photon. We now elevate the result to the *functional* level — encompassing both the $U(1)$ and $SU(3)_C$ gauge sectors simultaneously — by proving that the BRST cohomology of the emergent gauge theory is *exactly preserved* by the Lindblad dissipation.
+The topological protection argument of Section III-B establishes effective masslessness ($m_\gamma \lesssim e^{-E_P/E}$) for the emergent $U(1)$ photon. We now elevate the result to the *functional* level — encompassing both the $U(1)$ and $SU(3)_C$ gauge sectors simultaneously — by demonstrating that the BRST cohomology of the emergent gauge theory is *effectively preserved* by the Lindblad dissipation within the physical Hilbert space.
 
 **Step 1: BRST charge and nilpotency.** Define the BRST charge $Q_B$ for the combined emergent gauge sector ($U(1) \times SU(3)_C$) in the standard Faddeev-Popov quantisation of the torsional fluctuation fields. The BRST transformation acts on the gauge field $A_\mu^a$, ghost $c^a$, and antighost $\bar{c}^a$ as:
 
@@ -345,11 +336,11 @@ $$S_{\text{phys}}^\dagger\, S_{\text{phys}} = \mathbf{1}$$
 
 The $Q_{\text{vac}} = 0.31\%$ dissipation per Kuramoto cycle transfers energy from the spin sector to the density sector, but this transfer occurs entirely within the BRST-exact (unphysical) sector. The physical scattering amplitudes are exactly unitary — no information is lost to the density sector at the level of observable processes.
 
-**(b) Proca mass exclusion for both $U(1)$ and $SU(3)_C$.** A Proca mass term $m^2 A_\mu A^\mu$ for the emergent photon or gluon would appear in the effective Lagrangian as a modification of the gauge-fixed action. But any such term violates the ST identity $\partial^\mu \langle A_\mu^a(x)\, \mathcal{O}(y)\rangle = \delta$-function contact terms (the non-Abelian generalisation of $\partial_\mu J^\mu = 0$). Since $\frac{d}{dt}\langle [Q_B, \mathcal{O}]\rangle = 0$ to all orders, the ST identity cannot be deformed by the Lindblad evolution, and no Proca mass can be generated at any loop order or non-perturbative level:
+**(b) Effective Proca mass exclusion for both $U(1)$ and $SU(3)_C$.** A Proca mass term $m^2 A_\mu A^\mu$ for the emergent photon or gluon would appear in the effective Lagrangian as a modification of the gauge-fixed action. But any such term violates the ST identity $\partial^\mu \langle A_\mu^a(x)\, \mathcal{O}(y)\rangle = \delta$-function contact terms (the non-Abelian generalisation of $\partial_\mu J^\mu = 0$). Since $\frac{d}{dt}\langle [Q_B, \mathcal{O}]\rangle = 0$ to all orders, the ST identity cannot be deformed by the Lindblad evolution, and no Proca mass can be generated at any loop order or non-perturbative level within the effective macroscopic regime:
 
-$$m_\gamma = 0, \qquad m_g = 0 \qquad \text{(exact, BRST-protected)}$$
+$$m_\gamma \lesssim e^{-E_P/E}, \qquad m_g \lesssim e^{-E_P/E} \qquad \text{(BRST-protected, exponentially suppressed)}$$
 
-This extends the topological result of Section III-B (which applied only to the $U(1)$ sector via the helicity winding number) to the full non-Abelian $SU(3)_C$ sector. The eight emergent gluons are *exactly* massless — their Proca masses are functionally locked at zero by the BRST-Lindblad commutativity, not merely suppressed by RG running.
+This extends the topological result of Section III-B (which applied only to the $U(1)$ sector via the helicity winding number) to the full non-Abelian $SU(3)_C$ sector. The eight emergent gluons are effectively massless — their Proca masses are exponentially suppressed by the BRST-Lindblad commutativity, not merely suppressed by RG running.
 
 **III-C′. Fluid Noether Currents and the Slavnov–Taylor Origin (Lemma Q).**
 
@@ -441,7 +432,7 @@ $$\Pi_{\mu\nu}^{ab}(q) = \delta^{ab}(q_\mu q_\nu - q^2 \eta_{\mu\nu})\,\Pi_T(q^2
 
 The physical states remain purely transverse, maintaining strict compatibility with LSZ reduction, S-matrix analyticity, and the Cutkosky cutting rules. This completes the 1PI-level verification that the open-quantum-system dissipation of the UHF vacuum does not compromise the functional integrity of the emergent gauge theory.
 
-**III-E. Stinespring Scattering Theory (Proof M).**
+**III-E. Stinespring Scattering Theory (Proof M).** *[The formal operator-algebraic details of this proof are collected in Extension Module B. We present the physical argument and key results here.]*
 
 The LSZ reduction of Section III-D extracts S-matrix elements from the 1PI effective action, but the standard Haag-Ruelle scattering theory assumes a *closed* quantum system with a unique vacuum. A naïve attempt to define Møller wave operators $\Omega_\pm = \lim_{t \to \mp\infty} e^{iHt}e^{-iH_0 t}$ directly on the Lindblad density matrix fails: the Lindblad semigroup $e^{\mathcal{L}t}$ is not generated by a Hamiltonian, so the strong limits that define $\Omega_\pm$ do not exist in the open-system setting. We resolve this by invoking the **Stinespring Unitary Dilation Theorem**, which lifts the dissipative dynamics to a unitary evolution on an enlarged Hilbert space where Haag-Ruelle theory applies without modification.
 
@@ -1363,6 +1354,8 @@ The Madelung-LSZ correspondence therefore establishes that the UHF does not mere
 
 #### 9.3.21 Trotter-Kato Convergence Proof
 
+*[The complete functional-analytic details of this convergence proof are collected in Extension Module B. We present the physical setup and key results here.]*
+
 We provide the rigorous functional-analytic proof that the discrete Poincaré generators converge, in the strong resolvent sense, to the continuous generators of a strongly continuous unitary representation of the Poincaré group $ISO(3,1)$ in the long-wavelength limit $k\xi \ll 1$.
 
 **Setup.** Let $\xi > 0$ denote the healing length of the condensate, which serves as the UV regulator of the emergent field theory. For each $\xi > 0$, define the regularized Hamiltonian $H_\xi$ and momentum operators $P_\xi^i$ acting on the Bogoliubov Fock space $\mathcal{F}_\xi$. In the Bogoliubov approximation:
@@ -1430,9 +1423,9 @@ where $v_{\text{LR}} = 2e\,J\,\xi/\hbar$ is the Lieb-Robinson velocity, $J$ is t
 
 **Consequence: no ghosts from boosts.** The essential self-adjointness of $K_0^i$ guarantees that the boost transformations are *unitary* — they preserve the positive-definite inner product of the Hilbert space. This eliminates the possibility of ghost states (negative-norm states) arising from the unitarization of the Lorentz group. The emergent relativistic quantum theory is therefore ghost-free, with a positive-definite Hilbert space and a unitary representation of the full Poincaré group $ISO(3,1)$ — including the non-compact boost sector.
 
-#### 9.3.23 The Wightman-Madelung Isomorphism
+#### 9.3.23 Effective IR Wightman Compliance: The Wightman-Madelung Isomorphism
 
-We construct the unitary intertwiner $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ between the bosonic condensate Hilbert space and the Wightman QFT Hilbert space using the rigged Hilbert space (Gelfand triple) framework. We then prove that this isomorphism satisfies all four Wightman axioms (Wightman 1956; Streater & Wightman 1964) as emergent theorems of the underlying fluid dynamics.
+We construct the unitary intertwiner $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ between the bosonic condensate Hilbert space and the Wightman QFT Hilbert space using the rigged Hilbert space (Gelfand triple) framework. We then demonstrate that this isomorphism satisfies all four Wightman axioms asymptotically in the IR limit ($k\xi \to 0$) as emergent structural properties of the underlying Gross-Pitaevskii fluid dynamics.
 
 **The unitary intertwiner.** Define $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ by its action on the Bogoliubov quasiparticle Fock space:
 
@@ -1502,19 +1495,19 @@ The Wightman 2-point function thus inherits its analytic properties — tempered
 
 
 
-#### 9.3.23a Haag's Theorem Resolution and the AQFT Thermodynamic Limit
+#### 9.3.23a Finite-Volume Effective Bypass of Haag's Theorem
 
-The isomorphism $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ constructed in Section 9.3.23 is challenged by Haag's theorem (Haag 1955, 1996): in an interacting relativistic QFT, the interaction picture does not exist because the interacting vacuum is unitarily inequivalent to the free vacuum. We resolve this obstruction explicitly.
+The isomorphism $\mathcal{U}: \mathcal{H}_{\text{Bose}} \to \mathcal{H}_{\text{QFT}}$ constructed in Section 9.3.23 is challenged by Haag's theorem (Haag 1955, 1996): in an interacting relativistic QFT, the interaction picture does not exist because the interacting vacuum is unitarily inequivalent to the free vacuum. We demonstrate how this obstruction is effectively bypassed within the physical EFT, rather than claiming to have resolved a strict mathematical theorem.
 
 **Statement of the problem.** Haag's theorem states that if two representations $\pi_0$ (free) and $\pi$ (interacting) of a relativistic QFT are unitarily equivalent and share the same vacuum, then $\pi = \pi_0$ — i.e., the theory is necessarily free. This appears to invalidate any attempt to construct the interacting QFT from the Bogoliubov quasi-particle Fock space.
 
-**Resolution 1: The weak-interaction limit.** In the UHF, the condensate is characterized by the gas parameter $na^3$, where $n$ is the number density and $a$ is the $s$-wave scattering length. For the sub-Planckian condensate:
+**Bypass 1: The weak-interaction limit.** In the UHF, the condensate is characterized by the gas parameter $na^3$, where $n$ is the number density and $a$ is the $s$-wave scattering length. For the sub-Planckian condensate:
 
 $$na^3 \sim \left(\frac{m}{m_P}\right)^3 \sim 10^{-90} \ll 1$$
 
-In this dilute limit, the Bogoliubov approximation is *exact* to all orders in perturbation theory (Lieb, Seiringer, Solovej & Yngvason 2005): the ground state of the interacting GP Hamiltonian is unitarily equivalent to the Bogoliubov quasi-free Fock vacuum, with corrections of $O(na^3)$. Haag's theorem is evaded because the effective interaction strength is parametrically negligible — the "interacting" theory is perturbatively indistinguishable from the free theory to any finite order, and the non-perturbative corrections vanish in the $na^3 \to 0$ limit.
+In this dilute limit, the Bogoliubov approximation is *exact* to all orders in perturbation theory (Lieb, Seiringer, Solovej & Yngvason 2005): the ground state of the interacting GP Hamiltonian is unitarily equivalent to the Bogoliubov quasi-free Fock vacuum, with corrections of $O(na^3)$. Haag's theorem is bypassed because the effective interaction strength is parametrically negligible — the "interacting" theory is perturbatively indistinguishable from the free theory to any finite order, and the non-perturbative corrections vanish in the $na^3 \to 0$ limit.
 
-**Resolution 2: Finite cosmological volume (IR cutoff).** Haag's theorem applies strictly only in infinite volume. For any finite spatial volume $V < \infty$ (such as the observable universe, $V \sim (ct_0)^3$), the Stone-von Neumann theorem guarantees that all irreducible representations of the CCR algebra over finitely many degrees of freedom are unitarily equivalent. The isomorphism $\mathcal{U}$ is therefore effectively unitarily equivalent for any $V < \infty$.
+**Bypass 2: Finite cosmological volume (IR cutoff).** Haag's theorem applies strictly only in infinite volume. For any finite spatial volume $V < \infty$ (such as the observable universe, $V \sim (ct_0)^3$), the Stone-von Neumann theorem guarantees that all irreducible representations of the CCR algebra over finitely many degrees of freedom are unitarily equivalent. The isomorphism $\mathcal{U}$ is therefore effectively unitarily equivalent for any $V < \infty$.
 
 The thermodynamic limit $V \to \infty$ is handled by the algebraic net construction (Haag 1996; Haag & Kastler 1964):
 
@@ -1527,9 +1520,9 @@ The thermodynamic limit $V \to \infty$ is handled by the algebraic net construct
 - Effectively unitarily equivalent for any finite cosmological volume $V < \infty$;
 - Recovered in the thermodynamic limit via the AQFT net construction, bypassing the interaction-picture obstruction that Haag's theorem forbids.
 
-**Axiom (Haag Resolution).** *The Wightman-Madelung isomorphism $\mathcal{U}$ serves as an effective unitary equivalence within the finite cosmological volume (IR cutoff) of the observable universe, $V \sim (ct_0)^3 \approx (4.4 \times 10^{26}\;\text{m})^3 < \infty$. Haag's theorem applies only in the strict infinite-volume limit $V \to \infty$, which is unphysical. For any $V < \infty$, the Stone-von Neumann theorem guarantees unitary equivalence of all CCR representations, rendering the interaction-picture obstruction vacuous in the physical universe.*
+**Axiom (Finite-Volume Haag Bypass).** *The Wightman-Madelung isomorphism $\mathcal{U}$ serves as an effective unitary equivalence within the finite cosmological volume (IR cutoff) of the observable universe, $V \sim (ct_0)^3 \approx (4.4 \times 10^{26}\;\text{m})^3 < \infty$. Haag's theorem applies only in the strict infinite-volume limit $V \to \infty$, which is unphysical. For any $V < \infty$, the Stone-von Neumann theorem guarantees unitary equivalence of all CCR representations, rendering the interaction-picture obstruction vacuous in the physical universe.*
 
-This resolves the last functional-analytic "ghost" of the UHF: the emergent QFT acts as a well-defined, interacting, relativistic quantum field theory satisfying the Wightman axioms effectively within the macroscopic IR regime, with no obstruction from Haag's theorem at finite volume.
+This effectively bypasses the last functional-analytic obstruction of the UHF: the emergent QFT acts as a well-defined, interacting, relativistic quantum field theory satisfying the Wightman axioms effectively within the macroscopic IR regime, with no obstruction from Haag's theorem at finite volume.
 
 
 #### 9.3.31 Theorem of Hydrodynamic Inertia: The Emergence of $F = ma$
@@ -1861,6 +1854,20 @@ The following analytic verifications are established in this paper:
 
 - **§9.3.11 (Emergent Graviton):** Updated opening paragraph — replaced "spin-2 acoustic phonon of the viscoelastic condensate" with "spin-2 acoustic quadrupole mode of the superfluid condensate," referencing the Lighthill aeroacoustic rewrite in Part I §7.4.
 - **§9.3.36 (NEW — Acoustic Gravitational Lensing):** Added full GR lensing derivation. Power-law fit $\ln\delta\theta$ vs $\ln(M/M_0)$: exponent $\alpha = -1.067$ (GR prediction $-1$), $R^2 = 0.990$; Gaussian control falsified ($\alpha = -9.49$, $R^2 = 0.81$). Verification row #28 added to the master table.
+
+**Version 9.1** (March 2026) — Journal-Safe Rhetorical Overhaul (Reviewer #2 Attack Map).
+
+- **Subtitle:** "Haag Resolution" → "Finite-Volume Haag Bypass" for accuracy.
+- **§0 Abstract:** Rewritten for journal submission. EFT framing foregrounded. Bell-CHSH and Milnor invariant details moved to body. Axiom of Scope simplified. Extension Module B introduced (deferring Stinespring dilations and Trotter-Kato convergence to supporting material).
+- **§9.1 Introduction:** New subsection "Introduction to the Effective IR Bridge" replaces single-paragraph intro. Frames the paper as demonstrating IR attractors, not claiming exact UV symmetry recovery.
+- **§9.3 heading:** "Resolution of Advanced Theoretical Challenges" → "Effective Analysis of Advanced Theoretical Challenges."
+- **§9.3.1 (Einstein Field Equations):** "The Non-Linearity of General Relativity" → "Post-Newtonian Isomorphism: Acoustic Backreaction and Gravitational Self-Interaction." Claims downgraded from "unavoidable macroscopic identity" to "attractive IR fixed point." Lovelock uniqueness argument preserved but framed as convergence target.
+- **III-B (Photon Masslessness):** "Exact Photon Masslessness" → "Effective Photon Masslessness." Result changed from $m_\gamma = 0$ (exact) to $m_\gamma \lesssim e^{-E_P/E}$ (exponentially suppressed Proca mass, physically zero for all astrophysical purposes).
+- **III-C (BRST-Lindblad):** "exactly preserved" → "effectively preserved." Proca mass exclusion downgraded from "exact, BRST-protected" to "BRST-protected, exponentially suppressed."
+- **III-E (Stinespring):** Added Extension Module B deferral note.
+- **§9.3.21 (Trotter-Kato):** Added Extension Module B deferral note.
+- **§9.3.23 (Wightman):** "The Wightman-Madelung Isomorphism" → "Effective IR Wightman Compliance." Axioms hold "asymptotically in the IR limit ($k\xi \to 0$)" rather than as absolute theorems.
+- **§9.3.23a (Haag's Theorem):** "Resolution" → "Finite-Volume Effective Bypass." "Resolution 1/2" → "Bypass 1/2." Axiom renamed from "Haag Resolution" to "Finite-Volume Haag Bypass." Concedes Haag's theorem holds in infinite-volume limit; shows EFT doesn't need to care about it.
 
 1. Barceló, C., Liberati, S. & Visser, M. (2005). "Analogue Gravity." *Living Rev. Relativ.* 8, 12.
 2. Barceló, C., Liberati, S. & Visser, M. (2011). "Analogue Gravity." *Living Rev. Relativ.* 14, 3.
