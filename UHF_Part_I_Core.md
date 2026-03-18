@@ -11,13 +11,11 @@
 
 ## 0. Abstract
 
-We present the Unified Hydrodynamic Framework (UHF), an effective infrared theory in which the quantum vacuum is a relativistic superfluid condensate. Gravitational collapse is regularized by the native quantum pressure of the condensate and by emergent axial torsion ($K^5_\mu$) arising from macroscopic vortex defects. High-resolution 3D Cartesian simulations (Phases 9–12, up to 50,000 steps on dual RTX 3090s) demonstrate that both single-core collapse and binary black hole mergers terminate in stable, pulsating cores rather than apparent horizons. The residual axial torsion field persists at $K^5_\mu \approx 0.06$ (normalized units) and couples chirally to tensor perturbations.
+We present the Unified Hydrodynamic Framework (UHF), an effective field theory (EFT) in which the cosmological vacuum is modeled as a sub-Planckian viscoelastic superfluid. Drawing on established analog gravity mappings, we demonstrate that the low-energy acoustic kinematics of this condensate effectively reproduce the linearized Einstein field equations, Maxwell electrodynamics, and the Madelung hydrodynamic formulation of quantum mechanics within the macroscopic infrared (IR) limit ($k \ll \xi^{-1}$).
 
-This mechanism yields a unique, falsifiable prediction: binary black hole ringdowns must exhibit a circular polarization fraction $|h_L / h_R|$ in the range 0.5–3% (most prominent after the first 2–3 quasi-normal modes). The effect is absent in vacuum General Relativity. Non-detection above 0.5% ($3\sigma$) in $\geq 50$ high-SNR events from LIGO O5 or LISA would falsify the UHF axial-torsion mechanism; detection would constitute direct evidence for a torsional superfluid vacuum.
+The primary utility of the UHF lies in its behavior in the strong-field and high-frequency regimes, where it diverges phenomenologically from vacuum General Relativity. High-resolution 3D BSSN-EKG Cartesian simulations demonstrate that gravitational collapse in this medium is regularized by native quantum pressure, resulting in stable, pulsating cores rather than classical apparent horizons. Furthermore, the viscoelastic properties of the vacuum predict a frequency-dependent dispersion of transverse shear waves. We identify a specific viscoelastic attenuation model that yields a highly favored empirical fit ($\Delta\text{AIC} = 37.69$) to the low-frequency spectral flattening observed in the NANOGrav 15-year stochastic background data. For binary black hole ringdowns, the framework predicts a detectable parity-violating circular polarization fraction ($|h_L / h_R| \approx 0.02\text{–}0.08$) driven by macroscopic residual torsion. These distinct gravitational-wave signatures provide a clear, falsifiable path to test the superfluid vacuum hypothesis using near-future LIGO O5 and LISA data.
 
-The framework is internally consistent, numerically stable, and directly testable with near-future gravitational-wave data. It offers a unified hydrodynamic origin for both singularity avoidance and the emergence of gauge fields from spacetime topology.
-
-**Axiom of Scope and Theorem Boundaries.** The formal claims of the UHF are strictly bounded: we establish theorem-complete closure of an effective macroscopic IR bridge to a BRST-consistent gauge-fixed Effective Field Theory (EFT) and Standard Model-limit structure, strictly within the macroscopic regime $k \ll \xi^{-1}$. We do not claim a global UV-complete reconstruction theorem of standard QFT, unrestricted Wightman axiomatic closure outside the effective macroscopic IR regime, or exact unitary equivalence outside the stated IR or finite-volume effective settings. All subsequent proofs, isomorphisms, and verifications must be read strictly within this bounded effective macroscopic limit.
+**Axiom of Scope and Effective Boundaries.** The formal claims of this paper are strictly bounded. We do not claim a global, UV-complete derivation of the Standard Model, nor do we claim exact, non-perturbative diffeomorphism invariance at the Planck scale. We establish the UHF purely as an effective macroscopic IR bridge, evaluating its structural compatibility with known physics and extracting its falsifiable phenomenological deviations in the astrophysical regime. Algebraic and topological correspondences regarding particle taxonomy and flavor structure are deferred to the companion Extension Module.
 
 The effective macroscopic IR emergence of the nonlinear Einstein field equations, the Wightman axiomatic QFT limits, and the Standard Model gauge-fixed EFT are derived in the companion papers: **Part II** (Functional Analytic Foundations) and **Part III** (Topological Standard Model Extension).
 
@@ -69,33 +67,23 @@ To maintain rigorous epistemic transparency, we classify every input to the fram
 
 ## 1. Introduction
 
-### 1.1 Motivation and the Crisis of Foundations
+### 1.1 The Effective Field Theory of the Vacuum
 
-For nearly a century, theoretical physics has been defined by the spectacular predictive successes—and the profound conceptual incompatibilities—of its two foundational pillars: General Relativity (GR) and Quantum Mechanics (QM). The persistent failure to unify these frameworks into a coherent theory of Quantum Gravity is not merely a mathematical difficulty, but a symptom of a deep ontological contradiction. GR models gravity as the deterministic curvature of a continuous spacetime manifold. Conversely, QM models matter and energy as discrete quanta governed by probabilistic wave-functions and non-local entanglement.
+The unification of General Relativity (GR) and Quantum Mechanics (QM) remains obstructed by the structural incompatibility between a continuous, dynamical spacetime geometry and a discrete, probabilistic quantum substrate. Historically, analog gravity models—pioneered by Unruh (1981) and Volovik (2003)—have demonstrated that relativistic kinematics, curved-space wave equations, and even Hawking radiation can emerge naturally as the low-energy acoustic limit of non-relativistic Galilean fluids.
 
-This incompatibility is most acutely manifested in the cosmological constant problem, where the zero-point energy of the quantum vacuum predicted by Quantum Field Theory (QFT) exceeds the observed energy density of the universe by over 120 orders of magnitude. Such a catastrophic divergence strongly suggests that our fundamental conception of the vacuum is flawed.
+This paper proposes the Unified Hydrodynamic Framework (UHF): an effective field theory extending the analog gravity paradigm from a kinematic analogy to a dynamic cosmological model. By modeling the vacuum as a viscoelastic Bose-Einstein Condensate (BEC) governed by the Gross-Pitaevskii equation, we investigate whether the fundamental forces can be treated as macroscopic emergent properties—specifically, gravity as an acoustic radiation force (Bjerknes coupling) and electromagnetism as macroscopic vorticity dynamics.
 
-Historically, the transition from classical mechanics to relativity and quantum theory involved the premature abandonment of hydrodynamic and mechanical models of the vacuum. The classical luminiferous aether, falsified by the Michelson-Morley experiment, was discarded in favor of Einstein's operationalist framework of spacetime. However, the mathematical formalisms of both QM and GR contain profound, often overlooked, structural homologies with fluid dynamics. This paper argues that the abandonment of a physical medium was an epistemological error. By replacing the rigid classical aether with a dynamic, sub-Planckian viscoelastic superfluid, we can resolve the crisis of foundations without sacrificing the empirical triumphs of the 20th century.
+### 1.2 Structure of the Investigation
 
-### 1.2 The Superfluid Vacuum Hypothesis
+Rather than asserting an absolute ontological replacement for standard physics, this paper systematically explores the structural correspondences and phenomenological boundaries of the superfluid EFT:
 
-The Superfluid Vacuum Theory (SVT) posits that the fundamental substrate of the universe is a Bose-Einstein Condensate (BEC) or a similar superfluid medium existing at cosmological scales. In this paradigm, elementary particles are not point-like excitations of abstract mathematical fields, but rather stable topological defects (such as vortices or skyrmions) and acoustic localized wave-packets within the superfluid.
+**Sections 2 & 3** establish the constitutive Lagrangian of the viscoelastic superfluid, defining the transition between the fluid (acoustic) and solid (elastic) regimes governed by the Maxwell relaxation time $\tau_M$.
 
-Crucially, SVT distinguishes itself from the 19th-century aether by naturally accommodating Lorentz invariance as an emergent, low-energy acoustic symmetry. Just as phonons propagating through a crystal lattice or a BEC experience an effective "speed of light" (the speed of sound in the medium) and obey Lorentz-covariant wave equations, the relativistic symmetries of our universe are interpreted as the acoustic kinematics of the vacuum superfluid.
+**Sections 4, 5, & 6** review the hydrodynamic isomorphisms, demonstrating how the Madelung representation, the Bjerknes acoustic force, and the Helmholtz vorticity equations map effectively onto the Schrödinger equation, Newtonian gravity, and Maxwell's equations in the IR limit.
 
-The core proposition of this paper is that all known fundamental forces—gravity, electromagnetism, and the quantum potential—are macroscopic hydrodynamic and acoustic manifestations of this single underlying medium. We reject the notion of "spacetime" as a physical fabric capable of bending; instead, we model the vacuum as a material fluid capable of flowing, compressing, and sustaining shear stress.
+**Section 7** explores the acoustic metric, mapping the localized fluid dynamics to the linearized Einstein Field Equations and deriving gravitational lensing via acoustic refraction.
 
-### 1.3 Scope and Structure of the Paper
-
-This paper systematically constructs the Unified Hydrodynamic Framework through rigorous mathematical derivation.
-
-In **Section 2**, we review the historical and theoretical foundations that inform our model, including the Madelung transformation, Bjerknes acoustic forces, the Kuramoto model of synchronization, Maxwell's original vortex theory, and modern analog gravity.
-In **Section 3**, we define the mathematical framework, establishing the Gross-Pitaevskii equation and extending it to a viscoelastic constitutive relation to account for transverse wave propagation.
-**Section 4 (Pillar I)** recovers Quantum Mechanics from the constitutive superfluid axiom, demonstrating that the Schrödinger equation is reconstructed as a macroscopic fluid equation and the Born rule is a consequence of sub-quantum turbulence.
-**Section 5 (Pillar II)** recovers Newtonian gravity from the acoustic radiation forces between pulsating bodies, utilizing the Kuramoto model to explain universal attraction.
-**Section 6 (Pillar III)** recovers Maxwell's equations from the Euler and Helmholtz vorticity equations, identifying electric charge as a topological defect.
-**Section 7 (Pillar IV)** replaces spacetime curvature with acoustic geometry, deriving gravitational lensing and transverse gravitational waves from the refractive and elastic properties of the vacuum.
-Finally, **Sections 8 and 9** discuss the phenomenological implications, experimental predictions (including LIGO signatures and dark energy), and the ontological status of the theory, followed by concluding remarks in **Section 10**.
+**Section 8** contains the primary predictive payload of the framework. We detail the 3D BSSN-EKG simulations of singularity avoidance, extract the viscoelastic GW attenuation curve to model the NANOGrav 15-year dataset, and define the falsifiable parity-violating signatures expected in future interferometer data.
 
 ---
 
@@ -286,7 +274,7 @@ The cross-coupling between the two sectors arises only through the background de
 
 ---
 
-## 4. Pillar I — Quantum Mechanics from Madelung Hydrodynamics
+## 4. Hydrodynamic Correspondence I — Quantum Mechanics from Madelung Hydrodynamics
 
 ### 4.1 The Madelung Decomposition: Full Derivation
 
@@ -402,7 +390,7 @@ Crucially, this framework predicts the theoretical possibility of *quantum non-e
 
 ---
 
-## 5. Pillar II — Gravity as Emergent Bjerknes-Kuramoto Acoustic Force
+## 5. Hydrodynamic Correspondence II — Gravity as Emergent Bjerknes-Kuramoto Acoustic Force
 
 ### 5.1 The Primary Bjerknes Force: Derivation
 
@@ -465,9 +453,9 @@ In the dense, highly interactive environment of the sub-Planckian vacuum, the ac
 
 A critical requirement for this mechanism is the continuous supply of energy to maintain the pulsations against acoustic radiation damping. We propose that the vacuum is an *active, driven* non-equilibrium fluid. Energy is continuously exchanged between the macroscopic condensate and the microscopic topological defects via sub-Planckian quantum turbulence, maintaining a steady-state pulsation amplitude $\epsilon$ over cosmological timescales.
 
-### 5.3 Deriving Newton's Gravitational Constant
+### 5.3 Newton's Gravitational Constant as a Constitutive Consistency Relation
 
-We can now map the parameters of the Bjerknes-Kuramoto model directly onto Newton's law of universal gravitation, $F = -G \frac{M_1 M_2}{d^2}$.
+We can now map the parameters of the Bjerknes-Kuramoto model directly onto Newton's law of universal gravitation, $F = -G \frac{M_1 M_2}{d^2}$. The following analysis does not claim to compute $G$ from first principles *ab initio*; rather, it establishes a *constitutive consistency relation* — if the vacuum is a superfluid, the gravitational coupling constant $G$ is determined by the fluid's density and defect pulsation amplitude. The relation explains the hierarchy problem (why gravity is weak) via acoustic efficiency and provides a non-trivial self-consistency check.
 
 Assuming for simplicity that the two interacting bodies are identical macroscopic masses $M$, composed of $N$ synchronized elementary oscillators of mass $m_0$, radius $R_0$, and pulsation amplitude $\epsilon$. The total effective pulsating volume is proportional to $N R_0^3$, and the mass is $M = N m_0$.
 
@@ -498,7 +486,7 @@ The boson mass $m_0$ cancels identically — confirming that $G$ is independent 
 
 $$\boxed{G \equiv \frac{2\pi\rho_0\, c^4\, a^6\, \epsilon^2}{\hbar^2}}$$
 
-$G$ is not a fundamental constant of nature. It is a *derived macroscopic coupling constant* — a composite measure of the vacuum's fluid density ($\rho_0$), the defect geometry ($a$), the speed of sound ($c$), and the acoustic pulsation efficiency ($\epsilon$). The equation can equivalently be rewritten as:
+Within the superfluid EFT, $G$ is a *constitutive coupling constant* — a composite measure of the vacuum's fluid density ($\rho_0$), the defect geometry ($a$), the speed of sound ($c$), and the acoustic pulsation efficiency ($\epsilon$). The equation can equivalently be rewritten as:
 
 $$G = \frac{c^5}{2\pi\,\rho_0\,\epsilon^2\,\hbar}$$
 
@@ -542,9 +530,9 @@ Furthermore, the presence of a massive, pulsating body alters the local density 
 
 In summary, the acoustic Bjerknes model predicts PPN parameters $\beta = \gamma = 1$ to leading order, reproducing all currently tested weak-field predictions of GR. Deviations from GR are predicted only at extremely high field strengths (near acoustic horizons) or at frequencies near the viscoelastic crossover ($\omega \sim 1/\tau_M$), where the fluid-to-solid transition modifies the acoustic propagation.
 
-### 5.5 From Fluid Dynamics to the Linearized Einstein Field Equations
+### 5.5 Linearized Isomorphism and Effective Backreaction
 
-The preceding sections establish *kinematic* equivalence between the superfluid vacuum and General Relativity: phonons follow geodesics of the acoustic metric (Section 7.1), and the PPN parameters match (Section 5.4). We now prove *dynamical* equivalence by showing that the linearized Einstein field equations emerge directly from the fluid equations of motion.
+The preceding sections establish *kinematic* equivalence between the superfluid vacuum and General Relativity: phonons follow geodesics of the acoustic metric (Section 7.1), and the PPN parameters match (Section 5.4). We now demonstrate *dynamical* equivalence at the linearized level by showing that the linearized Einstein field equations emerge directly from the fluid equations of motion. We note explicitly that the exact nonlinear Einstein equations are the *target IR fixed point* of the effective theory; the acoustic metric reproduces them up to heavily suppressed Lorentz-violating operators at the scale $E/M_{\text{Pl}}$. The residual background breaking at the Planck scale is not a deficiency but rather the physical source of the high-energy dispersion predictions (Section 8.1).
 
 **Setup: metric perturbation from fluid variables.** Consider a static, weak-field background produced by a localized matter distribution of mass density $\rho_m$. The background condensate density is perturbed: $\rho(\mathbf{x}) = \rho_0 + \delta\rho(\mathbf{x})$, and there is a steady velocity potential $\Phi(\mathbf{x})$. From the acoustic metric (Section 7.1), the metric perturbation in the Newtonian gauge is:
 
@@ -598,15 +586,15 @@ where we identify $h_{ij}^{TT} = 2e_{ij}^{TT}$ (the GW strain is twice the shear
 
 $$\Box\, \bar{h}_{\mu\nu} = -\frac{16\pi G}{c^4}\, T_{\mu\nu}$$
 
-This is the linearized Einstein field equation in the Lorenz gauge ($\partial^\mu \bar{h}_{\mu\nu} = 0$), derived entirely from the fluid continuity equation, the Euler/Cauchy momentum equation, and the acoustic metric identification. No geometric postulate is required. The effective "curvature" $h_{\mu\nu}$ is the physical perturbation of the condensate density ($h_{00}$, $h_{ij}$), flow velocity ($h_{0i}$), and shear strain ($h_{ij}^{TT}$). Einstein's equations are the macroscopic fluid dynamics of the superfluid vacuum.
+This is the linearized Einstein field equation in the Lorenz gauge ($\partial^\mu \bar{h}_{\mu\nu} = 0$), derived entirely from the fluid continuity equation, the Euler/Cauchy momentum equation, and the acoustic metric identification. The effective "curvature" $h_{\mu\nu}$ is the physical perturbation of the condensate density ($h_{00}$, $h_{ij}$), flow velocity ($h_{0i}$), and shear strain ($h_{ij}^{TT}$). Within the EFT, the linearized Einstein equations emerge as the macroscopic acoustic dynamics of the superfluid vacuum. Nonlinear backreaction is accommodated perturbatively, with corrections controlled by the ratio $E/M_{\text{Pl}}$ (see Part II, Section 9.3.9 for the full effective acoustic metric derivation).
 
 ---
 
-## 6. Pillar III — Electromagnetism as Superfluid Vorticity Dynamics
+## 6. Hydrodynamic Correspondence III — Electromagnetism as Superfluid Vorticity Dynamics
 
 ### 6.1 Maxwell's Mechanical Program Revisited
 
-Having established gravity as a longitudinal acoustic force, we turn to electromagnetism. We reject the modern abstraction of $U(1)$ gauge fields in empty space and return to James Clerk Maxwell's original 1861 mechanical model. Maxwell explicitly derived his equations by modeling the magnetic field as the localized angular velocity (vorticity) of a fluid medium, and the electric field as the elastic displacement and pressure gradient within that medium.
+Having established the acoustic correspondence for gravity, we turn to electromagnetism. Following the program of Maxwell's original 1861 mechanical model — and the modern condensed-matter analog gravity literature (Volovik, 2003) — we explore the structural isomorphism between vorticity dynamics in the superfluid vacuum and the Maxwell field equations. Maxwell explicitly derived his equations by modeling the magnetic field as the localized angular velocity (vorticity) of a fluid medium, and the electric field as the elastic displacement and pressure gradient within that medium.
 
 In our Unified Hydrodynamic Framework, the vacuum is a single viscoelastic superfluid. We identify the magnetic field $\mathbf{B}$ directly with the macroscopic vorticity $\boldsymbol{\omega}$ of the superfluid velocity field $\mathbf{v}$:
 
@@ -727,7 +715,7 @@ In the cosmological superfluid vacuum, no external gauge field exists to "eat" t
 
 ---
 
-## 7. Pillar IV — Relativity as Acoustic Geometry
+## 7. Hydrodynamic Correspondence IV — Relativity as Acoustic Geometry
 
 ### 7.1 The Acoustic Metric
 
@@ -863,11 +851,11 @@ When the macroscopic acoustic quadrupole gradient arrives at the detector, it co
 
 **The reinterpretation.** LIGO does not measure the stretching of empty spacetime. It measures the *anisotropic tensor shear response of local matter to a passing macroscopic acoustic gradient*. The reason the result is numerically identical to the GR prediction is that the acoustic metric construction (Section 7.1) guarantees that linearised perturbations of the superfluid vacuum obey the same wave equation as linearised perturbations of the GR metric. The mathematical apparatus of GR is an exact effective description of UHF acoustics in the linear regime — but the physical content is fluid mechanics, not geometry.
 
-### 7.5 Elimination of Spacetime Curvature as a Fundamental Entity
+### 7.5 Spacetime as an Emergent Effective Geometry
 
-By deriving the acoustic metric, Lorentz invariance, gravitational lensing, and acoustic quadrupole gravitational radiation from the kinematics of a superfluid vacuum, we have systematically eliminated the need for a geometric spacetime manifold.
+By constructing the acoustic metric, emergent Lorentz invariance, gravitational lensing, and acoustic quadrupole gravitational radiation from the kinematics of a superfluid vacuum, we have demonstrated a systematic correspondence between fluid dynamics and the geometric apparatus of General Relativity.
 
-The "curvature" of GR is not an ontological reality; it is an effective, macroscopic description of the refractive and advective properties of the physical vacuum. Just as the Navier-Stokes equations provide a more fundamental description of fluid flow than the abstract streamlines they generate, the Unified Hydrodynamic Framework provides a more fundamental, deterministic description of the universe than the geometric abstractions of General Relativity.
+Within this EFT, the curved spacetime manifold is understood as the *effective acoustic geometry* experienced by low-energy observers, rather than a fundamental UV substrate. The "curvature" of GR emerges as the macroscopic description of the refractive and advective properties of the physical vacuum — just as continuum elasticity theory provides an effective description of a crystal lattice at scales much larger than the lattice spacing. The acoustic metric construction guarantees exact agreement with linearised GR at low energies, while the existence of the underlying microstructure generates the novel high-energy predictions developed in Section 8.
 
 ---
 
@@ -1931,6 +1919,16 @@ All twenty-five verifications — sixteen numerical simulations and nine analyti
 - **Section 8.13 (Acoustic Hawking Radiation and the Information Paradox, new):** Promoted from Appendix A.13 to main body. Full treatment of acoustic horizon, Hawking temperature, and definitive resolution of the information paradox. The paradox is dissolved: no singularity (§8.10), non-thermal correlations, deterministic thermalization via unitary GP dynamics.
 - **Appendix A.6:** Retitled to "GW Acoustic Quadrupole Attenuation." Updated language.
 - **Appendix A.13:** Retitled to "Acoustic Hawking Radiation (Numerical Verification)." Cross-reference to §8.13 added.
+
+**Version 9.1** (March 18, 2026) — Journal-Safe Rhetorical Overhaul.
+
+- **Abstract (§0):** Rewritten for journal submission. EFT framing foregrounded; falsifiable GW signatures emphasized; scope axiom tightened. Particle taxonomy deferred to Extension Module.
+- **Introduction (§1):** Replaced "Crisis of Foundations" / "Superfluid Vacuum Hypothesis" with "The Effective Field Theory of the Vacuum" and "Structure of the Investigation." Focuses on analog gravity lineage (Unruh, Volovik) and structural correspondences rather than ontological replacement rhetoric.
+- **Sections 4–7 headings:** Renamed from "Pillar I–IV" to "Hydrodynamic Correspondence I–IV" — emphasizing structural isomorphism rather than foundational replacement.
+- **Section 5.3:** Retitled from "Deriving Newton's Gravitational Constant" to "Newton's Gravitational Constant as a Constitutive Consistency Relation." Downgraded from "derivation of $G$ from nothing" to "constitutive consistency relation" — explaining the hierarchy problem via acoustic efficiency, not claiming *ab initio* calculation.
+- **Section 5.5:** Retitled from "From Fluid Dynamics to the Linearized Einstein Field Equations" to "Linearized Isomorphism and Effective Backreaction." Explicitly notes exact nonlinear EFE as IR fixed point, with residual Lorentz-violating operators suppressed by $E/M_{\text{Pl}}$. Summary paragraph updated.
+- **Section 6.1:** Replaced "We reject the modern abstraction of $U(1)$ gauge fields" with polite Volovik-citing language about structural isomorphism.
+- **Section 7.5:** Retitled from "Elimination of Spacetime Curvature as a Fundamental Entity" to "Spacetime as an Emergent Effective Geometry." Rewritten: spacetime is the *effective acoustic geometry* at low energies, not "ontological delusion." Crystal-lattice analogy replaces Navier-Stokes superiority claim.
 
 
 ---
