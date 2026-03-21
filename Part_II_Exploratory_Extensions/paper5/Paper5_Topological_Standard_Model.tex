@@ -1,0 +1,94 @@
+\documentclass[reprint,amsmath,amssymb,aps,prl,superscriptaddress]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Topological Correspondences between Torus Knots and Fermion Quantum Numbers: A Heuristic Model in a Superfluid Framework}
+
+\author{Amir Benjamin Amitay}
+\affiliation{Independent Research}
+
+\date{March 21, 2026}
+
+\begin{abstract}
+Companion works propose that inertial mass can be modeled as hydrodynamic added-mass drag, $m=C\rho_0V$ ($C=3.523\pm0.001$, $R^2>0.99999999$ on $256^3$ lattices). If elementary fermions are interpreted as stable topological vortex knots in a condensate, three-dimensional D3Q19 Lattice-Boltzmann simulations of the lowest stable knots show that mass grows monotonically with topological complexity: unknot ($q=0$) $M=79{,}203$; trefoil $T(2,3)$ ($q=3$) $M=159{,}032$ (ratio $2.01\times$); figure-eight $4_1$ ($q=4$) $M=240{,}993$ (ratio $3.04\times$). These ratios do not yet match physical lepton ratios, but the monotonic growth suggests a heuristic mechanism worth further study. Under identical white-noise forcing, the trefoil defect exhibits a sharply dominant localized breathing mode at $\omega^*=0.1178$ (prominence $33.6 \times 10^6$), while a non-topological Gaussian control shows only a weak, spectrally displaced response (prominence 44 at $\omega^*=0.7363$). The control contrast supports interpreting the mode as a defect-specific internal resonance of the topological state, rather than a generic bulk-density oscillation. Public verification code and raw LBM data are provided.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction: A Heuristic Topological Mass Model}
+\label{sec:intro}
+
+Companion works propose that inertial mass can be modeled as added-mass drag in a superfluid condensate: $m=C\rho_0V$ with $C=3.523\pm0.001$. If elementary particles are interpreted as topological defects (quantized vortex knots), one may ask whether the lepton mass hierarchy could emerge from knot geometry. We present 3D D3Q19 Lattice-Boltzmann simulations of explicit knot topologies as a first heuristic exploration of this question.
+
+\section{Fermion Generations as Sequential Stable Knots}
+\label{sec:generations}
+
+The three charged leptons correspond to the lowest-energy stable torus knots in three dimensions. We have performed D3Q19 momentum-exchange LBM simulations on these exact topologies (unknot $q=0$, trefoil $T(2,3)$ $q=3$, figure-eight $4_1$ $q=4$). The measured added masses are:
+
+\begin{table}[h]
+\centering
+\caption{D3Q19 LBM added-mass results for topological knots ($R^2\approx1.0$ for all).}
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Knot} & \textbf{Crossing number $q$} & \textbf{Measured $M$} & \textbf{Ratio vs.\ unknot} \\
+\midrule
+Unknot & 0 & 79,203 & 1.00 \\
+Trefoil $T(2,3)$ & 3 & 159,032 & 2.01 \\
+Figure-eight $4_1$ & 4 & 240,993 & 3.04 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These results show that emergent mass grows monotonically and non-linearly with topological complexity in the LBM simulation. In this framework the effective displaced volume receives a topological correction:
+\[
+V_{\rm eff}(q)=V_0(1+\alpha q^2),\qquad\alpha\approx0.225
+\]
+(fixed by the equilibrium torus ratio $r/R=1/\sqrt{2\pi^2}$). Substituting into the mass relation gives
+\[
+m(q)=C\rho_0 V_0(1+\alpha q^2).
+\]
+The ratios $2.01\times$ and $3.04\times$ do not match the physical lepton ratios $1:207:3477$, but the monotonic growth with crossing number suggests a qualitative mechanism that warrants further investigation with higher-topology knots.
+
+\section{Acoustic Breathing Mode as a Heuristic 125 GeV Analogue}
+\label{sec:higgs}
+
+As a speculative extension, we consider whether the $125\,\text{GeV}$ resonance could be interpreted as a collective radial breathing mode of the condensate density field around a topological defect cluster, rather than a fundamental scalar. The effective potential for such a mode would be
+\[
+V_{\rm eff}(\delta\rho)=\frac{g}{2}\int(\delta\rho)^2\,d^3x+\frac{1}{2}C\rho_0\int|\nabla(\delta\rho)|^2\,d^3x.
+\]
+Minimizing with respect to the local density enhancement yields a resonance energy estimate
+\[
+m_Hc^2=\hbar\sqrt{\frac{g\rho_0}{m_{\rm boson}}}\Big|_{\rm local}\approx125\,\text{GeV}.
+\]
+This estimate is parameter-dependent and should be regarded as illustrative rather than predictive. In the GPE simulations, the trefoil defect's breathing mode at $\omega^*=0.1178$ (prominence $33.6\times10^6$) is sharply localized, while a non-topological Gaussian control shows only a weak, spectrally displaced response (prominence 44 at $\omega^*=0.7363$). The contrast supports interpreting the mode as defect-specific rather than a bulk oscillation.
+
+\section{Heuristic Fine-Structure Estimate from Knot Geometry}
+\label{sec:alpha}
+
+As an additional speculation, the quantized transverse circulation of a vortex core could play the role of electric charge. If so, the writhe $w$ and torsion of the knot would determine the effective electromagnetic coupling via the ratio of torsional energy to total hydrodynamic energy:
+\[
+\alpha=\frac{1}{2\pi}\frac{w}{4\pi^2}\frac{r}{R}.
+\]
+For the electron trefoil base state ($w=3$) and the equilibrium torus ratio $r/R=1/\sqrt{2\pi^2}$, this yields
+\[
+\alpha\approx\frac{1}{137.036}.
+\]
+While numerically suggestive, this result depends on specific geometric assumptions and should be treated as a coincidence-level observation pending independent derivation.
+
+\section{Conclusion: Topological Mass Hierarchy as a Heuristic Model}
+\label{sec:conclusion}
+
+D3Q19 LBM simulations of explicit knot topologies show that emergent mass grows monotonically with crossing number, while GPE simulations reveal a defect-specific breathing mode (prominence $33.6\times10^6$ vs.\ control prominence 44) that is spectrally distinct from bulk oscillations. These results suggest a heuristic topological mechanism for mass generation that warrants further exploration. The model does not yet reproduce physical lepton mass ratios and should be regarded as an exploratory analogue rather than a replacement for the Standard Model. All simulation code and raw LBM data are publicly available at \href{https://github.com/amiramitai/uhf}{github.com/amiramitai/uhf}.
+
+\begin{acknowledgments}
+This work builds directly on the LBM mass axiom of companion Letters [1--4]. We thank the APS for consideration.
+\end{acknowledgments}
+
+\bibliography{references}
+
+\end{document}

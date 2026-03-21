@@ -7,14 +7,14 @@
 
 \begin{document}
 
-\title{Effective Infrared Emergence of General Relativity and Gravitational Waves from a Viscoelastic Superfluid Vacuum}
+\title{Effective Infrared Correspondence between Linearized Gravity and Viscoelastic Superfluid Dynamics}
 
 \author{Amir Benjamin Amitay}
 \affiliation{Independent Research, [Your Affiliation or arXiv-only]}
 \date{March 20, 2026}
 
 \begin{abstract}
-We demonstrate that the linearized Einstein field equations, post-Newtonian self-gravity, gravitational-wave propagation, and the observed NANOGrav 15-year stochastic background emerge as the low-energy infrared (IR) limit ($k\ll\xi^{-1}$) of a viscoelastic superfluid condensate governed by the Gross-Pitaevskii equation. The acoustic metric is sourced by fluid density and velocity; advective nonlinearity maps exactly onto the quadratic Christoffel terms of the Einstein tensor, recovering the full post-Newtonian expansion. Three-dimensional BSSN-EKG simulations show that quantum pressure regularizes gravitational collapse, keeping the central lapse $\alpha_{\rm min}>0$ at all times. In the viscoelastic regime, transverse shear waves obey the Maxwell-relaxation transfer function $\mathcal{H}(\omega)=1/\sqrt{1+(\omega\tau_M)^2}$, yielding a statistically decisive fit to the NANOGrav free-spectrum data ($\chi^2_\nu=0.14$, $\Delta{\rm AIC}\approx37.69$). Marolf's theorem is evaded by the strict IR scope; residual Lorentz violation is protected to all orders by custodial $SO(3,1)_{\rm diag}$ symmetry. All code, data, and analysis scripts are publicly available. This framework provides a self-consistent hydrodynamic origin for gravity and gravitational waves without invoking a fundamental metric.
+We demonstrate that the linearized Einstein field equations, post-Newtonian self-gravity, gravitational-wave propagation, and the observed NANOGrav 15-year stochastic background emerge as the low-energy infrared (IR) limit ($k\ll\xi^{-1}$) of a viscoelastic superfluid condensate governed by the Gross-Pitaevskii equation. The acoustic metric is sourced by fluid density and velocity; advective nonlinearity corresponds term-by-term to the quadratic Christoffel terms of the Einstein tensor at this order, recovering the post-Newtonian expansion in the tested regime. Three-dimensional BSSN-EKG simulations show that quantum pressure regularizes gravitational collapse, keeping the central lapse $\alpha_{\rm min}>0$ at all times. In the viscoelastic regime, transverse shear waves obey the Maxwell-relaxation transfer function $\mathcal{H}(\omega)=1/\sqrt{1+(\omega\tau_M)^2}$, yielding a statistically decisive fit to the NANOGrav free-spectrum data ($\chi^2_\nu=0.14$, $\Delta{\rm AIC}\approx37.69$). Marolf's theorem is evaded by the strict IR scope; residual Lorentz violation is protected to all orders by custodial $SO(3,1)_{\rm diag}$ symmetry. All code, data, and analysis scripts are publicly available. This framework provides a candidate hydrodynamic analogue for gravity and gravitational waves, limited to the IR regime, without invoking a fundamental metric.
 \end{abstract}
 
 \maketitle
@@ -22,7 +22,7 @@ We demonstrate that the linearized Einstein field equations, post-Newtonian self
 \section{Introduction: The Effective IR Bridge}
 \label{sec:intro}
 
-Standard general relativity (GR) and gravitational-wave physics rest on a classical pseudo-Riemannian metric. Here we show that both arise asymptotically from the coarse-grained dynamics of a viscoelastic superfluid vacuum whose order parameter satisfies the Gross-Pitaevskii equation. We restrict all claims to the macroscopic infrared limit $k\ll\xi^{-1}$, where $\xi$ is the microscopic healing length (see Part~I for the full ontology).
+Standard general relativity (GR) and gravitational-wave physics rest on a classical pseudo-Riemannian metric. Here we show that both arise as an effective correspondence from the coarse-grained dynamics of a viscoelastic superfluid vacuum whose order parameter satisfies the Gross-Pitaevskii equation. We restrict all claims to the macroscopic infrared limit $k\ll\xi^{-1}$, where $\xi$ is the microscopic healing length.
 
 The acoustic metric
 \begin{equation}
@@ -52,11 +52,11 @@ All coefficients match without tuning (see supplementary material for the term-b
 \section{Post-Newtonian Isomorphism: Gravity Gravitates}
 \label{sec:pn}
 
-The Navier-Stokes nonlinearity $(\mathbf{v}\cdot\nabla)\mathbf{v}$ maps exactly onto the quadratic Christoffel products $\Gamma^\alpha{}_{\beta\gamma}\Gamma^\beta{}_{\mu\alpha}$ in the Ricci tensor. Second-order density backreaction
+The Navier-Stokes nonlinearity $(\mathbf{v}\cdot\nabla)\mathbf{v}$ corresponds term-by-term to the quadratic Christoffel products $\Gamma^\alpha{}_{\beta\gamma}\Gamma^\beta{}_{\mu\alpha}$ in the Ricci tensor at second order in the perturbative expansion. Second-order density backreaction
 \begin{equation}
 \rho_0\to\rho_0+\frac{\langle(\delta\rho)^2\rangle}{2\rho_0}
 \end{equation}
-modifies the acoustic metric at order $h^2$, reproducing the full nonlinear Einstein tensor as an infrared fixed point~\cite{Barcelo2001}. Explicit term-by-term correspondence is given in Table~\ref{tab:mapping}.
+modifies the acoustic metric at order $h^2$, reproducing key nonlinear features of the Einstein tensor within the infrared regime~\cite{Barcelo2001}. Explicit term-by-term correspondence is given in Table~\ref{tab:mapping}.
 
 \section{BSSN-EKG Singularity Avoidance}
 \label{sec:bssn}
@@ -112,7 +112,7 @@ $c_s^{-3}(\partial P/\partial\rho)_{,\rho}\,(\delta\rho)^2\,\nabla\rho$ & Cubic 
 \section{Conclusion}
 \label{sec:conclusion}
 
-The linearized Einstein equations, post-Newtonian gravity, singularity avoidance, and the observed gravitational-wave background all emerge as the infrared limit of a single viscoelastic superfluid vacuum. The framework is falsifiable via high-frequency GW dispersion (LISA) and isotropy tests (SKA). Public verification code is provided at \href{https://github.com/UHF-Framework/verification-suite-v9.1}{github.com/UHF-Framework}.
+The linearized Einstein equations, post-Newtonian gravity, singularity avoidance, and the observed gravitational-wave background all find effective IR correspondences within a single viscoelastic superfluid model. The framework is falsifiable via high-frequency GW dispersion (LISA) and isotropy tests (SKA). Public verification code is provided at \href{https://github.com/amiramitai/uhf}{github.com/UHF-Framework}.
 
 \begin{acknowledgments}
 We thank the APS for consideration. All data and code are openly available.

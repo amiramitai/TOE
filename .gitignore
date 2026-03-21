@@ -13,3 +13,11 @@ out/
 *.bak
 test-browser.js
 creds.md
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*Notes.bib

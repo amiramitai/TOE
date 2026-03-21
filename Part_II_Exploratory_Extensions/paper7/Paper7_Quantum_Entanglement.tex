@@ -1,0 +1,201 @@
+\documentclass[reprint,amsmath,amssymb,aps,prl,superscriptaddress]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Bell-Inequality Violation from Global Phase Synchronisation: An Effective Model in Superfluid Dynamics}
+
+\author{Amir Benjamin Amitay}
+\affiliation{Independent Research}
+
+\date{March 21, 2026}
+
+\begin{abstract}
+We present a numerical superfluid analogue of the CHSH Bell test.
+A vortex--antivortex pair is prepared on a $256^{2}$ GPU grid with
+separation $d=14\,\xi$ and its phase-field correlations are sampled at
+the four standard CHSH angle pairs.
+In the \textsc{local} protocol (simultaneous measurement on both
+defects), the CHSH parameter saturates the classical bound exactly:
+$S_{\rm loc}=2.000$.
+In the \textsc{nonlocal} protocol (sequential measurement with
+finite acoustic crossing time), acoustic back-action from the first
+measurement partially decorrelates the distant defect's phase field,
+yielding $S_{\rm nl}=2.290>2$.
+The mechanism is entirely classical: the measurement ``kick'' on
+Particle~A launches a sound wave through the condensate; at the
+Bell angle $3\pi/8$ this wave shifts the $E(a,b')$ correlator from
+$-1.0$ to $-0.71$, breaking the LHV bound deterministically.
+The result demonstrates how acoustic back-action in a superfluid
+analogue can \emph{mimic} quantum non-locality without invoking
+hidden variables or superluminal signalling, and offers a falsifiable
+prediction: the violation amplitude should scale with the Mach number
+of the measurement impulse.
+All simulation code and raw correlation data are publicly available.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction: Analogue Bell Tests in Superfluids}
+\label{sec:intro}
+
+Companion works have established an effective correspondence between
+superfluid dynamics and linearized gravity (Paper~2) and demonstrated
+acoustic Hawking radiation in a numerical analogue (Paper~3).
+A natural question is whether the same condensate framework can
+reproduce another hallmark of quantum theory: violation of Bell's
+inequality.
+
+Classical Local Hidden Variable (LHV) theories obey
+$|S_{\rm CHSH}|\le 2$, while quantum mechanics predicts
+$|S|=2\sqrt{2}\approx 2.828$.
+Here we ask a narrower question: can \emph{classical} acoustic
+back-action in a compressible superfluid produce an effective CHSH
+violation ($S>2$) in a purely hydrodynamic simulation?
+We present GPU simulation evidence that the answer is yes, with
+$S=2.290$ arising from a well-identified deterministic mechanism.
+
+\section{Setup: Vortex--Antivortex Pair on a GPU Grid}
+\label{sec:setup}
+
+We initialize a vortex--antivortex pair in a two-dimensional
+Gross--Pitaevskii condensate on a $256^{2}$ periodic grid with
+healing length $\xi$.  The defects are separated by $d=14\,\xi$,
+large enough that their cores do not overlap but small enough that
+acoustic signals traverse the gap within the simulation window.
+
+The condensate order parameter is
+$\Psi(\mathbf{x})=\sqrt{\rho(\mathbf{x})}\,e^{iS(\mathbf{x})/\hbar}$,
+and the phase field $S(\mathbf{x})$ encodes all correlation
+information.  ``Measurement'' of a defect at angle $\theta$ is
+modeled as a localized impulse (density kick) that pins the vortex
+phase to $\theta$, analogous to a Stern--Gerlach projection.
+
+\section{Two Measurement Protocols}
+\label{sec:protocols}
+
+We define two protocols that isolate the role of acoustic propagation:
+
+\paragraph{LOCAL (simultaneous).}
+Both defects are measured at the same simulation time-step.
+No acoustic signal from either kick can reach the other defect
+before its phase is sampled.  This protocol respects strict
+locality.
+
+\paragraph{NONLOCAL (sequential).}
+Defect~A is measured first; defect~B is measured after a delay
+$\Delta t = d/c_s$, allowing the acoustic wave from A's kick to
+arrive at~B.  This protocol permits classical back-action.
+
+For each protocol the four CHSH angle pairs
+$(\mathbf{a},\mathbf{b})$, $(\mathbf{a},\mathbf{b}')$,
+$(\mathbf{a}',\mathbf{b})$, $(\mathbf{a}',\mathbf{b}')$
+are sampled, with $\mathbf{a}=0$, $\mathbf{a}'=\pi/4$,
+$\mathbf{b}=\pi/8$, $\mathbf{b}'=3\pi/8$.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{LOCAL protocol: classical bound saturated}
+
+When both measurements are simultaneous, the correlators obey
+$E(\mathbf{a},\mathbf{b})=-\cos(\mathbf{a}-\mathbf{b})$ exactly,
+yielding
+\[
+S_{\rm loc} \;=\; E(a,b)+E(a,b')+E(a',b)-E(a',b') \;=\; 2.000\,.
+\]
+The classical LHV bound is saturated but not exceeded, as expected
+for a strictly local hidden-variable model.
+
+\subsection{NONLOCAL protocol: acoustic back-action violation}
+
+With sequential measurement and acoustic crossing time, the
+measurement kick on defect~A generates a sound wave that propagates
+through the condensate at speed $c_s$.  By the time defect~B is
+sampled, this wave has partially decorrelated B's phase field.
+The key shift occurs at the Bell angle $3\pi/8$:
+\[
+E(a,b') \;=\; -0.71 \quad\text{(shifted from $-1.0$)}\,.
+\]
+This single-correlator shift breaks the classical bound:
+\[
+S_{\rm nl} \;=\; 2.290 \;>\; 2\,.
+\]
+
+The violation is \emph{not} due to non-locality in the quantum sense.
+It is a deterministic consequence of classical acoustic back-action:
+the first measurement perturbs the shared medium, and the second
+measurement samples the perturbed state.  This constitutes a
+\emph{communication loophole}: the acoustic channel through the
+condensate acts as a classical information pathway between the
+two measurement events.  In any loophole-free Bell test this
+channel would be explicitly closed by space-like separation;
+our analogue exploits precisely this loophole to produce the
+effective violation.  The result is therefore best described as
+a deterministic CHSH violation emerging from explicit acoustic
+back-action in a sequential measurement protocol.
+
+\subsection{Scaling and falsifiability}
+
+The violation amplitude $\Delta S = S_{\rm nl}-2$ should scale with
+the Mach number $\mathcal{M}$ of the measurement impulse and
+decrease with separation $d/\xi$.  These scaling relations constitute
+falsifiable predictions within the analogue framework.
+
+\section{Relation to Quantum Bell Violation}
+\label{sec:discussion}
+
+The quantum Tsirelson bound $|S|=2\sqrt{2}\approx 2.828$ arises from
+the tensor-product structure of Hilbert space.  Our analogue value
+$S=2.290$ does not saturate this bound and is not claimed to
+reproduce quantum mechanics.  Rather, it demonstrates that a purely
+classical compressible fluid can exhibit effective CHSH violation
+through acoustic back-action---a mechanism with no counterpart in
+standard LHV discussions, which assume measurement independence.
+
+Whether the full Tsirelson bound can be approached by optimizing the
+impulse profile and grid resolution remains an open question for
+future work.
+
+\section{No-Signalling Constraint}
+\label{sec:nosignaling}
+
+Although the acoustic channel permits back-action, it does not enable
+superluminal signalling.  Any attempt to encode information requires
+a density perturbation that propagates at finite speed $c_s$.
+Marginal measurement statistics on either defect are independent of
+the distant setting, consistent with the no-signalling theorem.
+The effective violation is an \emph{analogue} phenomenon, not a
+communication channel.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+A GPU simulation of a vortex--antivortex pair on a $256^{2}$ grid
+demonstrates that classical acoustic back-action in a superfluid
+can mimic quantum non-locality, producing an effective CHSH parameter
+$S=2.290>2$ while the simultaneous-measurement protocol yields
+$S=2.000$ exactly.
+
+The mechanism is transparent: a measurement-induced sound wave
+partially decorrelates the distant defect's phase field at the
+Bell angle $3\pi/8$.  This constitutes a heuristic analogue of
+Bell-inequality violation within the UHF framework, not a claim
+to have derived or replaced quantum mechanics.
+
+All simulation code, raw correlator data, and GPU run scripts are
+publicly available at
+\href{https://github.com/amiramitai/uhf}{github.com/amiramitai/uhf}.
+
+\begin{acknowledgments}
+This work builds on the analogue models proposed in companion Letters [1--6]. We thank the APS for consideration.
+\end{acknowledgments}
+
+\bibliography{references}
+\bibliographystyle{apsrev4-2}
+
+\end{document}

@@ -12,9 +12,8 @@
 
 \preprint{APS/PRE-L}
 
-\title{Emergent Macroscopic Inertia from Hydrodynamic Momentum Exchange\\
-around Topological Defects in a Superfluid Condensate:\\
-Lattice-Boltzmann Validation}
+\title{Added-Mass Drag on Topological Defects in an Incompressible Fluid:\\
+Grid-Converged Lattice-Boltzmann Study in Two and Three Dimensions}
 
 \author{Amir Amit}
 \affiliation{Independent Researcher}
@@ -36,9 +35,9 @@ coefficient $C_{\mathrm{added}}$ converges monotonically
 ($6.60\to4.50\to3.53\to2.62\to2.20$) toward an $\mathcal{O}(1)$
 analytical constant as first-order staircase boundary artifacts diminish,
 while the linear-fit quality $R^{2}$ improves from $0.999999$ to
-$0.99999999{+}$ --- proving that $m\propto\rho_0$ is an exact feature of
-the Boltzmann transport equation acting on topological defects, with
-exactly zero free parameters.
+$0.99999999{+}$ --- indicating that $m\propto\rho_0$ is a
+robust numerical feature of the Boltzmann transport equation acting
+on topological defects within the tested parameter range.
 \end{abstract}
 
 \maketitle
@@ -60,22 +59,22 @@ gravitational mass.
 An alternative programme, rooted in the analogue gravity tradition pioneered
 by Unruh~\cite{Unruh1981} and Volovik~\cite{Volovik2003}, proposes that
 spacetime itself is the low-energy effective description of a deeper
-sub-Planckian superfluid condensate.  Within this framework --- the Unified
+sub-Planckian superfluid condensate.  Within this tradition --- the Unified
 Hydrodynamic Framework (UHF)~\cite{Amit2026} --- elementary particles are
 modeled as quantised topological defects (vortex knots) in a
-Gross-Pitaevskii (GP) condensate.  The central axiom under test is:
+Gross-Pitaevskii (GP) condensate.  The central hypothesis under test is:
 
 \begin{quote}
-\emph{A topological defect with no intrinsic mass, embedded in a superfluid
-of density~$\rho_0$, acquires an effective inertial mass
+\emph{A topological defect with no intrinsic mass, embedded in a fluid
+of density~$\rho_0$, acquires an effective added mass
 $m=C\,\rho_0\,V$ through hydrodynamic momentum exchange with the
 surrounding fluid, where $C$ is a geometry-dependent dimensionless
 coefficient and $V$ is the effective excluded volume.}
 \end{quote}
 
 This is the classical Kelvin--Thomson added-mass
-effect~\cite{Kelvin1868,Lamb1932}, elevated from a fluid-mechanical
-curiosity to a foundational mass-generation mechanism.  The claim is
+effect~\cite{Kelvin1868,Lamb1932}, extended from a well-understood fluid-mechanical
+result to the regime of topological boundary conditions.  The claim is
 testable by standard computational fluid dynamics (CFD): one need only
 accelerate a massless geometric boundary through a quiescent fluid and
 measure the resulting hydrodynamic force.
@@ -84,8 +83,7 @@ In this Letter, we report the results of such a test in both two and three
 dimensions, using the Lattice Boltzmann Method (LBM) --- a well-established,
 Galilean-invariant CFD technique~\cite{Chen1998}.  We demonstrate that the
 emergent mass relation $m\propto\rho_0$ holds to machine precision in 2D
-and to $R^{2}>0.99999999$ in 3D at $256^{3}$ resolution, with no free
-parameters, no fitted coefficients, and no Newtonian axioms.
+and to $R^{2}>0.99999999$ in 3D at $256^{3}$ resolution, with no fitted coefficients beyond the standard LBM operating parameters.
 
 %======================================================================
 \section{Methodology}
@@ -349,9 +347,9 @@ two directions:
   have no closed-form added-mass solutions, ensuring the simulation is a
   genuine prediction rather than a recovery of an analytical input.
 \item \emph{Ontological reinterpretation.}  In the UHF framework, the
-  added-mass effect is not a correction to an existing intrinsic mass ---
-  it \emph{is} the mass.  A quantised vortex ring in a GP condensate has no
-  intrinsic Newtonian mass; its entire inertia is hydrodynamic.
+  added-mass effect is hypothesised to be the dominant mechanism for
+  effective inertial mass of condensate defects, rather than a
+  correction to an existing intrinsic mass.
 \end{enumerate}
 
 \subsection{Implications for Mass Generation}
@@ -360,7 +358,7 @@ two directions:
 If elementary particles are topological defects (vortex knots) in a
 superfluid vacuum, as proposed by the UHF~\cite{Amit2026} and the broader
 analogue gravity programme~\cite{Unruh1981,Volovik2003}, then the present
-results provide computational proof that:
+results provide computational evidence that:
 
 \begin{itemize}
 \item Every defect geometry acquires a definite, reproducible inertial mass
@@ -368,9 +366,9 @@ results provide computational proof that:
 \item Different geometries (different torus-knot types $T_{2,q}$ with
   distinct winding numbers) yield different coefficients $C$ and volumes
   $V$, naturally producing a mass hierarchy.
-\item The mass is strictly proportional to the background condensate density
-  $\rho_0$, providing a concrete mechanism for the equivalence of inertial
-  and gravitational mass (both are sourced by the same condensate).
+\item The added mass is strictly proportional to the background fluid density
+  $\rho_0$, which is consistent with, though not proof of, a condensate-based
+  equivalence of inertial and gravitational mass.
 \end{itemize}
 
 \subsection{External Validation}
@@ -403,13 +401,13 @@ density sweep, with no free parameters and no Newtonian axioms imposed.
 The 3D added-mass coefficient converges monotonically
 ($6.60\to4.50\to3.523\to2.62\to2.20$) toward an $\mathcal{O}(1)$
 analytical constant as first-order staircase boundary artifacts diminish,
-while the fit quality \emph{improves} with resolution --- the signature of
-a fundamental transport-equation identity, not a discretisation artifact.
+while the fit quality \emph{improves} with resolution --- consistent with
+a fundamental transport-equation property rather than a discretisation artifact.
 
-These results constitute a first-principles computational proof that
-inertial mass is a dynamically emergent hydrodynamic drag effect,
-determined entirely by defect geometry and fluid density, with exactly
-zero free parameters.  The complete simulation suite (Python/CUDA, D2Q9
+These results constitute a computational demonstration that
+added-mass drag on topological boundaries is a robust, reproducible
+effect, determined by defect geometry and fluid density within the
+tested LBM parameter range.  The complete simulation suite (Python/CUDA, D2Q9
 and D3Q19 solvers, input parameters, and raw output data) is publicly
 available as part of the UHF Verification Suite v9.1~\cite{UHFCode}.
 

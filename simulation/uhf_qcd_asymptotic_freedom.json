@@ -1,0 +1,100 @@
+{
+  "test": "UHF_QCD_Asymptotic_Freedom",
+  "grid": {
+    "N": 128,
+    "L": 64.0,
+    "dx": 0.5
+  },
+  "physics": {
+    "mu": 1.0,
+    "g": 1.0,
+    "xi": 0.7071067811865475,
+    "c_s": 1.0
+  },
+  "borromean": {
+    "ring_R": 6.0,
+    "core_w": 1.2,
+    "sep": 5.0
+  },
+  "probe": {
+    "sigma": 4.0,
+    "amp": 0.1,
+    "x0": -24.0
+  },
+  "fit": {
+    "alpha": -1.9455265457987445,
+    "A": 81.87163343106977,
+    "R2": 0.984239499750098
+  },
+  "monotonically_decreasing": false,
+  "asymptotic_freedom": true,
+  "results": [
+    {
+      "velocity": 0.3,
+      "lambda_dB": 20.943951023931955,
+      "n_steps": 10000,
+      "E_target_before": 504.45308983886804,
+      "E_target_after": 632.4786428208686,
+      "delta_E": 128.02555298200053,
+      "probe_KE": 0.15999706301716582,
+      "sigma_eff": 800.17439425288,
+      "wall_time": 89.87436079978943
+    },
+    {
+      "velocity": 0.5,
+      "lambda_dB": 12.566370614359172,
+      "n_steps": 10000,
+      "E_target_before": 504.45308983886804,
+      "E_target_after": 625.824200050856,
+      "delta_E": 121.37111021198797,
+      "probe_KE": 0.4444362861587939,
+      "sigma_eff": 273.0900108561859,
+      "wall_time": 46.596922636032104
+    },
+    {
+      "velocity": 0.8,
+      "lambda_dB": 7.853981633974483,
+      "n_steps": 7812,
+      "E_target_before": 504.45308983886804,
+      "E_target_after": 695.6014337710044,
+      "delta_E": 191.14834393213636,
+      "probe_KE": 1.1377568925665125,
+      "sigma_eff": 168.0045580747488,
+      "wall_time": 34.97133159637451
+    },
+    {
+      "velocity": 1.2,
+      "lambda_dB": 5.235987755982989,
+      "n_steps": 5208,
+      "E_target_before": 504.45308983886804,
+      "E_target_after": 389.8369187878927,
+      "delta_E": -114.61617105097531,
+      "probe_KE": 2.5599530082746527,
+      "sigma_eff": 44.77276367202688,
+      "wall_time": 21.34518313407898
+    },
+    {
+      "velocity": 1.8,
+      "lambda_dB": 3.490658503988659,
+      "n_steps": 3472,
+      "E_target_before": 504.45308983886804,
+      "E_target_after": 800.4956878025316,
+      "delta_E": 296.0425979636636,
+      "probe_KE": 5.759894268617969,
+      "sigma_eff": 51.39722782354061,
+      "wall_time": 17.374948263168335
+    },
+    {
+      "velocity": 2.5,
+      "lambda_dB": 2.5132741228718345,
+      "n_steps": 2500,
+      "E_target_before": 504.45308983886804,
+      "E_target_after": 596.5767002709954,
+      "delta_E": 92.12361043212735,
+      "probe_KE": 11.110907153969848,
+      "sigma_eff": 8.291277134757825,
+      "wall_time": 10.346506118774414
+    }
+  ],
+  "wall_time": 247.4513921737671
+}

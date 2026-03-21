@@ -1,0 +1,22 @@
+{
+  "test": "Higgs_Null_Model",
+  "blob": {
+    "sigma": 12.0,
+    "amp": 0.5
+  },
+  "trefoil_omega": 0.1178,
+  "blob_spectrum": {
+    "peak_freq": 0.1171875,
+    "peak_omega": 0.7363107781851077,
+    "peak_power": 0.2281166146068344,
+    "snr": 1.8712827189090065e+22,
+    "Q_factor": 5.0,
+    "prominence": 44.23021504448287
+  },
+  "power_at_trefoil_omega": 0.0010531178574203876,
+  "trefoil_ratio": 0.00461657674183648,
+  "omega_match": false,
+  "strong_peak": true,
+  "verdict": "PASS \u2014 null model peak differs from trefoil",
+  "wall_time": 87.23611736297607
+}

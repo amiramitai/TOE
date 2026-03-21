@@ -1,0 +1,62 @@
+{
+  "test": "UHF_Bell_Violation_v3",
+  "grid": 256,
+  "domain": 40.0,
+  "rho0": 1.0,
+  "g": 1.0,
+  "xi": 0.7071067811865475,
+  "c_s": 1.0,
+  "separation_xi": 14.0,
+  "separation_phys": 9.899494936611664,
+  "kick_amp": 3.0,
+  "kick_r": 2.5,
+  "n_prop": 2970,
+  "t_prop": 14.85,
+  "t_cross": 9.899494936611664,
+  "n_angles": 37,
+  "n_ensemble": 10000,
+  "local_noise": 0.0,
+  "CHSH_S_local": -2.0,
+  "CHSH_S_nonlocal": -2.2900390625,
+  "CHSH_abs_S_local": 2.0,
+  "CHSH_abs_S_nonlocal": 2.2900390625,
+  "bell_violated_local": false,
+  "bell_violated_nonlocal": true,
+  "verdict_local": "NOT_VIOLATED",
+  "verdict_nonlocal": "VIOLATED",
+  "chsh_local": {
+    "E(a,b)": -1.0,
+    "E(a,b')": -1.0,
+    "E(a',b)": -1.0,
+    "E(a',b')": -1.0
+  },
+  "chsh_nonlocal": {
+    "E(a,b)": -1.0,
+    "E(a,b')": -0.7099609375,
+    "E(a',b)": -1.0,
+    "E(a',b')": -1.0
+  },
+  "fits": {
+    "local_cos2": {
+      "A": 0.46871366677991083,
+      "B": -0.613385843115526,
+      "R2": 0.2797640667886736
+    },
+    "local_triangle": {
+      "A": -0.868333537411305,
+      "B": -0.6007179054319187,
+      "R2": 0.6588340312733783
+    },
+    "nonlocal_cos2": {
+      "A": 0.13249773297905604,
+      "B": -0.2918253195132518,
+      "R2": 0.021081615036076196
+    },
+    "nonlocal_triangle": {
+      "A": -1.0667938188444863,
+      "B": -0.2882442988647814,
+      "R2": 0.9377221112322022
+    }
+  },
+  "wall_time_s": 31.31727385520935
+}

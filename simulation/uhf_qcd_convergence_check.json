@@ -1,0 +1,24 @@
+{
+  "test": "QCD_Grid_Convergence",
+  "probe_velocity": 2.5,
+  "grids": {
+    "N128": {
+      "N": 128,
+      "dx": 0.5,
+      "sigma_eff": 8.291277
+    },
+    "N256": {
+      "N": 256,
+      "dx": 0.25,
+      "sigma_eff": 8.286289168014136,
+      "delta_E": 92.06633772636701,
+      "probe_KE": 11.110683667877755
+    }
+  },
+  "ratio": 0.9993984241527737,
+  "relative_change_pct": 0.06015758472263281,
+  "converged": true,
+  "still_low": true,
+  "verdict": "CONVERGED",
+  "wall_time": 125.85874342918396
+}
